@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://08mxxy0nv6c"]
+
+[ext_resource type="Script" uid="uid://cxf46ltkbo1t0" path="res://character_body_2d.gd" id="1_vcyby"]
+[ext_resource type="Script" uid="uid://m6mun0klym4i" path="res://movement_component.gd" id="2_6ljl2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a36"]
+size = Vector2(50, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pd38"]
+size = Vector2(1149, 40)
+
+[node name="Node2D" type="Node2D" unique_id=582989410]
+position = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=597237408]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1117399666]
+position = Vector2(326, 223)
+script = ExtResource("1_vcyby")
+metadata/_edit_group_ = true
+
+[node name="MovementComponent" type="Node" parent="Player" unique_id=1674192618]
+script = ExtResource("2_6ljl2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1807112866]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_f6a36")
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=702977429]
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 25.0
+offset_bottom = 20.0
+pivot_offset = Vector2(25, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Player/ColorRect" unique_id=492087626]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -20.0
+offset_right = 35.0
+pivot_offset = Vector2(10, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=642334269]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=849207490]
+position = Vector2(-2, 382)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1008397622]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=424249582]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_5pd38")
+
+[node name="Wall" type="StaticBody2D" parent="." unique_id=543871432]
+position = Vector2(-1, -765)
+rotation = 1.5707964
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Wall" unique_id=1251243094]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=1092115041]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_5pd38")
+
+[node name="Wall2" type="StaticBody2D" parent="." unique_id=6503481]
+position = Vector2(492, -771)
+rotation = 1.5707964
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Wall2" unique_id=226483721]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=264466971]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_5pd38")
