@@ -19,7 +19,8 @@ signal dash_finished
 func get_velocity(input_direction: Vector2) -> Vector2:
 	return input_direction * speed
 
-# Perhitungan rotasi berdasarkan vector arah player
+# TODO: Ganti logika ini sepenuhnya, ganti dengan animasi saja (ACA)
+# Perhitungan rotasi berdasarkan vector player
 func get_rotation_degrees(direction: Vector2) -> float:
 	# Jika player menahan tombol A/D maka kunci arah karakter ke kanan/kiri
 	if abs(direction.x) >= abs(direction.y):
@@ -50,6 +51,7 @@ func start_dash(direction: Vector2) -> Vector2:
 
 	return direction.normalized() * dash_speed
 
+# Pergantian states
 func _on_dash_duration_timeout() -> void:
 	is_dashing = false
 	dash_finished.emit()

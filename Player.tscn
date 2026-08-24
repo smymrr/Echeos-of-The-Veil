@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://bwj8fslg15w0l"]
+
+[ext_resource type="Script" uid="uid://cxf46ltkbo1t0" path="res://character_body_2d.gd" id="1_kne1u"]
+[ext_resource type="Script" uid="uid://m6mun0klym4i" path="res://movement_component.gd" id="2_e80uo"]
+[ext_resource type="Script" uid="uid://dmiio0uymrvp0" path="res://attack_component.gd" id="3_cxr5p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
+size = Vector2(50, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtqjt"]
+size = Vector2(50, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kne1u"]
+size = Vector2(1149, 40)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1987352962]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2007738758]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=619234182]
+position = Vector2(310, 260)
+rotation = 1.5707964
+script = ExtResource("1_kne1u")
+
+[node name="MovementComponent" type="Node" parent="Player" unique_id=897772332]
+script = ExtResource("2_e80uo")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="Player" unique_id=1110552449]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_tdg3f")
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=1183792382]
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 25.0
+offset_bottom = 20.0
+pivot_offset = Vector2(25, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Player/ColorRect" unique_id=1871263115]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -20.0
+offset_right = 35.0
+pivot_offset = Vector2(10, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=350002166]
+
+[node name="AttackComponent" type="Node" parent="Player" unique_id=1191706242]
+script = ExtResource("3_cxr5p")
+
+[node name="Hitbox" type="Area2D" parent="Player/AttackComponent" unique_id=797767827]
+position = Vector2(371, 261)
+
+[node name="HitboxDetection" type="CollisionShape2D" parent="Player/AttackComponent/Hitbox" unique_id=1915841140]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_dtqjt")
+
+[node name="ColorRect" type="ColorRect" parent="Player/AttackComponent/Hitbox" unique_id=380097660]
+offset_left = -19.0
+offset_top = -40.0
+offset_right = 31.0
+offset_bottom = 40.0
+color = Color(0.654902, 0.28235295, 0.27450982, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1773575274]
+position = Vector2(-2, 382)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1669126756]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=2060576562]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_kne1u")
+
+[node name="Wall" type="StaticBody2D" parent="." unique_id=1542374272]
+position = Vector2(-3, -221)
+rotation = 1.5707964
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Wall" unique_id=1018773446]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=780142729]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_kne1u")
+
+[node name="Wall2" type="StaticBody2D" parent="." unique_id=1586381640]
+position = Vector2(490, -227)
+rotation = 1.5707964
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Wall2" unique_id=238514449]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=1820594156]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_kne1u")
