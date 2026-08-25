@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dnvl7elvc4qn3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtk66"]
+size = Vector2(1149, 40)
+
+[node name="Baseplate" type="Node2D" unique_id=397421195]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=217217877]
+position = Vector2(-2, 382)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1120961078]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1302061900]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_wtk66")
+
+[node name="Wall" type="StaticBody2D" parent="." unique_id=1413619485]
+position = Vector2(-3, -221)
+rotation = 1.5707964
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Wall" unique_id=217321407]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=60678490]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_wtk66")
+
+[node name="Wall2" type="StaticBody2D" parent="." unique_id=47132668]
+position = Vector2(490, -227)
+rotation = 1.5707964
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Wall2" unique_id=254043050]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1129.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=1643819153]
+position = Vector2(554.5, 0)
+shape = SubResource("RectangleShape2D_wtk66")

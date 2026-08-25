@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Echeos of the Veil"
-run/main_scene="uid://bwj8fslg15w0l"
+run/main_scene="uid://dkgaos83iuabf"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
