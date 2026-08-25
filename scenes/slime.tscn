@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://nma6eyvb42j7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a36"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5jfb"]
+size = Vector2(40, 40)
+
+[node name="Slime" type="CharacterBody2D" unique_id=1521115122]
+position = Vector2(25, 27)
+collision_layer = 4
+collision_mask = 7
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1874146231]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+pivot_offset = Vector2(20, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="HurtHitbox" type="Area2D" parent="." unique_id=1540577334]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtHitbox" unique_id=1667132581]
+shape = SubResource("RectangleShape2D_f6a36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450293547]
+shape = SubResource("RectangleShape2D_t5jfb")

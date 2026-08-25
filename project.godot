@@ -61,6 +61,12 @@ left_click={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Wall"
+2d_render/layer_3="Enemy"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

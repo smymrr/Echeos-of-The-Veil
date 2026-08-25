@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://dkgaos83iuabf"]
 
-[ext_resource type="PackedScene" uid="uid://bwj8fslg15w0l" path="res://scenes/Player.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bwj8fslg15w0l" path="res://scenes/player.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dnvl7elvc4qn3" path="res://scenes/baseplate.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://nma6eyvb42j7" path="res://scenes/slime.tscn" id="3_sugp2"]
 
 [node name="main" type="Node2D" unique_id=672410187]
-
-[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("1_0wfyh")]
-position = Vector2(156, 101)
+position = Vector2(0, -1)
 
 [node name="Baseplate" parent="." unique_id=397421195 instance=ExtResource("2_sugp2")]
+
+[node name="Slime" parent="." unique_id=1521115122 instance=ExtResource("3_sugp2")]
+position = Vector2(387, -232)
+
+[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("2_0wfyh")]
