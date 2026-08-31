@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b4l62k0hfmona"]
+
+[ext_resource type="Script" uid="uid://p0siu1u08ox1" path="res://scripts/ui/display_stats.gd" id="1_60ac8"]
+[ext_resource type="Script" uid="uid://colx00i700ood" path="res://scripts/ui/decrease_hp.gd" id="2_nv28q"]
+[ext_resource type="Script" uid="uid://cfq6jh0iktwgu" path="res://scripts/ui/increase_hp.gd" id="3_ieq6q"]
+
+[node name="Control" type="Control" unique_id=1676327586]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1052367823]
+
+[node name="DisplayStats" type="MarginContainer" parent="CanvasLayer" unique_id=1502321389]
+offset_right = 99.0
+offset_bottom = 28.0
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/DisplayStats" unique_id=977351058]
+layout_mode = 2
+text = "display stats"
+script = ExtResource("1_60ac8")
+
+[node name="DisplayMulti" type="MarginContainer" parent="CanvasLayer" unique_id=2121800883]
+offset_left = 108.0
+offset_top = 1.0
+offset_right = 209.0
+offset_bottom = 29.0
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/DisplayMulti" unique_id=1105583816]
+layout_mode = 2
+text = "W.I.P"
+
+[node name="DecreaseHP" type="MarginContainer" parent="CanvasLayer" unique_id=863223419]
+offset_left = -1.0
+offset_top = 35.0
+offset_right = 49.0
+offset_bottom = 57.0
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/DecreaseHP" unique_id=1113989510]
+layout_mode = 2
+text = "-15 HP"
+script = ExtResource("2_nv28q")
+
+[node name="IncreaseHP" type="MarginContainer" parent="CanvasLayer" unique_id=1278746932]
+offset_left = 61.0
+offset_top = 35.0
+offset_right = 114.0
+offset_bottom = 66.0
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/IncreaseHP" unique_id=1425825139]
+layout_mode = 2
+text = "+5 HP"
+script = ExtResource("3_ieq6q")

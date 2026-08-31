@@ -2,7 +2,7 @@ class_name MovementComponent
 extends Node
 
 # Movement Variables
-@export var speed: float = 300.0
+@export var speed: float = PlayerData.base_speed
 
 @export var dash_speed: float = 900.0
 @export var dash_duration: float = 0.2

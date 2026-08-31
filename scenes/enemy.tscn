@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cg2vci7aspsbb"]
+[gd_scene format=3 uid="uid://tc888eqhd6p5"]
 
 [ext_resource type="Script" uid="uid://boagudgev5333" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://c1fxruhter3d2" path="res://Tiny Swords (Free Pack)/Units/Purple Units/Monk/Idle.png" id="2_qi2p4"]
