@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dft30tyisnm54"]
+
+[ext_resource type="Script" uid="uid://bsjf626n7k0wb" path="res://scripts/player/player.gd" id="1_dqkch"]
+[ext_resource type="Script" uid="uid://dmiio0uymrvp0" path="res://scripts/player/attack_component.gd" id="2_qlg0r"]
+[ext_resource type="Script" uid="uid://m6mun0klym4i" path="res://scripts/player/movement_component.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://dakur280b02qg" path="res://scripts/player/direction_utils.gd" id="4_fjrip"]
+[ext_resource type="Script" path="res://scripts/player/stats_component.gd" id="4_tuyoq"]
+[ext_resource type="Script" path="res://scripts/player/health_component.gd" id="5_fjrip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
+size = Vector2(50, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtqjt"]
+size = Vector2(50, 80)
+
+[node name="Player" type="CharacterBody2D" unique_id=1987352962]
+position = Vector2(111, 1)
+collision_mask = 6
+script = ExtResource("1_dqkch")
+
+[node name="AttackComponent" type="Node" parent="." unique_id=707260039]
+script = ExtResource("2_qlg0r")
+
+[node name="MovementComponent" type="Node" parent="." unique_id=706504208]
+script = ExtResource("3_tuyoq")
+
+[node name="StatsComponent" type="Node" parent="." unique_id=1107939215]
+script = ExtResource("4_tuyoq")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1738830263]
+script = ExtResource("5_fjrip")
+
+[node name="DirectionUtils" type="Node" parent="." unique_id=1129209153]
+script = ExtResource("4_fjrip")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1187332823]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_tdg3f")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=746685852]
+offset_left = -21.0
+offset_top = -25.0
+offset_right = 19.0
+offset_bottom = 25.0
+pivot_offset = Vector2(20, 25)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect" unique_id=2073463614]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.05
+anchor_top = 0.48
+anchor_right = 1.05
+anchor_bottom = 0.48
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+pivot_offset = Vector2(10, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=910346500]
+unique_name_in_owner = true
+position = Vector2(56, 2)
+collision_mask = 4
+metadata/_edit_group_ = true
+
+[node name="HitboxDetection" type="CollisionShape2D" parent="AttackHitbox" unique_id=1810789784]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_dtqjt")
+
+[node name="ColorRect" type="ColorRect" parent="AttackHitbox" unique_id=1961924151]
+offset_left = -19.0
+offset_top = -40.0
+offset_right = 31.0
+offset_bottom = 40.0
+color = Color(0.654902, 0.28235295, 0.27450982, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
