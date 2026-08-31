@@ -1,9 +1,11 @@
-[gd_scene format=3 uid="uid://bwj8fslg15w0l"]
+[gd_scene format=3 uid="uid://dft30tyisnm54"]
 
 [ext_resource type="Script" uid="uid://bsjf626n7k0wb" path="res://scripts/player/player.gd" id="1_dqkch"]
 [ext_resource type="Script" uid="uid://dmiio0uymrvp0" path="res://scripts/player/attack_component.gd" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://m6mun0klym4i" path="res://scripts/player/movement_component.gd" id="3_tuyoq"]
 [ext_resource type="Script" uid="uid://dakur280b02qg" path="res://scripts/player/direction_utils.gd" id="4_fjrip"]
+[ext_resource type="Script" uid="uid://c3067kfgtdtid" path="res://scripts/player/stats_component.gd" id="4_tuyoq"]
+[ext_resource type="Script" uid="uid://cd20uk5yjowvy" path="res://scripts/player/health_component.gd" id="5_fjrip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
 size = Vector2(50, 51)
@@ -21,6 +23,12 @@ script = ExtResource("2_qlg0r")
 
 [node name="MovementComponent" type="Node" parent="." unique_id=706504208]
 script = ExtResource("3_tuyoq")
+
+[node name="StatsComponent" type="Node" parent="." unique_id=1107939215]
+script = ExtResource("4_tuyoq")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1738830263]
+script = ExtResource("5_fjrip")
 
 [node name="DirectionUtils" type="Node" parent="." unique_id=1129209153]
 script = ExtResource("4_fjrip")
