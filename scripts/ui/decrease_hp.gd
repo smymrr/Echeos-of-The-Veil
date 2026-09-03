@@ -9,5 +9,5 @@ func _on_pressed() -> void:
 	print("Mitigated dmg: ", (15 - int(PlayerData.get_defense())))
 	
 	PlayerHealth.take_damage(15)
-	print("Player health: ", PlayerHealth.current_health)
+	print("Player health: ", PlayerHealth.get_health())
 	print()

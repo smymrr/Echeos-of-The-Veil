@@ -9,5 +9,5 @@ func _on_pressed() -> void:
 	print("Movement Speed: ", str(PlayerData.get_speed()))
 	print("Max HP: ", str(PlayerData.get_max_health()))
 	print()
-	print("Current HP: ", PlayerHealth.current_health)
+	print("Current HP: ", PlayerHealth.get_health())
 	print()
