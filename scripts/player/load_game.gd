@@ -5,7 +5,6 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	var save := PlayerData.load_game()
-	PlayerHealth.health_changed.emit()
 	if (save == true):
 		print("loaded")
 	else:
