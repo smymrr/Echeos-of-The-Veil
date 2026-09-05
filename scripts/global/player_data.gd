@@ -3,6 +3,7 @@ extends Node
 signal stats_changed
 
 var SAVE_PATH: String = "user://save_game.json"
+var player: CharacterBody2D
 
 # Stats
 var base_max_health: int = 100
@@ -18,7 +19,7 @@ var defense_modifiers: Dictionary = {}
 var speed_modifiers: Dictionary = {}
 var max_health_modifiers: Dictionary = {}
 
-var last_position: Vector2
+var last_position: Vector2 = Vector2(50, 10)
 
 # Story
 # Story / Quests
@@ -40,6 +41,10 @@ var equipped_armor: Dictionary = {}
 
 func _ready() -> void:
 	current_health = get_max_health()
+
+func _process(delta: float) -> void:
+	if (player != null):
+		last_position = player.position
 
 # Getter
 func get_max_health() -> int:
@@ -125,6 +130,8 @@ func load_game() -> bool:
 		data.get("last_position_x", 0.0),
 		data.get("last_position_y", 0.0)
 	)
+	
+	player.position = last_position
 	
 	max_health_modifiers = data.get("max_health_modifier", {})
 	attack_modifiers = data.get("attack_modifiers", {})

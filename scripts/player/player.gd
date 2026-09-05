@@ -5,6 +5,10 @@ extends CharacterBody2D
 
 var last_facing_direction: Vector2 = Vector2.RIGHT
 
+func _ready() -> void:
+	PlayerData.player = self
+	movement_component.setup(self)
+
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click") and not movement_component.is_dashing:
 		attack()
@@ -28,19 +32,11 @@ func process_movement() -> void:
 	# Pergerakan biasa
 	if not movement_component.is_dashing:
 		velocity = movement_component.get_velocity(input_direction)
-		if has_input and attack_component.can_attack: 
-			rotation_degrees = movement_component.get_rotation_degrees(input_direction)
 	
-	process_dash(input_direction) # Dash
-
-func process_dash(input_direction: Vector2) -> void:
-	if Input.is_action_just_pressed("dash") and movement_component.can_dash:
-		var target_dir = input_direction if input_direction != Vector2.ZERO else last_facing_direction
-		var dash_velocity = movement_component.start_dash(target_dir)
-		
-		if dash_velocity != Vector2.ZERO:
-			velocity = dash_velocity
-			rotation_degrees = movement_component.get_rotation_degrees(target_dir)
+	if attack_component.can_attack:
+		movement_component.process_animation(last_facing_direction)
+	
+	movement_component.process_dash(last_facing_direction) # Dash
 
 # ================================
 # ATTACK
