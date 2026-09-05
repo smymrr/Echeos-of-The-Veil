@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dmiio0uymrvp0" path="res://scripts/player/attack_component.gd" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://m6mun0klym4i" path="res://scripts/player/movement_component.gd" id="3_tuyoq"]
 [ext_resource type="Script" uid="uid://dakur280b02qg" path="res://scripts/player/direction_utils.gd" id="4_fjrip"]
+[ext_resource type="Script" uid="uid://drssa6l5fyx2p" path="res://scenes/animation_component.gd" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://dyg4yku2u0c6a" path="res://assets/images/player/idle.png" id="5_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://gthkbghc80af" path="res://assets/images/player/walk.png" id="6_fjrip"]
 
@@ -11,7 +12,7 @@
 size = Vector2(20, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtqjt"]
-size = Vector2(50, 80)
+size = Vector2(30, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("5_tuyoq")
@@ -291,6 +292,9 @@ script = ExtResource("2_qlg0r")
 [node name="MovementComponent" type="Node" parent="." unique_id=706504208]
 script = ExtResource("3_tuyoq")
 
+[node name="AnimationComponent" type="Node" parent="." unique_id=1531548757]
+script = ExtResource("4_smehm")
+
 [node name="DirectionUtils" type="Node" parent="." unique_id=1129209153]
 script = ExtResource("4_fjrip")
 
@@ -299,21 +303,19 @@ shape = SubResource("RectangleShape2D_tdg3f")
 
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=910346500]
 unique_name_in_owner = true
-position = Vector2(56, 2)
+position = Vector2(28, 0)
 collision_mask = 4
 metadata/_edit_group_ = true
 
 [node name="HitboxDetection" type="CollisionShape2D" parent="AttackHitbox" unique_id=1810789784]
-position = Vector2(6, 0)
 shape = SubResource("RectangleShape2D_dtqjt")
 
 [node name="ColorRect" type="ColorRect" parent="AttackHitbox" unique_id=1961924151]
-offset_left = -19.0
-offset_top = -40.0
-offset_right = 31.0
-offset_bottom = 40.0
+offset_left = -15.0
+offset_top = -20.0
+offset_right = 15.0
+offset_bottom = 20.0
 color = Color(0.654902, 0.28235295, 0.27450982, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
 zoom = Vector2(3, 3)

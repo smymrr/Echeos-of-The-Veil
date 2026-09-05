@@ -29,7 +29,7 @@ func _perform_attack(input_direction: Vector2) -> void:
 	can_attack = false
 	_already_hit.clear()
 	
-	get_parent().rotation = input_direction.angle()
+	update_hitbox_offset(input_direction)
 	_trigger_attack_animation()
 	_trigger_attack_sfx()
 
@@ -47,6 +47,11 @@ func _perform_attack(input_direction: Vector2) -> void:
 func update_hitbox_offset(input_direction: Vector2) -> void:
 	var cardinal = DirectionUtils.snap_to_cardinal(input_direction)
 	hitbox.position = cardinal * hitbox_offset.length()
+	
+	if cardinal.x != 0:
+		hitbox.rotation = 0
+	else:
+		hitbox.rotation = -90.0
 
 func _trigger_attack_animation() -> void:
 	pass
