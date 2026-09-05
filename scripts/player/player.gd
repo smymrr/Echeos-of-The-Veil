@@ -36,7 +36,7 @@ func process_movement() -> void:
 	if attack_component.can_attack:
 		movement_component.process_animation(last_facing_direction)
 	
-	movement_component.process_dash(input_direction) # Dash
+	movement_component.process_dash(last_facing_direction) # Dash
 
 # ================================
 # ATTACK

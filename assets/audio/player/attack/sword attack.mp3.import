@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hbasqsg2bn3n"
+path="res://.godot/imported/sword attack.mp3-0e92b24c2c07481b6c9b7b22a4649d03.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/player/attack/sword attack.mp3"
+dest_files=["res://.godot/imported/sword attack.mp3-0e92b24c2c07481b6c9b7b22a4649d03.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
