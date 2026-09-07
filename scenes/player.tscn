@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dakur280b02qg" path="res://scripts/player/direction_utils.gd" id="4_fjrip"]
 [ext_resource type="Script" uid="uid://drssa6l5fyx2p" path="res://scenes/animation_component.gd" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://bkumqcm3xp00j" path="res://assets/images/player/idle.png" id="5_tuyoq"]
-[ext_resource type="Texture2D" uid="uid://dx8sar6xpi8v0" path="res://assets/images/player/walk.png" id="6_fjrip"]
+[ext_resource type="Texture2D" uid="uid://dawbpddxtk3d8" path="res://assets/images/player/walk.png" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://u44raa0btfkw" path="res://assets/images/player/complete.png" id="6_smehm"]
 [ext_resource type="AudioStream" uid="uid://hbasqsg2bn3n" path="res://assets/audio/player/attack/sword attack.mp3" id="9_ur7pv"]
 
@@ -460,8 +460,8 @@ zoom = Vector2(3, 3)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")
-animation = &"attack_right"
-frame = 1
+animation = &"walk_left"
+frame_progress = 0.96345824
 
 [node name="SwingSword" type="AudioStreamPlayer2D" parent="." unique_id=273571398]
 stream = ExtResource("9_ur7pv")
