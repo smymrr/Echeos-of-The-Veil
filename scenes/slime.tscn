@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nma6eyvb42j7"]
 
 [ext_resource type="Texture2D" uid="uid://cg4w4dcd4b4fn" path="res://assets/images/enemy/Slime_Green.png" id="1_371uh"]
+[ext_resource type="Script" uid="uid://c8ot8id2tvvn1" path="res://scripts/enemy/slime/slime.gd" id="1_p2gj0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5jfb"]
 size = Vector2(22, 18)
@@ -73,7 +74,7 @@ animations = [{
 "speed": 7.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_2npkn")
 }, {
 "duration": 1.0,
@@ -102,16 +103,28 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_r6hca"]
+radius = 150.0
+
 [node name="Slime" type="CharacterBody2D" unique_id=1521115122]
 position = Vector2(23, 27)
-collision_layer = 5
-collision_mask = 7
-metadata/_edit_group_ = true
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_p2gj0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450293547]
 shape = SubResource("RectangleShape2D_t5jfb")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1337660077]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1337660077]
 sprite_frames = SubResource("SpriteFrames_r6hca")
-animation = &"idle"
-frame_progress = 0.08275202
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.1864027
+
+[node name="Sight" type="Area2D" parent="." unique_id=1287825283]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight" unique_id=1143692731]
+shape = SubResource("CircleShape2D_r6hca")
+
+[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
