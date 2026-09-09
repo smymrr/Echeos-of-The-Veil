@@ -43,26 +43,31 @@ git config --global user.name "Nama Kamu"
 git config --global user.email "emailkamu@example.com"
 
 ```
-3. **Inisialisasi Git**
+3. **Clone Git**
 
-**Buka Terminal** di dalam folder project Godot kamu (atau buka folder project lewat VS Code Terminal).
-Ketik perintah ini untuk mengaktifkan Git:
+**Buka Terminal**
+Ketik perintah ini untuk clone projek Git:
 
 ```bash
-git init
-
+git clone https://github.com/smymrr/Echeos-of-The-Veil
 ```
 
 ### 1. Sebelum Mulai Koding (Ambil Update Terbaru)
 
+**Buka Terminal**
+
 ```bash
-# 1. Pindah ke branch main
+# 1. Pindah directory terminal ke folder projek
+cd ...... (ganti titik dengan directory projek)
+(contoh: cd /home/smymr/Personal/PROJECTS/GAMES/Echeos-of-The-Veil)
+
+# 2. Pindah ke branch main
 git switch main
 
-# 2. Ambil update terbaru dari repository server
+# 3. Ambil update terbaru dari repository server
 git pull origin main
 
-# 3. Buat dan langsung berpindah ke branch baru kamu
+# 4. Buat dan langsung berpindah ke branch baru kamu
 git switch -c feature/namamu/deskripsi-tugas
 
 ```
@@ -85,6 +90,10 @@ git push -u origin feature/namamu/deskripsi-tugas
 # 5. Ajukan PR (Pull Request)
 Kembali ke GitHub, lalu klik tombol Compare & Pull Request. Kalau tidak ada, pergi ke tab Pull Request dan ajukan PR dari situ. Pastikan base branch adalah **main** dan compare branch adalah branch tugas kamu.
 ```
+
+### Catatan
+
+Ada alternatif yang lebih mudah untuk digunakan, yaitu GitHub Desktop. GitHub Desktop akan otomatis konek ke folder projek yang ada di device-mu.
 
 ---
 
