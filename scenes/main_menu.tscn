@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://brhoe3fx1k85q"]
+
+[ext_resource type="Script" uid="uid://6oq4ukk5gs53" path="res://scripts/ui/main_menu/background_fx.gd" id="1_b6svo"]
+[ext_resource type="Texture2D" uid="uid://cw6pyn1gewy67" path="res://assets/ui/main_menu/background.jpg" id="1_hd3la"]
+[ext_resource type="Texture2D" uid="uid://bbviorjjhonmr" path="res://scanline.png" id="2_b6svo"]
+[ext_resource type="Texture2D" uid="uid://cp7e3nmdinkw8" path="res://assets/ui/main_menu/panel_menu.png" id="3_tgyvh"]
+[ext_resource type="FontFile" uid="uid://dv5a7nnnjp0tk" path="res://assets/font/PressStart2P.ttf" id="7_jk1qb"]
+[ext_resource type="FontFile" uid="uid://u84i6l5lbqf8" path="res://assets/font/VT323-Regular.ttf" id="8_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://c6bqnxttag3il" path="res://assets/ui/main_menu/Text Panel.png" id="8_jhmoq"]
+[ext_resource type="Script" uid="uid://cx6ywkwnrl82" path="res://scripts/ui/main_menu/hover_button.gd" id="9_bbj2o"]
+[ext_resource type="AudioStream" uid="uid://bi136u7rg8lou" path="res://assets/audio/main_menu/click_sound.wav" id="10_lgwnu"]
+[ext_resource type="AudioStream" uid="uid://bsay8v8jd65nh" path="res://assets/audio/main_menu/hover_sound.wav" id="11_flqon"]
+[ext_resource type="Texture2D" uid="uid://bx8pv0i46j4uy" path="res://assets/ui/main_menu/acc_menu_panel.png" id="11_xn1h2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrivr"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(70, 92, 226, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13qdw"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(73, 154, 198, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1lj4"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(75, 207, 172, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njqwk"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(65, 268, 171, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi6ju"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(73, 326, 127, 34)
+
+[node name="Main_menu" type="Control" unique_id=900637529]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b6svo")
+flicker_labels = Array[NodePath]([NodePath("Echoes"), NodePath("Of The"), NodePath("Veil"), NodePath("Deskripsi")])
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1767487412]
+position = Vector2(547, 336)
+scale = Vector2(1.15, 1.24)
+texture = ExtResource("1_hd3la")
+
+[node name="ScanLine" type="Sprite2D" parent="." unique_id=1536734531]
+self_modulate = Color(1, 1, 1, 0.29411766)
+position = Vector2(508, 347)
+texture = ExtResource("2_b6svo")
+
+[node name="MenuPanel" type="Sprite2D" parent="." unique_id=144515219]
+position = Vector2(565, 456.00003)
+scale = Vector2(1.2531828, 1.0716465)
+texture = ExtResource("3_tgyvh")
+
+[node name="New_Journey" type="TextureButton" parent="." unique_id=784365794]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 342.0
+offset_right = 636.0
+offset_bottom = 388.0
+texture_normal = SubResource("AtlasTexture_xrivr")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+
+[node name="Load_Data" type="TextureButton" parent="." unique_id=1021412486]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 391.0
+offset_right = 609.0
+offset_bottom = 431.0
+texture_normal = SubResource("AtlasTexture_13qdw")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+
+[node name="Synopsis" type="TextureButton" parent="." unique_id=1162441486]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 433.0
+offset_right = 585.0
+offset_bottom = 473.0
+texture_normal = SubResource("AtlasTexture_b1lj4")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+
+[node name="Options" type="TextureButton" parent="." unique_id=881784964]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 483.00003
+offset_right = 575.0
+offset_bottom = 523.0
+texture_normal = SubResource("AtlasTexture_njqwk")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=165712755]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 535.0
+offset_right = 542.0
+offset_bottom = 575.0
+texture_normal = SubResource("AtlasTexture_wi6ju")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+
+[node name="Echoes" type="Label" parent="." unique_id=1534017662]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 57.0
+offset_right = 717.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 50
+text = "ECHEOS"
+
+[node name="Of The" type="Label" parent="." unique_id=2030596043]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 134.0
+offset_right = 628.0
+offset_bottom = 157.0
+theme_override_colors/font_color = Color(0.72156864, 0.6627451, 0.8509804, 1)
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 20
+text = "OF THE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Veil" type="Label" parent="." unique_id=1317847847]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 178.0
+offset_right = 673.0
+offset_bottom = 228.0
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 50
+text = "VEIL"
+
+[node name="Deskripsi" type="Label" parent="." unique_id=699205664]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 250.0
+offset_right = 700.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0.72156864, 0.6627451, 0.8509804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.16078432)
+theme_override_fonts/font = ExtResource("8_5dd4i")
+theme_override_font_sizes/font_size = 32
+text = "A DARK FANTASY JOUNEY"
+
+[node name="Hiasan judul" type="Sprite2D" parent="." unique_id=1830384776]
+position = Vector2(557, 56)
+scale = Vector2(0.5556941, 0.4695122)
+texture = ExtResource("11_xn1h2")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="." unique_id=1551445464]
+stream = ExtResource("10_lgwnu")
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=759121367]
+stream = ExtResource("11_flqon")
