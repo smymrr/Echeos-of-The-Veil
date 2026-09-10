@@ -17,3 +17,6 @@ position = Vector2(260, -151)
 
 [node name="Player" parent="." unique_id=1987352962 instance=ExtResource("2_0wfyh")]
 position = Vector2(59, -4)
+
+[node name="Slime2" parent="." unique_id=1906787784 instance=ExtResource("3_sugp2")]
+position = Vector2(74, -238)
