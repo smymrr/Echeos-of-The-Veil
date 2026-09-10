@@ -3,14 +3,19 @@ extends CharacterBody2D
 @export var speed: float = 50.0
 @export var health: int = 100
 @export var roam_radius: float = 150.0 # Jarak maksimal musuh berkeliaran dari posisi asal
+@onready var sprite: AnimatedSprite2D = $"Sprite"
+@onready var knockback_decay: float = 15.0
 
 # Status (State) pergerakan musuh
-enum State { ROAMING, CHASING, RETURNING }
+enum State { ROAMING, CHASING, RETURNING, KNOCKBACK }
 var current_state = State.ROAMING
 
+var knockback_velocity = Vector2.ZERO
 var player: Node2D = null
 var home_position: Vector2
 var target_roam_pos: Vector2
+
+var is_alive: bool = true
 
 func _ready() -> void:
 	# Simpan posisi awal musuh saat game pertama kali dijalankan
@@ -20,6 +25,9 @@ func _ready() -> void:
 	_set_new_roam_target()
 
 func _physics_process(delta: float) -> void:
+	if !is_alive:
+		return
+	
 	var target_position = Vector2.ZERO
 	
 	# Menentukan target berdasarkan status saat ini
@@ -36,7 +44,6 @@ func _physics_process(delta: float) -> void:
 			else:
 				# Cadangan jika player hilang
 				current_state = State.RETURNING
-				
 		State.RETURNING:
 			target_position = home_position
 			# Jika sudah kembali dekat posisi asal, kembali roaming
@@ -44,20 +51,52 @@ func _physics_process(delta: float) -> void:
 				global_position = home_position
 				current_state = State.ROAMING
 				_set_new_roam_target()
-
+		State.KNOCKBACK:
+			target_position = global_position
+	
 	# Melakukan pergerakan menuju target yang aktif
 	var direction = (target_position - global_position).normalized()
-	velocity = direction * speed
+	var normal_velocity = direction * speed
+	
+	if current_state == State.KNOCKBACK:
+		normal_velocity = Vector2.ZERO
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta * 100)
+		
+		# Kalau vector knockback sudah habis, lanjutkan roam/mengejar
+		if knockback_velocity.length_squared() < 100:
+			knockback_velocity = Vector2.ZERO
+			current_state = State.CHASING if player else State.ROAMING
+	
+	velocity = normal_velocity + knockback_velocity
+	
 	move_and_slide()
 
 func take_damage(damage: int, attacker_position: Vector2) -> void:
-	var tween = create_tween()
+	if !is_alive:
+		return
 	
-	health -= damage
-	print(health)
+	var force: float = 300.0
+	
+	health = max(0, health - damage)
+	print(name + " HP: ", health)
+	
+	if health <= 0:
+		_death()
+		return
+	
 	var knockback_direction = (position - attacker_position).normalized()
-	var final_position = position + (knockback_direction * speed) / 2
-	tween.tween_property(self, "position", final_position, 0.2)
+	knockback_velocity = knockback_direction * force
+	current_state = State.KNOCKBACK
+
+func _animation_finished() -> void:
+	if sprite.animation == "death":
+		await get_tree().create_timer(5.0).timeout
+		queue_free()
+
+func _death() -> void:
+	sprite.play("death")
+	is_alive = false
+	sprite.animation_finished.connect(_animation_finished)
 
 func _set_new_roam_target() -> void:
 	# Menentukan titik acak di sekitar home_position berdasarkan roam_radius
