@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cw6pyn1gewy67" path="res://assets/ui/main_menu/background.jpg" id="1_hd3la"]
 [ext_resource type="Texture2D" uid="uid://bbviorjjhonmr" path="res://scanline.png" id="2_b6svo"]
 [ext_resource type="Texture2D" uid="uid://cp7e3nmdinkw8" path="res://assets/ui/main_menu/panel_menu.png" id="3_tgyvh"]
+[ext_resource type="Script" uid="uid://0ac6lpxj1mir" path="res://scripts/ui/main_menu/menu_navigation.gd" id="5_flqon"]
 [ext_resource type="FontFile" uid="uid://dv5a7nnnjp0tk" path="res://assets/font/PressStart2P.ttf" id="7_jk1qb"]
 [ext_resource type="FontFile" uid="uid://u84i6l5lbqf8" path="res://assets/font/VT323-Regular.ttf" id="8_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://c6bqnxttag3il" path="res://assets/ui/main_menu/Text Panel.png" id="8_jhmoq"]
@@ -56,6 +57,9 @@ texture = ExtResource("2_b6svo")
 position = Vector2(565, 456.00003)
 scale = Vector2(1.2531828, 1.0716465)
 texture = ExtResource("3_tgyvh")
+script = ExtResource("5_flqon")
+load_data_button = NodePath("../Load_Data")
+load_data_screen = NodePath("../LoadDataScreen")
 
 [node name="New_Journey" type="TextureButton" parent="." unique_id=784365794]
 layout_mode = 0
@@ -167,3 +171,27 @@ stream = ExtResource("10_lgwnu")
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=759121367]
 stream = ExtResource("11_flqon")
+
+[node name="LoadDataScreen" type="Control" parent="." unique_id=1503683661]
+layout_mode = 1
+anchor_bottom = 0.307
+offset_left = 346.0
+offset_top = 234.0
+offset_right = 800.0
+offset_bottom = 301.064
+
+[node name="Label" type="Label" parent="LoadDataScreen" unique_id=1101094349]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 45.0
+offset_right = 93.0
+offset_bottom = 68.0
+text = "Load Game"
+
+[node name="BackButton" type="Button" parent="LoadDataScreen" unique_id=383716412]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -6.0
+offset_right = 84.0
+offset_bottom = 25.0
+text = "< Kembali"
