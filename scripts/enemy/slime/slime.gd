@@ -71,6 +71,12 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func _flash_red() -> void:
+	var tween = create_tween()
+	var damage_color = Color("ff3f2bff")
+	modulate = damage_color
+	tween.tween_property(self, "modulate", Color.WHITE, 0.2)
+
 func take_damage(damage: int, attacker_position: Vector2) -> void:
 	if !is_alive:
 		return
@@ -78,6 +84,7 @@ func take_damage(damage: int, attacker_position: Vector2) -> void:
 	var force: float = 300.0
 	
 	health = max(0, health - damage)
+	_flash_red()
 	print(name + " HP: ", health)
 	
 	if health <= 0:
@@ -87,10 +94,18 @@ func take_damage(damage: int, attacker_position: Vector2) -> void:
 	var knockback_direction = (position - attacker_position).normalized()
 	knockback_velocity = knockback_direction * force
 	current_state = State.KNOCKBACK
+	
+	
 
 func _animation_finished() -> void:
 	if sprite.animation == "death":
 		await get_tree().create_timer(5.0).timeout
+		
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", Color("ffffff00"), 1)
+		
+		await tween.finished
+		
 		queue_free()
 
 func _death() -> void:
