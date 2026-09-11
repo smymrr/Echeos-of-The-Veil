@@ -6,6 +6,38 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5jfb"]
 size = Vector2(22, 18)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fur4c"]
+atlas = ExtResource("1_371uh")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v7ff"]
+atlas = ExtResource("1_371uh")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35t6e"]
+atlas = ExtResource("1_371uh")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbccl"]
+atlas = ExtResource("1_371uh")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24adn"]
+atlas = ExtResource("1_371uh")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8bnk"]
+atlas = ExtResource("1_371uh")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kmbt"]
+atlas = ExtResource("1_371uh")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8sfj"]
+atlas = ExtResource("1_371uh")
+region = Rect2(448, 64, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2gj0"]
 atlas = ExtResource("1_371uh")
 region = Rect2(0, 128, 64, 64)
@@ -74,6 +106,38 @@ region = Rect2(448, 64, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fur4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v7ff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35t6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbccl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24adn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8bnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kmbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8sfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fur4c")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_p2gj0")
 }, {
 "duration": 1.0,
@@ -134,19 +198,39 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6hca"]
 radius = 150.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p2gj0"]
+
 [node name="Slime" type="CharacterBody2D" unique_id=1521115122]
 position = Vector2(23, 27)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_p2gj0")
 
+[node name="StateMachine" type="Node" parent="." unique_id=1442334748]
+
+[node name="Roam" type="Node" parent="StateMachine" unique_id=1815474446]
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=1661516401]
+
+[node name="Return" type="Node" parent="StateMachine" unique_id=635768161]
+
+[node name="Knockback" type="Node" parent="StateMachine" unique_id=1494471491]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=752776740]
+
+[node name="HitboxComponent" type="Node" parent="." unique_id=263399139]
+
+[node name="MovementComponent" type="Node" parent="." unique_id=207186758]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450293547]
 shape = SubResource("RectangleShape2D_t5jfb")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1337660077]
 sprite_frames = SubResource("SpriteFrames_r6hca")
-animation = &"move"
+animation = &"attack"
 autoplay = "move"
+frame = 8
+frame_progress = 1.0
 
 [node name="Sight" type="Area2D" parent="." unique_id=1287825283]
 visible = false
@@ -154,5 +238,11 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sight" unique_id=1143692731]
 shape = SubResource("CircleShape2D_r6hca")
 
+[node name="Hitbox" type="Area2D" parent="." unique_id=307801144]
+
+[node name="Hit" type="CollisionShape2D" parent="Hitbox" unique_id=2006591549]
+shape = SubResource("CircleShape2D_p2gj0")
+
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

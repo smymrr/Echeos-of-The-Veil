@@ -15,6 +15,7 @@ var player: Node2D = null
 var home_position: Vector2
 var target_roam_pos: Vector2
 
+var attacking: bool = false
 var is_alive: bool = true
 
 func _ready() -> void:
@@ -55,6 +56,8 @@ func _physics_process(delta: float) -> void:
 			target_position = global_position
 	
 	# Melakukan pergerakan menuju target yang aktif
+	if attacking:
+		return
 	var direction = (target_position - global_position).normalized()
 	var normal_velocity = direction * speed
 	
@@ -68,6 +71,7 @@ func _physics_process(delta: float) -> void:
 			current_state = State.CHASING if player else State.ROAMING
 	
 	velocity = normal_velocity + knockback_velocity
+	_process_animation("move")
 	
 	move_and_slide()
 
@@ -94,8 +98,6 @@ func take_damage(damage: int, attacker_position: Vector2) -> void:
 	var knockback_direction = (position - attacker_position).normalized()
 	knockback_velocity = knockback_direction * force
 	current_state = State.KNOCKBACK
-	
-	
 
 func _animation_finished() -> void:
 	if sprite.animation == "death":
@@ -119,6 +121,12 @@ func _set_new_roam_target() -> void:
 	var random_y = randf_range(-roam_radius, roam_radius)
 	target_roam_pos = home_position + Vector2(random_x, random_y)
 
+func _process_animation(prefix: String):
+	if prefix == "attack":
+		sprite.play(prefix)
+	elif prefix == "move":
+		sprite.play(prefix)
+
 # --- HUBUNGKAN SINYAL INI DARI NODE Area2D ANDA ---
 
 func _on_sight_body_entered(body: Node2D) -> void:
@@ -133,3 +141,11 @@ func _on_sight_body_exited(body: Node2D) -> void:
 		player = null
 		# Ketika pemain keluar area deteksi, musuh kembali ke posisi asal dulu sebelum roaming lagi
 		current_state = State.RETURNING
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	print("Slime attack")
+	attacking = true
+	if body == player:
+		_process_animation("attack")
+		await get_tree().create_timer(2.0).timeout
+		attacking = false
