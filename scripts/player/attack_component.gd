@@ -14,12 +14,14 @@ extends Node
 var hitbox_offset: Vector2
 var can_attack: bool = true
 var _already_hit: Array[Node2D] = []
+var player: CharacterBody2D
 
 func _ready() -> void:
 	hitbox.monitoring = false
 	hitbox_visual.modulate.a = 0.0  # invisible at start
 	hitbox_offset = hitbox.position
 	hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
+	player = $".."
 
 func try_attack(input_direction: Vector2) -> bool:
 	if not can_attack or input_direction == Vector2.ZERO:
@@ -59,7 +61,6 @@ func _process_animation_and_hitbox(input_direction: Vector2) -> void:
 		hitbox.rotation_degrees = 0
 	else:
 		hitbox.rotation_degrees = 90.0
-	
 
 func _trigger_attack_animation() -> void:
 	pass
@@ -68,8 +69,9 @@ func _trigger_attack_sfx() -> void:
 	pass
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
-	if body in _already_hit or not can_attack:
+	if body in _already_hit or can_attack:
 		return
 	
 	_already_hit.append(body)
-	print("Hit")
+	body.take_damage(PlayerData.get_attack(), player.position)
+	print("Dealt ", PlayerData.get_attack(), " Damage")
