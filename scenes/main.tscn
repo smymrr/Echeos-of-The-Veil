@@ -14,7 +14,7 @@ position = Vector2(0, -1)
 
 [node name="Player" parent="." unique_id=1987352962 instance=ExtResource("2_0wfyh")]
 z_index = 2
-position = Vector2(546, 749)
+position = Vector2(1095, 240)
 
 [node name="Slime" parent="." unique_id=1521115122 instance=ExtResource("3_sugp2")]
 position = Vector2(387, -232)
@@ -26,4 +26,3 @@ position = Vector2(535, -308)
 
 [node name="Node2D2" parent="." unique_id=493542161 instance=ExtResource("6_tefeu")]
 position = Vector2(525, 423)
-metadata/_edit_group_ = true
