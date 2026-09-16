@@ -17,7 +17,7 @@ z_index = 2
 position = Vector2(1095, 240)
 
 [node name="Slime" parent="." unique_id=1521115122 instance=ExtResource("3_sugp2")]
-position = Vector2(387, -232)
+position = Vector2(260, -151)
 
 [node name="Control" parent="." unique_id=1676327586 instance=ExtResource("4_jyhfs")]
 
