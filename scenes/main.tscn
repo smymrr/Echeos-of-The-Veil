@@ -4,20 +4,26 @@
 [ext_resource type="PackedScene" uid="uid://dnvl7elvc4qn3" path="res://scenes/baseplate.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://nma6eyvb42j7" path="res://scenes/slime.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b4l62k0hfmona" path="res://scenes/stats_ui.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bha1v1d1y2ku" path="res://scenes/treasure_room_boss.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://c5u367gvkoxqd" path="res://scenes/treasure_room_puzzle.tscn" id="6_tefeu"]
 
 [node name="main" type="Node2D" unique_id=672410187]
 position = Vector2(0, -1)
 
 [node name="Baseplate" parent="." unique_id=397421195 instance=ExtResource("2_sugp2")]
 
+[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("2_0wfyh")]
+z_index = 2
+position = Vector2(546, 749)
+
 [node name="Slime" parent="." unique_id=1521115122 instance=ExtResource("3_sugp2")]
 position = Vector2(260, -151)
 
 [node name="Control" parent="." unique_id=1676327586 instance=ExtResource("4_jyhfs")]
 
-[node name="Slime2" parent="." unique_id=1906787784 instance=ExtResource("3_sugp2")]
-position = Vector2(74, -238)
+[node name="Node2D" parent="." unique_id=378370492 instance=ExtResource("5_tbgi4")]
+position = Vector2(535, -308)
 
-[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("2_0wfyh")]
-z_index = 2
-position = Vector2(59, -4)
+[node name="Node2D2" parent="." unique_id=493542161 instance=ExtResource("6_tefeu")]
+position = Vector2(525, 423)
+metadata/_edit_group_ = true
