@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctqk7tqptb2q0"
-path="res://.godot/imported/water_detilazation.png-f3cca78e9d5fd2bf5ae82693c5cfb56b.ctex"
+path="res://.godot/imported/water_detilazation.png-387d463539c75dd360d7f50667dbbce4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/tileset_tambahan/tambahan/Tiled_files1/water_detilazation.png"
-dest_files=["res://.godot/imported/water_detilazation.png-f3cca78e9d5fd2bf5ae82693c5cfb56b.ctex"]
+source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files1/water_detilazation.png"
+dest_files=["res://.godot/imported/water_detilazation.png-387d463539c75dd360d7f50667dbbce4.ctex"]
 
 [params]
 
