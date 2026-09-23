@@ -206,15 +206,15 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_p2gj0")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1442334748]
+[node name="States" type="Node" parent="." unique_id=1442334748]
 
-[node name="Roam" type="Node" parent="StateMachine" unique_id=1815474446]
+[node name="Roam" type="Node" parent="States" unique_id=1815474446]
 
-[node name="Chase" type="Node" parent="StateMachine" unique_id=1661516401]
+[node name="Chase" type="Node" parent="States" unique_id=1661516401]
 
-[node name="Return" type="Node" parent="StateMachine" unique_id=635768161]
+[node name="Return" type="Node" parent="States" unique_id=635768161]
 
-[node name="Knockback" type="Node" parent="StateMachine" unique_id=1494471491]
+[node name="Knockback" type="Node" parent="States" unique_id=1494471491]
 
 [node name="HealthComponent" type="Node" parent="." unique_id=752776740]
 

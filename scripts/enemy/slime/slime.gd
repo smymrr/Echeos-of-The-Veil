@@ -3,8 +3,15 @@ extends CharacterBody2D
 @export var speed: float = 50.0
 @export var health: int = 100
 @export var roam_radius: float = 150.0 # Jarak maksimal musuh berkeliaran dari posisi asal
-@onready var sprite: AnimatedSprite2D = $"Sprite"
+
+@export var attack_damage: int = 10
+@export var attack_windup: float = 0.4    # delay before the hit lands
+@export var attack_cooldown: float = 1.5
+
 @onready var knockback_decay: float = 15.0
+@onready var sprite: AnimatedSprite2D = $"Sprite"
+@onready var hitbox: CollisionShape2D = $"Hitbox/Hit"
+
 
 # Status (State) pergerakan musuh
 enum State { ROAMING, CHASING, RETURNING, KNOCKBACK }
@@ -15,7 +22,7 @@ var player: Node2D = null
 var home_position: Vector2
 var target_roam_pos: Vector2
 
-var attacking: bool = false
+var can_attack: bool = false
 var is_alive: bool = true
 
 func _ready() -> void:
@@ -26,9 +33,9 @@ func _ready() -> void:
 	_set_new_roam_target()
 
 func _physics_process(delta: float) -> void:
-	if !is_alive:
+	if not is_alive:
 		return
-	
+		
 	var target_position = Vector2.ZERO
 	
 	# Menentukan target berdasarkan status saat ini
@@ -56,7 +63,7 @@ func _physics_process(delta: float) -> void:
 			target_position = global_position
 	
 	# Melakukan pergerakan menuju target yang aktif
-	if attacking:
+	if not can_attack:
 		return
 	var direction = (target_position - global_position).normalized()
 	var normal_velocity = direction * speed
@@ -82,7 +89,7 @@ func _flash_red() -> void:
 	tween.tween_property(self, "modulate", Color.WHITE, 0.2)
 
 func take_damage(damage: int, attacker_position: Vector2) -> void:
-	if !is_alive:
+	if not is_alive:
 		return
 	
 	var force: float = 300.0
@@ -131,7 +138,6 @@ func _process_animation(prefix: String):
 
 func _on_sight_body_entered(body: Node2D) -> void:
 	# Pastikan objek yang masuk adalah Player (masukkan player ke group "player")
-	print(body.name)
 	if body.name == "Player":
 		player = body
 		current_state = State.CHASING
@@ -143,9 +149,14 @@ func _on_sight_body_exited(body: Node2D) -> void:
 		current_state = State.RETURNING
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
+	if not is_alive:
+		return
+	
 	print("Slime attack")
-	attacking = true
 	if body == player:
+		can_attack = false
 		_process_animation("attack")
+		if is_alive and player and hitbox.overlaps_body(player):
+			PlayerHealth.take_damage(attack_damage)
 		await get_tree().create_timer(2.0).timeout
-		attacking = false
+		can_attack = true

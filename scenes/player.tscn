@@ -11,10 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://hbasqsg2bn3n" path="res://assets/audio/player/attack/sword attack.mp3" id="9_ur7pv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
-size = Vector2(20, 32)
+size = Vector2(14, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtqjt"]
-size = Vector2(30, 40)
+size = Vector2(23, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs1tg"]
 atlas = ExtResource("6_smehm")
@@ -433,21 +433,23 @@ script = ExtResource("4_smehm")
 script = ExtResource("4_fjrip")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1187332823]
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_tdg3f")
 
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=910346500]
 unique_name_in_owner = true
 position = Vector2(19, 0)
 collision_mask = 4
-metadata/_edit_group_ = true
 
 [node name="HitboxDetection" type="CollisionShape2D" parent="AttackHitbox" unique_id=1810789784]
+position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_dtqjt")
+metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="AttackHitbox" unique_id=1961924151]
 offset_left = -15.0
 offset_top = -20.0
-offset_right = 15.0
+offset_right = 8.0
 offset_bottom = 20.0
 color = Color(0.654902, 0.28235295, 0.27450982, 1)
 
@@ -456,8 +458,8 @@ zoom = Vector2(2, 2)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")
-animation = &"walk_left"
-frame_progress = 0.96345824
+animation = &"walk_down"
+frame_progress = 0.20040493
 
 [node name="SwingSword" type="AudioStreamPlayer2D" parent="." unique_id=273571398]
 stream = ExtResource("9_ur7pv")
