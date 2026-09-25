@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 @onready var knockback_decay: float = 15.0
 @onready var sprite: AnimatedSprite2D = $"Sprite"
-@onready var hitbox: CollisionShape2D = $"Hitbox/Hit"
+@onready var hitbox: Area2D = $"Hitbox"
 
 
 # Status (State) pergerakan musuh
@@ -22,7 +22,7 @@ var player: Node2D = null
 var home_position: Vector2
 var target_roam_pos: Vector2
 
-var can_attack: bool = false
+var can_attack: bool = true
 var is_alive: bool = true
 
 func _ready() -> void:
@@ -158,5 +158,5 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		_process_animation("attack")
 		if is_alive and player and hitbox.overlaps_body(player):
 			PlayerHealth.take_damage(attack_damage)
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(1.0).timeout
 		can_attack = true
