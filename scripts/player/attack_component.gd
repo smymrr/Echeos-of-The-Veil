@@ -51,7 +51,10 @@ func _perform_attack(input_direction: Vector2) -> void:
 
 func _process_animation_and_hitbox(input_direction: Vector2) -> void:
 	var cardinal = DirectionUtils.snap_to_cardinal(input_direction)
+	print("cardinal: ", cardinal)
+	print("hitbox offset: ", hitbox_offset.length())
 	hitbox.position = cardinal * hitbox_offset.length()
+	print("position: ", hitbox.position)
 	
 	# Animation
 	animation_component.play_animation("attack", cardinal)

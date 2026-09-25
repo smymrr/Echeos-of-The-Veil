@@ -3,8 +3,15 @@ extends CharacterBody2D
 @export var speed: float = 50.0
 @export var health: int = 100
 @export var roam_radius: float = 150.0 # Jarak maksimal musuh berkeliaran dari posisi asal
-@onready var sprite: AnimatedSprite2D = $"Sprite"
+
+@export var attack_damage: int = 10
+@export var attack_windup: float = 0.4    # delay before the hit lands
+@export var attack_cooldown: float = 1.5
+
 @onready var knockback_decay: float = 15.0
+@onready var sprite: AnimatedSprite2D = $"Sprite"
+@onready var hitbox: Area2D = $"Hitbox"
+
 
 # Status (State) pergerakan musuh
 enum State { ROAMING, CHASING, RETURNING, KNOCKBACK }
@@ -15,6 +22,7 @@ var player: Node2D = null
 var home_position: Vector2
 var target_roam_pos: Vector2
 
+var can_attack: bool = true
 var is_alive: bool = true
 
 func _ready() -> void:
@@ -25,9 +33,9 @@ func _ready() -> void:
 	_set_new_roam_target()
 
 func _physics_process(delta: float) -> void:
-	if !is_alive:
+	if not is_alive:
 		return
-	
+		
 	var target_position = Vector2.ZERO
 	
 	# Menentukan target berdasarkan status saat ini
@@ -55,6 +63,8 @@ func _physics_process(delta: float) -> void:
 			target_position = global_position
 	
 	# Melakukan pergerakan menuju target yang aktif
+	if not can_attack:
+		return
 	var direction = (target_position - global_position).normalized()
 	var normal_velocity = direction * speed
 	
@@ -68,6 +78,7 @@ func _physics_process(delta: float) -> void:
 			current_state = State.CHASING if player else State.ROAMING
 	
 	velocity = normal_velocity + knockback_velocity
+	_process_animation("move")
 	
 	move_and_slide()
 
@@ -78,7 +89,7 @@ func _flash_red() -> void:
 	tween.tween_property(self, "modulate", Color.WHITE, 0.2)
 
 func take_damage(damage: int, attacker_position: Vector2) -> void:
-	if !is_alive:
+	if not is_alive:
 		return
 	
 	var force: float = 300.0
@@ -94,8 +105,6 @@ func take_damage(damage: int, attacker_position: Vector2) -> void:
 	var knockback_direction = (position - attacker_position).normalized()
 	knockback_velocity = knockback_direction * force
 	current_state = State.KNOCKBACK
-	
-	
 
 func _animation_finished() -> void:
 	if sprite.animation == "death":
@@ -119,11 +128,16 @@ func _set_new_roam_target() -> void:
 	var random_y = randf_range(-roam_radius, roam_radius)
 	target_roam_pos = home_position + Vector2(random_x, random_y)
 
+func _process_animation(prefix: String):
+	if prefix == "attack":
+		sprite.play(prefix)
+	elif prefix == "move":
+		sprite.play(prefix)
+
 # --- HUBUNGKAN SINYAL INI DARI NODE Area2D ANDA ---
 
 func _on_sight_body_entered(body: Node2D) -> void:
 	# Pastikan objek yang masuk adalah Player (masukkan player ke group "player")
-	print(body.name)
 	if body.name == "Player":
 		player = body
 		current_state = State.CHASING
@@ -133,3 +147,16 @@ func _on_sight_body_exited(body: Node2D) -> void:
 		player = null
 		# Ketika pemain keluar area deteksi, musuh kembali ke posisi asal dulu sebelum roaming lagi
 		current_state = State.RETURNING
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if not is_alive:
+		return
+	
+	print("Slime attack")
+	if body == player:
+		can_attack = false
+		_process_animation("attack")
+		if is_alive and player and hitbox.overlaps_body(player):
+			PlayerHealth.take_damage(attack_damage)
+		await get_tree().create_timer(1.0).timeout
+		can_attack = true
