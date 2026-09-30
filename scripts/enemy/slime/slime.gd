@@ -78,7 +78,6 @@ func _physics_process(delta: float) -> void:
 	if current_state == State.KNOCKBACK:
 		normal_velocity = Vector2.ZERO
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta * 100)
-		print("processed knockback: ", knockback_velocity)
 		# Kalau vector knockback sudah habis, lanjutkan roam/mengejar
 		if knockback_velocity.length_squared() < 100:
 			knockback_velocity = Vector2.ZERO
