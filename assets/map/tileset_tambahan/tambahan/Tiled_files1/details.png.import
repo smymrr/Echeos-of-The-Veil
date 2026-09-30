@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ca5af5ebkxd6t"
-path="res://.godot/imported/details.png-dd0767c47d4cf8f48a4c860fc78a2c71.ctex"
+path="res://.godot/imported/details.png-a069d42ce291c36f851d0cf6df1c731b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files1/details.png"
-dest_files=["res://.godot/imported/details.png-dd0767c47d4cf8f48a4c860fc78a2c71.ctex"]
+source_file="res://assets/map/tileset_tambahan/tambahan/Tiled_files1/details.png"
+dest_files=["res://.godot/imported/details.png-a069d42ce291c36f851d0cf6df1c731b.ctex"]
 
 [params]
 
