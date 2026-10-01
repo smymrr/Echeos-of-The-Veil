@@ -12,8 +12,14 @@ extends CanvasItem
 @export var load_data_screen: NodePath
 @export var synopsis_screen: NodePath
 @export var options_screen: NodePath
+@export var exit_screen: NodePath
+
+@export_group("Fade Settings")
+@export var fade_duration: float = 0.25
 
 var _screens: Array[Control] = []
+var _buttons: Array[Control] = []
+var _fade_tween: Tween
 
 
 func _ready() -> void:
@@ -22,14 +28,19 @@ func _ready() -> void:
 		[load_data_button, load_data_screen],
 		[synopsis_button, synopsis_screen],
 		[options_button, options_screen],
+		[exit_button, exit_screen],
 	]
 
 	for pair in pairs:
-		var btn: BaseButton = get_node_or_null(pair[0])
-		var screen: Control = get_node_or_null(pair[1])
+		var btn: BaseButton = get_node_or_null(pair[0]) as BaseButton
+		var screen: Control = get_node_or_null(pair[1]) as Control
+
+		if btn:
+			_buttons.append(btn)
 
 		if screen:
 			screen.visible = false
+			screen.modulate.a = 0.0
 			_screens.append(screen)
 			_connect_back_button(screen)
 
@@ -40,21 +51,96 @@ func _ready() -> void:
 		elif screen == null and pair[1] != NodePath():
 			push_warning("Screen tidak ditemukan: %s" % pair[1])
 
-	var exit_btn: BaseButton = get_node_or_null(exit_button)
-	if exit_btn:
-		exit_btn.pressed.connect(_on_exit_pressed)
+	var exit_scr: Control = get_node_or_null(exit_screen) as Control
+	if exit_scr:
+		var yes_btn := _find_node_by_name(exit_scr, "YesButton")
+		if yes_btn and yes_btn is BaseButton:
+			yes_btn.pressed.connect(_on_exit_pressed)
+		else:
+			push_warning("YesButton tidak ditemukan di ExitScreen")
+
+
+func _set_menu_interactive(state: bool) -> void:
+	var filter := Control.MOUSE_FILTER_STOP if state else Control.MOUSE_FILTER_IGNORE
+	for b in _buttons:
+		b.mouse_filter = filter
 
 
 func _show_screen(screen: Control) -> void:
-	visible = false # sembunyikan MenuPanel
-	for s in _screens:
-		s.visible = (s == screen)
+	if _fade_tween and _fade_tween.is_valid():
+		_fade_tween.kill()
+
+	_set_menu_interactive(false)  # langsung matiin interaksi, jangan tunggu fade kelar
+
+	_fade_tween = create_tween()
+	_fade_tween.set_trans(Tween.TRANS_SINE)
+	_fade_tween.set_ease(Tween.EASE_OUT)
+
+	# fade out MenuPanel DAN semua tombolnya bareng-bareng
+	_fade_tween.set_parallel(true)
+	_fade_tween.tween_property(self, "modulate:a", 0.0, fade_duration)
+	for b in _buttons:
+		_fade_tween.tween_property(b, "modulate:a", 0.0, fade_duration)
+	_fade_tween.set_parallel(false)
+
+	_fade_tween.tween_callback(func():
+		visible = false
+		for b in _buttons:
+			b.visible = false
+		for s in _screens:
+			if s != screen:
+				s.visible = false
+				s.modulate.a = 0.0
+	)
+
+	_fade_tween.tween_callback(func():
+		screen.visible = true
+	)
+	_fade_tween.tween_property(screen, "modulate:a", 1.0, fade_duration)
 
 
 func show_menu() -> void:
-	visible = true
+	if _fade_tween and _fade_tween.is_valid():
+		_fade_tween.kill()
+
+	var current_screen: Control = null
 	for s in _screens:
-		s.visible = false
+		if s.visible:
+			current_screen = s
+			break
+
+	_fade_tween = create_tween()
+	_fade_tween.set_trans(Tween.TRANS_SINE)
+	_fade_tween.set_ease(Tween.EASE_OUT)
+
+	if current_screen:
+		_fade_tween.tween_property(current_screen, "modulate:a", 0.0, fade_duration)
+		_fade_tween.tween_callback(func():
+			current_screen.visible = false
+			visible = true
+			modulate.a = 0.0
+			for b in _buttons:
+				b.visible = true
+				b.modulate.a = 0.0
+		)
+	else:
+		_fade_tween.tween_callback(func():
+			visible = true
+			modulate.a = 0.0
+			for b in _buttons:
+				b.visible = true
+				b.modulate.a = 0.0
+		)
+
+	_fade_tween.set_parallel(true)
+	_fade_tween.tween_property(self, "modulate:a", 1.0, fade_duration)
+	for b in _buttons:
+		_fade_tween.tween_property(b, "modulate:a", 1.0, fade_duration)
+	_fade_tween.set_parallel(false)
+
+	_fade_tween.tween_callback(func():
+		_set_menu_interactive(true)
+	)
 
 
 func _on_exit_pressed() -> void:

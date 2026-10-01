@@ -1,6 +1,6 @@
 extends Control
 
-@onready var background: CanvasItem = $Backround2
+@onready var background: CanvasItem = $Background
 @onready var scanline: CanvasItem = $ScanLine
 
 # --- Pengaturan Background ---
