@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://p0siu1u08ox1" path="res://scripts/ui/display_stats.gd" id="1_60ac8"]
 [ext_resource type="Script" uid="uid://cy8vq05v6dsy7" path="res://scripts/ui/save_game.gd" id="1_ieq6q"]
 [ext_resource type="Script" uid="uid://colx00i700ood" path="res://scripts/ui/decrease_hp.gd" id="2_nv28q"]
-[ext_resource type="Script" uid="uid://tcgu2j5po40w" path="res://scripts/player/load_game.gd" id="2_vgjwo"]
+[ext_resource type="Script" uid="uid://dhykuef60slkn" path="res://scenes/load_game.gd" id="2_xfvx6"]
 [ext_resource type="Script" uid="uid://cfq6jh0iktwgu" path="res://scripts/ui/increase_hp.gd" id="3_ieq6q"]
+[ext_resource type="Script" uid="uid://cebl43roggxl8" path="res://scenes/button.gd" id="3_xfvx6"]
 [ext_resource type="Script" uid="uid://bp7ycabs04k4a" path="res://scripts/ui/hp_display.gd" id="4_nv28q"]
+[ext_resource type="Script" uid="uid://dlnsh6ifafiri" path="res://scenes/add_attack_modif.gd" id="5_y684s"]
+[ext_resource type="Script" uid="uid://d20pqweeyj1u" path="res://scenes/damage_display.gd" id="7_gl8ic"]
 
 [node name="Control" type="Control" unique_id=1676327586]
 layout_mode = 3
@@ -17,6 +20,29 @@ grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1052367823]
 
+[node name="SaveGame" type="MarginContainer" parent="CanvasLayer" unique_id=784654641]
+offset_left = 117.0
+offset_right = 231.0
+offset_bottom = 31.0
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/SaveGame" unique_id=1260436904]
+layout_mode = 2
+text = "Save Game"
+script = ExtResource("1_ieq6q")
+
+[node name="LoadGame" type="MarginContainer" parent="CanvasLayer" unique_id=2085733310]
+offset_left = 118.0
+offset_top = 34.0
+offset_right = 232.0
+offset_bottom = 65.0
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/LoadGame" unique_id=1372744540]
+layout_mode = 2
+text = "Load Game"
+script = ExtResource("2_xfvx6")
+
 [node name="DisplayStats" type="MarginContainer" parent="CanvasLayer" unique_id=1502321389]
 offset_right = 114.0
 offset_bottom = 31.0
@@ -27,28 +53,28 @@ layout_mode = 2
 text = "display stats"
 script = ExtResource("1_60ac8")
 
-[node name="SaveGame" type="MarginContainer" parent="CanvasLayer" unique_id=2122719787]
-offset_left = 117.0
-offset_right = 231.0
+[node name="AddAttackMulti" type="MarginContainer" parent="CanvasLayer" unique_id=2122719787]
+offset_left = 234.0
+offset_right = 348.0
 offset_bottom = 31.0
 metadata/_edit_group_ = true
 
-[node name="Button" type="Button" parent="CanvasLayer/SaveGame" unique_id=1959568776]
+[node name="Button" type="Button" parent="CanvasLayer/AddAttackMulti" unique_id=1959568776]
 layout_mode = 2
-text = "Save Game"
-script = ExtResource("1_ieq6q")
+text = "Add attack multiplier"
+script = ExtResource("3_xfvx6")
 
-[node name="LoadGame" type="MarginContainer" parent="CanvasLayer" unique_id=1631879970]
-offset_left = 118.0
+[node name="AddAttackModif" type="MarginContainer" parent="CanvasLayer" unique_id=1068072129]
+offset_left = 235.0
 offset_top = 34.0
-offset_right = 232.0
+offset_right = 376.0
 offset_bottom = 65.0
 metadata/_edit_group_ = true
 
-[node name="Button" type="Button" parent="CanvasLayer/LoadGame" unique_id=1198357477]
+[node name="Button" type="Button" parent="CanvasLayer/AddAttackModif" unique_id=650279913]
 layout_mode = 2
-text = "Load Game"
-script = ExtResource("2_vgjwo")
+text = "Add attack modification"
+script = ExtResource("5_y684s")
 
 [node name="DecreaseHP" type="MarginContainer" parent="CanvasLayer" unique_id=863223419]
 offset_left = -1.0
@@ -90,3 +116,4 @@ offset_right = 116.0
 offset_bottom = 116.0
 text = "DMG: 0"
 justification_flags = 171
+script = ExtResource("7_gl8ic")

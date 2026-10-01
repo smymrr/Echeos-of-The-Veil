@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://benodgong6aft"
-path="res://.godot/imported/attack.png-90fda834a8169b9207ff72d319fca9c1.ctex"
+uid="uid://b7hil65byfh4l"
+path="res://.godot/imported/Objects_animated2.png-b0f2fc7efbaba7e16ee9a5749f6ae209.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/player/attack.png"
-dest_files=["res://.godot/imported/attack.png-90fda834a8169b9207ff72d319fca9c1.ctex"]
+source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files1/Objects_animated2.png"
+dest_files=["res://.godot/imported/Objects_animated2.png-b0f2fc7efbaba7e16ee9a5749f6ae209.ctex"]
 
 [params]
 

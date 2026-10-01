@@ -48,30 +48,50 @@ func _process(delta: float) -> void:
 
 # Getter
 func get_max_health() -> int:
-	return int(base_max_health * _total_multiplier(max_health_modifiers))
+	var flat_bonus: int = int(_get_flat_bonus(max_health_modifiers))
+	var multi_bonus: float = _get_multiplier(max_health_modifiers)
+	
+	return (int(base_max_health + flat_bonus) * multi_bonus)
 
 func get_attack() -> int:
-	return int(base_attack * _total_multiplier(attack_modifiers))
+	var flat_bonus: int = int(_get_flat_bonus(attack_modifiers))
+	var multi_bonus: float = _get_multiplier(attack_modifiers)
+	
+	return (int(base_attack + flat_bonus) * multi_bonus)
 
 func get_defense() -> int:
-	return int(base_defense * _total_multiplier(defense_modifiers))
+	var flat_bonus: int = int(_get_flat_bonus(defense_modifiers))
+	var multi_bonus: float = _get_multiplier(defense_modifiers)
+	
+	return (int(base_defense + flat_bonus) * multi_bonus)
 
 func get_speed() -> float:
-	return base_speed * _total_multiplier(speed_modifiers)
+	var flat_bonus: int = int(_get_flat_bonus(speed_modifiers))
+	var multi_bonus: float = _get_multiplier(speed_modifiers)
+	
+	return (int(base_speed + flat_bonus) * multi_bonus)
 
 # Modification
-func add_modifier(stat_dict: Dictionary, source: String, multiplier: float) -> void:
-	stat_dict[source] = multiplier
+func add_modifier(stat_dict: Dictionary, source: String, modifier: float) -> void:
+	stat_dict[source] = modifier
 	stats_changed.emit()
 
 func remove_modifier(stat_dict: Dictionary, source: String) -> void:
 	stat_dict.erase(source)
 	stats_changed.emit()
 
-func _total_multiplier(modifiers: Dictionary) -> float:
+func _get_flat_bonus(modifiers: Dictionary) -> float:
+	var total: float = 0.0
+	for mod in modifiers:
+		if mod.contains("add"):
+			total += modifiers[mod]
+	return total
+
+func _get_multiplier(modifiers: Dictionary) -> float:
 	var total := 1.0
-	for mod in modifiers.values():
-		total *= mod
+	for mod in modifiers:
+		if mod.contains("multi"):
+			total *= modifiers[mod]
 	return total
 
 # Saving
