@@ -1,0 +1,955 @@
+[gd_scene format=3]
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.06, 0.047, 0.14, 0.93)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+content_margin_left = 12
+content_margin_top = 8
+content_margin_right = 12
+content_margin_bottom = 10
+
+[sub_resource type="StyleBoxFlat" id="inset"]
+bg_color = Color(0.025, 0.02, 0.06, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="portrait"]
+bg_color = Color(0.09, 0.07, 0.2, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 2
+content_margin_top = 2
+content_margin_right = 2
+content_margin_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="slot"]
+bg_color = Color(0.09, 0.07, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="slot_sel"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1.0, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="box"]
+bg_color = Color(0.025, 0.02, 0.06, 0.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="keybox"]
+bg_color = Color(0.09, 0.07, 0.2, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 6
+content_margin_top = 2
+content_margin_right = 6
+content_margin_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="bar_bg"]
+bg_color = Color(0.025, 0.02, 0.06, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="fill_hp"]
+bg_color = Color(0.86, 0.2, 0.36, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="fill_mp"]
+bg_color = Color(0.16, 0.45, 0.86, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="fill_xp"]
+bg_color = Color(0.92, 0.66, 0.14, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="fill_en"]
+bg_color = Color(0.96, 0.42, 0.14, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="btn_n"]
+bg_color = Color(0.09, 0.07, 0.2, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 14
+content_margin_top = 6
+content_margin_right = 14
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="btn_h"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1.0, 1.0)
+content_margin_left = 14
+content_margin_top = 6
+content_margin_right = 14
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="btn_p"]
+bg_color = Color(0.29, 0.2, 0.55, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1.0, 1.0)
+content_margin_left = 14
+content_margin_top = 6
+content_margin_right = 14
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="help_n"]
+bg_color = Color(0.09, 0.07, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="help_h"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="min_n"]
+bg_color = Color(0.09, 0.07, 0.2, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="min_h"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="StyleBoxLine" id="hline"]
+color = Color(0.25, 0.19, 0.48, 1.0)
+thickness = 1
+
+[sub_resource type="Theme" id="Theme_hud"]
+Label/colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.75)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/font_sizes/font_size = 12
+PanelContainer/styles/panel = SubResource("panel")
+HSeparator/styles/separator = SubResource("hline")
+HSeparator/constants/separation = 6
+ProgressBar/styles/background = SubResource("bar_bg")
+ProgressBar/styles/fill = SubResource("fill_xp")
+Button/font_sizes/font_size = 11
+Button/colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+Button/colors/font_hover_color = Color(0.94, 0.92, 1.0, 1.0)
+Button/colors/font_pressed_color = Color(0.94, 0.92, 1.0, 1.0)
+Button/styles/normal = SubResource("btn_n")
+Button/styles/hover = SubResource("btn_h")
+Button/styles/pressed = SubResource("btn_p")
+Button/styles/focus = SubResource("empty")
+
+[sub_resource type="GDScript" id="GDScript_min"]
+script/source = "extends CanvasLayer\n# Tombol minimize: menyembunyikan isi panel (node \"Body\") dan menyisakan judulnya.\n# Pola node: Content > HeaderRow > MinimizeButton, dan Content > Body\n\nfunc _ready() -> void:\n\tfor b in find_children(\"MinimizeButton\", \"Button\", true, false):\n\t\tvar body: Control = b.get_parent().get_parent().get_node(\"Body\")\n\t\tb.toggled.connect(func(on: bool) -> void:\n\t\t\tbody.visible = not on\n\t\t\tb.text = \"+\" if on else \"-\")\n"
+
+[node name="HUD" type="CanvasLayer"]
+layer = 5
+script = SubResource("GDScript_min")
+
+[node name="Root" type="Control" parent="."]
+mouse_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hud")
+
+[node name="CharacterPanel" type="PanelContainer" parent="Root"]
+mouse_filter = 2
+layout_mode = 1
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 244.0
+offset_bottom = 26.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Content" type="VBoxContainer" parent="Root/CharacterPanel"]
+theme_override_constants/separation = 6
+
+[node name="HeaderRow" type="HBoxContainer" parent="Root/CharacterPanel/Content"]
+theme_override_constants/separation = 6
+
+[node name="Header" type="Label" parent="Root/CharacterPanel/Content/HeaderRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 0
+size_flags_horizontal = 3
+text = "CHARACTER"
+
+[node name="MinimizeButton" type="Button" parent="Root/CharacterPanel/Content/HeaderRow"]
+custom_minimum_size = Vector2(24, 18)
+size_flags_vertical = 4
+toggle_mode = true
+theme_override_styles/normal = SubResource("min_n")
+theme_override_styles/hover = SubResource("min_h")
+theme_override_styles/pressed = SubResource("min_h")
+theme_override_styles/hover_pressed = SubResource("min_h")
+theme_override_font_sizes/font_size = 12
+text = "-"
+
+[node name="Body" type="VBoxContainer" parent="Root/CharacterPanel/Content"]
+theme_override_constants/separation = 6
+
+[node name="Line" type="HSeparator" parent="Root/CharacterPanel/Content/Body"]
+
+[node name="Top" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body"]
+theme_override_constants/separation = 10
+
+[node name="PortraitFrame" type="PanelContainer" parent="Root/CharacterPanel/Content/Body/Top"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("portrait")
+custom_minimum_size = Vector2(56, 56)
+size_flags_vertical = 0
+
+[node name="Portrait" type="TextureRect" parent="Root/CharacterPanel/Content/Body/Top/PortraitFrame"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body/Top"]
+theme_override_constants/separation = 1
+size_flags_horizontal = 3
+
+[node name="ClassLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+theme_override_font_sizes/font_size = 10
+text = "VEILWALKER"
+
+[node name="NameLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info"]
+theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+theme_override_font_sizes/font_size = 17
+text = "Aelindra Voss"
+
+[node name="LevelRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/Top/Info"]
+theme_override_constants/separation = 6
+
+[node name="LevelText" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 10
+text = "LVL"
+
+[node name="LevelValue" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow"]
+theme_override_colors/font_color = Color(0.96, 0.72, 0.2, 1.0)
+theme_override_font_sizes/font_size = 15
+text = "23"
+
+[node name="LocationLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 10
+text = "ASHEN KEEP"
+
+[node name="HpRow" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body"]
+theme_override_constants/separation = 2
+
+[node name="HpHeader" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/HpRow"]
+
+[node name="HpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow/HpHeader"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 0
+size_flags_horizontal = 3
+text = "HP"
+
+[node name="HpValue" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow/HpHeader"]
+theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 2
+text = "120/240"
+
+[node name="HpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/HpRow"]
+custom_minimum_size = Vector2(0, 10)
+max_value = 240.0
+value = 120.0
+show_percentage = false
+theme_override_styles/fill = SubResource("fill_hp")
+
+[node name="MpRow" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body"]
+theme_override_constants/separation = 2
+
+[node name="MpHeader" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/MpRow"]
+
+[node name="MpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/MpRow/MpHeader"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 0
+size_flags_horizontal = 3
+text = "MP"
+
+[node name="MpValue" type="Label" parent="Root/CharacterPanel/Content/Body/MpRow/MpHeader"]
+theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 2
+text = "264/300"
+
+[node name="MpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/MpRow"]
+custom_minimum_size = Vector2(0, 10)
+max_value = 300.0
+value = 264.0
+show_percentage = false
+theme_override_styles/fill = SubResource("fill_mp")
+
+[node name="XpRow" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body"]
+theme_override_constants/separation = 2
+
+[node name="XpHeader" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/XpRow"]
+
+[node name="XpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/XpRow/XpHeader"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 0
+size_flags_horizontal = 3
+text = "XP"
+
+[node name="XpValue" type="Label" parent="Root/CharacterPanel/Content/Body/XpRow/XpHeader"]
+theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 2
+text = "6420/8000"
+
+[node name="XpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/XpRow"]
+custom_minimum_size = Vector2(0, 10)
+max_value = 8000.0
+value = 6420.0
+show_percentage = false
+theme_override_styles/fill = SubResource("fill_xp")
+
+[node name="TopRight" type="HBoxContainer" parent="Root"]
+mouse_filter = 2
+theme_override_constants/separation = 10
+layout_mode = 1
+anchor_left = 1
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = -40.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 26.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="Inventory" type="VBoxContainer" parent="Root/TopRight"]
+theme_override_constants/separation = 8
+
+[node name="HeaderRow" type="HBoxContainer" parent="Root/TopRight/Inventory"]
+theme_override_constants/separation = 6
+
+[node name="Header" type="Label" parent="Root/TopRight/Inventory/HeaderRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+size_flags_horizontal = 3
+text = "INVENTORY"
+
+[node name="MinimizeButton" type="Button" parent="Root/TopRight/Inventory/HeaderRow"]
+custom_minimum_size = Vector2(24, 18)
+size_flags_vertical = 4
+toggle_mode = true
+theme_override_styles/normal = SubResource("min_n")
+theme_override_styles/hover = SubResource("min_h")
+theme_override_styles/pressed = SubResource("min_h")
+theme_override_styles/hover_pressed = SubResource("min_h")
+theme_override_font_sizes/font_size = 12
+text = "-"
+
+[node name="Body" type="VBoxContainer" parent="Root/TopRight/Inventory"]
+theme_override_constants/separation = 6
+
+[node name="GoldRow" type="HBoxContainer" parent="Root/TopRight/Inventory/Body"]
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="GoldValue" type="Label" parent="Root/TopRight/Inventory/Body/GoldRow"]
+theme_override_colors/font_color = Color(0.96, 0.72, 0.2, 1.0)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+text = "4,820"
+
+[node name="GoldUnit" type="Label" parent="Root/TopRight/Inventory/Body/GoldRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+size_flags_vertical = 8
+text = "GOLD"
+
+[node name="GoldIcon" type="ColorRect" parent="Root/TopRight/Inventory/Body/GoldRow"]
+custom_minimum_size = Vector2(16, 16)
+color = Color(0.96, 0.72, 0.2, 1.0)
+size_flags_vertical = 4
+
+[node name="GemsRow" type="HBoxContainer" parent="Root/TopRight/Inventory/Body"]
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="GemsValue" type="Label" parent="Root/TopRight/Inventory/Body/GemsRow"]
+theme_override_colors/font_color = Color(0.3, 0.82, 0.95, 1.0)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+text = "38"
+
+[node name="GemsUnit" type="Label" parent="Root/TopRight/Inventory/Body/GemsRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+size_flags_vertical = 8
+text = "GEMS"
+
+[node name="GemsIcon" type="ColorRect" parent="Root/TopRight/Inventory/Body/GemsRow"]
+custom_minimum_size = Vector2(16, 16)
+color = Color(0.3, 0.82, 0.95, 1.0)
+size_flags_vertical = 4
+
+[node name="SoulRow" type="HBoxContainer" parent="Root/TopRight/Inventory/Body"]
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="SoulValue" type="Label" parent="Root/TopRight/Inventory/Body/SoulRow"]
+theme_override_colors/font_color = Color(0.96, 0.3, 0.52, 1.0)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+text = "12"
+
+[node name="SoulUnit" type="Label" parent="Root/TopRight/Inventory/Body/SoulRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+size_flags_vertical = 8
+text = "SOUL"
+
+[node name="SoulIcon" type="ColorRect" parent="Root/TopRight/Inventory/Body/SoulRow"]
+custom_minimum_size = Vector2(16, 16)
+color = Color(0.96, 0.3, 0.52, 1.0)
+size_flags_vertical = 4
+
+[node name="MinimapPanel" type="PanelContainer" parent="Root/TopRight"]
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="Root/TopRight/MinimapPanel"]
+theme_override_constants/separation = 4
+
+[node name="HeaderRow" type="HBoxContainer" parent="Root/TopRight/MinimapPanel/Content"]
+theme_override_constants/separation = 6
+
+[node name="Header" type="Label" parent="Root/TopRight/MinimapPanel/Content/HeaderRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 0
+size_flags_horizontal = 3
+text = "MINIMAP"
+
+[node name="MinimizeButton" type="Button" parent="Root/TopRight/MinimapPanel/Content/HeaderRow"]
+custom_minimum_size = Vector2(24, 18)
+size_flags_vertical = 4
+toggle_mode = true
+theme_override_styles/normal = SubResource("min_n")
+theme_override_styles/hover = SubResource("min_h")
+theme_override_styles/pressed = SubResource("min_h")
+theme_override_styles/hover_pressed = SubResource("min_h")
+theme_override_font_sizes/font_size = 12
+text = "-"
+
+[node name="Body" type="VBoxContainer" parent="Root/TopRight/MinimapPanel/Content"]
+theme_override_constants/separation = 6
+
+[node name="Line" type="HSeparator" parent="Root/TopRight/MinimapPanel/Content/Body"]
+
+[node name="MapView" type="PanelContainer" parent="Root/TopRight/MinimapPanel/Content/Body"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("inset")
+custom_minimum_size = Vector2(120, 104)
+
+[node name="MapTexture" type="TextureRect" parent="Root/TopRight/MinimapPanel/Content/Body/MapView"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MapLocation" type="Label" parent="Root/TopRight/MinimapPanel/Content/Body"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 2
+text = "ASHEN KEEP F3"
+
+[node name="Legend" type="HBoxContainer" parent="Root/TopRight/MinimapPanel/Content/Body"]
+theme_override_constants/separation = 6
+
+[node name="YouIcon" type="ColorRect" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
+custom_minimum_size = Vector2(7, 7)
+color = Color(0.78, 0.69, 1.0, 1.0)
+size_flags_vertical = 4
+
+[node name="YouLabel" type="Label" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+text = "YOU"
+
+[node name="EnemyIcon" type="ColorRect" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
+custom_minimum_size = Vector2(7, 7)
+color = Color(0.9, 0.28, 0.42, 1.0)
+size_flags_vertical = 4
+
+[node name="EnemyLabel" type="Label" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+text = "ENEMY"
+
+[node name="LootIcon" type="ColorRect" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
+custom_minimum_size = Vector2(7, 7)
+color = Color(0.96, 0.72, 0.2, 1.0)
+size_flags_vertical = 4
+
+[node name="LootLabel" type="Label" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+text = "LOOT"
+
+[node name="HotbarPanel" type="PanelContainer" parent="Root"]
+mouse_filter = 2
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -170.0
+offset_top = -110.0
+offset_right = 170.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Content" type="VBoxContainer" parent="Root/HotbarPanel"]
+theme_override_constants/separation = 4
+
+[node name="HeaderRow" type="HBoxContainer" parent="Root/HotbarPanel/Content"]
+theme_override_constants/separation = 6
+
+[node name="Header" type="Label" parent="Root/HotbarPanel/Content/HeaderRow"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+size_flags_horizontal = 3
+text = "SKILLS"
+
+[node name="MinimizeButton" type="Button" parent="Root/HotbarPanel/Content/HeaderRow"]
+custom_minimum_size = Vector2(24, 18)
+size_flags_vertical = 4
+toggle_mode = true
+theme_override_styles/normal = SubResource("min_n")
+theme_override_styles/hover = SubResource("min_h")
+theme_override_styles/pressed = SubResource("min_h")
+theme_override_styles/hover_pressed = SubResource("min_h")
+theme_override_font_sizes/font_size = 12
+text = "-"
+
+[node name="Body" type="VBoxContainer" parent="Root/HotbarPanel/Content"]
+theme_override_constants/separation = 6
+
+[node name="Slots" type="HBoxContainer" parent="Root/HotbarPanel/Content/Body"]
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Skill1" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
+theme_override_constants/separation = 2
+
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill1"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("slot_sel")
+custom_minimum_size = Vector2(46, 46)
+
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+text = "1"
+
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame"]
+theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+vertical_alignment = 2
+text = "15"
+
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame"]
+visible = false
+color = Color(0, 0, 0, 0.6)
+
+[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill1"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+text = "SLASH"
+
+[node name="Skill2" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
+theme_override_constants/separation = 2
+
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill2"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("slot")
+custom_minimum_size = Vector2(46, 46)
+
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+text = "2"
+
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame"]
+theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+vertical_alignment = 2
+text = "40"
+
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame"]
+visible = false
+color = Color(0, 0, 0, 0.6)
+
+[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill2"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+text = "VOID BOLT"
+
+[node name="Skill3" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
+theme_override_constants/separation = 2
+
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill3"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("slot")
+custom_minimum_size = Vector2(46, 46)
+
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+text = "3"
+
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame"]
+theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+vertical_alignment = 2
+text = "45"
+
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame"]
+visible = false
+color = Color(0, 0, 0, 0.6)
+
+[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill3"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+text = "AEGIS"
+
+[node name="Skill4" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
+theme_override_constants/separation = 2
+
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill4"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("slot")
+custom_minimum_size = Vector2(46, 46)
+
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+text = "4"
+
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame"]
+theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+vertical_alignment = 2
+text = "60"
+
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame"]
+visible = false
+color = Color(0, 0, 0, 0.6)
+
+[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill4"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+text = "WRAITH"
+
+[node name="Skill5" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
+theme_override_constants/separation = 2
+
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill5"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("slot")
+custom_minimum_size = Vector2(46, 46)
+
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+text = "5"
+
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame"]
+theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+vertical_alignment = 2
+text = "25"
+
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame"]
+visible = false
+color = Color(0, 0, 0, 0.6)
+
+[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill5"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+text = "BLINK"
+
+[node name="Skill6" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
+theme_override_constants/separation = 2
+
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill6"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("slot")
+custom_minimum_size = Vector2(46, 46)
+
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 0
+text = "6"
+
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame"]
+theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+vertical_alignment = 2
+text = "50"
+
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame"]
+visible = false
+color = Color(0, 0, 0, 0.6)
+
+[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill6"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+text = "EXECUTE"
+
+[node name="HintBar" type="HBoxContainer" parent="Root"]
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 8
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -190.0
+offset_top = -26.0
+offset_right = 190.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="EscKey" type="PanelContainer" parent="Root/HintBar"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("keybox")
+
+[node name="Text" type="Label" parent="Root/HintBar/EscKey"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+text = "ESC"
+
+[node name="PauseLabel" type="Label" parent="Root/HintBar"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+text = "PAUSE / MENU"
+
+[node name="Sep" type="Label" parent="Root/HintBar"]
+theme_override_colors/font_color = Color(0.25, 0.19, 0.48, 1.0)
+theme_override_font_sizes/font_size = 10
+text = "|"
+
+[node name="TalkKey" type="PanelContainer" parent="Root/HintBar"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("keybox")
+
+[node name="Text" type="Label" parent="Root/HintBar/TalkKey"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+text = "E"
+
+[node name="TalkLabel" type="Label" parent="Root/HintBar"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+text = "TALK"
+
+[node name="Sep2" type="Label" parent="Root/HintBar"]
+theme_override_colors/font_color = Color(0.25, 0.19, 0.48, 1.0)
+theme_override_font_sizes/font_size = 10
+text = "|"
+
+[node name="QuestKey" type="PanelContainer" parent="Root/HintBar"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("keybox")
+
+[node name="Text" type="Label" parent="Root/HintBar/QuestKey"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+theme_override_font_sizes/font_size = 9
+text = "J"
+
+[node name="QuestLabel" type="Label" parent="Root/HintBar"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 9
+text = "QUEST"
+
+[node name="HelpButton" type="Button" parent="Root"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -46.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("help_n")
+theme_override_styles/hover = SubResource("help_h")
+theme_override_styles/pressed = SubResource("help_h")
+text = "?"

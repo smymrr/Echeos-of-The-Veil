@@ -58,7 +58,6 @@ theme_override_styles/pressed = SubResource("slot_p")
 theme_override_styles/hover = SubResource("slot_h")
 theme_override_styles/hover_pressed = SubResource("slot_p")
 theme_override_styles/focus = SubResource("slot_empty")
-toggle_mode = true
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=2103394529]
 layout_mode = 1
