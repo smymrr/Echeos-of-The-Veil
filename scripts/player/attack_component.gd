@@ -20,7 +20,6 @@ func _ready() -> void:
 	hitbox.monitoring = false
 	hitbox_visual.modulate.a = 0.0  # invisible at start
 	hitbox_offset = hitbox.position
-	hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
 	player = $".."
 
 func try_attack(input_direction: Vector2) -> bool:
@@ -33,9 +32,7 @@ func _perform_attack(input_direction: Vector2) -> void:
 	can_attack = false
 	_already_hit.clear()
 	
-	swing_sword_sfx.play()
 	_process_animation_and_hitbox(input_direction)
-	_trigger_attack_animation()
 	_trigger_attack_sfx()
 
 	hitbox.monitoring = true
@@ -51,10 +48,7 @@ func _perform_attack(input_direction: Vector2) -> void:
 
 func _process_animation_and_hitbox(input_direction: Vector2) -> void:
 	var cardinal = DirectionUtils.snap_to_cardinal(input_direction)
-	print("cardinal: ", cardinal)
-	print("hitbox offset: ", hitbox_offset.length())
 	hitbox.position = cardinal * hitbox_offset.length()
-	print("position: ", hitbox.position)
 	
 	# Animation
 	animation_component.play_animation("attack", cardinal)
@@ -64,12 +58,9 @@ func _process_animation_and_hitbox(input_direction: Vector2) -> void:
 		hitbox.rotation_degrees = 0
 	else:
 		hitbox.rotation_degrees = 90.0
-
-func _trigger_attack_animation() -> void:
-	pass
-
+		
 func _trigger_attack_sfx() -> void:
-	pass
+	swing_sword_sfx.play()
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body in _already_hit or can_attack:

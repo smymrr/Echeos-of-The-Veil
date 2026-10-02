@@ -4,7 +4,7 @@ extends Node
 # Movement Variables
 @export var speed: float = PlayerData.base_speed
 
-@export var dash_speed: float = 900.0
+@export var dash_speed: float = min(900.0, speed * 2)
 @export var dash_duration: float = 0.2
 @export var dash_cooldown: float = 2.0
 
