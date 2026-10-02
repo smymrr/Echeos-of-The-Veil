@@ -461,7 +461,7 @@ pivot_offset = Vector2(10, 20)
 color = Color(0.654902, 0.28235295, 0.27450982, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")

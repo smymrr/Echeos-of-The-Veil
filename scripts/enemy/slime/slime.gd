@@ -8,10 +8,13 @@ extends CharacterBody2D
 @export var attack_windup: float = 0.4    # delay before the hit lands
 @export var attack_cooldown: float = 1.5
 
+@export var lunge_distance: float = 24.0
+
 @onready var knockback_decay: float = 15.0
 @onready var sprite: AnimatedSprite2D = $"Sprite"
 @onready var hitbox: Area2D = $"Hitbox"
 
+var attack_tween: Tween
 
 # Status (State) pergerakan musuh
 enum State { ROAMING, CHASING, RETURNING, ATTACKING, KNOCKBACK }
@@ -51,6 +54,8 @@ func _physics_process(delta: float) -> void:
 		State.CHASING:
 			if player:
 				target_position = player.global_position
+				if can_attack and hitbox.overlaps_body(player):
+					current_state = State.ATTACKING
 			else:
 				# Cadangan jika player hilang
 				current_state = State.RETURNING
@@ -92,31 +97,34 @@ func _perform_attack() -> void:
 	can_attack = false
 	attack_cancelled = false
 	_process_animation("attack")
-	var player_previous_position = player.position
 	
 	if not await _wait_or_cancel(attack_windup):
 		return
 	
-	if not is_alive or current_state != State.ATTACKING:
+	if not is_alive or current_state != State.ATTACKING or player == null:
 		can_attack = true
 		return
 	
-	var previous_position = position
-	var tween = create_tween()
+	# Lunge toward the player but stop short instead of going into their center
+	var start_position = position
+	var dir = (player.position - position).normalized()
+	var dist = min(lunge_distance, position.distance_to(player.position))
+	var lunge_target = position + dir * dist
 	
-	tween.tween_property(self, "position", player_previous_position, 0.2)\
-	.set_trans(tween.TRANS_BOUNCE).set_ease(tween.EASE_OUT)
-	tween.tween_property(self, "position", previous_position, 0.2)\
-	.set_trans(tween.TRANS_BOUNCE).set_ease(tween.EASE_OUT)
+	attack_tween = create_tween()
+	attack_tween.tween_property(self, "position", lunge_target, 0.2)\
+		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		
+	attack_tween.tween_callback(_try_hit)  # damage lands at the end of the lunge
 	
-	if player and hitbox.overlaps_body(player):
-		PlayerHealth.take_damage(attack_damage)
+	attack_tween.tween_property(self, "position", start_position, 0.2)\
+		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	
 	if not await _wait_or_cancel(attack_cooldown):
 		return
 	
 	can_attack = true
-
+	
 	if not is_alive or current_state == State.KNOCKBACK:
 		return
 	
@@ -127,10 +135,22 @@ func _perform_attack() -> void:
 	else:
 		current_state = State.RETURNING
 
+func _try_hit() -> void:
+	if is_alive and player and hitbox.overlaps_body(player):
+		PlayerHealth.take_damage(attack_damage)
+
+func _cancel_attack_tween() -> void:
+	if attack_tween and attack_tween.is_valid():
+		attack_tween.kill()
+	attack_tween = null
+
 func _wait_or_cancel(duration: float) -> bool:
 	var elapsed: float = 0.0
 	while elapsed < duration:
 		if attack_cancelled:
+			can_attack = true
+			attack_cancelled = false
+			
 			return false
 		
 		await get_tree().process_frame
@@ -151,7 +171,7 @@ func take_damage(damage: int, attacker_position: Vector2) -> void:
 	
 	health = max(0, health - damage)
 	_flash_red()
-	print(name + " HP: ", health)
+	_cancel_attack_tween()
 	
 	if health <= 0:
 		_death()
@@ -176,6 +196,7 @@ func _animation_finished() -> void:
 		queue_free()
 
 func _death() -> void:
+	_cancel_attack_tween()
 	sprite.play("death")
 	is_alive = false
 	sprite.animation_finished.connect(_animation_finished)

@@ -20,7 +20,6 @@ func _ready() -> void:
 	hitbox.monitoring = false
 	hitbox_visual.modulate.a = 0.0  # invisible at start
 	hitbox_offset = hitbox.position
-	hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
 	player = $".."
 
 func try_attack(input_direction: Vector2) -> bool:
