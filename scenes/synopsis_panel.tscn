@@ -1,0 +1,336 @@
+[gd_scene format=3]
+
+[sub_resource type="GDScript" id="GDScript_chapter"]
+script/source = "extends Control\n# Hanya menampilkan isi chapter sesuai tombol yang ditekan (visual saja).\n# Tombol: Chapter1Button, Chapter2Button, ... berpasangan dengan Page1, Page2, ...\n\nfunc _ready() -> void:\n\tvar buttons := find_children(\"Chapter*Button\", \"Button\", true, false)\n\tvar pages := $Row/Pages.get_children()\n\tfor i in buttons.size():\n\t\tbuttons[i].pressed.connect(func(): _show(pages, i))\n\t_show(pages, 0)\n\nfunc _show(pages: Array, index: int) -> void:\n\tfor i in pages.size():\n\t\tpages[i].visible = (i == index)\n"
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_chapter"]
+
+[sub_resource type="StyleBoxFlat" id="ch_n"]
+bg_color = Color(0.075, 0.06, 0.17, 1)
+border_width_left = 3
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color(0.23, 0.18, 0.44, 1)
+content_margin_left = 10
+content_margin_top = 6
+content_margin_right = 8
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="ch_h"]
+bg_color = Color(0.1, 0.08, 0.23, 1)
+border_width_left = 3
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color(0.48, 0.35, 0.82, 1)
+content_margin_left = 10
+content_margin_top = 6
+content_margin_right = 8
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="ch_p"]
+bg_color = Color(0.12, 0.1, 0.27, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+content_margin_left = 10
+content_margin_top = 6
+content_margin_right = 8
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="StyleBoxFlat" id="textbox"]
+bg_color = Color(0.085, 0.065, 0.19, 1)
+border_width_left = 0
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23, 0.18, 0.44, 1)
+content_margin_left = 12
+content_margin_top = 10
+content_margin_right = 12
+content_margin_bottom = 10
+
+[node name="SynopsisPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 424.0
+offset_bottom = 300.0
+script = SubResource("GDScript_chapter")
+
+[node name="Row" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ChapterList" type="VBoxContainer" parent="Row"]
+custom_minimum_size = Vector2(122, 0)
+theme_override_constants/separation = 6
+
+[node name="ChaptersLabel" type="Label" parent="Row/ChapterList"]
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 9
+text = "CHAPTERS"
+
+[node name="Chapter1Button" type="Button" parent="Row/ChapterList"]
+custom_minimum_size = Vector2(0, 46)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_chapter")
+button_pressed = true
+theme_override_styles/normal = SubResource("ch_n")
+theme_override_styles/hover = SubResource("ch_h")
+theme_override_styles/pressed = SubResource("ch_p")
+theme_override_styles/hover_pressed = SubResource("ch_p")
+theme_override_styles/focus = SubResource("empty")
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_colors/font_hover_color = Color(0.93, 0.9, 1.0, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_font_sizes/font_size = 11
+alignment = 0
+text = "CH. I\nBefore the Veil"
+
+[node name="Chapter2Button" type="Button" parent="Row/ChapterList"]
+custom_minimum_size = Vector2(0, 46)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_chapter")
+theme_override_styles/normal = SubResource("ch_n")
+theme_override_styles/hover = SubResource("ch_h")
+theme_override_styles/pressed = SubResource("ch_p")
+theme_override_styles/hover_pressed = SubResource("ch_p")
+theme_override_styles/focus = SubResource("empty")
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_colors/font_hover_color = Color(0.93, 0.9, 1.0, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_font_sizes/font_size = 11
+alignment = 0
+text = "CH. II\nThe Shattering"
+
+[node name="Chapter3Button" type="Button" parent="Row/ChapterList"]
+custom_minimum_size = Vector2(0, 46)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_chapter")
+theme_override_styles/normal = SubResource("ch_n")
+theme_override_styles/hover = SubResource("ch_h")
+theme_override_styles/pressed = SubResource("ch_p")
+theme_override_styles/hover_pressed = SubResource("ch_p")
+theme_override_styles/focus = SubResource("empty")
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_colors/font_hover_color = Color(0.93, 0.9, 1.0, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_font_sizes/font_size = 11
+alignment = 0
+text = "CH. III\nThe Veilwalkers"
+
+[node name="Chapter4Button" type="Button" parent="Row/ChapterList"]
+custom_minimum_size = Vector2(0, 46)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_chapter")
+theme_override_styles/normal = SubResource("ch_n")
+theme_override_styles/hover = SubResource("ch_h")
+theme_override_styles/pressed = SubResource("ch_p")
+theme_override_styles/hover_pressed = SubResource("ch_p")
+theme_override_styles/focus = SubResource("empty")
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_colors/font_hover_color = Color(0.93, 0.9, 1.0, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_font_sizes/font_size = 11
+alignment = 0
+text = "CH. IV\nYour Path"
+
+[node name="Divider" type="ColorRect" parent="Row"]
+custom_minimum_size = Vector2(2, 0)
+color = Color(0.23, 0.18, 0.44, 1)
+
+[node name="Pages" type="Control" parent="Row"]
+size_flags_horizontal = 3
+
+[node name="Page1" type="VBoxContainer" parent="Row/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="ChapterLabel" type="Label" parent="Row/Pages/Page1"]
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 9
+text = "CHAPTER I"
+
+[node name="ChapterTitle" type="Label" parent="Row/Pages/Page1"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Before the Veil"
+
+[node name="Dash" type="HSeparator" parent="Row/Pages/Page1"]
+
+[node name="TextRow" type="HBoxContainer" parent="Row/Pages/Page1"]
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Accent" type="ColorRect" parent="Row/Pages/Page1/TextRow"]
+custom_minimum_size = Vector2(3, 0)
+color = Color(0.48, 0.35, 0.82, 1)
+
+[node name="TextBox" type="PanelContainer" parent="Row/Pages/Page1/TextRow"]
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("textbox")
+
+[node name="Scroll" type="ScrollContainer" parent="Row/Pages/Page1/TextRow/TextBox"]
+horizontal_scroll_mode = 0
+
+[node name="Body" type="Label" parent="Row/Pages/Page1/TextRow/TextBox/Scroll"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.93, 0.9, 1.0, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_constants/line_spacing = 6
+autowrap_mode = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+[node name="Page2" type="VBoxContainer" parent="Row/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+visible = false
+
+[node name="ChapterLabel" type="Label" parent="Row/Pages/Page2"]
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 9
+text = "CHAPTER II"
+
+[node name="ChapterTitle" type="Label" parent="Row/Pages/Page2"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_font_sizes/font_size = 14
+text = "The Shattering"
+
+[node name="Dash" type="HSeparator" parent="Row/Pages/Page2"]
+
+[node name="TextRow" type="HBoxContainer" parent="Row/Pages/Page2"]
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Accent" type="ColorRect" parent="Row/Pages/Page2/TextRow"]
+custom_minimum_size = Vector2(3, 0)
+color = Color(0.48, 0.35, 0.82, 1)
+
+[node name="TextBox" type="PanelContainer" parent="Row/Pages/Page2/TextRow"]
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("textbox")
+
+[node name="Scroll" type="ScrollContainer" parent="Row/Pages/Page2/TextRow/TextBox"]
+horizontal_scroll_mode = 0
+
+[node name="Body" type="Label" parent="Row/Pages/Page2/TextRow/TextBox/Scroll"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.93, 0.9, 1.0, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_constants/line_spacing = 6
+autowrap_mode = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+[node name="Page3" type="VBoxContainer" parent="Row/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+visible = false
+
+[node name="ChapterLabel" type="Label" parent="Row/Pages/Page3"]
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 9
+text = "CHAPTER III"
+
+[node name="ChapterTitle" type="Label" parent="Row/Pages/Page3"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_font_sizes/font_size = 14
+text = "The Veilwalkers"
+
+[node name="Dash" type="HSeparator" parent="Row/Pages/Page3"]
+
+[node name="TextRow" type="HBoxContainer" parent="Row/Pages/Page3"]
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Accent" type="ColorRect" parent="Row/Pages/Page3/TextRow"]
+custom_minimum_size = Vector2(3, 0)
+color = Color(0.48, 0.35, 0.82, 1)
+
+[node name="TextBox" type="PanelContainer" parent="Row/Pages/Page3/TextRow"]
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("textbox")
+
+[node name="Scroll" type="ScrollContainer" parent="Row/Pages/Page3/TextRow/TextBox"]
+horizontal_scroll_mode = 0
+
+[node name="Body" type="Label" parent="Row/Pages/Page3/TextRow/TextBox/Scroll"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.93, 0.9, 1.0, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_constants/line_spacing = 6
+autowrap_mode = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+[node name="Page4" type="VBoxContainer" parent="Row/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+visible = false
+
+[node name="ChapterLabel" type="Label" parent="Row/Pages/Page4"]
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 9
+text = "CHAPTER IV"
+
+[node name="ChapterTitle" type="Label" parent="Row/Pages/Page4"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Your Path"
+
+[node name="Dash" type="HSeparator" parent="Row/Pages/Page4"]
+
+[node name="TextRow" type="HBoxContainer" parent="Row/Pages/Page4"]
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Accent" type="ColorRect" parent="Row/Pages/Page4/TextRow"]
+custom_minimum_size = Vector2(3, 0)
+color = Color(0.48, 0.35, 0.82, 1)
+
+[node name="TextBox" type="PanelContainer" parent="Row/Pages/Page4/TextRow"]
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("textbox")
+
+[node name="Scroll" type="ScrollContainer" parent="Row/Pages/Page4/TextRow/TextBox"]
+horizontal_scroll_mode = 0
+
+[node name="Body" type="Label" parent="Row/Pages/Page4/TextRow/TextBox/Scroll"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.93, 0.9, 1.0, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_constants/line_spacing = 6
+autowrap_mode = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."

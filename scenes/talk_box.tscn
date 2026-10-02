@@ -1,0 +1,347 @@
+[gd_scene format=3]
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.06, 0.047, 0.14, 0.93)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+content_margin_left = 12
+content_margin_top = 8
+content_margin_right = 12
+content_margin_bottom = 10
+
+[sub_resource type="StyleBoxFlat" id="inset"]
+bg_color = Color(0.025, 0.02, 0.06, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="portrait"]
+bg_color = Color(0.09, 0.07, 0.2, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 2
+content_margin_top = 2
+content_margin_right = 2
+content_margin_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="slot"]
+bg_color = Color(0.09, 0.07, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="slot_sel"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1.0, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="box"]
+bg_color = Color(0.025, 0.02, 0.06, 0.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="keybox"]
+bg_color = Color(0.09, 0.07, 0.2, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 6
+content_margin_top = 2
+content_margin_right = 6
+content_margin_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="bar_bg"]
+bg_color = Color(0.025, 0.02, 0.06, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="fill_hp"]
+bg_color = Color(0.86, 0.2, 0.36, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="fill_mp"]
+bg_color = Color(0.16, 0.45, 0.86, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="fill_xp"]
+bg_color = Color(0.92, 0.66, 0.14, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="fill_en"]
+bg_color = Color(0.96, 0.42, 0.14, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="btn_n"]
+bg_color = Color(0.09, 0.07, 0.2, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 14
+content_margin_top = 6
+content_margin_right = 14
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="btn_h"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1.0, 1.0)
+content_margin_left = 14
+content_margin_top = 6
+content_margin_right = 14
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="btn_p"]
+bg_color = Color(0.29, 0.2, 0.55, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1.0, 1.0)
+content_margin_left = 14
+content_margin_top = 6
+content_margin_right = 14
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="help_n"]
+bg_color = Color(0.09, 0.07, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="help_h"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="min_n"]
+bg_color = Color(0.09, 0.07, 0.2, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="min_h"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="StyleBoxLine" id="hline"]
+color = Color(0.25, 0.19, 0.48, 1.0)
+thickness = 1
+
+[sub_resource type="Theme" id="Theme_hud"]
+Label/colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.75)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/font_sizes/font_size = 12
+PanelContainer/styles/panel = SubResource("panel")
+HSeparator/styles/separator = SubResource("hline")
+HSeparator/constants/separation = 6
+ProgressBar/styles/background = SubResource("bar_bg")
+ProgressBar/styles/fill = SubResource("fill_xp")
+Button/font_sizes/font_size = 11
+Button/colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+Button/colors/font_hover_color = Color(0.94, 0.92, 1.0, 1.0)
+Button/colors/font_pressed_color = Color(0.94, 0.92, 1.0, 1.0)
+Button/styles/normal = SubResource("btn_n")
+Button/styles/hover = SubResource("btn_h")
+Button/styles/pressed = SubResource("btn_p")
+Button/styles/focus = SubResource("empty")
+
+[node name="TalkBox" type="CanvasLayer"]
+visible = false
+layer = 7
+
+[node name="Root" type="Control" parent="."]
+mouse_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hud")
+
+[node name="TalkPanel" type="PanelContainer" parent="Root"]
+mouse_filter = 2
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -290.0
+offset_top = -160.0
+offset_right = 290.0
+offset_bottom = -146.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Content" type="HBoxContainer" parent="Root/TalkPanel"]
+theme_override_constants/separation = 14
+
+[node name="SpeakerBox" type="VBoxContainer" parent="Root/TalkPanel/Content"]
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SpeakerFrame" type="PanelContainer" parent="Root/TalkPanel/Content/SpeakerBox"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("portrait")
+custom_minimum_size = Vector2(60, 60)
+size_flags_horizontal = 4
+
+[node name="SpeakerPortrait" type="TextureRect" parent="Root/TalkPanel/Content/SpeakerBox/SpeakerFrame"]
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpeakerName" type="Label" parent="Root/TalkPanel/Content/SpeakerBox"]
+theme_override_colors/font_color = Color(0.9, 0.28, 0.42, 1.0)
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+text = "MALACHAR"
+
+[node name="Divider" type="ColorRect" parent="Root/TalkPanel/Content"]
+custom_minimum_size = Vector2(2, 0)
+color = Color(0.25, 0.19, 0.48, 1.0)
+
+[node name="TextBox" type="VBoxContainer" parent="Root/TalkPanel/Content"]
+theme_override_constants/separation = 6
+size_flags_horizontal = 3
+
+[node name="DialogueText" type="Label" parent="Root/TalkPanel/Content/TextBox"]
+theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 0
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 46)
+autowrap_mode = 3
+text = "You dare enter my sanctum, Veilwalker?"
+
+[node name="BottomRow" type="HBoxContainer" parent="Root/TalkPanel/Content/TextBox"]
+theme_override_constants/separation = 10
+
+[node name="PageDots" type="HBoxContainer" parent="Root/TalkPanel/Content/TextBox/BottomRow"]
+theme_override_constants/separation = 4
+size_flags_horizontal = 3
+
+[node name="Page1" type="ColorRect" parent="Root/TalkPanel/Content/TextBox/BottomRow/PageDots"]
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 4
+color = Color(0.48, 0.35, 0.82, 1.0)
+
+[node name="Page2" type="ColorRect" parent="Root/TalkPanel/Content/TextBox/BottomRow/PageDots"]
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 4
+color = Color(0.25, 0.19, 0.48, 1.0)
+
+[node name="Page3" type="ColorRect" parent="Root/TalkPanel/Content/TextBox/BottomRow/PageDots"]
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 4
+color = Color(0.25, 0.19, 0.48, 1.0)
+
+[node name="Page4" type="ColorRect" parent="Root/TalkPanel/Content/TextBox/BottomRow/PageDots"]
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 4
+color = Color(0.25, 0.19, 0.48, 1.0)
+
+[node name="NextHint" type="Label" parent="Root/TalkPanel/Content/TextBox/BottomRow"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 2
+text = "E ▶"

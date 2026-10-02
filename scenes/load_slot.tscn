@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://ctmihk0yl87ii"]
+
+[sub_resource type="StyleBoxFlat" id="slot_n"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.075, 0.06, 0.17, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23, 0.18, 0.44, 1)
+
+[sub_resource type="StyleBoxFlat" id="slot_p"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16, 0.11, 0.32, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.66, 0.96, 1)
+
+[sub_resource type="StyleBoxFlat" id="slot_h"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.08, 0.23, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxEmpty" id="slot_empty"]
+
+[sub_resource type="StyleBoxFlat" id="num_box"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 2.0
+bg_color = Color(0.075, 0.06, 0.17, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23, 0.18, 0.44, 1)
+
+[node name="LoadSlot" type="Button" unique_id=866434614]
+custom_minimum_size = Vector2(0, 62)
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("slot_n")
+theme_override_styles/pressed = SubResource("slot_p")
+theme_override_styles/hover = SubResource("slot_h")
+theme_override_styles/hover_pressed = SubResource("slot_p")
+theme_override_styles/focus = SubResource("slot_empty")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=2103394529]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Margin" unique_id=1558449474]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="NumberBox" type="PanelContainer" parent="Margin/Row" unique_id=1645818072]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("num_box")
+
+[node name="SlotNumber" type="Label" parent="Margin/Row/NumberBox" unique_id=1807379138]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoBox" type="VBoxContainer" parent="Margin/Row" unique_id=1036183042]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SlotName" type="Label" parent="Margin/Row/InfoBox" unique_id=1610997481]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ch.I - Into the Veil"
+
+[node name="Location" type="Label" parent="Margin/Row/InfoBox" unique_id=1130946154]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 14
+text = "Whisperwood Entrance"
+
+[node name="StatBox" type="VBoxContainer" parent="Margin/Row" unique_id=1834958114]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PlayTime" type="Label" parent="Margin/Row/StatBox" unique_id=569894851]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.66, 0.96, 1)
+theme_override_font_sizes/font_size = 11
+text = "02:10"
+horizontal_alignment = 2
+
+[node name="SaveDate" type="Label" parent="Margin/Row/StatBox" unique_id=492027807]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.39, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "2026-09-30"
+horizontal_alignment = 2
+
+[node name="EmptyLabel" type="Label" parent="." unique_id=37663677]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 13
+text = "- Empty Slot -"
+horizontal_alignment = 1
+vertical_alignment = 1

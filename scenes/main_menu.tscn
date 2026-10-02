@@ -1,0 +1,494 @@
+[gd_scene format=3 uid="uid://brhoe3fx1k85q"]
+
+[ext_resource type="Script" uid="uid://6oq4ukk5gs53" path="res://scripts/ui/main_menu/background_fx.gd" id="1_b6svo"]
+[ext_resource type="Texture2D" uid="uid://cw6pyn1gewy67" path="res://assets/ui/main_menu/background.jpg" id="1_hd3la"]
+[ext_resource type="Texture2D" uid="uid://bbviorjjhonmr" path="res://scanline.png" id="2_b6svo"]
+[ext_resource type="Texture2D" uid="uid://cp7e3nmdinkw8" path="res://assets/ui/main_menu/panel_menu.png" id="3_tgyvh"]
+[ext_resource type="Script" uid="uid://0ac6lpxj1mir" path="res://scripts/ui/main_menu/menu_navigation.gd" id="5_flqon"]
+[ext_resource type="FontFile" uid="uid://dv5a7nnnjp0tk" path="res://assets/font/PressStart2P.ttf" id="7_jk1qb"]
+[ext_resource type="FontFile" uid="uid://u84i6l5lbqf8" path="res://assets/font/VT323-Regular.ttf" id="8_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://c6bqnxttag3il" path="res://assets/ui/main_menu/Text Panel.png" id="8_jhmoq"]
+[ext_resource type="Script" uid="uid://cx6ywkwnrl82" path="res://scripts/ui/main_menu/hover_button.gd" id="9_bbj2o"]
+[ext_resource type="AudioStream" uid="uid://bi136u7rg8lou" path="res://assets/audio/main_menu/click_sound.wav" id="10_lgwnu"]
+[ext_resource type="AudioStream" uid="uid://bsay8v8jd65nh" path="res://assets/audio/main_menu/hover_sound.wav" id="11_flqon"]
+[ext_resource type="Texture2D" uid="uid://bx8pv0i46j4uy" path="res://assets/ui/main_menu/acc_menu_panel.png" id="11_xn1h2"]
+[ext_resource type="Script" uid="uid://beh5mvcal7p14" path="res://scripts/ui/main_menu/fade_screen.gd" id="13_5pajh"]
+[ext_resource type="Texture2D" uid="uid://bq36e2rq7cu4g" path="res://assets/ui/main_menu/load_game_panel.png" id="13_rcqid"]
+[ext_resource type="Script" uid="uid://d07ni7dfoyxrw" path="res://scenes/back_button.gd" id="14_1ajci"]
+[ext_resource type="PackedScene" uid="uid://ctmihk0yl87ii" path="res://scenes/load_slot.tscn" id="15_a8gd2"]
+[ext_resource type="PackedScene" path="res://scenes/synopsis_panel.tscn" id="15_gw5y6"]
+[ext_resource type="PackedScene" path="res://scenes/options_panel.tscn" id="15_hstxw"]
+[ext_resource type="Texture2D" uid="uid://halw6eb2cpns" path="res://assets/ui/main_menu/exit_panel.png" id="16_5pajh"]
+[ext_resource type="Theme" uid="uid://b6oa28s033rug" path="res://scenes/options_theme.tres" id="16_8egab"]
+[ext_resource type="AudioStream" uid="uid://dgka6nj7mfigw" path="res://assets/audio/main_menu/bgm_main_menu.mp3" id="17_j7ex8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrivr"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(70, 92, 226, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13qdw"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(73, 154, 198, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1lj4"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(75, 207, 172, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njqwk"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(65, 268, 171, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi6ju"]
+atlas = ExtResource("8_jhmoq")
+region = Rect2(73, 326, 127, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f2x3"]
+atlas = ExtResource("16_5pajh")
+region = Rect2(55.356018, 84.55658, 292.82, 139.30023)
+
+[node name="Main_menu" type="Control" unique_id=900637529]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b6svo")
+flicker_labels = Array[NodePath]([NodePath("Echoes"), NodePath("Of The"), NodePath("Veil"), NodePath("Deskripsi")])
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1767487412]
+position = Vector2(558, 321)
+scale = Vector2(1.15, 1.24)
+texture = ExtResource("1_hd3la")
+
+[node name="ScanLine" type="Sprite2D" parent="." unique_id=1536734531]
+self_modulate = Color(1, 1, 1, 0.29411766)
+position = Vector2(563, 342)
+texture = ExtResource("2_b6svo")
+metadata/_edit_lock_ = true
+
+[node name="Copyright" type="Label" parent="." unique_id=1715467063]
+modulate = Color(1, 1, 1, 0.5058824)
+layout_mode = 0
+offset_left = 356.0
+offset_top = 606.0
+offset_right = 780.0
+offset_bottom = 625.0
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 8
+text = "© 2026 XI RPL 3 SMKN 4 BANDUNG. All Rights Reserved.
+Echoes of the Veil — v0.1.0 (Early Development Build)"
+metadata/_edit_lock_ = true
+
+[node name="MenuPanel" type="Sprite2D" parent="." unique_id=144515219]
+position = Vector2(565, 456.00003)
+scale = Vector2(1.2531828, 1.0716465)
+texture = ExtResource("3_tgyvh")
+script = ExtResource("5_flqon")
+new_journey_button = NodePath("../New_Journey")
+load_data_button = NodePath("../Load_Data")
+synopsis_button = NodePath("../Synopsis")
+options_button = NodePath("../Options")
+exit_button = NodePath("../Exit")
+load_data_screen = NodePath("../LoadDataScreen")
+synopsis_screen = NodePath("../SypnosisScreen")
+options_screen = NodePath("../OptionScreen")
+exit_screen = NodePath("../ExitScreen")
+metadata/_edit_lock_ = true
+
+[node name="Hiasan judul" type="Sprite2D" parent="." unique_id=1830384776]
+position = Vector2(557, 56)
+scale = Vector2(0.5556941, 0.4695122)
+texture = ExtResource("11_xn1h2")
+metadata/_edit_lock_ = true
+
+[node name="New_Journey" type="TextureButton" parent="." unique_id=784365794]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 342.0
+offset_right = 636.0
+offset_bottom = 388.0
+texture_normal = SubResource("AtlasTexture_xrivr")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+metadata/_edit_lock_ = true
+
+[node name="Load_Data" type="TextureButton" parent="." unique_id=1021412486]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 391.0
+offset_right = 609.0
+offset_bottom = 431.0
+texture_normal = SubResource("AtlasTexture_13qdw")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+metadata/_edit_lock_ = true
+
+[node name="Synopsis" type="TextureButton" parent="." unique_id=1162441486]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 433.0
+offset_right = 585.0
+offset_bottom = 473.0
+texture_normal = SubResource("AtlasTexture_b1lj4")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+metadata/_edit_lock_ = true
+
+[node name="Options" type="TextureButton" parent="." unique_id=881784964]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 483.00003
+offset_right = 575.0
+offset_bottom = 523.0
+texture_normal = SubResource("AtlasTexture_njqwk")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+metadata/_edit_lock_ = true
+
+[node name="Exit" type="TextureButton" parent="." unique_id=165712755]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 535.0
+offset_right = 542.0
+offset_bottom = 575.0
+texture_normal = SubResource("AtlasTexture_wi6ju")
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../HoverSound")
+click_audio_path = NodePath("../ClickSound")
+metadata/_edit_lock_ = true
+
+[node name="Echoes" type="Label" parent="." unique_id=1534017662]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 57.0
+offset_right = 717.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 50
+text = "ECHEOS"
+metadata/_edit_lock_ = true
+
+[node name="Of The" type="Label" parent="." unique_id=2030596043]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 134.0
+offset_right = 628.0
+offset_bottom = 157.0
+theme_override_colors/font_color = Color(0.72156864, 0.6627451, 0.8509804, 1)
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 20
+text = "OF THE"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Veil" type="Label" parent="." unique_id=1317847847]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 178.0
+offset_right = 673.0
+offset_bottom = 228.0
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 50
+text = "VEIL"
+metadata/_edit_lock_ = true
+
+[node name="Deskripsi" type="Label" parent="." unique_id=699205664]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 250.0
+offset_right = 700.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0.72156864, 0.6627451, 0.8509804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.16078432)
+theme_override_fonts/font = ExtResource("8_5dd4i")
+theme_override_font_sizes/font_size = 32
+text = "A DARK FANTASY JOUNEY"
+metadata/_edit_lock_ = true
+
+[node name="LoadDataScreen" type="Control" parent="." unique_id=1503683661]
+visible = false
+layout_mode = 1
+anchor_bottom = 0.307
+offset_left = 320.0
+offset_top = 277.0
+offset_right = 814.0
+offset_bottom = 417.064
+script = ExtResource("13_5pajh")
+metadata/_edit_lock_ = true
+
+[node name="LoadDataPanel" type="TextureRect" parent="LoadDataScreen" unique_id=226565383]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_top = -149.0
+offset_right = 84.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_rcqid")
+stretch_mode = 5
+
+[node name="SavedJourney" type="Label" parent="LoadDataScreen" unique_id=1101094349]
+layout_mode = 0
+offset_left = 166.0
+offset_top = -78.0
+offset_right = 331.0
+offset_bottom = -66.0
+theme_override_colors/font_color = Color(0.84705883, 0.8235294, 0.9254902, 0.6)
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 9
+text = "- SAVED JOURNEYS -"
+
+[node name="LoadData" type="Label" parent="LoadDataScreen" unique_id=357945932]
+layout_mode = 0
+offset_left = 171.0
+offset_top = -59.0
+offset_right = 325.0
+offset_bottom = -36.0
+theme_override_colors/font_color = Color(0.84705883, 0.8235294, 0.9254902, 1)
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 17
+text = "Load Data"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LoadDataScreen" unique_id=765452942]
+custom_minimum_size = Vector2(24, 75)
+layout_mode = 0
+offset_left = 63.0
+offset_top = -10.0
+offset_right = 428.0
+offset_bottom = 257.0
+horizontal_scroll_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="SlotList" type="VBoxContainer" parent="LoadDataScreen/ScrollContainer" unique_id=503919621]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LoadSlot" parent="LoadDataScreen/ScrollContainer/SlotList" unique_id=959185609 instance=ExtResource("15_a8gd2")]
+layout_mode = 2
+
+[node name="LoadSlot2" parent="LoadDataScreen/ScrollContainer/SlotList" unique_id=690362453 instance=ExtResource("15_a8gd2")]
+layout_mode = 2
+
+[node name="LoadSlot3" parent="LoadDataScreen/ScrollContainer/SlotList" unique_id=1276206826 instance=ExtResource("15_a8gd2")]
+layout_mode = 2
+
+[node name="LoadSlot4" parent="LoadDataScreen/ScrollContainer/SlotList" unique_id=1993280470 instance=ExtResource("15_a8gd2")]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="LoadDataScreen" unique_id=383716412]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 292.0
+offset_right = 288.0
+offset_bottom = 323.0
+text = "Back"
+script = ExtResource("14_1ajci")
+
+[node name="SypnosisScreen" type="Control" parent="." unique_id=1396415807]
+visible = false
+layout_mode = 1
+anchor_bottom = 0.307
+offset_left = 318.0
+offset_top = 275.0
+offset_right = 812.0
+offset_bottom = 415.064
+script = ExtResource("13_5pajh")
+
+[node name="SynopsisPanel" type="TextureRect" parent="SypnosisScreen" unique_id=2040340867]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_top = -149.0
+offset_right = 84.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_rcqid")
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="SynopsisList" parent="SypnosisScreen" unique_id=991624549 instance=ExtResource("15_gw5y6")]
+layout_mode = 0
+offset_left = 34.0
+offset_top = -21.0
+offset_right = 458.0
+offset_bottom = 268.0
+metadata/_edit_lock_ = true
+
+[node name="Lore" type="Label" parent="SypnosisScreen" unique_id=1056319759]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.31
+anchor_top = -0.23
+anchor_right = -0.31
+anchor_bottom = -0.23
+offset_left = 351.14
+offset_top = -10.029999
+offset_right = 447.14
+offset_bottom = 1.9700012
+theme_override_colors/font_color = Color(0.84705883, 0.8235294, 0.9254902, 0.6)
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 12
+text = "- LORE -"
+metadata/_edit_lock_ = true
+
+[node name="Sypnosis" type="Label" parent="SypnosisScreen" unique_id=1562298890]
+layout_mode = 0
+offset_left = 178.0
+offset_top = -59.0
+offset_right = 314.0
+offset_bottom = -36.0
+theme_override_colors/font_color = Color(0.84705883, 0.8235294, 0.9254902, 1)
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 17
+text = "SYNOPSIS"
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="Button" parent="SypnosisScreen" unique_id=39468793]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 292.0
+offset_right = 288.0
+offset_bottom = 323.0
+text = "Back"
+script = ExtResource("14_1ajci")
+metadata/_edit_lock_ = true
+
+[node name="OptionScreen" type="Control" parent="." unique_id=1636810732]
+visible = false
+layout_mode = 1
+anchor_right = 0.087000005
+anchor_bottom = 0.208
+offset_left = -6.0
+offset_top = -71.0
+offset_right = 74.77599
+offset_bottom = -4.7839966
+script = ExtResource("13_5pajh")
+
+[node name="OptionsPanelBg" type="TextureRect" parent="OptionScreen" unique_id=469687899]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 119.0
+offset_right = 900.0
+offset_bottom = 735.0
+texture = ExtResource("13_rcqid")
+metadata/_edit_lock_ = true
+
+[node name="OptionsPanel" parent="OptionScreen" unique_id=1459533598 instance=ExtResource("15_hstxw")]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 270.0
+offset_right = 799.0
+offset_bottom = 600.0
+theme = ExtResource("16_8egab")
+
+[node name="Settings" type="Label" parent="OptionScreen" unique_id=301790621]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 181.0
+offset_right = 622.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(0.84705883, 0.8235294, 0.9254902, 0.6)
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 9
+text = "- SETTINGS -"
+metadata/_edit_lock_ = true
+
+[node name="Options" type="Label" parent="OptionScreen" unique_id=1807884420]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 209.0
+offset_right = 647.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.84705883, 0.8235294, 0.9254902, 1)
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 23
+text = "OPTIONS"
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="Button" parent="OptionScreen" unique_id=119346860]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 629.0
+offset_right = 616.0
+offset_bottom = 666.0
+text = "Back"
+script = ExtResource("14_1ajci")
+metadata/_edit_lock_ = true
+
+[node name="ExitScreen" type="Control" parent="." unique_id=429844324]
+visible = false
+anchors_preset = 0
+offset_left = 322.0
+offset_top = 232.0
+offset_right = 362.0
+offset_bottom = 272.0
+metadata/_edit_lock_ = true
+
+[node name="exitPanel" type="TextureRect" parent="ExitScreen" unique_id=1229214855]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 72.0
+offset_right = 405.0
+offset_bottom = 230.0
+texture = SubResource("AtlasTexture_7f2x3")
+
+[node name="YesButton" type="Button" parent="ExitScreen" unique_id=200534478]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.87500006
+anchor_bottom = 0.5
+offset_left = 122.0
+offset_top = 178.0
+offset_right = 153.0
+offset_bottom = 189.0
+text = "Yes"
+script = ExtResource("9_bbj2o")
+hover_audio_path = NodePath("../../HoverSound")
+click_audio_path = NodePath("../../ClickSound")
+
+[node name="BackButton" type="Button" parent="ExitScreen" unique_id=1864972398]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 176.0
+offset_right = 363.0
+offset_bottom = 207.0
+text = " No "
+script = ExtResource("14_1ajci")
+
+[node name="Abandon" type="Label" parent="ExitScreen" unique_id=1704270488]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 481.0
+offset_bottom = 135.0
+theme_override_fonts/font = ExtResource("7_jk1qb")
+theme_override_font_sizes/font_size = 21
+text = "Abandon Your 
+Journey?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackSound" type="AudioStreamPlayer" parent="." unique_id=529186632]
+stream = ExtResource("17_j7ex8")
+volume_db = -10.0
+autoplay = true
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="." unique_id=1551445464]
+stream = ExtResource("10_lgwnu")
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=759121367]
+stream = ExtResource("11_flqon")

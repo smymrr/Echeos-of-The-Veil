@@ -1,0 +1,332 @@
+[gd_scene format=3]
+
+[sub_resource type="GDScript" id="GDScript_pct"]
+script/source = "extends Control\n# Hanya memperbarui angka persen saat slider digeser (visual saja).\n# Aturan nama: XSlider -> XValue. Programmer boleh mengganti script ini.\n\nfunc _ready() -> void:\n\tfor s in find_children(\"*Slider\", \"HSlider\", true, false):\n\t\tvar lbl := find_child(s.name.replace(\"Slider\", \"Value\"), true, false) as Label\n\t\tif lbl:\n\t\t\tlbl.text = \"%d%%\" % int(s.value)\n\t\t\ts.value_changed.connect(func(v: float): lbl.text = \"%d%%\" % int(v))\n"
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_pixel"]
+
+[node name="OptionsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 610.0
+offset_bottom = 300.0
+script = SubResource("GDScript_pct")
+
+[node name="Tabs" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="AUDIO" type="ScrollContainer" parent="Tabs"]
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Tabs/AUDIO"]
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="List" type="VBoxContainer" parent="Tabs/AUDIO/Margin"]
+theme_override_constants/separation = 10
+
+[node name="MasterRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List"]
+theme_override_constants/separation = 4
+
+[node name="MasterHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/MasterRow"]
+
+[node name="MasterLabel" type="Label" parent="Tabs/AUDIO/Margin/List/MasterRow/MasterHeader"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "MASTER VOLUME"
+
+[node name="MasterValue" type="Label" parent="Tabs/AUDIO/Margin/List/MasterRow/MasterHeader"]
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+text = "100%"
+
+[node name="MasterSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/MasterRow"]
+custom_minimum_size = Vector2(0, 20)
+step = 1.0
+value = 100.0
+
+[node name="MusicRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List"]
+theme_override_constants/separation = 4
+
+[node name="MusicHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/MusicRow"]
+
+[node name="MusicLabel" type="Label" parent="Tabs/AUDIO/Margin/List/MusicRow/MusicHeader"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "MUSIC VOLUME"
+
+[node name="MusicValue" type="Label" parent="Tabs/AUDIO/Margin/List/MusicRow/MusicHeader"]
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+text = "70%"
+
+[node name="MusicSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/MusicRow"]
+custom_minimum_size = Vector2(0, 20)
+step = 1.0
+value = 70.0
+
+[node name="SfxRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List"]
+theme_override_constants/separation = 4
+
+[node name="SfxHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/SfxRow"]
+
+[node name="SfxLabel" type="Label" parent="Tabs/AUDIO/Margin/List/SfxRow/SfxHeader"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "SFX VOLUME"
+
+[node name="SfxValue" type="Label" parent="Tabs/AUDIO/Margin/List/SfxRow/SfxHeader"]
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+text = "85%"
+
+[node name="SfxSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/SfxRow"]
+custom_minimum_size = Vector2(0, 20)
+step = 1.0
+value = 85.0
+
+[node name="AmbientRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List"]
+theme_override_constants/separation = 4
+
+[node name="AmbientHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/AmbientRow"]
+
+[node name="AmbientLabel" type="Label" parent="Tabs/AUDIO/Margin/List/AmbientRow/AmbientHeader"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "AMBIENT VOLUME"
+
+[node name="AmbientValue" type="Label" parent="Tabs/AUDIO/Margin/List/AmbientRow/AmbientHeader"]
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+text = "50%"
+
+[node name="AmbientSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/AmbientRow"]
+custom_minimum_size = Vector2(0, 20)
+step = 1.0
+value = 50.0
+
+[node name="VoiceRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List"]
+theme_override_constants/separation = 4
+
+[node name="VoiceHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/VoiceRow"]
+
+[node name="VoiceLabel" type="Label" parent="Tabs/AUDIO/Margin/List/VoiceRow/VoiceHeader"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "VOICE VOLUME"
+
+[node name="VoiceValue" type="Label" parent="Tabs/AUDIO/Margin/List/VoiceRow/VoiceHeader"]
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+text = "80%"
+
+[node name="VoiceSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/VoiceRow"]
+custom_minimum_size = Vector2(0, 20)
+step = 1.0
+value = 80.0
+
+[node name="DISPLAY" type="ScrollContainer" parent="Tabs"]
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Tabs/DISPLAY"]
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="List" type="VBoxContainer" parent="Tabs/DISPLAY/Margin"]
+theme_override_constants/separation = 10
+
+[node name="FullscreenRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List"]
+
+[node name="FullscreenLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/FullscreenRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "FULLSCREEN"
+
+[node name="FullscreenToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/FullscreenRow"]
+
+[node name="ResolutionRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List"]
+
+[node name="ResolutionLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/ResolutionRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "RESOLUTION"
+
+[node name="ResolutionOption" type="OptionButton" parent="Tabs/DISPLAY/Margin/List/ResolutionRow"]
+custom_minimum_size = Vector2(200, 0)
+selected = 0
+item_count = 3
+popup/item_0/text = "1152 x 648"
+popup/item_0/id = 0
+popup/item_1/text = "1280 x 720"
+popup/item_1/id = 1
+popup/item_2/text = "1920 x 1080"
+popup/item_2/id = 2
+
+[node name="VsyncRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List"]
+
+[node name="VsyncLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/VsyncRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "VSYNC"
+
+[node name="VsyncToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/VsyncRow"]
+button_pressed = true
+
+[node name="ScreenShakeRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List"]
+
+[node name="ScreenShakeLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/ScreenShakeRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "SCREEN SHAKE"
+
+[node name="ScreenShakeToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/ScreenShakeRow"]
+button_pressed = true
+
+[node name="ShowFpsRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List"]
+
+[node name="ShowFpsLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/ShowFpsRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "SHOW FPS"
+
+[node name="ShowFpsToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/ShowFpsRow"]
+
+[node name="BrightnessRow" type="VBoxContainer" parent="Tabs/DISPLAY/Margin/List"]
+theme_override_constants/separation = 4
+
+[node name="BrightnessHeader" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List/BrightnessRow"]
+
+[node name="BrightnessLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/BrightnessRow/BrightnessHeader"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "BRIGHTNESS"
+
+[node name="BrightnessValue" type="Label" parent="Tabs/DISPLAY/Margin/List/BrightnessRow/BrightnessHeader"]
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+text = "70%"
+
+[node name="BrightnessSlider" type="HSlider" parent="Tabs/DISPLAY/Margin/List/BrightnessRow"]
+custom_minimum_size = Vector2(0, 20)
+step = 1.0
+value = 70.0
+
+[node name="PixelScaleRow" type="VBoxContainer" parent="Tabs/DISPLAY/Margin/List"]
+theme_override_constants/separation = 4
+
+[node name="PixelScaleLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/PixelScaleRow"]
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "PIXEL SCALE"
+
+[node name="PixelScaleButtons" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List/PixelScaleRow"]
+theme_override_constants/separation = 10
+
+[node name="Scale1x" type="Button" parent="Tabs/DISPLAY/Margin/List/PixelScaleRow/PixelScaleButtons"]
+custom_minimum_size = Vector2(0, 40)
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_pixel")
+text = "1x"
+
+[node name="Scale2x" type="Button" parent="Tabs/DISPLAY/Margin/List/PixelScaleRow/PixelScaleButtons"]
+custom_minimum_size = Vector2(0, 40)
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_pixel")
+text = "2x"
+
+[node name="Scale4x" type="Button" parent="Tabs/DISPLAY/Margin/List/PixelScaleRow/PixelScaleButtons"]
+custom_minimum_size = Vector2(0, 40)
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_pixel")
+text = "4x"
+
+[node name="GAMEPLAY" type="ScrollContainer" parent="Tabs"]
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Tabs/GAMEPLAY"]
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="List" type="VBoxContainer" parent="Tabs/GAMEPLAY/Margin"]
+theme_override_constants/separation = 10
+
+[node name="LanguageRow" type="HBoxContainer" parent="Tabs/GAMEPLAY/Margin/List"]
+
+[node name="LanguageLabel" type="Label" parent="Tabs/GAMEPLAY/Margin/List/LanguageRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "LANGUAGE"
+
+[node name="LanguageOption" type="OptionButton" parent="Tabs/GAMEPLAY/Margin/List/LanguageRow"]
+custom_minimum_size = Vector2(200, 0)
+selected = 0
+item_count = 2
+popup/item_0/text = "Bahasa Indonesia"
+popup/item_0/id = 0
+popup/item_1/text = "English"
+popup/item_1/id = 1
+
+[node name="AutoSaveRow" type="HBoxContainer" parent="Tabs/GAMEPLAY/Margin/List"]
+
+[node name="AutoSaveLabel" type="Label" parent="Tabs/GAMEPLAY/Margin/List/AutoSaveRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "AUTO-SAVE"
+
+[node name="AutoSaveToggle" type="CheckButton" parent="Tabs/GAMEPLAY/Margin/List/AutoSaveRow"]
+button_pressed = true
+
+[node name="ShowHintsRow" type="HBoxContainer" parent="Tabs/GAMEPLAY/Margin/List"]
+
+[node name="ShowHintsLabel" type="Label" parent="Tabs/GAMEPLAY/Margin/List/ShowHintsRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "SHOW HINTS"
+
+[node name="ShowHintsToggle" type="CheckButton" parent="Tabs/GAMEPLAY/Margin/List/ShowHintsRow"]
+button_pressed = true
+
+[node name="DamageNumbersRow" type="HBoxContainer" parent="Tabs/GAMEPLAY/Margin/List"]
+
+[node name="DamageNumbersLabel" type="Label" parent="Tabs/GAMEPLAY/Margin/List/DamageNumbersRow"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "DAMAGE NUMBERS"
+
+[node name="DamageNumbersToggle" type="CheckButton" parent="Tabs/GAMEPLAY/Margin/List/DamageNumbersRow"]
+button_pressed = true
