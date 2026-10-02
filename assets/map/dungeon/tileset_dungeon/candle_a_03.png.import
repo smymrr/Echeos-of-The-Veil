@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ya5uomefmlqu"
-path="res://.godot/imported/candleA_03.png-7b9d34059dc5d58f5e781096055b05d7.ctex"
+path="res://.godot/imported/candle_a_03.png-caaca57cfe83eb78d5a82add01df449e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/dungeon/tileset_dungeon/candleA_03.png"
-dest_files=["res://.godot/imported/candleA_03.png-7b9d34059dc5d58f5e781096055b05d7.ctex"]
+source_file="res://assets/map/dungeon/tileset_dungeon/candle_a_03.png"
+dest_files=["res://.godot/imported/candle_a_03.png-caaca57cfe83eb78d5a82add01df449e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dagydwdlc1c11"
-path="res://.godot/imported/objects.png-f67a7e87dbbedd4e2dc0828d175a75a2.ctex"
+uid="uid://byqgstctbr503"
+path="res://.godot/imported/candle_b_01.png-e9218a7bc27934be47a7159db8d76bbc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects.png"
-dest_files=["res://.godot/imported/objects.png-f67a7e87dbbedd4e2dc0828d175a75a2.ctex"]
+source_file="res://assets/map/dungeon/tileset_dungeon/candle_b_01.png"
+dest_files=["res://.godot/imported/candle_b_01.png-e9218a7bc27934be47a7159db8d76bbc.ctex"]
 
 [params]
 
