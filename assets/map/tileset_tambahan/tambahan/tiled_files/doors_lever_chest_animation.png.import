@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlrp0ynkw2301"
-path="res://.godot/imported/doors_lever_chest_animation.png-5b661288f34ea85bd9be15c98f3fdb2b.ctex"
+path="res://.godot/imported/doors_lever_chest_animation.png-a8ab01b96293010fe9f91f57d01d1c8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/tileset_tambahan/tambahan/Tiled_files/doors_lever_chest_animation.png"
-dest_files=["res://.godot/imported/doors_lever_chest_animation.png-5b661288f34ea85bd9be15c98f3fdb2b.ctex"]
+source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files/doors_lever_chest_animation.png"
+dest_files=["res://.godot/imported/doors_lever_chest_animation.png-a8ab01b96293010fe9f91f57d01d1c8b.ctex"]
 
 [params]
 

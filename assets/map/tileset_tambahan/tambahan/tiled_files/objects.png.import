@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8um1qapvsmd5"
-path="res://.godot/imported/Water_coasts_animation.png-3ffa40a03e3be2edfa46a69fbd2e9add.ctex"
+uid="uid://bjxl56kfk8ww2"
+path="res://.godot/imported/Objects.png-0df39a6264cb262369f7a6c5ddae524e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/tileset_tambahan/tambahan/Tiled_files/Water_coasts_animation.png"
-dest_files=["res://.godot/imported/Water_coasts_animation.png-3ffa40a03e3be2edfa46a69fbd2e9add.ctex"]
+source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files/Objects.png"
+dest_files=["res://.godot/imported/Objects.png-0df39a6264cb262369f7a6c5ddae524e.ctex"]
 
 [params]
 

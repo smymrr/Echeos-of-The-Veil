@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0xb257qaegay"
-path="res://.godot/imported/Ground_rocks.png-c0f6bd03299aa0c61e053823949b2cfe.ctex"
+uid="uid://csbcg5bdurdda"
+path="res://.godot/imported/Objects_animated3.png-be434006b25205d30dc7bd89a803d58a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/tileset_tambahan/tambahan/Tiled_files1/Ground_rocks.png"
-dest_files=["res://.godot/imported/Ground_rocks.png-c0f6bd03299aa0c61e053823949b2cfe.ctex"]
+source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files1/Objects_animated3.png"
+dest_files=["res://.godot/imported/Objects_animated3.png-be434006b25205d30dc7bd89a803d58a.ctex"]
 
 [params]
 

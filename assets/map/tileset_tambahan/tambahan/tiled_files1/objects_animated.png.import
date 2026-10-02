@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7hil65byfh4l"
-path="res://.godot/imported/Objects_animated2.png-2504e2e0bd5447d52bf34f8d9adf147b.ctex"
+uid="uid://d3y81jsknlpg3"
+path="res://.godot/imported/Objects_animated.png-0f64f3c7a1ca741879cd7b8808f7b962.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/tileset_tambahan/tambahan/Tiled_files1/Objects_animated2.png"
-dest_files=["res://.godot/imported/Objects_animated2.png-2504e2e0bd5447d52bf34f8d9adf147b.ctex"]
+source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files1/Objects_animated.png"
+dest_files=["res://.godot/imported/Objects_animated.png-0f64f3c7a1ca741879cd7b8808f7b962.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2dyavgchieyx"
-path="res://.godot/imported/fire_animation.png-ec1dac130dec69af7ba1905c941c8525.ctex"
+path="res://.godot/imported/fire_animation.png-9c030ae7ffcb2419770d4d94567b7ad2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map/tileset_tambahan/tambahan/Tiled_files/fire_animation.png"
-dest_files=["res://.godot/imported/fire_animation.png-ec1dac130dec69af7ba1905c941c8525.ctex"]
+source_file="res://assets/map/tileset_tambahan/tambahan/tiled_files/fire_animation.png"
+dest_files=["res://.godot/imported/fire_animation.png-9c030ae7ffcb2419770d4d94567b7ad2.ctex"]
 
 [params]
 
