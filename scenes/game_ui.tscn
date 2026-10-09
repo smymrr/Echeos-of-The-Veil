@@ -1,29 +1,23 @@
-[gd_scene format=3 uid="uid://c2l7jwr57ewn7"]
+[gd_scene format=3 uid="uid://c0tfwnd8cr80p"]
 
-[ext_resource type="Script" uid="uid://dpk4ahhv54of4" path="res://scripts/ui/hud/game_ui.gd" id="1_e0pfi"]
-[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="1_hud"]
-[ext_resource type="PackedScene" path="res://scenes/quest_panel.tscn" id="2_quest"]
-[ext_resource type="PackedScene" path="res://scenes/boss_bar.tscn" id="3_boss"]
-[ext_resource type="PackedScene" path="res://scenes/wave_panel.tscn" id="4_wave"]
-[ext_resource type="PackedScene" path="res://scenes/talk_box.tscn" id="5_talk"]
-[ext_resource type="PackedScene" uid="uid://cgxsgnis8fx7h" path="res://scenes/pause_panel.tscn" id="6_pause"]
+[ext_resource type="Script" uid="uid://bj7n72i0n243d" path="res://scripts/ui/hud/game_ui.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://c1ta3q8tqxoki" path="res://scenes/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" path="res://scenes/quest_panel.tscn" id="3_quest"]
+[ext_resource type="PackedScene" uid="uid://bkaxubbvlayug" path="res://scenes/inventory_panel.tscn" id="4_inv"]
+[ext_resource type="PackedScene" path="res://scenes/pause_panel.tscn" id="5_pause"]
 
-[node name="GameUI" type="Node" unique_id=808703111]
-script = ExtResource("1_e0pfi")
+[node name="GameUI" type="Node" unique_id=1252418617]
+script = ExtResource("1_script")
 
-[node name="HUD" parent="." unique_id=1270052252 instance=ExtResource("1_hud")]
+[node name="HUD" parent="." unique_id=1112948165 instance=ExtResource("2_hud")]
 
-[node name="QuestLog" parent="." unique_id=1130170350 instance=ExtResource("2_quest")]
-
-[node name="BossBar" parent="." unique_id=723766833 instance=ExtResource("3_boss")]
+[node name="QuestLog" parent="." unique_id=1370686125 instance=ExtResource("3_quest")]
 visible = true
 
-[node name="WavePanel" parent="." unique_id=1047589413 instance=ExtResource("4_wave")]
-visible = true
-offset = Vector2(0, 120)
-transform = Transform2D(1, 0, 0, 1, 0, 120)
+[node name="InventoryPanel" parent="." unique_id=1450890316 instance=ExtResource("4_inv")]
+visible = false
+offset = Vector2(0, 70)
+transform = Transform2D(1, 0, 0, 1, 0, 70)
 
-[node name="TalkBox" parent="." unique_id=1312273486 instance=ExtResource("5_talk")]
-
-[node name="PausePanel" parent="." unique_id=1076501716 instance=ExtResource("6_pause")]
+[node name="PausePanel" parent="." unique_id=872327053 instance=ExtResource("5_pause")]
 visible = false

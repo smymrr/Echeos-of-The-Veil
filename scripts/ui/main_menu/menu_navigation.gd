@@ -17,6 +17,10 @@ extends CanvasItem
 @export_group("Fade Settings")
 @export var fade_duration: float = 0.25
 
+@export_group("New Journey")
+## Scene game yang dibuka saat tombol New Journey ditekan.
+@export_file("*.tscn") var new_journey_scene: String = "res://scenes/main.tscn"
+
 var _screens: Array[Control] = []
 var _buttons: Array[Control] = []
 var _fade_tween: Tween
@@ -50,6 +54,11 @@ func _ready() -> void:
 			push_warning("Tombol tidak ditemukan: %s" % pair[0])
 		elif screen == null and pair[1] != NodePath():
 			push_warning("Screen tidak ditemukan: %s" % pair[1])
+
+	# New Journey: langsung pindah ke scene game (tidak membuka panel).
+	var nj_btn: BaseButton = get_node_or_null(new_journey_button) as BaseButton
+	if nj_btn:
+		nj_btn.pressed.connect(_start_new_journey)
 
 	var exit_scr: Control = get_node_or_null(exit_screen) as Control
 	if exit_scr:
@@ -140,6 +149,27 @@ func show_menu() -> void:
 
 	_fade_tween.tween_callback(func():
 		_set_menu_interactive(true)
+	)
+
+
+func _start_new_journey() -> void:
+	_set_menu_interactive(false)
+	if _fade_tween and _fade_tween.is_valid():
+		_fade_tween.kill()
+
+	_fade_tween = create_tween()
+	_fade_tween.set_trans(Tween.TRANS_SINE)
+	_fade_tween.set_ease(Tween.EASE_OUT)
+
+	# menu memudar dulu, baru pindah ke scene game
+	_fade_tween.set_parallel(true)
+	_fade_tween.tween_property(self, "modulate:a", 0.0, fade_duration)
+	for b in _buttons:
+		_fade_tween.tween_property(b, "modulate:a", 0.0, fade_duration)
+	_fade_tween.set_parallel(false)
+
+	_fade_tween.tween_callback(func():
+		get_tree().change_scene_to_file(new_journey_scene)
 	)
 
 

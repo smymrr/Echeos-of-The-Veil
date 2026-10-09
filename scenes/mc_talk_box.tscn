@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://mhn6u3mq3xlt"]
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="StyleBoxFlat" id="btn_h"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.13, 0.1, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_n"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_p"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.29, 0.2, 0.55, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="hline"]
+color = Color(0.25, 0.19, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.06, 0.047, 0.14, 0.93)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="bar_bg"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.025, 0.02, 0.06, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="fill_xp"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.92, 0.66, 0.14, 1)
+
+[sub_resource type="Theme" id="Theme_hud"]
+Button/colors/font_color = Color(0.78, 0.69, 1, 1)
+Button/colors/font_hover_color = Color(0.94, 0.92, 1, 1)
+Button/colors/font_pressed_color = Color(0.94, 0.92, 1, 1)
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("empty")
+Button/styles/hover = SubResource("btn_h")
+Button/styles/normal = SubResource("btn_n")
+Button/styles/pressed = SubResource("btn_p")
+HSeparator/constants/separation = 6
+HSeparator/styles/separator = SubResource("hline")
+Label/colors/font_color = Color(0.94, 0.92, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.75)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/font_sizes/font_size = 12
+PanelContainer/styles/panel = SubResource("panel")
+ProgressBar/styles/background = SubResource("bar_bg")
+ProgressBar/styles/fill = SubResource("fill_xp")
+
+[sub_resource type="StyleBoxFlat" id="panel_mc"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05882353, 0.047058824, 0.14117648, 0.92941177)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.47843137, 0.34901962, 0.81960785, 1)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="portrait"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[node name="McTalkBox" type="CanvasLayer" unique_id=249027861 groups=["ui_mc_talk"]]
+layer = 7
+
+[node name="Root" type="Control" parent="." unique_id=1477865424]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_hud")
+
+[node name="TalkPanel" type="PanelContainer" parent="Root" unique_id=954078005]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -100.0
+offset_right = 240.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("panel_mc")
+
+[node name="Content" type="HBoxContainer" parent="Root/TalkPanel" unique_id=409659164]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TextBox" type="VBoxContainer" parent="Root/TalkPanel/Content" unique_id=1309512048]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="DialogueText" type="Label" parent="Root/TalkPanel/Content/TextBox" unique_id=961059587]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "I have come for the Veil fragment."
+autowrap_mode = 3
+
+[node name="BottomRow" type="HBoxContainer" parent="Root/TalkPanel/Content/TextBox" unique_id=850095737]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PageDots" type="HBoxContainer" parent="Root/TalkPanel/Content/TextBox/BottomRow" unique_id=2051453369]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Page1" type="ColorRect" parent="Root/TalkPanel/Content/TextBox/BottomRow/PageDots" unique_id=1474499673]
+custom_minimum_size = Vector2(7, 7)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.48, 0.35, 0.82, 1)
+
+[node name="Page2" type="ColorRect" parent="Root/TalkPanel/Content/TextBox/BottomRow/PageDots" unique_id=875726747]
+custom_minimum_size = Vector2(7, 7)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.25, 0.19, 0.48, 1)
+
+[node name="Page3" type="ColorRect" parent="Root/TalkPanel/Content/TextBox/BottomRow/PageDots" unique_id=1713702437]
+custom_minimum_size = Vector2(7, 7)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.25, 0.19, 0.48, 1)
+
+[node name="Page4" type="ColorRect" parent="Root/TalkPanel/Content/TextBox/BottomRow/PageDots" unique_id=1116283063]
+custom_minimum_size = Vector2(7, 7)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.25, 0.19, 0.48, 1)
+
+[node name="NextHint" type="Label" parent="Root/TalkPanel/Content/TextBox/BottomRow" unique_id=280502954]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 9
+text = "E ▶"
+horizontal_alignment = 2
+
+[node name="Divider" type="ColorRect" parent="Root/TalkPanel/Content" unique_id=357599787]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+color = Color(0.48, 0.35, 0.82, 1)
+
+[node name="SpeakerBox" type="VBoxContainer" parent="Root/TalkPanel/Content" unique_id=303425290]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="SpeakerFrame" type="PanelContainer" parent="Root/TalkPanel/Content/SpeakerBox" unique_id=1652436664]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("portrait")
+
+[node name="SpeakerPortrait" type="TextureRect" parent="Root/TalkPanel/Content/SpeakerBox/SpeakerFrame" unique_id=1750705367]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpeakerName" type="Label" parent="Root/TalkPanel/Content/SpeakerBox" unique_id=676069911]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 6
+text = "AELINDRA"
+horizontal_alignment = 1

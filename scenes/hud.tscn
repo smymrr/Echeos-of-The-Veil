@@ -1,955 +1,888 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c1ta3q8tqxoki"]
+
+[sub_resource type="GDScript" id="GDScript_min"]
+script/source = "extends CanvasLayer
+# Tombol minimize: menyembunyikan isi panel (node \"Body\") dan menyisakan judulnya.
+# Pola node: Content > HeaderRow > MinimizeButton, dan Content > Body
+
+func _ready() -> void:
+	for b in find_children(\"MinimizeButton\", \"Button\", true, false):
+		var body: Control = b.get_parent().get_parent().get_node(\"Body\")
+		b.toggled.connect(func(on: bool) -> void:
+			body.visible = not on
+			b.text = \"+\" if on else \"-\")
+"
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="StyleBoxFlat" id="btn_h"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.13, 0.1, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_n"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_p"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.29, 0.2, 0.55, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="hline"]
+color = Color(0.25, 0.19, 0.48, 1)
 
 [sub_resource type="StyleBoxFlat" id="panel"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
 bg_color = Color(0.06, 0.047, 0.14, 0.93)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-shadow_color = Color(0, 0, 0, 0.6)
+border_color = Color(0.25, 0.19, 0.48, 1)
 shadow_size = 1
 shadow_offset = Vector2(3, 3)
-content_margin_left = 12
-content_margin_top = 8
-content_margin_right = 12
-content_margin_bottom = 10
-
-[sub_resource type="StyleBoxFlat" id="inset"]
-bg_color = Color(0.025, 0.02, 0.06, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="portrait"]
-bg_color = Color(0.09, 0.07, 0.2, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 2
-content_margin_top = 2
-content_margin_right = 2
-content_margin_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="slot"]
-bg_color = Color(0.09, 0.07, 0.2, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="slot_sel"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.78, 0.69, 1.0, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="box"]
-bg_color = Color(0.025, 0.02, 0.06, 0.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="keybox"]
-bg_color = Color(0.09, 0.07, 0.2, 1.0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-content_margin_left = 6
-content_margin_top = 2
-content_margin_right = 6
-content_margin_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="bar_bg"]
-bg_color = Color(0.025, 0.02, 0.06, 1.0)
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.025, 0.02, 0.06, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="fill_hp"]
-bg_color = Color(0.86, 0.2, 0.36, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="fill_mp"]
-bg_color = Color(0.16, 0.45, 0.86, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
+border_color = Color(0.25, 0.19, 0.48, 1)
 
 [sub_resource type="StyleBoxFlat" id="fill_xp"]
-bg_color = Color(0.92, 0.66, 0.14, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="fill_en"]
-bg_color = Color(0.96, 0.42, 0.14, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="btn_n"]
-bg_color = Color(0.09, 0.07, 0.2, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 14
-content_margin_top = 6
-content_margin_right = 14
-content_margin_bottom = 6
-
-[sub_resource type="StyleBoxFlat" id="btn_h"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.78, 0.69, 1.0, 1.0)
-content_margin_left = 14
-content_margin_top = 6
-content_margin_right = 14
-content_margin_bottom = 6
-
-[sub_resource type="StyleBoxFlat" id="btn_p"]
-bg_color = Color(0.29, 0.2, 0.55, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.78, 0.69, 1.0, 1.0)
-content_margin_left = 14
-content_margin_top = 6
-content_margin_right = 14
-content_margin_bottom = 6
-
-[sub_resource type="StyleBoxFlat" id="help_n"]
-bg_color = Color(0.09, 0.07, 0.2, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="help_h"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="min_n"]
-bg_color = Color(0.09, 0.07, 0.2, 1.0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="min_h"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxEmpty" id="empty"]
-
-[sub_resource type="StyleBoxLine" id="hline"]
-color = Color(0.25, 0.19, 0.48, 1.0)
-thickness = 1
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.92, 0.66, 0.14, 1)
 
 [sub_resource type="Theme" id="Theme_hud"]
-Label/colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+Button/colors/font_color = Color(0.78, 0.69, 1, 1)
+Button/colors/font_hover_color = Color(0.94, 0.92, 1, 1)
+Button/colors/font_pressed_color = Color(0.94, 0.92, 1, 1)
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("empty")
+Button/styles/hover = SubResource("btn_h")
+Button/styles/normal = SubResource("btn_n")
+Button/styles/pressed = SubResource("btn_p")
+HSeparator/constants/separation = 6
+HSeparator/styles/separator = SubResource("hline")
+Label/colors/font_color = Color(0.94, 0.92, 1, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0.75)
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/font_sizes/font_size = 12
 PanelContainer/styles/panel = SubResource("panel")
-HSeparator/styles/separator = SubResource("hline")
-HSeparator/constants/separation = 6
 ProgressBar/styles/background = SubResource("bar_bg")
 ProgressBar/styles/fill = SubResource("fill_xp")
-Button/font_sizes/font_size = 11
-Button/colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
-Button/colors/font_hover_color = Color(0.94, 0.92, 1.0, 1.0)
-Button/colors/font_pressed_color = Color(0.94, 0.92, 1.0, 1.0)
-Button/styles/normal = SubResource("btn_n")
-Button/styles/hover = SubResource("btn_h")
-Button/styles/pressed = SubResource("btn_p")
-Button/styles/focus = SubResource("empty")
 
-[sub_resource type="GDScript" id="GDScript_min"]
-script/source = "extends CanvasLayer\n# Tombol minimize: menyembunyikan isi panel (node \"Body\") dan menyisakan judulnya.\n# Pola node: Content > HeaderRow > MinimizeButton, dan Content > Body\n\nfunc _ready() -> void:\n\tfor b in find_children(\"MinimizeButton\", \"Button\", true, false):\n\t\tvar body: Control = b.get_parent().get_parent().get_node(\"Body\")\n\t\tb.toggled.connect(func(on: bool) -> void:\n\t\t\tbody.visible = not on\n\t\t\tb.text = \"+\" if on else \"-\")\n"
+[sub_resource type="StyleBoxFlat" id="panel_hud"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.04, 0.12, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 0.55)
 
-[node name="HUD" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="min_n"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="min_h"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.13, 0.1, 0.3, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="portrait"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="fill_hp"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.86, 0.2, 0.36, 1)
+
+[sub_resource type="StyleBoxFlat" id="fill_mp"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16, 0.45, 0.86, 1)
+
+[sub_resource type="StyleBoxFlat" id="inset_hud"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.025, 0.02, 0.06, 0.55)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.35, 0.82, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="slot_sel"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.13, 0.1, 0.3, 0.75)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="slot"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.09, 0.07, 0.2, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 0.7)
+
+[sub_resource type="StyleBoxFlat" id="keybox"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="help_n"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.09, 0.07, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="help_h"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.13, 0.1, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="HUD" type="CanvasLayer" unique_id=579077007]
 layer = 5
 script = SubResource("GDScript_min")
 
-[node name="Root" type="Control" parent="."]
-mouse_filter = 2
+[node name="Root" type="Control" parent="." unique_id=545440360]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = SubResource("Theme_hud")
 
-[node name="CharacterPanel" type="PanelContainer" parent="Root"]
-mouse_filter = 2
+[node name="CharacterPanel" type="PanelContainer" parent="Root" unique_id=1345643647]
 layout_mode = 1
-anchor_left = 0
-anchor_top = 0
-anchor_right = 0
-anchor_bottom = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 244.0
-offset_bottom = 26.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 202.0
+offset_bottom = 22.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("panel_hud")
 
-[node name="Content" type="VBoxContainer" parent="Root/CharacterPanel"]
+[node name="Content" type="VBoxContainer" parent="Root/CharacterPanel" unique_id=12898577]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HeaderRow" type="HBoxContainer" parent="Root/CharacterPanel/Content" unique_id=909500524]
+layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="HeaderRow" type="HBoxContainer" parent="Root/CharacterPanel/Content"]
-theme_override_constants/separation = 6
-
-[node name="Header" type="Label" parent="Root/CharacterPanel/Content/HeaderRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
-horizontal_alignment = 0
+[node name="Header" type="Label" parent="Root/CharacterPanel/Content/HeaderRow" unique_id=85119660]
+layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "CHARACTER"
 
-[node name="MinimizeButton" type="Button" parent="Root/CharacterPanel/Content/HeaderRow"]
-custom_minimum_size = Vector2(24, 18)
+[node name="MinimizeButton" type="Button" parent="Root/CharacterPanel/Content/HeaderRow" unique_id=518351818]
+custom_minimum_size = Vector2(22, 16)
+layout_mode = 2
 size_flags_vertical = 4
-toggle_mode = true
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("min_n")
-theme_override_styles/hover = SubResource("min_h")
 theme_override_styles/pressed = SubResource("min_h")
+theme_override_styles/hover = SubResource("min_h")
 theme_override_styles/hover_pressed = SubResource("min_h")
-theme_override_font_sizes/font_size = 12
+toggle_mode = true
 text = "-"
 
-[node name="Body" type="VBoxContainer" parent="Root/CharacterPanel/Content"]
-theme_override_constants/separation = 6
+[node name="Body" type="VBoxContainer" parent="Root/CharacterPanel/Content" unique_id=1832157506]
+layout_mode = 2
+theme_override_constants/separation = 4
 
-[node name="Line" type="HSeparator" parent="Root/CharacterPanel/Content/Body"]
+[node name="Top" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=1692335095]
+layout_mode = 2
+theme_override_constants/separation = 8
 
-[node name="Top" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body"]
-theme_override_constants/separation = 10
-
-[node name="PortraitFrame" type="PanelContainer" parent="Root/CharacterPanel/Content/Body/Top"]
+[node name="PortraitFrame" type="PanelContainer" parent="Root/CharacterPanel/Content/Body/Top" unique_id=737393270]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("portrait")
-custom_minimum_size = Vector2(56, 56)
-size_flags_vertical = 0
 
-[node name="Portrait" type="TextureRect" parent="Root/CharacterPanel/Content/Body/Top/PortraitFrame"]
+[node name="Portrait" type="TextureRect" parent="Root/CharacterPanel/Content/Body/Top/PortraitFrame" unique_id=907363861]
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Info" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body/Top"]
-theme_override_constants/separation = 1
+[node name="Info" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body/Top" unique_id=1317972452]
+layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
-[node name="ClassLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info"]
-theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
-theme_override_font_sizes/font_size = 10
+[node name="ClassLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info" unique_id=901920675]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 8
 text = "VEILWALKER"
 
-[node name="NameLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info"]
-theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
-theme_override_font_sizes/font_size = 17
+[node name="NameLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info" unique_id=1602657341]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 13
 text = "Aelindra Voss"
 
-[node name="LevelRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/Top/Info"]
-theme_override_constants/separation = 6
+[node name="LevelRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/Top/Info" unique_id=1599328671]
+layout_mode = 2
+theme_override_constants/separation = 5
 
-[node name="LevelText" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 10
+[node name="LevelText" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow" unique_id=653209828]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "LVL"
 
-[node name="LevelValue" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow"]
-theme_override_colors/font_color = Color(0.96, 0.72, 0.2, 1.0)
-theme_override_font_sizes/font_size = 15
+[node name="LevelValue" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow" unique_id=668382150]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.72, 0.2, 1)
+theme_override_font_sizes/font_size = 11
 text = "23"
 
-[node name="LocationLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 10
+[node name="LocationLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow" unique_id=1222964488]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "ASHEN KEEP"
 
-[node name="HpRow" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body"]
-theme_override_constants/separation = 2
+[node name="HpRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=586404182]
+layout_mode = 2
+theme_override_constants/separation = 4
 
-[node name="HpHeader" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/HpRow"]
-
-[node name="HpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow/HpHeader"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
-horizontal_alignment = 0
-size_flags_horizontal = 3
+[node name="HpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow" unique_id=1924229967]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "HP"
 
-[node name="HpValue" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow/HpHeader"]
-theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 2
-text = "120/240"
-
-[node name="HpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/HpRow"]
-custom_minimum_size = Vector2(0, 10)
+[node name="HpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/HpRow" unique_id=983412629]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("fill_hp")
 max_value = 240.0
 value = 120.0
 show_percentage = false
-theme_override_styles/fill = SubResource("fill_hp")
 
-[node name="MpRow" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body"]
-theme_override_constants/separation = 2
+[node name="HpValue" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow" unique_id=1498826185]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "120/240"
+horizontal_alignment = 2
 
-[node name="MpHeader" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/MpRow"]
+[node name="MpRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=795523983]
+layout_mode = 2
+theme_override_constants/separation = 4
 
-[node name="MpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/MpRow/MpHeader"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
-horizontal_alignment = 0
-size_flags_horizontal = 3
+[node name="MpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/MpRow" unique_id=1178795982]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "MP"
 
-[node name="MpValue" type="Label" parent="Root/CharacterPanel/Content/Body/MpRow/MpHeader"]
-theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 2
-text = "264/300"
-
-[node name="MpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/MpRow"]
-custom_minimum_size = Vector2(0, 10)
+[node name="MpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/MpRow" unique_id=682145240]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("fill_mp")
 max_value = 300.0
 value = 264.0
 show_percentage = false
-theme_override_styles/fill = SubResource("fill_mp")
 
-[node name="XpRow" type="VBoxContainer" parent="Root/CharacterPanel/Content/Body"]
-theme_override_constants/separation = 2
+[node name="MpValue" type="Label" parent="Root/CharacterPanel/Content/Body/MpRow" unique_id=2037576603]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "264/300"
+horizontal_alignment = 2
 
-[node name="XpHeader" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body/XpRow"]
+[node name="XpRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=2135245708]
+layout_mode = 2
+theme_override_constants/separation = 4
 
-[node name="XpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/XpRow/XpHeader"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
-horizontal_alignment = 0
-size_flags_horizontal = 3
+[node name="XpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/XpRow" unique_id=612240006]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "XP"
 
-[node name="XpValue" type="Label" parent="Root/CharacterPanel/Content/Body/XpRow/XpHeader"]
-theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 2
-text = "6420/8000"
-
-[node name="XpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/XpRow"]
-custom_minimum_size = Vector2(0, 10)
+[node name="XpBar" type="ProgressBar" parent="Root/CharacterPanel/Content/Body/XpRow" unique_id=1271600803]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("fill_xp")
 max_value = 8000.0
 value = 6420.0
 show_percentage = false
-theme_override_styles/fill = SubResource("fill_xp")
 
-[node name="TopRight" type="HBoxContainer" parent="Root"]
-mouse_filter = 2
-theme_override_constants/separation = 10
+[node name="XpValue" type="Label" parent="Root/CharacterPanel/Content/Body/XpRow" unique_id=377365296]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "6420/8000"
+horizontal_alignment = 2
+
+[node name="MinimapPanel" type="PanelContainer" parent="Root" unique_id=993457340]
 layout_mode = 1
-anchor_left = 1
-anchor_top = 0
-anchor_right = 1
-anchor_bottom = 0
-offset_left = -40.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = 26.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -126.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 22.0
 grow_horizontal = 0
-grow_vertical = 1
-
-[node name="Inventory" type="VBoxContainer" parent="Root/TopRight"]
-theme_override_constants/separation = 8
-
-[node name="HeaderRow" type="HBoxContainer" parent="Root/TopRight/Inventory"]
-theme_override_constants/separation = 6
-
-[node name="Header" type="Label" parent="Root/TopRight/Inventory/HeaderRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
-horizontal_alignment = 2
-size_flags_horizontal = 3
-text = "INVENTORY"
-
-[node name="MinimizeButton" type="Button" parent="Root/TopRight/Inventory/HeaderRow"]
-custom_minimum_size = Vector2(24, 18)
-size_flags_vertical = 4
-toggle_mode = true
-theme_override_styles/normal = SubResource("min_n")
-theme_override_styles/hover = SubResource("min_h")
-theme_override_styles/pressed = SubResource("min_h")
-theme_override_styles/hover_pressed = SubResource("min_h")
-theme_override_font_sizes/font_size = 12
-text = "-"
-
-[node name="Body" type="VBoxContainer" parent="Root/TopRight/Inventory"]
-theme_override_constants/separation = 6
-
-[node name="GoldRow" type="HBoxContainer" parent="Root/TopRight/Inventory/Body"]
-theme_override_constants/separation = 6
-alignment = 2
-
-[node name="GoldValue" type="Label" parent="Root/TopRight/Inventory/Body/GoldRow"]
-theme_override_colors/font_color = Color(0.96, 0.72, 0.2, 1.0)
-theme_override_font_sizes/font_size = 16
-horizontal_alignment = 2
-text = "4,820"
-
-[node name="GoldUnit" type="Label" parent="Root/TopRight/Inventory/Body/GoldRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
-size_flags_vertical = 8
-text = "GOLD"
-
-[node name="GoldIcon" type="ColorRect" parent="Root/TopRight/Inventory/Body/GoldRow"]
-custom_minimum_size = Vector2(16, 16)
-color = Color(0.96, 0.72, 0.2, 1.0)
-size_flags_vertical = 4
-
-[node name="GemsRow" type="HBoxContainer" parent="Root/TopRight/Inventory/Body"]
-theme_override_constants/separation = 6
-alignment = 2
-
-[node name="GemsValue" type="Label" parent="Root/TopRight/Inventory/Body/GemsRow"]
-theme_override_colors/font_color = Color(0.3, 0.82, 0.95, 1.0)
-theme_override_font_sizes/font_size = 16
-horizontal_alignment = 2
-text = "38"
-
-[node name="GemsUnit" type="Label" parent="Root/TopRight/Inventory/Body/GemsRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
-size_flags_vertical = 8
-text = "GEMS"
-
-[node name="GemsIcon" type="ColorRect" parent="Root/TopRight/Inventory/Body/GemsRow"]
-custom_minimum_size = Vector2(16, 16)
-color = Color(0.3, 0.82, 0.95, 1.0)
-size_flags_vertical = 4
-
-[node name="SoulRow" type="HBoxContainer" parent="Root/TopRight/Inventory/Body"]
-theme_override_constants/separation = 6
-alignment = 2
-
-[node name="SoulValue" type="Label" parent="Root/TopRight/Inventory/Body/SoulRow"]
-theme_override_colors/font_color = Color(0.96, 0.3, 0.52, 1.0)
-theme_override_font_sizes/font_size = 16
-horizontal_alignment = 2
-text = "12"
-
-[node name="SoulUnit" type="Label" parent="Root/TopRight/Inventory/Body/SoulRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
-size_flags_vertical = 8
-text = "SOUL"
-
-[node name="SoulIcon" type="ColorRect" parent="Root/TopRight/Inventory/Body/SoulRow"]
-custom_minimum_size = Vector2(16, 16)
-color = Color(0.96, 0.3, 0.52, 1.0)
-size_flags_vertical = 4
-
-[node name="MinimapPanel" type="PanelContainer" parent="Root/TopRight"]
 mouse_filter = 2
+theme_override_styles/panel = SubResource("panel_hud")
 
-[node name="Content" type="VBoxContainer" parent="Root/TopRight/MinimapPanel"]
-theme_override_constants/separation = 4
+[node name="Content" type="VBoxContainer" parent="Root/MinimapPanel" unique_id=1693199321]
+layout_mode = 2
+theme_override_constants/separation = 2
 
-[node name="HeaderRow" type="HBoxContainer" parent="Root/TopRight/MinimapPanel/Content"]
+[node name="HeaderRow" type="HBoxContainer" parent="Root/MinimapPanel/Content" unique_id=2000651063]
+layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Header" type="Label" parent="Root/TopRight/MinimapPanel/Content/HeaderRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
-horizontal_alignment = 0
+[node name="Header" type="Label" parent="Root/MinimapPanel/Content/HeaderRow" unique_id=622404964]
+layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "MINIMAP"
 
-[node name="MinimizeButton" type="Button" parent="Root/TopRight/MinimapPanel/Content/HeaderRow"]
-custom_minimum_size = Vector2(24, 18)
+[node name="MinimizeButton" type="Button" parent="Root/MinimapPanel/Content/HeaderRow" unique_id=246507965]
+custom_minimum_size = Vector2(22, 16)
+layout_mode = 2
 size_flags_vertical = 4
-toggle_mode = true
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("min_n")
-theme_override_styles/hover = SubResource("min_h")
 theme_override_styles/pressed = SubResource("min_h")
+theme_override_styles/hover = SubResource("min_h")
 theme_override_styles/hover_pressed = SubResource("min_h")
-theme_override_font_sizes/font_size = 12
+toggle_mode = true
 text = "-"
 
-[node name="Body" type="VBoxContainer" parent="Root/TopRight/MinimapPanel/Content"]
-theme_override_constants/separation = 6
+[node name="Body" type="VBoxContainer" parent="Root/MinimapPanel/Content" unique_id=1897276263]
+layout_mode = 2
+theme_override_constants/separation = 3
 
-[node name="Line" type="HSeparator" parent="Root/TopRight/MinimapPanel/Content/Body"]
-
-[node name="MapView" type="PanelContainer" parent="Root/TopRight/MinimapPanel/Content/Body"]
+[node name="MapView" type="PanelContainer" parent="Root/MinimapPanel/Content/Body" unique_id=1303331072]
+custom_minimum_size = Vector2(100, 84)
+layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("inset")
-custom_minimum_size = Vector2(120, 104)
+theme_override_styles/panel = SubResource("inset_hud")
 
-[node name="MapTexture" type="TextureRect" parent="Root/TopRight/MinimapPanel/Content/Body/MapView"]
+[node name="MapTexture" type="TextureRect" parent="Root/MinimapPanel/Content/Body/MapView" unique_id=700922753]
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MapLocation" type="Label" parent="Root/TopRight/MinimapPanel/Content/Body"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+[node name="MapLocation" type="Label" parent="Root/MinimapPanel/Content/Body" unique_id=877176825]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
 theme_override_font_sizes/font_size = 8
-horizontal_alignment = 2
 text = "ASHEN KEEP F3"
+horizontal_alignment = 2
 
-[node name="Legend" type="HBoxContainer" parent="Root/TopRight/MinimapPanel/Content/Body"]
-theme_override_constants/separation = 6
-
-[node name="YouIcon" type="ColorRect" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
-custom_minimum_size = Vector2(7, 7)
-color = Color(0.78, 0.69, 1.0, 1.0)
-size_flags_vertical = 4
-
-[node name="YouLabel" type="Label" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-text = "YOU"
-
-[node name="EnemyIcon" type="ColorRect" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
-custom_minimum_size = Vector2(7, 7)
-color = Color(0.9, 0.28, 0.42, 1.0)
-size_flags_vertical = 4
-
-[node name="EnemyLabel" type="Label" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-text = "ENEMY"
-
-[node name="LootIcon" type="ColorRect" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
-custom_minimum_size = Vector2(7, 7)
-color = Color(0.96, 0.72, 0.2, 1.0)
-size_flags_vertical = 4
-
-[node name="LootLabel" type="Label" parent="Root/TopRight/MinimapPanel/Content/Body/Legend"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-text = "LOOT"
-
-[node name="HotbarPanel" type="PanelContainer" parent="Root"]
-mouse_filter = 2
+[node name="HotbarPanel" type="PanelContainer" parent="Root" unique_id=438662250]
 layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 1
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1
-offset_left = -170.0
-offset_top = -110.0
-offset_right = 170.0
-offset_bottom = -34.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -64.0
+offset_right = 130.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("panel_hud")
 
-[node name="Content" type="VBoxContainer" parent="Root/HotbarPanel"]
-theme_override_constants/separation = 4
+[node name="Content" type="VBoxContainer" parent="Root/HotbarPanel" unique_id=2080341598]
+layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="HeaderRow" type="HBoxContainer" parent="Root/HotbarPanel/Content"]
+[node name="HeaderRow" type="HBoxContainer" parent="Root/HotbarPanel/Content" unique_id=1335860568]
+layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Header" type="Label" parent="Root/HotbarPanel/Content/HeaderRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
-horizontal_alignment = 1
+[node name="Header" type="Label" parent="Root/HotbarPanel/Content/HeaderRow" unique_id=1128119693]
+layout_mode = 2
 size_flags_horizontal = 3
-text = "SKILLS"
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
 
-[node name="MinimizeButton" type="Button" parent="Root/HotbarPanel/Content/HeaderRow"]
-custom_minimum_size = Vector2(24, 18)
+[node name="MinimizeButton" type="Button" parent="Root/HotbarPanel/Content/HeaderRow" unique_id=255361363]
+custom_minimum_size = Vector2(22, 16)
+layout_mode = 2
 size_flags_vertical = 4
-toggle_mode = true
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("min_n")
-theme_override_styles/hover = SubResource("min_h")
 theme_override_styles/pressed = SubResource("min_h")
+theme_override_styles/hover = SubResource("min_h")
 theme_override_styles/hover_pressed = SubResource("min_h")
-theme_override_font_sizes/font_size = 12
+toggle_mode = true
 text = "-"
 
-[node name="Body" type="VBoxContainer" parent="Root/HotbarPanel/Content"]
-theme_override_constants/separation = 6
-
-[node name="Slots" type="HBoxContainer" parent="Root/HotbarPanel/Content/Body"]
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="Skill1" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
+[node name="Body" type="VBoxContainer" parent="Root/HotbarPanel/Content" unique_id=414345021]
+layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill1"]
+[node name="Slots" type="HBoxContainer" parent="Root/HotbarPanel/Content/Body" unique_id=1209070696]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Skill1" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots" unique_id=1380928100]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill1" unique_id=1546632682]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("slot_sel")
-custom_minimum_size = Vector2(46, 46)
 
-[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame"]
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame" unique_id=1956217193]
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame" unique_id=1477336689]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 7
 text = "1"
 
-[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame"]
-theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame" unique_id=1084015029]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.58, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "15"
 horizontal_alignment = 2
 vertical_alignment = 2
-text = "15"
 
-[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame"]
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill1/Frame" unique_id=1036249421]
 visible = false
+layout_mode = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill1"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
-text = "SLASH"
+[node name="Skill2" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots" unique_id=797709329]
+layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Skill2" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
-theme_override_constants/separation = 2
-
-[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill2"]
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill2" unique_id=1685447949]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("slot")
-custom_minimum_size = Vector2(46, 46)
 
-[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame"]
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame" unique_id=820691961]
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame" unique_id=216461845]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 7
 text = "2"
 
-[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame"]
-theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame" unique_id=1628540508]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.58, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "40"
 horizontal_alignment = 2
 vertical_alignment = 2
-text = "40"
 
-[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame"]
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill2/Frame" unique_id=2145770363]
 visible = false
+layout_mode = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill2"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
-text = "VOID BOLT"
+[node name="Skill3" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots" unique_id=918963996]
+layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Skill3" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
-theme_override_constants/separation = 2
-
-[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill3"]
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill3" unique_id=1861109202]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("slot")
-custom_minimum_size = Vector2(46, 46)
 
-[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame"]
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame" unique_id=1804150924]
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame" unique_id=524447581]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 7
 text = "3"
 
-[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame"]
-theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame" unique_id=252027546]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.58, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "45"
 horizontal_alignment = 2
 vertical_alignment = 2
-text = "45"
 
-[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame"]
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill3/Frame" unique_id=139022471]
 visible = false
+layout_mode = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill3"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
-text = "AEGIS"
+[node name="Skill4" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots" unique_id=2044107490]
+layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Skill4" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
-theme_override_constants/separation = 2
-
-[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill4"]
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill4" unique_id=467218371]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("slot")
-custom_minimum_size = Vector2(46, 46)
 
-[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame"]
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame" unique_id=1568401701]
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame" unique_id=476074568]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 7
 text = "4"
 
-[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame"]
-theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame" unique_id=1857315543]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.58, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "60"
 horizontal_alignment = 2
 vertical_alignment = 2
-text = "60"
 
-[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame"]
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill4/Frame" unique_id=1705539952]
 visible = false
+layout_mode = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill4"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
-text = "WRAITH"
+[node name="Skill5" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots" unique_id=500732209]
+layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Skill5" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
-theme_override_constants/separation = 2
-
-[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill5"]
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill5" unique_id=1919329109]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("slot")
-custom_minimum_size = Vector2(46, 46)
 
-[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame"]
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame" unique_id=1230947319]
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame" unique_id=1679320415]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 7
 text = "5"
 
-[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame"]
-theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame" unique_id=1925752450]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.58, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "25"
 horizontal_alignment = 2
 vertical_alignment = 2
-text = "25"
 
-[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame"]
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill5/Frame" unique_id=707084154]
 visible = false
+layout_mode = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill5"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
-text = "BLINK"
+[node name="Skill6" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots" unique_id=1987447136]
+layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Skill6" type="VBoxContainer" parent="Root/HotbarPanel/Content/Body/Slots"]
-theme_override_constants/separation = 2
-
-[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill6"]
+[node name="Frame" type="PanelContainer" parent="Root/HotbarPanel/Content/Body/Slots/Skill6" unique_id=1748633918]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("slot")
-custom_minimum_size = Vector2(46, 46)
 
-[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame"]
+[node name="Icon" type="TextureRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame" unique_id=298676222]
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
+[node name="KeyLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame" unique_id=495256055]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 7
 text = "6"
 
-[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame"]
-theme_override_colors/font_color = Color(0.3, 0.58, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="CostLabel" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame" unique_id=365616137]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.58, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "50"
 horizontal_alignment = 2
 vertical_alignment = 2
-text = "50"
 
-[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame"]
+[node name="Cooldown" type="ColorRect" parent="Root/HotbarPanel/Content/Body/Slots/Skill6/Frame" unique_id=473688680]
 visible = false
+layout_mode = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="SkillName" type="Label" parent="Root/HotbarPanel/Content/Body/Slots/Skill6"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
-text = "EXECUTE"
-
-[node name="HintBar" type="HBoxContainer" parent="Root"]
-mouse_filter = 2
-alignment = 1
-theme_override_constants/separation = 8
+[node name="HintBar" type="HBoxContainer" parent="Root" unique_id=886647976]
+modulate = Color(1, 1, 1, 0.7)
 layout_mode = 1
-anchor_left = 0.5
-anchor_top = 1
-anchor_right = 0.5
-anchor_bottom = 1
-offset_left = -190.0
-offset_top = -26.0
-offset_right = 190.0
-offset_bottom = -10.0
-grow_horizontal = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -22.0
+offset_right = 330.0
+offset_bottom = -8.0
+grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 5
 
-[node name="EscKey" type="PanelContainer" parent="Root/HintBar"]
+[node name="EscKey" type="PanelContainer" parent="Root/HintBar" unique_id=1912818243]
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("keybox")
 
-[node name="Text" type="Label" parent="Root/HintBar/EscKey"]
-theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="Text" type="Label" parent="Root/HintBar/EscKey" unique_id=1967395571]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 8
 text = "ESC"
 
-[node name="PauseLabel" type="Label" parent="Root/HintBar"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
-text = "PAUSE / MENU"
+[node name="EscLabel" type="Label" parent="Root/HintBar" unique_id=92352938]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
+text = "PAUSE"
 
-[node name="Sep" type="Label" parent="Root/HintBar"]
-theme_override_colors/font_color = Color(0.25, 0.19, 0.48, 1.0)
-theme_override_font_sizes/font_size = 10
+[node name="EscSep" type="Label" parent="Root/HintBar" unique_id=1528724975]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.19, 0.48, 1)
+theme_override_font_sizes/font_size = 8
 text = "|"
 
-[node name="TalkKey" type="PanelContainer" parent="Root/HintBar"]
+[node name="EKey" type="PanelContainer" parent="Root/HintBar" unique_id=1330214149]
+visible = false
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("keybox")
 
-[node name="Text" type="Label" parent="Root/HintBar/TalkKey"]
-theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="Text" type="Label" parent="Root/HintBar/EKey" unique_id=1139381857]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 8
 text = "E"
 
-[node name="TalkLabel" type="Label" parent="Root/HintBar"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="ELabel" type="Label" parent="Root/HintBar" unique_id=1431915774]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "TALK"
 
-[node name="Sep2" type="Label" parent="Root/HintBar"]
-theme_override_colors/font_color = Color(0.25, 0.19, 0.48, 1.0)
-theme_override_font_sizes/font_size = 10
+[node name="ESep" type="Label" parent="Root/HintBar" unique_id=2009548748]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.19, 0.48, 1)
+theme_override_font_sizes/font_size = 8
 text = "|"
 
-[node name="QuestKey" type="PanelContainer" parent="Root/HintBar"]
+[node name="JKey" type="PanelContainer" parent="Root/HintBar" unique_id=258064875]
+layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("keybox")
 
-[node name="Text" type="Label" parent="Root/HintBar/QuestKey"]
-theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="Text" type="Label" parent="Root/HintBar/JKey" unique_id=1938419776]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 8
 text = "J"
 
-[node name="QuestLabel" type="Label" parent="Root/HintBar"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 9
+[node name="JLabel" type="Label" parent="Root/HintBar" unique_id=78379521]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "QUEST"
 
-[node name="HelpButton" type="Button" parent="Root"]
+[node name="JSep" type="Label" parent="Root/HintBar" unique_id=1125321793]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.19, 0.48, 1)
+theme_override_font_sizes/font_size = 8
+text = "|"
+
+[node name="IKey" type="PanelContainer" parent="Root/HintBar" unique_id=2047108945]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("keybox")
+
+[node name="Text" type="Label" parent="Root/HintBar/IKey" unique_id=1270584846]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "I"
+
+[node name="ILabel" type="Label" parent="Root/HintBar" unique_id=2120315694]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
+text = "BAG"
+
+[node name="HelpButton" type="Button" parent="Root" unique_id=757234236]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -46.0
-offset_top = -46.0
-offset_right = -16.0
-offset_bottom = -16.0
+offset_left = -38.0
+offset_top = -38.0
+offset_right = -12.0
+offset_bottom = -12.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("help_n")
-theme_override_styles/hover = SubResource("help_h")
 theme_override_styles/pressed = SubResource("help_h")
+theme_override_styles/hover = SubResource("help_h")
 text = "?"

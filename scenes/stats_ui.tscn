@@ -3,14 +3,15 @@
 [ext_resource type="Script" uid="uid://p0siu1u08ox1" path="res://scripts/ui/display_stats.gd" id="1_60ac8"]
 [ext_resource type="Script" uid="uid://cy8vq05v6dsy7" path="res://scripts/ui/save_game.gd" id="1_ieq6q"]
 [ext_resource type="Script" uid="uid://colx00i700ood" path="res://scripts/ui/decrease_hp.gd" id="2_nv28q"]
-[ext_resource type="Script" uid="uid://dhykuef60slkn" path="res://scenes/load_game.gd" id="2_xfvx6"]
+[ext_resource type="Script" uid="uid://c8gmfb3swadap" path="res://scenes/load_game.gd" id="2_xfvx6"]
 [ext_resource type="Script" uid="uid://cfq6jh0iktwgu" path="res://scripts/ui/increase_hp.gd" id="3_ieq6q"]
-[ext_resource type="Script" uid="uid://cebl43roggxl8" path="res://scenes/button.gd" id="3_xfvx6"]
+[ext_resource type="Script" uid="uid://cl7sle3dx8dv2" path="res://scenes/button.gd" id="3_xfvx6"]
 [ext_resource type="Script" uid="uid://bp7ycabs04k4a" path="res://scripts/ui/hp_display.gd" id="4_nv28q"]
 [ext_resource type="Script" uid="uid://dlnsh6ifafiri" path="res://scenes/add_attack_modif.gd" id="5_y684s"]
-[ext_resource type="Script" uid="uid://d20pqweeyj1u" path="res://scenes/damage_display.gd" id="7_gl8ic"]
+[ext_resource type="Script" uid="uid://c577h54dormnm" path="res://scenes/damage_display.gd" id="7_gl8ic"]
 
 [node name="Control" type="Control" unique_id=1676327586]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

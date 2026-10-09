@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b74wa30lciuh8"]
+[gd_scene format=3 uid="uid://bcte400365juj"]
 
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
@@ -94,17 +94,10 @@ PanelContainer/styles/panel = SubResource("panel")
 ProgressBar/styles/background = SubResource("bar_bg")
 ProgressBar/styles/fill = SubResource("fill_xp")
 
-[sub_resource type="StyleBoxFlat" id="fill_en"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.96, 0.42, 0.14, 1)
-
-[node name="BossBar" type="CanvasLayer" unique_id=1260107350 groups=["ui_boss"]]
+[node name="WaveLabel" type="CanvasLayer" unique_id=1954120137 groups=["ui_wave"]]
 layer = 6
 
-[node name="Root" type="Control" parent="." unique_id=1381585868]
+[node name="Root" type="Control" parent="." unique_id=2043549773]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,37 +107,17 @@ grow_vertical = 2
 mouse_filter = 2
 theme = SubResource("Theme_hud")
 
-[node name="BossGroup" type="VBoxContainer" parent="Root" unique_id=1596702785]
+[node name="WaveText" type="Label" parent="Root" unique_id=1286260859]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -170.0
-offset_top = 14.0
+offset_top = 62.0
 offset_right = 170.0
-offset_bottom = 24.0
+offset_bottom = 74.0
 grow_horizontal = 2
-mouse_filter = 2
-theme_override_constants/separation = 2
-
-[node name="BossName" type="Label" parent="Root/BossGroup" unique_id=692567854]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.96, 0.42, 0.14, 1)
-theme_override_font_sizes/font_size = 15
-text = "Wraith Sentinel"
-horizontal_alignment = 1
-
-[node name="BossBar" type="ProgressBar" parent="Root/BossGroup" unique_id=892993563]
-custom_minimum_size = Vector2(0, 9)
-layout_mode = 2
-theme_override_styles/fill = SubResource("fill_en")
-max_value = 2000.0
-value = 1240.0
-show_percentage = false
-
-[node name="BossHpValue" type="Label" parent="Root/BossGroup" unique_id=2019964949]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.96, 0.42, 0.14, 1)
-theme_override_font_sizes/font_size = 8
-text = "1240 / 2000"
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 9
+text = "WAVE 3/5  ·  00:12"
 horizontal_alignment = 2

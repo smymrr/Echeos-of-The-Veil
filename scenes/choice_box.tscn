@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b74wa30lciuh8"]
+[gd_scene format=3 uid="uid://ctkgt67vrmv1r"]
 
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
@@ -94,17 +94,10 @@ PanelContainer/styles/panel = SubResource("panel")
 ProgressBar/styles/background = SubResource("bar_bg")
 ProgressBar/styles/fill = SubResource("fill_xp")
 
-[sub_resource type="StyleBoxFlat" id="fill_en"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.96, 0.42, 0.14, 1)
+[node name="ChoiceBox" type="CanvasLayer" unique_id=1599846692 groups=["ui_choice"]]
+layer = 8
 
-[node name="BossBar" type="CanvasLayer" unique_id=1260107350 groups=["ui_boss"]]
-layer = 6
-
-[node name="Root" type="Control" parent="." unique_id=1381585868]
+[node name="Root" type="Control" parent="." unique_id=1247569708]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,37 +107,47 @@ grow_vertical = 2
 mouse_filter = 2
 theme = SubResource("Theme_hud")
 
-[node name="BossGroup" type="VBoxContainer" parent="Root" unique_id=1596702785]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -170.0
-offset_top = 14.0
-offset_right = 170.0
-offset_bottom = 24.0
-grow_horizontal = 2
-mouse_filter = 2
-theme_override_constants/separation = 2
+[node name="Choices" type="VBoxContainer" parent="Root" unique_id=846852999]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 322.0
+offset_right = 694.0
+offset_bottom = 474.0
+theme_override_constants/separation = 6
 
-[node name="BossName" type="Label" parent="Root/BossGroup" unique_id=692567854]
+[node name="ChoiceHint" type="Label" parent="Root/Choices" unique_id=1093275394]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.96, 0.42, 0.14, 1)
-theme_override_font_sizes/font_size = 15
-text = "Wraith Sentinel"
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
+text = "CHOOSE  (1-4)"
 horizontal_alignment = 1
 
-[node name="BossBar" type="ProgressBar" parent="Root/BossGroup" unique_id=892993563]
-custom_minimum_size = Vector2(0, 9)
+[node name="Choice1" type="Button" parent="Root/Choices" unique_id=235164684]
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
-theme_override_styles/fill = SubResource("fill_en")
-max_value = 2000.0
-value = 1240.0
-show_percentage = false
+theme_override_font_sizes/font_size = 12
+text = "1. Option 1"
+alignment = 0
 
-[node name="BossHpValue" type="Label" parent="Root/BossGroup" unique_id=2019964949]
+[node name="Choice2" type="Button" parent="Root/Choices" unique_id=2147040808]
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.96, 0.42, 0.14, 1)
-theme_override_font_sizes/font_size = 8
-text = "1240 / 2000"
-horizontal_alignment = 2
+theme_override_font_sizes/font_size = 12
+text = "2. Option 2"
+alignment = 0
+
+[node name="Choice3" type="Button" parent="Root/Choices" unique_id=920598445]
+visible = false
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "3. Option 3"
+alignment = 0
+
+[node name="Choice4" type="Button" parent="Root/Choices" unique_id=44830219]
+visible = false
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "4. Option 4"
+alignment = 0
