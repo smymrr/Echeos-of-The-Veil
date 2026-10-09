@@ -197,8 +197,14 @@ func _animation_finished() -> void:
 
 func _death() -> void:
 	_cancel_attack_tween()
+	
 	sprite.play("death")
 	is_alive = false
+	QuestManager.report("kill", "slime")
+	
+	z_index = 0
+	set_collision_layer_value(3, false)
+	
 	sprite.animation_finished.connect(_animation_finished)
 
 func _set_new_roam_target() -> void:

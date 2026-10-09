@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://d2vp2xxab3s3h"]
+
+[ext_resource type="Script" uid="uid://c1eqm1k7yes0x" path="res://scripts/global/quest/quest_objective.gd" id="1_lf618"]
+[ext_resource type="Script" uid="uid://c730w3ccrrbbd" path="res://scripts/global/quest/quest.gd" id="2_vl3o0"]
+
+[sub_resource type="Resource" id="Resource_vkqfc"]
+script = ExtResource("1_lf618")
+target_id = "slime"
+required = 3
+description = "Defeat slimes"
+metadata/_custom_type_script = "uid://c1eqm1k7yes0x"
+
+[resource]
+script = ExtResource("2_vl3o0")
+id = "kill_slimes"
+title = "Tutorial Pt. 1"
+description = "Lorem ipsum dolor sit amet"
+objectives = Array[ExtResource("1_lf618")]([SubResource("Resource_vkqfc")])
+metadata/_custom_type_script = "uid://c730w3ccrrbbd"

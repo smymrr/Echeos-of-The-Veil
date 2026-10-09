@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b4l62k0hfmona" path="res://scenes/ui/stats_ui.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bha1v1d1y2ku" path="res://scenes/map/treasure_room_boss.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://c5u367gvkoxqd" path="res://scenes/map/treasure_room_puzzle.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://ba7lcewed3gvv" path="res://scenes/ui/temp_quest.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bd5ehsty6l511" path="res://scenes/character/temp_NPC.tscn" id="8_tipki"]
 
 [node name="main" type="Node2D" unique_id=672410187]
 position = Vector2(0, -1)
@@ -33,3 +35,12 @@ position = Vector2(535, -308)
 [node name="Node2D2" parent="." unique_id=493542161 instance=ExtResource("6_tefeu")]
 position = Vector2(644, 431)
 metadata/_edit_group_ = true
+
+[node name="test" parent="." unique_id=1709173004 instance=ExtResource("7_o6xl0")]
+offset_left = 29.0
+offset_top = -155.0
+offset_right = 29.0
+offset_bottom = -155.0
+
+[node name="NPC" parent="." unique_id=1796917906 instance=ExtResource("8_tipki")]
+position = Vector2(67, -216)

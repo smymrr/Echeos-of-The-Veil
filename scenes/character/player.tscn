@@ -614,6 +614,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1987352962]
+z_index = 1
 position = Vector2(4, 2)
 collision_mask = 2
 script = ExtResource("1_dqkch")
@@ -652,13 +653,12 @@ pivot_offset = Vector2(10, 20)
 color = Color(0.654902, 0.28235295, 0.27450982, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")
-animation = &"dash_up"
-frame = 7
-frame_progress = 1.0
+animation = &"idle_down"
+frame_progress = 0.9031453
 
 [node name="SwingSword" type="AudioStreamPlayer2D" parent="." unique_id=273571398]
 stream = ExtResource("9_ur7pv")
