@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ctkgt67vrmv1r"]
+[gd_scene format=3 uid="uid://d0xygqlafl85f"]
 
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
@@ -94,10 +94,11 @@ PanelContainer/styles/panel = SubResource("panel")
 ProgressBar/styles/background = SubResource("bar_bg")
 ProgressBar/styles/fill = SubResource("fill_xp")
 
-[node name="ChoiceBox" type="CanvasLayer" unique_id=1599846692 groups=["ui_choice"]]
+[node name="ChoiceBox" type="CanvasLayer" unique_id=1274644566 groups=["ui_choice"]]
 layer = 8
+visible = false
 
-[node name="Root" type="Control" parent="." unique_id=1247569708]
+[node name="Root" type="Control" parent="." unique_id=653108454]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,47 +108,42 @@ grow_vertical = 2
 mouse_filter = 2
 theme = SubResource("Theme_hud")
 
-[node name="Choices" type="VBoxContainer" parent="Root" unique_id=846852999]
-layout_mode = 0
-offset_left = 458.0
-offset_top = 322.0
-offset_right = 694.0
-offset_bottom = 474.0
+[node name="Choices" type="VBoxContainer" parent="Root" unique_id=601197794]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -176.0
+offset_right = 240.0
+offset_bottom = -170.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/separation = 6
 
-[node name="ChoiceHint" type="Label" parent="Root/Choices" unique_id=1093275394]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
-theme_override_font_sizes/font_size = 8
-text = "CHOOSE  (1-4)"
-horizontal_alignment = 1
-
-[node name="Choice1" type="Button" parent="Root/Choices" unique_id=235164684]
-custom_minimum_size = Vector2(0, 28)
+[node name="Choice1" type="Button" parent="Root/Choices" unique_id=407090325]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "1. Option 1"
 alignment = 0
 
-[node name="Choice2" type="Button" parent="Root/Choices" unique_id=2147040808]
-custom_minimum_size = Vector2(0, 28)
+[node name="Choice2" type="Button" parent="Root/Choices" unique_id=1187934294]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "2. Option 2"
 alignment = 0
 
-[node name="Choice3" type="Button" parent="Root/Choices" unique_id=920598445]
-visible = false
-custom_minimum_size = Vector2(0, 28)
+[node name="Choice3" type="Button" parent="Root/Choices" unique_id=1501459062]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "3. Option 3"
 alignment = 0
 
-[node name="Choice4" type="Button" parent="Root/Choices" unique_id=44830219]
-visible = false
-custom_minimum_size = Vector2(0, 28)
+[node name="Choice4" type="Button" parent="Root/Choices" unique_id=637019020]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "4. Option 4"
 alignment = 0

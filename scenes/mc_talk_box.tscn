@@ -122,6 +122,7 @@ border_color = Color(0.48, 0.35, 0.82, 1)
 
 [node name="McTalkBox" type="CanvasLayer" unique_id=249027861 groups=["ui_mc_talk"]]
 layer = 7
+visible = false
 
 [node name="Root" type="Control" parent="." unique_id=1477865424]
 layout_mode = 3

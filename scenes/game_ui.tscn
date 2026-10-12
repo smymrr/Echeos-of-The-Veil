@@ -5,19 +5,25 @@
 [ext_resource type="PackedScene" path="res://scenes/quest_panel.tscn" id="3_quest"]
 [ext_resource type="PackedScene" uid="uid://bkaxubbvlayug" path="res://scenes/inventory_panel.tscn" id="4_inv"]
 [ext_resource type="PackedScene" path="res://scenes/pause_panel.tscn" id="5_pause"]
+[ext_resource type="PackedScene" uid="uid://b55l2ib55hsg4" path="res://scenes/options_ingame.tscn" id="6_options"]
 
-[node name="GameUI" type="Node" unique_id=1252418617]
+[node name="GameUI" type="Node" unique_id=766301480]
 script = ExtResource("1_script")
+hover_sound_path = "uid://bsay8v8jd65nh"
+click_sound_path = "uid://bi136u7rg8lou"
+back_sound_path = "uid://kbyvwhufi7h6"
+sfx_volume_db = 6.0
 
-[node name="HUD" parent="." unique_id=1112948165 instance=ExtResource("2_hud")]
+[node name="HUD" parent="." unique_id=183318708 instance=ExtResource("2_hud")]
 
-[node name="QuestLog" parent="." unique_id=1370686125 instance=ExtResource("3_quest")]
-visible = true
+[node name="QuestLog" parent="." unique_id=1733970546 instance=ExtResource("3_quest")]
 
-[node name="InventoryPanel" parent="." unique_id=1450890316 instance=ExtResource("4_inv")]
+[node name="InventoryPanel" parent="." unique_id=1886248865 instance=ExtResource("4_inv")]
 visible = false
-offset = Vector2(0, 70)
-transform = Transform2D(1, 0, 0, 1, 0, 70)
+offset = Vector2(0, 80)
+transform = Transform2D(1, 0, 0, 1, 0, 80)
 
-[node name="PausePanel" parent="." unique_id=872327053 instance=ExtResource("5_pause")]
-visible = false
+[node name="PausePanel" parent="." unique_id=10431264 instance=ExtResource("5_pause")]
+
+[node name="OptionsMenu" parent="." unique_id=1792595132 instance=ExtResource("6_options")]
+script = null

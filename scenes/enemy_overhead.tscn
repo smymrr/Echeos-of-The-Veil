@@ -131,7 +131,7 @@ theme_override_constants/separation = 1
 
 [node name="TopRow" type="HBoxContainer" parent="Box" unique_id=1953951681]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 1
 
 [node name="EnemyName" type="Label" parent="Box/TopRow" unique_id=1166024961]
 layout_mode = 2

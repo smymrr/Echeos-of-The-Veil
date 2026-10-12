@@ -9,7 +9,7 @@ extends Node
 ##   npc_talk_box -> "ui_npc_talk",  mc_talk_box -> "ui_mc_talk",  choice_box -> "ui_choice"
 ##
 ## Kontrol:
-##   ESC      = tutup Inventory (kalau terbuka), atau buka/tutup Pause
+##   ESC      = kembali dari Options / konfirmasi Quit, tutup Inventory, atau buka/tutup Pause
 ##   J        = buka/tutup Quest
 ##   I        = buka/tutup Inventory
 ##   E        = percakapan demo NPC <-> MC (tekan lagi untuk lanjut / lewati ketikan)
@@ -17,6 +17,7 @@ extends Node
 ##   1 - 6    = pakai skill (MP berkurang; bos terkena damage kalau tampil)
 ##   F1       = tampil/sembunyi Boss Bar
 ##   F2       = tampil/sembunyi teks Wave
+##   (Semua tombol UI otomatis punya suara hover / klik / back, lihat grup "UI Sound" di Inspector)
 ##   F3       = minimize / buka semua panel HUD sekaligus (tanpa mouse)
 ##   F6       = PREVIEW: tampilkan Quest, Boss, Wave, dan Talk NPC sekaligus (tekan lagi = hilang)
 ##   F7       = tampil/sembunyi seluruh HUD (layar bersih)
@@ -26,6 +27,7 @@ const DOT_OFF := Color(0.25, 0.19, 0.48)
 const SKILL_KEYS := [KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6]
 const MAIN_MENU_SCENE := "res://scenes/main_menu.tscn"
 const CHOICE_BOX_SCENE := "res://scenes/choice_box.tscn"
+const OPTIONS_SCENE := "res://scenes/options_ingame.tscn"
 const DEMO_CONVERSATION := [
 	{"who": "npc", "text": "You dare enter my sanctum, Veilwalker?"},
 	{"who": "mc", "text": "I have come for the Veil fragment."},
@@ -42,6 +44,16 @@ const DEMO_CONVERSATION := [
 ## Dikirim saat pemain memilih jawaban. Programmer bisa menyambungkannya:
 ##   ui.choice_made.connect(func(index, text): print(index, text))
 signal choice_made(index: int, text: String)
+
+@export_group("UI Sound")
+@export_file("*.wav", "*.ogg", "*.mp3") var hover_sound_path := "res://scripts/ui/main_menu/hover_sound.wav"
+@export_file("*.wav", "*.ogg", "*.mp3") var click_sound_path := "res://scripts/ui/main_menu/click_sound.wav"
+@export_file("*.wav", "*.ogg", "*.mp3") var back_sound_path := "res://scripts/ui/main_menu/back_click.wav"
+@export var sfx_volume_db := 0.0
+## Tombol dengan nama ini memakai suara "back", sisanya suara klik biasa.
+@export var back_button_names: Array[String] = ["BackButton", "CloseButton", "NoButton"]
+
+var _sfx: Dictionary = {}
 
 var _quest: CanvasLayer
 var _inv: CanvasLayer
@@ -71,6 +83,9 @@ var _choices_open := false
 var _choices_wired := false
 var _pending_choices: Array = []
 var _confirm: Control
+var _options: CanvasLayer
+var _options_wired := false
+var _options_ui_wired := false
 var _pause_menu: Control
 var _preview := false
 
@@ -117,11 +132,59 @@ func _ready() -> void:
 	_connect_button("ResumeButton", toggle_pause)
 	_connect_button("SaveButton", func(): print("SAVE: sambungkan ke sistem save"))
 	_connect_button("LoadButton", func(): print("LOAD: sambungkan ke sistem load"))
-	_connect_button("OptionsButton", func(): print("OPTIONS: tampilkan panel Options"))
+	_connect_button("OptionsButton", _open_options)
 	_connect_button("MainMenuButton", _go_main_menu)
 	_connect_button("QuitButton", _show_quit_confirm)
 	_connect_confirm("YesButton", _go_main_menu)
 	_connect_confirm("NoButton", _hide_quit_confirm)
+
+	_setup_sfx()
+	_wire_sounds(self)
+
+
+# ------------------------------------------------------------------ Suara UI
+func _setup_sfx() -> void:
+	var bus := "SFX" if AudioServer.get_bus_index("SFX") != -1 else "Master"
+	var sounds := {"hover": hover_sound_path, "click": click_sound_path, "back": back_sound_path}
+	for kind in sounds:
+		var path: String = sounds[kind]
+		var stream: AudioStream = null
+		if path != "" and ResourceLoader.exists(path):
+			stream = load(path) as AudioStream
+		if stream == null:
+			push_warning("Suara UI tidak ditemukan: " + path)
+			continue
+		var player := AudioStreamPlayer.new()
+		player.stream = stream
+		player.bus = bus
+		player.volume_db = sfx_volume_db
+		add_child(player)
+		_sfx[kind] = player
+
+
+func _play_sfx(kind: String) -> void:
+	var player: AudioStreamPlayer = _sfx.get(kind)
+	if player:
+		player.play()
+
+
+## Pasang suara hover/klik ke semua tombol di bawah node ini (aman dipanggil berulang).
+func _wire_sounds(root: Node) -> void:
+	for b in root.find_children("*", "BaseButton", true, false):
+		if b.has_meta("sfx_wired"):
+			continue
+		b.set_meta("sfx_wired", true)
+		b.mouse_entered.connect(_on_button_hover.bind(b))
+		b.pressed.connect(_on_button_pressed.bind(b))
+
+
+func _on_button_hover(b: BaseButton) -> void:
+	if not b.disabled:
+		_play_sfx("hover")
+
+
+func _on_button_pressed(b: BaseButton) -> void:
+	_play_sfx("back" if back_button_names.has(String(b.name)) else "click")
 
 
 func _connect_button(button_name: String, action: Callable) -> void:
@@ -142,9 +205,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	var key: int = event.keycode
 	if key == KEY_ESCAPE:
-		if _confirm and _confirm.visible:
+		if _options and _options.visible:
+			_play_sfx("back")
+			_close_options()
+		elif _confirm and _confirm.visible:
+			_play_sfx("back")
 			_hide_quit_confirm()
 		elif _inv and _inv.visible:
+			_play_sfx("back")
 			_toggle_inventory()
 		else:
 			toggle_pause()
@@ -195,8 +263,78 @@ func toggle_pause() -> void:
 		_pause.visible = pausing
 	if not pausing:
 		_hide_quit_confirm()
+		_close_options()
 	if pausing:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _get_options() -> CanvasLayer:
+	if _options == null or not is_instance_valid(_options):
+		_options = get_node_or_null("OptionsMenu") as CanvasLayer
+	if _options == null:
+		# Belum dipasang di GameUI? Buat otomatis dari scene-nya.
+		var scene := load(OPTIONS_SCENE) as PackedScene
+		if scene:
+			_options = scene.instantiate() as CanvasLayer
+			add_child(_options)
+			_wire_sounds(_options)
+	return _options
+
+
+func _open_options() -> void:
+	var opts := _get_options()
+	if opts == null:
+		push_warning("options_ingame tidak ditemukan. Cek path OPTIONS_SCENE: " + OPTIONS_SCENE)
+		return
+	if not _options_wired:
+		var back := opts.get_node_or_null("Root/Panel/Content/BackButton") as Button
+		if back:
+			back.pressed.connect(_close_options)
+		_options_wired = true
+	if not _options_ui_wired:
+		_wire_options_ui(opts)
+		_options_ui_wired = true
+	opts.visible = true
+	if _pause_menu:
+		_pause_menu.visible = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+## Menyambungkan tab kiri (Audio / Display / Gameplay) dan angka persen slider di panel Options.
+func _wire_options_ui(opts: CanvasLayer) -> void:
+	var pages_root := opts.get_node_or_null("Root/Panel/Content/Body/Pages")
+	if pages_root == null:
+		push_warning("Options: node Pages tidak ditemukan")
+		return
+	var pages: Array = pages_root.get_children()
+	var tab_names := ["AudioTab", "DisplayTab", "GameplayTab"]
+	for i in tab_names.size():
+		var tab := opts.find_child(tab_names[i], true, false) as BaseButton
+		if tab:
+			tab.pressed.connect(_show_options_page.bind(pages, i))
+	_show_options_page(pages, 0)
+	for node in opts.find_children("*Slider", "HSlider", true, false):
+		var slider := node as HSlider
+		var lbl := opts.find_child(slider.name.replace("Slider", "Value"), true, false) as Label
+		if lbl:
+			lbl.text = "%d%%" % int(slider.value)
+			slider.value_changed.connect(_on_option_slider_changed.bind(lbl))
+
+
+func _show_options_page(pages: Array, index: int) -> void:
+	for i in pages.size():
+		pages[i].visible = (i == index)
+
+
+func _on_option_slider_changed(value: float, lbl: Label) -> void:
+	lbl.text = "%d%%" % int(value)
+
+
+func _close_options() -> void:
+	if _options:
+		_options.visible = false
+	if _pause_menu:
+		_pause_menu.visible = true
 
 
 func _show_quit_confirm() -> void:
@@ -451,16 +589,17 @@ func _show_choices(choices: Array) -> void:
 	if layer == null:
 		push_warning("choice_box tidak ditemukan. Cek path CHOICE_BOX_SCENE: " + CHOICE_BOX_SCENE)
 		return
-	var base := "Root/ChoicePanel/Choices/"
+	_wire_sounds(layer)
+	var base := "Root/Choices/"
 	for i in range(1, 5):
 		var b := layer.get_node_or_null(base + "Choice%d" % i) as Button
 		if b == null:
 			continue
 		if not _choices_wired:
 			b.pressed.connect(_on_choice_pressed.bind(i - 1))
+		# Hanya tampilkan sebanyak pilihan yang diberikan (2 pilihan = 2 tombol, 4 = 4 tombol).
 		b.visible = i <= choices.size()
-		if b.visible:
-			b.text = "%d. %s" % [i, choices[i - 1].get("text", "")]
+		b.text = "%d. %s" % [i, choices[i - 1].get("text", "")] if b.visible else ""
 	_choices_wired = true
 	_pending_choices = choices
 	_choices_open = true

@@ -108,6 +108,7 @@ border_color = Color(0.48, 0.35, 0.82, 1)
 
 [node name="NpcTalkBox" type="CanvasLayer" unique_id=1024896080 groups=["ui_npc_talk"]]
 layer = 7
+visible = false
 
 [node name="Root" type="Control" parent="." unique_id=1173644265]
 layout_mode = 3
