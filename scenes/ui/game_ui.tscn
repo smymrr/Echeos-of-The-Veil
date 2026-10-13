@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c2l7jwr57ewn7"]
 
 [ext_resource type="Script" uid="uid://dpk4ahhv54of4" path="res://scripts/ui/hud/game_ui.gd" id="1_e0pfi"]
-[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="1_hud"]
-[ext_resource type="PackedScene" path="res://scenes/quest_panel.tscn" id="2_quest"]
-[ext_resource type="PackedScene" path="res://scenes/boss_bar.tscn" id="3_boss"]
-[ext_resource type="PackedScene" path="res://scenes/wave_panel.tscn" id="4_wave"]
-[ext_resource type="PackedScene" path="res://scenes/talk_box.tscn" id="5_talk"]
-[ext_resource type="PackedScene" uid="uid://cgxsgnis8fx7h" path="res://scenes/pause_panel.tscn" id="6_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="1_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/quest_panel.tscn" id="2_quest"]
+[ext_resource type="PackedScene" path="res://scenes/ui/boss_bar.tscn" id="3_boss"]
+[ext_resource type="PackedScene" path="res://scenes/ui/wave_panel.tscn" id="4_wave"]
+[ext_resource type="PackedScene" path="res://scenes/ui/talk_box.tscn" id="5_talk"]
+[ext_resource type="PackedScene" uid="uid://cgxsgnis8fx7h" path="res://scenes/ui/pause_panel.tscn" id="6_pause"]
 
 [node name="GameUI" type="Node" unique_id=808703111]
 script = ExtResource("1_e0pfi")
