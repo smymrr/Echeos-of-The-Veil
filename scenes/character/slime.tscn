@@ -240,6 +240,8 @@ shape = SubResource("CircleShape2D_p2gj0")
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1360311394]
 shape = SubResource("CircleShape2D_p2gj0")
 
+[node name="LineOfSight2D" type="RayCast2D" parent="." unique_id=692940080]
+
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
