@@ -31,6 +31,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Echeos of the Veil"
 
+[global_group]
+
+player=""
+
 [input]
 
 move_up={

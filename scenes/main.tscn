@@ -14,7 +14,7 @@ position = Vector2(0, -1)
 
 [node name="Baseplate" parent="." unique_id=397421195 instance=ExtResource("2_sugp2")]
 
-[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("2_0wfyh")]
+[node name="Player" parent="." unique_id=1987352962 groups=["player"] instance=ExtResource("2_0wfyh")]
 z_index = 2
 position = Vector2(162, 165)
 
