@@ -9,7 +9,7 @@ extends Node
 ##   npc_talk_box -> "ui_npc_talk",  mc_talk_box -> "ui_mc_talk",  choice_box -> "ui_choice"
 ##
 ## Kontrol:
-##   ESC      = kembali dari Options / konfirmasi Quit, tutup Inventory, atau buka/tutup Pause
+##   ESC      = kembali dari Save / Options / konfirmasi Quit, tutup Inventory, atau buka/tutup Pause
 ##   J        = buka/tutup Quest
 ##   I        = buka/tutup Inventory
 ##   E        = percakapan demo NPC <-> MC (tekan lagi untuk lanjut / lewati ketikan)
@@ -28,6 +28,7 @@ const SKILL_KEYS := [KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6]
 const MAIN_MENU_SCENE := "res://scenes/main_menu.tscn"
 const CHOICE_BOX_SCENE := "res://scenes/choice_box.tscn"
 const OPTIONS_SCENE := "res://scenes/options_ingame.tscn"
+const SAVE_SCENE := "res://scenes/save_panel.tscn"
 const DEMO_CONVERSATION := [
 	{"who": "npc", "text": "You dare enter my sanctum, Veilwalker?"},
 	{"who": "mc", "text": "I have come for the Veil fragment."},
@@ -44,6 +45,10 @@ const DEMO_CONVERSATION := [
 ## Dikirim saat pemain memilih jawaban. Programmer bisa menyambungkannya:
 ##   ui.choice_made.connect(func(index, text): print(index, text))
 signal choice_made(index: int, text: String)
+
+## Dikirim saat pemain mengonfirmasi (YES) penyimpanan ke sebuah slot (nomor mulai dari 1).
+## Koder menyambungkannya ke sistem save:  ui.save_requested.connect(func(slot): ...)
+signal save_requested(slot: int)
 
 @export_group("UI Sound")
 @export_file("*.wav", "*.ogg", "*.mp3") var hover_sound_path := "res://scripts/ui/main_menu/hover_sound.wav"
@@ -86,6 +91,9 @@ var _confirm: Control
 var _options: CanvasLayer
 var _options_wired := false
 var _options_ui_wired := false
+var _save: CanvasLayer
+var _save_wired := false
+var _save_slot := 0
 var _pause_menu: Control
 var _preview := false
 
@@ -130,7 +138,7 @@ func _ready() -> void:
 
 	# Tombol Pause
 	_connect_button("ResumeButton", toggle_pause)
-	_connect_button("SaveButton", func(): print("SAVE: sambungkan ke sistem save"))
+	_connect_button("SaveButton", _open_save)
 	_connect_button("LoadButton", func(): print("LOAD: sambungkan ke sistem load"))
 	_connect_button("OptionsButton", _open_options)
 	_connect_button("MainMenuButton", _go_main_menu)
@@ -147,12 +155,12 @@ func _setup_sfx() -> void:
 	var bus := "SFX" if AudioServer.get_bus_index("SFX") != -1 else "Master"
 	var sounds := {"hover": hover_sound_path, "click": click_sound_path, "back": back_sound_path}
 	for kind in sounds:
-		var path: String = sounds[kind]
+		var path := _resolve_sound(sounds[kind])
 		var stream: AudioStream = null
-		if path != "" and ResourceLoader.exists(path):
+		if path != "":
 			stream = load(path) as AudioStream
 		if stream == null:
-			push_warning("Suara UI tidak ditemukan: " + path)
+			push_warning("Suara UI tidak ditemukan: " + String(sounds[kind]))
 			continue
 		var player := AudioStreamPlayer.new()
 		player.stream = stream
@@ -160,6 +168,32 @@ func _setup_sfx() -> void:
 		player.volume_db = sfx_volume_db
 		add_child(player)
 		_sfx[kind] = player
+
+
+## Kalau path di Inspector kosong atau salah (misalnya file dipindah), cari file dengan
+## nama yang sama di seluruh project supaya suara tetap berbunyi.
+func _resolve_sound(path: String) -> String:
+	if path != "" and ResourceLoader.exists(path):
+		return path
+	if path == "":
+		return ""
+	return _find_file("res://", path.get_file())
+
+
+func _find_file(dir_path: String, filename: String) -> String:
+	var dir := DirAccess.open(dir_path)
+	if dir == null:
+		return ""
+	for sub in dir.get_directories():
+		if sub.begins_with(".") or sub == "addons":
+			continue
+		var found := _find_file(dir_path.path_join(sub), filename)
+		if found != "":
+			return found
+	for f in dir.get_files():
+		if f == filename or f == filename + ".import" or f == filename + ".remap":
+			return dir_path.path_join(filename)
+	return ""
 
 
 func _play_sfx(kind: String) -> void:
@@ -205,7 +239,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	var key: int = event.keycode
 	if key == KEY_ESCAPE:
-		if _options and _options.visible:
+		if _save_confirm_visible():
+			_play_sfx("back")
+			_set_save_confirm(false)
+		elif _save and _save.visible:
+			_play_sfx("back")
+			_close_save()
+		elif _options and _options.visible:
 			_play_sfx("back")
 			_close_options()
 		elif _confirm and _confirm.visible:
@@ -264,6 +304,7 @@ func toggle_pause() -> void:
 	if not pausing:
 		_hide_quit_confirm()
 		_close_options()
+		_close_save()
 	if pausing:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -328,6 +369,97 @@ func _show_options_page(pages: Array, index: int) -> void:
 
 func _on_option_slider_changed(value: float, lbl: Label) -> void:
 	lbl.text = "%d%%" % int(value)
+
+
+# ------------------------------------------------------------- Save Game
+func _get_save() -> CanvasLayer:
+	if _save == null or not is_instance_valid(_save):
+		_save = get_node_or_null("SavePanel") as CanvasLayer
+	if _save == null:
+		# Belum dipasang di GameUI? Buat otomatis dari scene-nya.
+		var scene := load(SAVE_SCENE) as PackedScene
+		if scene:
+			_save = scene.instantiate() as CanvasLayer
+			add_child(_save)
+			_wire_sounds(_save)
+	return _save
+
+
+func _open_save() -> void:
+	var panel := _get_save()
+	if panel == null:
+		push_warning("save_panel tidak ditemukan. Cek path SAVE_SCENE: " + SAVE_SCENE)
+		return
+	if not _save_wired:
+		var back := panel.get_node_or_null("Root/Panel/Content/BackButton") as Button
+		if back:
+			back.pressed.connect(_close_save)
+		for i in range(1, 6):
+			var slot := panel.get_node_or_null("Root/Panel/Content/Scroll/Margin/SlotList/Slot%d" % i) as Button
+			if slot:
+				slot.pressed.connect(_on_save_slot_pressed.bind(i))
+		var base := "Root/ConfirmLayer/ConfirmPanel/Content/Buttons/"
+		var yes := panel.get_node_or_null(base + "YesButton") as Button
+		var no := panel.get_node_or_null(base + "NoButton") as Button
+		if yes:
+			yes.pressed.connect(_confirm_save)
+		if no:
+			no.pressed.connect(_set_save_confirm.bind(false))
+		_save_wired = true
+	panel.visible = true
+	_set_save_confirm(false)
+	if _pause_menu:
+		_pause_menu.visible = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _close_save() -> void:
+	if _save:
+		_save.visible = false
+		_set_save_confirm(false)
+	if _pause_menu:
+		_pause_menu.visible = true
+
+
+func _save_confirm_visible() -> bool:
+	if _save == null:
+		return false
+	var layer := _save.get_node_or_null("Root/ConfirmLayer") as Control
+	return layer != null and layer.visible
+
+
+func _set_save_confirm(show: bool) -> void:
+	if _save == null:
+		return
+	var layer := _save.get_node_or_null("Root/ConfirmLayer") as Control
+	if layer:
+		layer.visible = show
+
+
+func _on_save_slot_pressed(index: int) -> void:
+	_save_slot = index
+	var slot_path := "Root/Panel/Content/Scroll/Margin/SlotList/Slot%d/EmptyLabel" % index
+	var empty := _save.get_node_or_null(slot_path) as Label
+	var is_empty := empty != null and empty.visible
+	var base := "Root/ConfirmLayer/ConfirmPanel/Content/"
+	var line1 := _save.get_node_or_null(base + "ConfirmText1") as Label
+	var line2 := _save.get_node_or_null(base + "ConfirmText2") as Label
+	if line1:
+		line1.text = "Save to Slot %d?" % index
+	if line2:
+		line2.text = "A new save will be created in this slot." if is_empty else "This will overwrite the existing save."
+	_set_save_confirm(true)
+
+
+func _confirm_save() -> void:
+	_set_save_confirm(false)
+	save_requested.emit(_save_slot)
+	var toast := _save.get_node_or_null("Root/SavedToast") as Label
+	if toast:
+		toast.text = "GAME SAVED  -  SLOT %d" % _save_slot
+		toast.visible = true
+		await get_tree().create_timer(1.5).timeout
+		toast.visible = false
 
 
 func _close_options() -> void:

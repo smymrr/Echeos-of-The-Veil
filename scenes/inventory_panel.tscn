@@ -156,6 +156,9 @@ border_color = Color(0.48, 0.35, 0.82, 1)
 
 [node name="InventoryPanel" type="CanvasLayer" unique_id=982510408]
 layer = 8
+visible = false
+offset = Vector2(0, 150)
+transform = Transform2D(1, 0, 0, 1, 0, 150)
 
 [node name="Root" type="Control" parent="." unique_id=846218827]
 layout_mode = 3

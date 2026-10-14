@@ -17,10 +17,11 @@
 [ext_resource type="Script" uid="uid://d07ni7dfoyxrw" path="res://scenes/back_button.gd" id="14_1ajci"]
 [ext_resource type="PackedScene" uid="uid://ctmihk0yl87ii" path="res://scenes/load_slot.tscn" id="15_a8gd2"]
 [ext_resource type="PackedScene" path="res://scenes/synopsis_panel.tscn" id="15_gw5y6"]
-[ext_resource type="PackedScene" path="res://scenes/options_panel.tscn" id="15_hstxw"]
+[ext_resource type="PackedScene" uid="uid://rhpypf3tnu4y" path="res://scenes/options_panel.tscn" id="15_hstxw"]
 [ext_resource type="Texture2D" uid="uid://halw6eb2cpns" path="res://assets/ui/main_menu/exit_panel.png" id="16_5pajh"]
 [ext_resource type="Theme" uid="uid://b6oa28s033rug" path="res://scenes/options_theme.tres" id="16_8egab"]
 [ext_resource type="AudioStream" uid="uid://dgka6nj7mfigw" path="res://assets/audio/main_menu/bgm_main_menu.mp3" id="17_j7ex8"]
+[ext_resource type="PackedScene" uid="uid://c1fge2w427fae" path="res://scenes/new_journey_screen.tscn" id="22_svtp6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrivr"]
 atlas = ExtResource("8_jhmoq")
@@ -91,6 +92,7 @@ load_data_button = NodePath("../Load_Data")
 synopsis_button = NodePath("../Synopsis")
 options_button = NodePath("../Options")
 exit_button = NodePath("../Exit")
+new_journey_screen = NodePath("../NewJourneyScreen")
 load_data_screen = NodePath("../LoadDataScreen")
 synopsis_screen = NodePath("../SypnosisScreen")
 options_screen = NodePath("../OptionScreen")
@@ -368,6 +370,7 @@ script = ExtResource("14_1ajci")
 metadata/_edit_lock_ = true
 
 [node name="OptionScreen" type="Control" parent="." unique_id=1636810732]
+visible = false
 layout_mode = 1
 anchor_right = 0.087000005
 anchor_bottom = 0.208
@@ -491,3 +494,7 @@ stream = ExtResource("10_lgwnu")
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=759121367]
 stream = ExtResource("11_flqon")
+
+[node name="NewJourneyScreen" parent="." unique_id=1601942814 instance=ExtResource("22_svtp6")]
+visible = false
+layout_mode = 1

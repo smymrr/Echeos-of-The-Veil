@@ -39,6 +39,7 @@ position = Vector2(339, -84)
 [node name="EnemyOverhead" parent="Slime3" unique_id=5551502 instance=ExtResource("4_eb6dy")]
 
 [node name="Control" parent="." unique_id=1676327586 instance=ExtResource("4_jyhfs")]
+visible = true
 
 [node name="Node2D" parent="." unique_id=378370492 instance=ExtResource("5_tbgi4")]
 position = Vector2(535, -308)

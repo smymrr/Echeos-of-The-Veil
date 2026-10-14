@@ -1,0 +1,726 @@
+[gd_scene format=3 uid="uid://c1fge2w427fae"]
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="StyleBoxFlat" id="btn_h"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.13, 0.1, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_n"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_p"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.29, 0.2, 0.55, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="hline"]
+color = Color(0.25, 0.19, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.06, 0.047, 0.14, 0.93)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="bar_bg"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.025, 0.02, 0.06, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.19, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="fill_xp"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.92, 0.66, 0.14, 1)
+
+[sub_resource type="StyleBoxFlat" id="sc_grab"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="sc_grab_hi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.52, 0.38, 0.86, 1)
+
+[sub_resource type="StyleBoxFlat" id="sc_bg"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.025, 0.02, 0.06, 1)
+
+[sub_resource type="Theme" id="Theme_hud"]
+Button/colors/font_color = Color(0.78, 0.69, 1, 1)
+Button/colors/font_hover_color = Color(0.94, 0.92, 1, 1)
+Button/colors/font_pressed_color = Color(0.94, 0.92, 1, 1)
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("empty")
+Button/styles/hover = SubResource("btn_h")
+Button/styles/normal = SubResource("btn_n")
+Button/styles/pressed = SubResource("btn_p")
+HSeparator/constants/separation = 6
+HSeparator/styles/separator = SubResource("hline")
+Label/colors/font_color = Color(0.94, 0.92, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.75)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/font_sizes/font_size = 12
+PanelContainer/styles/panel = SubResource("panel")
+ProgressBar/styles/background = SubResource("bar_bg")
+ProgressBar/styles/fill = SubResource("fill_xp")
+VScrollBar/styles/grabber = SubResource("sc_grab")
+VScrollBar/styles/grabber_highlight = SubResource("sc_grab_hi")
+VScrollBar/styles/grabber_pressed = SubResource("sc_grab_hi")
+VScrollBar/styles/scroll = SubResource("sc_bg")
+
+[sub_resource type="StyleBoxFlat" id="sv_n"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.075, 0.06, 0.17, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="sv_p"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.25, 0.1, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.28, 0.42, 1)
+
+[sub_resource type="StyleBoxFlat" id="sv_h"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.14, 0.07, 0.15, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.28, 0.42, 1)
+
+[sub_resource type="StyleBoxFlat" id="sv_num"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 2.0
+bg_color = Color(0.075, 0.06, 0.17, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1)
+
+[node name="NewJourneyScreen" type="Control" unique_id=1601942814]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_hud")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1160948110]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -5.0
+offset_right = 260.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="Panel" unique_id=1651485462]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Subtitle" type="Label" parent="Panel/Content" unique_id=533347482]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.28, 0.42, 1)
+theme_override_font_sizes/font_size = 9
+text = "- SLOTS FULL -"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Panel/Content" unique_id=1310100110]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "New Journey"
+horizontal_alignment = 1
+
+[node name="Line" type="HSeparator" parent="Panel/Content" unique_id=403205170]
+layout_mode = 2
+
+[node name="Message1" type="Label" parent="Panel/Content" unique_id=526771055]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "All save slots are in use."
+horizontal_alignment = 1
+
+[node name="Message2" type="Label" parent="Panel/Content" unique_id=746626773]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 10
+text = "Choose a slot to overwrite."
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Content" unique_id=1932319568]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Panel/Content/Scroll" unique_id=1517639813]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 10
+
+[node name="SlotList" type="VBoxContainer" parent="Panel/Content/Scroll/Margin" unique_id=751423903]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="Slot1" type="Button" parent="Panel/Content/Scroll/Margin/SlotList" unique_id=424891350]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("sv_n")
+theme_override_styles/pressed = SubResource("sv_p")
+theme_override_styles/hover = SubResource("sv_h")
+theme_override_styles/hover_pressed = SubResource("sv_p")
+theme_override_styles/focus = SubResource("empty")
+
+[node name="Margin" type="MarginContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot1" unique_id=556505058]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin" unique_id=166787210]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NumberBox" type="PanelContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin/Row" unique_id=871029002]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("sv_num")
+
+[node name="SlotNumber" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin/Row/NumberBox" unique_id=786853170]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin/Row" unique_id=1242262176]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SlotName" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin/Row/InfoBox" unique_id=862028455]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ch.III - The Ashen Keep"
+
+[node name="Location" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin/Row/InfoBox" unique_id=1532698369]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "Malachar's Tower, Floor 4"
+
+[node name="StatBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin/Row" unique_id=822136057]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PlayTime" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin/Row/StatBox" unique_id=1211125976]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "14:32"
+horizontal_alignment = 2
+
+[node name="SaveDate" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot1/Margin/Row/StatBox" unique_id=508380584]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.39, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "2026-10-03"
+horizontal_alignment = 2
+
+[node name="Slot2" type="Button" parent="Panel/Content/Scroll/Margin/SlotList" unique_id=725115611]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("sv_n")
+theme_override_styles/pressed = SubResource("sv_p")
+theme_override_styles/hover = SubResource("sv_h")
+theme_override_styles/hover_pressed = SubResource("sv_p")
+theme_override_styles/focus = SubResource("empty")
+
+[node name="Margin" type="MarginContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot2" unique_id=1223046153]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin" unique_id=265959552]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NumberBox" type="PanelContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin/Row" unique_id=1665706660]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("sv_num")
+
+[node name="SlotNumber" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin/Row/NumberBox" unique_id=271085076]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 16
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin/Row" unique_id=458979196]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SlotName" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin/Row/InfoBox" unique_id=1053892279]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ch.I - Into the Veil"
+
+[node name="Location" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin/Row/InfoBox" unique_id=371495973]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "Whisperwood Entrance"
+
+[node name="StatBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin/Row" unique_id=1778126618]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PlayTime" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin/Row/StatBox" unique_id=1248733496]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "02:10"
+horizontal_alignment = 2
+
+[node name="SaveDate" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot2/Margin/Row/StatBox" unique_id=831548936]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.39, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "2026-09-28"
+horizontal_alignment = 2
+
+[node name="Slot3" type="Button" parent="Panel/Content/Scroll/Margin/SlotList" unique_id=2092083360]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("sv_n")
+theme_override_styles/pressed = SubResource("sv_p")
+theme_override_styles/hover = SubResource("sv_h")
+theme_override_styles/hover_pressed = SubResource("sv_p")
+theme_override_styles/focus = SubResource("empty")
+
+[node name="Margin" type="MarginContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot3" unique_id=875421848]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin" unique_id=350323106]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NumberBox" type="PanelContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin/Row" unique_id=1170569965]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("sv_num")
+
+[node name="SlotNumber" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin/Row/NumberBox" unique_id=1593241150]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 16
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin/Row" unique_id=982237154]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SlotName" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin/Row/InfoBox" unique_id=1316876079]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ch.II - Shattered Runes"
+
+[node name="Location" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin/Row/InfoBox" unique_id=2132409161]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "The Ruined Sanctum"
+
+[node name="StatBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin/Row" unique_id=950464565]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PlayTime" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin/Row/StatBox" unique_id=2002850978]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "06:55"
+horizontal_alignment = 2
+
+[node name="SaveDate" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot3/Margin/Row/StatBox" unique_id=1451459737]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.39, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "2026-09-30"
+horizontal_alignment = 2
+
+[node name="Slot4" type="Button" parent="Panel/Content/Scroll/Margin/SlotList" unique_id=248504484]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("sv_n")
+theme_override_styles/pressed = SubResource("sv_p")
+theme_override_styles/hover = SubResource("sv_h")
+theme_override_styles/hover_pressed = SubResource("sv_p")
+theme_override_styles/focus = SubResource("empty")
+
+[node name="Margin" type="MarginContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot4" unique_id=873123886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin" unique_id=1017578030]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NumberBox" type="PanelContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin/Row" unique_id=1283009806]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("sv_num")
+
+[node name="SlotNumber" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin/Row/NumberBox" unique_id=1826452694]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 16
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin/Row" unique_id=432557408]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SlotName" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin/Row/InfoBox" unique_id=535677743]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ch.IV - Eye of the Rift"
+
+[node name="Location" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin/Row/InfoBox" unique_id=1392852298]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "Veilgate Plaza"
+
+[node name="StatBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin/Row" unique_id=2027728138]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PlayTime" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin/Row/StatBox" unique_id=1052764357]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "21:06"
+horizontal_alignment = 2
+
+[node name="SaveDate" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot4/Margin/Row/StatBox" unique_id=242780661]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.39, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "2026-10-06"
+horizontal_alignment = 2
+
+[node name="Slot5" type="Button" parent="Panel/Content/Scroll/Margin/SlotList" unique_id=1224118175]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("sv_n")
+theme_override_styles/pressed = SubResource("sv_p")
+theme_override_styles/hover = SubResource("sv_h")
+theme_override_styles/hover_pressed = SubResource("sv_p")
+theme_override_styles/focus = SubResource("empty")
+
+[node name="Margin" type="MarginContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot5" unique_id=1842304978]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin" unique_id=563779696]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NumberBox" type="PanelContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin/Row" unique_id=241568715]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("sv_num")
+
+[node name="SlotNumber" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin/Row/NumberBox" unique_id=1319599989]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 16
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin/Row" unique_id=96640907]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="SlotName" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin/Row/InfoBox" unique_id=396892698]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ch.II - Shattered Runes"
+
+[node name="Location" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin/Row/InfoBox" unique_id=130109653]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "Grimhallow Village"
+
+[node name="StatBox" type="VBoxContainer" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin/Row" unique_id=2073750960]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PlayTime" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin/Row/StatBox" unique_id=872124732]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "06:44"
+horizontal_alignment = 2
+
+[node name="SaveDate" type="Label" parent="Panel/Content/Scroll/Margin/SlotList/Slot5/Margin/Row/StatBox" unique_id=914474300]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43, 0.39, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "2026-09-29"
+horizontal_alignment = 2
+
+[node name="Line2" type="HSeparator" parent="Panel/Content" unique_id=754400932]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Panel/Content" unique_id=1731596813]
+custom_minimum_size = Vector2(160, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "BACK"
+
+[node name="ConfirmLayer" type="Control" parent="." unique_id=15543424]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="ConfirmLayer" unique_id=99754509]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="ConfirmPanel" type="PanelContainer" parent="ConfirmLayer" unique_id=1059870153]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -5.0
+offset_right = 150.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="ConfirmLayer/ConfirmPanel" unique_id=974745361]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ConfirmTitle" type="Label" parent="ConfirmLayer/ConfirmPanel/Content" unique_id=1978513724]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.28, 0.42, 1)
+theme_override_font_sizes/font_size = 22
+text = "OVERWRITE?"
+horizontal_alignment = 1
+
+[node name="Line" type="HSeparator" parent="ConfirmLayer/ConfirmPanel/Content" unique_id=2018433887]
+layout_mode = 2
+
+[node name="ConfirmText1" type="Label" parent="ConfirmLayer/ConfirmPanel/Content" unique_id=1885877671]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Overwrite Slot 1?"
+horizontal_alignment = 1
+
+[node name="ConfirmText2" type="Label" parent="ConfirmLayer/ConfirmPanel/Content" unique_id=270487672]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 10
+text = "This save will be permanently lost."
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="ConfirmLayer/ConfirmPanel/Content" unique_id=636719054]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="YesButton" type="Button" parent="ConfirmLayer/ConfirmPanel/Content/Buttons" unique_id=1524928983]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "YES"
+
+[node name="NoButton" type="Button" parent="ConfirmLayer/ConfirmPanel/Content/Buttons" unique_id=1740319855]
+custom_minimum_size = Vector2(110, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "NO"
