@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c0tfwnd8cr80p"]
 
 [ext_resource type="Script" uid="uid://bj7n72i0n243d" path="res://scripts/ui/hud/game_ui.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://c1ta3q8tqxoki" path="res://scenes/hud.tscn" id="2_hud"]
-[ext_resource type="PackedScene" path="res://scenes/quest_panel.tscn" id="3_quest"]
+[ext_resource type="PackedScene" uid="uid://c1ta3q8tqxoki" path="res://scenes/ui/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_panel.tscn" id="3_quest"]
 [ext_resource type="PackedScene" uid="uid://bkaxubbvlayug" path="res://scenes/inventory_panel.tscn" id="4_inv"]
-[ext_resource type="PackedScene" path="res://scenes/pause_panel.tscn" id="5_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/quest_panel.tscn" id="5_pause"]
 [ext_resource type="PackedScene" uid="uid://b55l2ib55hsg4" path="res://scenes/options_ingame.tscn" id="6_options"]
 [ext_resource type="PackedScene" path="res://scenes/save_panel.tscn" id="7_save"]
 
@@ -13,12 +13,11 @@ script = ExtResource("1_script")
 
 [node name="HUD" parent="." unique_id=1176403436 instance=ExtResource("2_hud")]
 
-[node name="QuestLog" parent="." unique_id=1428442805 instance=ExtResource("3_quest")]
+[node name="PausePanel" parent="." unique_id=1428442805 instance=ExtResource("3_quest")]
 
 [node name="InventoryPanel" parent="." unique_id=1470069670 instance=ExtResource("4_inv")]
-visible = false
 
-[node name="PausePanel" parent="." unique_id=1665157780 instance=ExtResource("5_pause")]
+[node name="QuestLog" parent="." unique_id=1665157780 instance=ExtResource("5_pause")]
 
 [node name="OptionsMenu" parent="." unique_id=194697580 instance=ExtResource("6_options")]
 
