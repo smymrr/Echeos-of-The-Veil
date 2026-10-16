@@ -1,0 +1,373 @@
+[gd_scene format=3 uid="uid://rhpypf3tnu4y"]
+
+[sub_resource type="GDScript" id="GDScript_pct"]
+script/source = "extends Control
+# Hanya memperbarui angka persen saat slider digeser (visual saja).
+# Aturan nama: XSlider -> XValue. Programmer boleh mengganti script ini.
+
+func _ready() -> void:
+	for s in find_children(\"*Slider\", \"HSlider\", true, false):
+		var lbl := find_child(s.name.replace(\"Slider\", \"Value\"), true, false) as Label
+		if lbl:
+			lbl.text = \"%d%%\" % int(s.value)
+			s.value_changed.connect(func(v: float): lbl.text = \"%d%%\" % int(v))
+"
+
+[node name="OptionsPanel" type="Control" unique_id=562744232]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 610.0
+offset_bottom = 300.0
+script = SubResource("GDScript_pct")
+
+[node name="Tabs" type="TabContainer" parent="." unique_id=1336095833]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 1
+
+[node name="AUDIO" type="ScrollContainer" parent="Tabs" unique_id=1664438849]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 0
+
+[node name="Margin" type="MarginContainer" parent="Tabs/AUDIO" unique_id=2140462071]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="List" type="VBoxContainer" parent="Tabs/AUDIO/Margin" unique_id=1120353688]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MasterRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List" unique_id=2100428732]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="MasterHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/MasterRow" unique_id=1929833009]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="Tabs/AUDIO/Margin/List/MasterRow/MasterHeader" unique_id=181444735]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "MASTER VOLUME"
+
+[node name="MasterValue" type="Label" parent="Tabs/AUDIO/Margin/List/MasterRow/MasterHeader" unique_id=2037607355]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "100%"
+horizontal_alignment = 2
+
+[node name="MasterSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/MasterRow" unique_id=1080143205]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 100.0
+
+[node name="MusicRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List" unique_id=1533698334]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="MusicHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/MusicRow" unique_id=1916119930]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="Tabs/AUDIO/Margin/List/MusicRow/MusicHeader" unique_id=1990752102]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "MUSIC VOLUME"
+
+[node name="MusicValue" type="Label" parent="Tabs/AUDIO/Margin/List/MusicRow/MusicHeader" unique_id=2084767809]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "70%"
+horizontal_alignment = 2
+
+[node name="MusicSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/MusicRow" unique_id=2136745459]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 70.0
+
+[node name="SfxRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List" unique_id=166764121]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SfxHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/SfxRow" unique_id=747113123]
+layout_mode = 2
+
+[node name="SfxLabel" type="Label" parent="Tabs/AUDIO/Margin/List/SfxRow/SfxHeader" unique_id=780010691]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "SFX VOLUME"
+
+[node name="SfxValue" type="Label" parent="Tabs/AUDIO/Margin/List/SfxRow/SfxHeader" unique_id=922021289]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "85%"
+horizontal_alignment = 2
+
+[node name="SfxSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/SfxRow" unique_id=897772114]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 85.0
+
+[node name="AmbientRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List" unique_id=1489275425]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="AmbientHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/AmbientRow" unique_id=1982600258]
+layout_mode = 2
+
+[node name="AmbientLabel" type="Label" parent="Tabs/AUDIO/Margin/List/AmbientRow/AmbientHeader" unique_id=2010754337]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "AMBIENT VOLUME"
+
+[node name="AmbientValue" type="Label" parent="Tabs/AUDIO/Margin/List/AmbientRow/AmbientHeader" unique_id=157835426]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "50%"
+horizontal_alignment = 2
+
+[node name="AmbientSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/AmbientRow" unique_id=545760609]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 50.0
+
+[node name="VoiceRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List" unique_id=1101843284]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VoiceHeader" type="HBoxContainer" parent="Tabs/AUDIO/Margin/List/VoiceRow" unique_id=1408185505]
+layout_mode = 2
+
+[node name="VoiceLabel" type="Label" parent="Tabs/AUDIO/Margin/List/VoiceRow/VoiceHeader" unique_id=1698186433]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "VOICE VOLUME"
+
+[node name="VoiceValue" type="Label" parent="Tabs/AUDIO/Margin/List/VoiceRow/VoiceHeader" unique_id=1910739732]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "80%"
+horizontal_alignment = 2
+
+[node name="VoiceSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/VoiceRow" unique_id=1062439454]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 80.0
+
+[node name="DISPLAY" type="ScrollContainer" parent="Tabs" unique_id=815634079]
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 1
+
+[node name="Margin" type="MarginContainer" parent="Tabs/DISPLAY" unique_id=1563410838]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="List" type="VBoxContainer" parent="Tabs/DISPLAY/Margin" unique_id=1176611663]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FullscreenRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List" unique_id=742915908]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/FullscreenRow" unique_id=1717790865]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "FULLSCREEN"
+
+[node name="FullscreenToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/FullscreenRow" unique_id=999814718]
+layout_mode = 2
+
+[node name="ResolutionRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List" unique_id=171347882]
+layout_mode = 2
+
+[node name="ResolutionLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/ResolutionRow" unique_id=1951681560]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "RESOLUTION"
+
+[node name="ResolutionOption" type="OptionButton" parent="Tabs/DISPLAY/Margin/List/ResolutionRow" unique_id=965193039]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "1152 x 648"
+popup/item_0/id = 0
+popup/item_1/text = "1280 x 720"
+popup/item_1/id = 1
+popup/item_2/text = "1920 x 1080"
+popup/item_2/id = 2
+
+[node name="VsyncRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List" unique_id=817043968]
+layout_mode = 2
+
+[node name="VsyncLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/VsyncRow" unique_id=1023470244]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "VSYNC"
+
+[node name="VsyncToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/VsyncRow" unique_id=2107271956]
+layout_mode = 2
+button_pressed = true
+
+[node name="ScreenShakeRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List" unique_id=460048879]
+layout_mode = 2
+
+[node name="ScreenShakeLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/ScreenShakeRow" unique_id=757420504]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "SCREEN SHAKE"
+
+[node name="ScreenShakeToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/ScreenShakeRow" unique_id=2142526039]
+layout_mode = 2
+button_pressed = true
+
+[node name="ShowFpsRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List" unique_id=1809703502]
+layout_mode = 2
+
+[node name="ShowFpsLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/ShowFpsRow" unique_id=1447756649]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "SHOW FPS"
+
+[node name="ShowFpsToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/ShowFpsRow" unique_id=964828566]
+layout_mode = 2
+
+[node name="BrightnessRow" type="VBoxContainer" parent="Tabs/DISPLAY/Margin/List" unique_id=548179942]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BrightnessHeader" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List/BrightnessRow" unique_id=821006459]
+layout_mode = 2
+
+[node name="BrightnessLabel" type="Label" parent="Tabs/DISPLAY/Margin/List/BrightnessRow/BrightnessHeader" unique_id=1574367803]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "BRIGHTNESS"
+
+[node name="BrightnessValue" type="Label" parent="Tabs/DISPLAY/Margin/List/BrightnessRow/BrightnessHeader" unique_id=1740505191]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "70%"
+horizontal_alignment = 2
+
+[node name="BrightnessSlider" type="HSlider" parent="Tabs/DISPLAY/Margin/List/BrightnessRow" unique_id=2000309012]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 70.0
+
+[node name="GAMEPLAY" type="ScrollContainer" parent="Tabs" unique_id=1535210769]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 2
+
+[node name="Margin" type="MarginContainer" parent="Tabs/GAMEPLAY" unique_id=1033036921]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="List" type="VBoxContainer" parent="Tabs/GAMEPLAY/Margin" unique_id=704913310]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LanguageRow" type="HBoxContainer" parent="Tabs/GAMEPLAY/Margin/List" unique_id=1854279201]
+layout_mode = 2
+
+[node name="LanguageLabel" type="Label" parent="Tabs/GAMEPLAY/Margin/List/LanguageRow" unique_id=771815833]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "LANGUAGE"
+
+[node name="LanguageOption" type="OptionButton" parent="Tabs/GAMEPLAY/Margin/List/LanguageRow" unique_id=775047151]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Bahasa Indonesia"
+popup/item_0/id = 0
+popup/item_1/text = "English"
+popup/item_1/id = 1
+
+[node name="AutoSaveRow" type="HBoxContainer" parent="Tabs/GAMEPLAY/Margin/List" unique_id=1307853711]
+layout_mode = 2
+
+[node name="AutoSaveLabel" type="Label" parent="Tabs/GAMEPLAY/Margin/List/AutoSaveRow" unique_id=757699985]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "AUTO-SAVE"
+
+[node name="AutoSaveToggle" type="CheckButton" parent="Tabs/GAMEPLAY/Margin/List/AutoSaveRow" unique_id=25048181]
+layout_mode = 2
+button_pressed = true
+
+[node name="ShowHintsRow" type="HBoxContainer" parent="Tabs/GAMEPLAY/Margin/List" unique_id=1615997031]
+layout_mode = 2
+
+[node name="ShowHintsLabel" type="Label" parent="Tabs/GAMEPLAY/Margin/List/ShowHintsRow" unique_id=958241568]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "SHOW HINTS"
+
+[node name="ShowHintsToggle" type="CheckButton" parent="Tabs/GAMEPLAY/Margin/List/ShowHintsRow" unique_id=660364699]
+layout_mode = 2
+button_pressed = true
+
+[node name="DamageNumbersRow" type="HBoxContainer" parent="Tabs/GAMEPLAY/Margin/List" unique_id=213401149]
+layout_mode = 2
+
+[node name="DamageNumbersLabel" type="Label" parent="Tabs/GAMEPLAY/Margin/List/DamageNumbersRow" unique_id=361610639]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.62, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "DAMAGE NUMBERS"
+
+[node name="DamageNumbersToggle" type="CheckButton" parent="Tabs/GAMEPLAY/Margin/List/DamageNumbersRow" unique_id=49806002]
+layout_mode = 2
+button_pressed = true
