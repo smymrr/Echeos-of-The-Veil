@@ -3,8 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_aees8"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_rnkuw"]
 [ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/player.tscn" id="3_rnkuw"]
-[ext_resource type="Script" uid="uid://cs1p47nwflx57" path="res://fog.gd" id="4_16g40"]
-[ext_resource type="Texture2D" uid="uid://cpg67tmntvs67" path="res://assets/map/dungeon/tileset_dungeon/fog_panoramic_1024x512.png" id="5_vpggq"]
+[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://treasure_boss.gdshader" id="4_gx6sy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
 texture = ExtResource("1_aees8")
@@ -5845,6 +5844,11 @@ texture = ExtResource("2_rnkuw")
 [sub_resource type="TileSet" id="TileSet_50obt"]
 sources/0 = SubResource("TileSetAtlasSource_jx6rg")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16g40"]
+shader = ExtResource("4_gx6sy")
+shader_parameter/speed = Vector2(0.03, 0.01)
+shader_parameter/fog_color = Color(0.8, 0.8, 0.8509804, 0.5137255)
+
 [node name="Node2D" type="Node2D" unique_id=899085570]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=650418081]
@@ -5886,20 +5890,10 @@ tile_set = SubResource("TileSet_50obt")
 [node name="Player" parent="." unique_id=1987352962 instance=ExtResource("3_rnkuw")]
 position = Vector2(268, 307)
 
-[node name="Fog" type="ParallaxBackground" parent="." unique_id=611213175]
-layer = 1
-script = ExtResource("4_16g40")
-
-[node name="FogLayer" type="ParallaxLayer" parent="Fog" unique_id=950829261]
-motion_mirroring = Vector2(1024, 512)
-
-[node name="FogSprite" type="TextureRect" parent="Fog" unique_id=857024865]
-modulate = Color(1, 1, 1, 0.21960784)
-self_modulate = Color(1, 1, 1, 0.49411765)
-light_mask = 4
-visibility_layer = 3
-texture_repeat = 2
-offset_right = 1024.0
-offset_bottom = 512.0
-texture = ExtResource("5_vpggq")
-stretch_mode = 1
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2080868411]
+z_index = 10
+material = SubResource("ShaderMaterial_16g40")
+offset_left = 3.0
+offset_top = 10.0
+offset_right = 1143.0
+offset_bottom = 644.0
