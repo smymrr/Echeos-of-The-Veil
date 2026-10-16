@@ -19,7 +19,7 @@ position = Vector2(0, -1)
 
 [node name="Baseplate" parent="." unique_id=397421195 instance=ExtResource("2_sugp2")]
 
-[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("2_0wfyh")]
+[node name="Player" parent="." unique_id=1987352962 groups=["player"] instance=ExtResource("2_0wfyh")]
 z_index = 2
 position = Vector2(162, 165)
 
@@ -34,7 +34,7 @@ position = Vector2(111, -67)
 [node name="EnemyOverhead" parent="Slime2" unique_id=392731389 instance=ExtResource("4_eb6dy")]
 
 [node name="Slime3" parent="." unique_id=1026843103 instance=ExtResource("3_sugp2")]
-position = Vector2(339, -84)
+position = Vector2(353, -4)
 
 [node name="EnemyOverhead" parent="Slime3" unique_id=5551502 instance=ExtResource("4_eb6dy")]
 
@@ -59,3 +59,11 @@ metadata/_edit_group_ = true
 [node name="McTalkBox" parent="." unique_id=1460671667 instance=ExtResource("11_a8y0u")]
 
 [node name="ChoiceBox" parent="." unique_id=1188838663 instance=ExtResource("13_trceg")]
+[node name="test" parent="." unique_id=1709173004 instance=ExtResource("7_o6xl0")]
+offset_left = 29.0
+offset_top = -155.0
+offset_right = 29.0
+offset_bottom = -155.0
+
+[node name="NPC" parent="." unique_id=1796917906 instance=ExtResource("8_tipki")]
+position = Vector2(67, -216)

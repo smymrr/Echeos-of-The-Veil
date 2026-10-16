@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dkpg872b0aywv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0raf"]
+bg_color = Color(0.05882353, 0.047058824, 0.14117648, 0.92941177)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.47843137, 0.34901962, 0.81960785, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r6hca"]
+font_size = 9
+font_color = Color(0.72156864, 0.6627451, 0.8509804, 1)
+
+[node name="Interact" type="Control" unique_id=817362948]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -2.0
+offset_right = -5.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=714871471]
+layout_mode = 0
+offset_right = 15.0
+offset_bottom = 15.0
+pivot_offset = Vector2(7.5, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_i0raf")
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=2049646144]
+layout_mode = 2
+text = "E"
+label_settings = SubResource("LabelSettings_r6hca")
+horizontal_alignment = 1
+vertical_alignment = 1
