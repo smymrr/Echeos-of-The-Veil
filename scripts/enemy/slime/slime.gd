@@ -13,7 +13,6 @@ extends CharacterBody2D
 @onready var knockback_decay: float = 15.0
 @onready var sprite: AnimatedSprite2D = $"Sprite"
 @onready var hitbox: Area2D = $"Hitbox"
-@onready var line_of_sight: RayCast2D = get_node_or_null("LineOfSight2D")
 
 var attack_tween: Tween
 
@@ -37,18 +36,12 @@ func _ready() -> void:
 	target_roam_pos = home_position
 	# Langsung mulai roaming begitu game dimuat
 	_set_new_roam_target()
-	if not line_of_sight:
-		print("ERROR: Node LineOfSight2D tidak ditemukan!")
 
 func _physics_process(delta: float) -> void:
 	if not is_alive:
 		return
 		
 	var target_position = Vector2.ZERO
-	
-	# Update arah RayCast ke posisi player saat player terdeteksi dalam area
-	if is_instance_valid(player) and line_of_sight:
-		line_of_sight.target_position = line_of_sight.to_local(player.global_position)
 	
 	# Menentukan target berdasarkan status saat ini
 	match current_state:
@@ -58,42 +51,25 @@ func _physics_process(delta: float) -> void:
 			if global_position.distance_to(target_roam_pos) < 5.0:
 				_set_new_roam_target()
 				
-			# Jika player masuk area DAN terlihat oleh RayCast, ubah state jadi CHASING
-			if is_instance_valid(player) and _is_player_visible():
-				current_state = State.CHASING
-				print("Musuh mulai MENGEJAR!")
-				
 		State.CHASING:
-			print("chasing")
-			if is_instance_valid(player):
+			if player:
 				target_position = player.global_position
 				if can_attack and hitbox.overlaps_body(player):
 					current_state = State.ATTACKING
-				# Jika pandangan terhalang tembok / player tidak terlihat lagi
-				elif not _is_player_visible():
-					current_state = State.RETURNING
-					print("Player terhalang/hilang, musuh KEMBALI.")
 			else:
 				# Cadangan jika player hilang
-				player = null
 				current_state = State.RETURNING
-				
 		State.RETURNING:
 			target_position = home_position
-			# Jika melihat player kembali saat perjalanan pulang
-			if is_instance_valid(player) and _is_player_visible():
-				current_state = State.CHASING
 			# Jika sudah kembali dekat posisi asal, kembali roaming
-			elif global_position.distance_to(home_position) < 5.0:
+			if global_position.distance_to(home_position) < 5.0:
 				global_position = home_position
 				current_state = State.ROAMING
 				_set_new_roam_target()
-				
 		State.ATTACKING:
 			if can_attack:
 				_perform_attack()
 			target_position = global_position
-			
 		State.KNOCKBACK:
 			target_position = global_position
 	
@@ -110,25 +86,12 @@ func _physics_process(delta: float) -> void:
 		# Kalau vector knockback sudah habis, lanjutkan roam/mengejar
 		if knockback_velocity.length_squared() < 100:
 			knockback_velocity = Vector2.ZERO
-			current_state = State.CHASING if (is_instance_valid(player) and _is_player_visible()) else State.ROAMING
+			current_state = State.CHASING if player else State.ROAMING
 	
 	velocity = normal_velocity + knockback_velocity
 	_process_animation("move")
 	
 	move_and_slide()
-
-func _is_player_visible() -> bool:
-	if not line_of_sight:
-		return false
-		
-	if line_of_sight.is_colliding():
-		var collider = line_of_sight.get_collider()
-		if collider:
-			print("valid collider")
-			if collider.name == "Player":
-				print("player collider")
-				return true
-	return false
 
 func _perform_attack() -> void:
 	can_attack = false
@@ -187,6 +150,7 @@ func _wait_or_cancel(duration: float) -> bool:
 		if attack_cancelled:
 			can_attack = true
 			attack_cancelled = false
+			
 			return false
 		
 		await get_tree().process_frame
@@ -233,14 +197,8 @@ func _animation_finished() -> void:
 
 func _death() -> void:
 	_cancel_attack_tween()
-	
 	sprite.play("death")
 	is_alive = false
-	QuestManager.report("kill", "slime")
-	
-	z_index = 0
-	set_collision_layer_value(3, false)
-	
 	sprite.animation_finished.connect(_animation_finished)
 
 func _set_new_roam_target() -> void:
@@ -255,24 +213,19 @@ func _process_animation(prefix: String):
 	elif prefix == "move":
 		sprite.play(prefix)
 
-# --- SINYAL DETEKSI AREA ---
+# --- HUBUNGKAN SINYAL INI DARI NODE Area2D ANDA ---
 
 func _on_sight_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") or body.name == "Player":
+	# Pastikan objek yang masuk adalah Player (masukkan player ke group "player")
+	if body.name == "Player":
 		player = body
-		print("Player terdeteksi masuk area!")
+		current_state = State.CHASING
 
 func _on_sight_body_exited(body: Node2D) -> void:
 	if body == player:
 		player = null
+		# Ketika pemain keluar area deteksi, musuh kembali ke posisi asal dulu sebelum roaming lagi
 		current_state = State.RETURNING
-		print("Player keluar area!")
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	_on_sight_body_entered(body)
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	_on_sight_body_exited(body)
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if not is_alive or current_state == State.KNOCKBACK:
