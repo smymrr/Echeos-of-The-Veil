@@ -13,13 +13,21 @@
 [ext_resource type="PackedScene" uid="uid://7va8lwvlo7op" path="res://scenes/npc_talk_box.tscn" id="10_trceg"]
 [ext_resource type="PackedScene" uid="uid://mhn6u3mq3xlt" path="res://scenes/mc_talk_box.tscn" id="11_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://d0xygqlafl85f" path="res://scenes/choice_box.tscn" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/character/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dnvl7elvc4qn3" path="res://scenes/map/baseplate.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://nma6eyvb42j7" path="res://scenes/character/slime.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b4l62k0hfmona" path="res://scenes/ui/stats_ui.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bha1v1d1y2ku" path="res://scenes/map/treasure_room_boss.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://c5u367gvkoxqd" path="res://scenes/map/treasure_room_puzzle.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://ba7lcewed3gvv" path="res://scenes/ui/temp_quest.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bd5ehsty6l511" path="res://scenes/character/temp_NPC.tscn" id="8_tipki"]
 
 [node name="main" type="Node2D" unique_id=672410187]
 position = Vector2(0, -1)
 
 [node name="Baseplate" parent="." unique_id=397421195 instance=ExtResource("2_sugp2")]
 
-[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("2_0wfyh")]
+[node name="Player" parent="." unique_id=1987352962 groups=["player"] instance=ExtResource("2_0wfyh")]
 z_index = 2
 position = Vector2(162, 165)
 
@@ -29,12 +37,16 @@ position = Vector2(294, 144)
 [node name="EnemyOverhead" parent="Slime" unique_id=436800781 instance=ExtResource("4_eb6dy")]
 
 [node name="Slime2" parent="." unique_id=1180838693 instance=ExtResource("3_sugp2")]
+<<<<<<< HEAD
 position = Vector2(111, -67)
 
 [node name="EnemyOverhead" parent="Slime2" unique_id=392731389 instance=ExtResource("4_eb6dy")]
+=======
+position = Vector2(359, 232)
+>>>>>>> main
 
 [node name="Slime3" parent="." unique_id=1026843103 instance=ExtResource("3_sugp2")]
-position = Vector2(339, -84)
+position = Vector2(353, -4)
 
 [node name="EnemyOverhead" parent="Slime3" unique_id=5551502 instance=ExtResource("4_eb6dy")]
 
@@ -48,6 +60,7 @@ position = Vector2(535, -308)
 position = Vector2(541, 436)
 metadata/_edit_group_ = true
 
+<<<<<<< HEAD
 [node name="GameUI" parent="." unique_id=1967819802 groups=["ui_boss"] instance=ExtResource("6_o6xl0")]
 
 [node name="BossBar" parent="." unique_id=511337715 instance=ExtResource("8_ya4ey")]
@@ -59,3 +72,13 @@ metadata/_edit_group_ = true
 [node name="McTalkBox" parent="." unique_id=1460671667 instance=ExtResource("11_a8y0u")]
 
 [node name="ChoiceBox" parent="." unique_id=1188838663 instance=ExtResource("13_trceg")]
+=======
+[node name="test" parent="." unique_id=1709173004 instance=ExtResource("7_o6xl0")]
+offset_left = 29.0
+offset_top = -155.0
+offset_right = 29.0
+offset_bottom = -155.0
+
+[node name="NPC" parent="." unique_id=1796917906 instance=ExtResource("8_tipki")]
+position = Vector2(67, -216)
+>>>>>>> main
