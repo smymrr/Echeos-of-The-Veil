@@ -13,12 +13,11 @@ script = ExtResource("1_script")
 
 [node name="HUD" parent="." unique_id=1176403436 instance=ExtResource("2_hud")]
 
-[node name="QuestLog" parent="." unique_id=1428442805 instance=ExtResource("3_quest")]
+[node name="PausePanel" parent="." unique_id=1428442805 instance=ExtResource("3_quest")]
 
 [node name="InventoryPanel" parent="." unique_id=1470069670 instance=ExtResource("4_inv")]
-visible = false
 
-[node name="PausePanel" parent="." unique_id=1665157780 instance=ExtResource("5_pause")]
+[node name="QuestLog" parent="." unique_id=1665157780 instance=ExtResource("5_pause")]
 
 [node name="OptionsMenu" parent="." unique_id=194697580 instance=ExtResource("6_options")]
 
