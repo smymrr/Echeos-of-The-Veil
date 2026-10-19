@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ba7lcewed3gvv"]
+
+[ext_resource type="Script" uid="uid://bpxocpe3gbile" path="res://scenes/ui/temp_quest.gd" id="1_08unt"]
+[ext_resource type="Script" uid="uid://dbpq1jtyiwlru" path="res://scripts/test.gd" id="1_f876r"]
+
+[node name="Control2" type="Control" unique_id=1709173004]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_08unt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=119189856]
+script = ExtResource("1_f876r")
+
+[node name="Quest" type="Label" parent="CanvasLayer" unique_id=783201197]
+offset_top = 174.0
+offset_right = 115.0
+offset_bottom = 197.0
+text = "Quest"
+justification_flags = 171
+
+[node name="Progress" type="Label" parent="CanvasLayer" unique_id=1894684079]
+offset_top = 195.0
+offset_right = 115.0
+offset_bottom = 218.0
+text = "Kill 0/3 Slime"
+justification_flags = 171
