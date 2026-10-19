@@ -6,7 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bkaxubbvlayug" path="res://scenes/ui/hud/inventory_panel.tscn" id="4_inv"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud/quest_panel.tscn" id="5_pause"]
 [ext_resource type="PackedScene" uid="uid://b55l2ib55hsg4" path="res://scenes/ui/hud/options_ingame.tscn" id="6_options"]
-[ext_resource type="PackedScene" path="res://scenes/save_panel.tscn" id="7_save"]
+[ext_resource type="PackedScene" path="res://scenes/ui/save_panel.tscn" id="7_save"]
+[ext_resource type="PackedScene" uid="uid://b74wa30lciuh8" path="res://scenes/ui/hud/boss_bar.tscn" id="8_opxtl"]
+[ext_resource type="PackedScene" uid="uid://bcte400365juj" path="res://scenes/ui/hud/wave_label.tscn" id="9_crnce"]
+[ext_resource type="PackedScene" uid="uid://d0xygqlafl85f" path="res://scenes/ui/hud/choice_box.tscn" id="10_x0n6o"]
+[ext_resource type="PackedScene" uid="uid://mhn6u3mq3xlt" path="res://scenes/ui/hud/mc_talk_box.tscn" id="11_aq72h"]
+[ext_resource type="PackedScene" uid="uid://7va8lwvlo7op" path="res://scenes/ui/hud/npc_talk_box.tscn" id="12_oqj4c"]
 
 [node name="GameUI" type="Node" unique_id=2072108287]
 script = ExtResource("1_script")
@@ -22,3 +27,15 @@ script = ExtResource("1_script")
 [node name="OptionsMenu" parent="." unique_id=194697580 instance=ExtResource("6_options")]
 
 [node name="SavePanel" parent="." unique_id=367907447 instance=ExtResource("7_save")]
+
+[node name="BossBar" parent="." unique_id=1260107350 instance=ExtResource("8_opxtl")]
+visible = false
+
+[node name="WaveLabel" parent="." unique_id=1954120137 instance=ExtResource("9_crnce")]
+visible = false
+
+[node name="ChoiceBox" parent="." unique_id=1274644566 instance=ExtResource("10_x0n6o")]
+
+[node name="McTalkBox" parent="." unique_id=249027861 instance=ExtResource("11_aq72h")]
+
+[node name="NpcTalkBox" parent="." unique_id=1024896080 instance=ExtResource("12_oqj4c")]
