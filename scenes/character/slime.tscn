@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://nma6eyvb42j7"]
+[gd_scene format=3 uid="uid://bf8rgk6p6kjr2"]
 
 [ext_resource type="Texture2D" uid="uid://cg4w4dcd4b4fn" path="res://assets/images/enemy/Slime_Green.png" id="1_371uh"]
 [ext_resource type="Script" uid="uid://c8ot8id2tvvn1" path="res://scripts/enemy/slime/slime.gd" id="1_p2gj0"]
@@ -198,6 +198,7 @@ radius = 150.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2gj0"]
 
 [node name="Slime" type="CharacterBody2D" unique_id=1521115122]
+z_index = 1
 position = Vector2(23, 27)
 collision_layer = 4
 collision_mask = 6
@@ -238,6 +239,9 @@ shape = SubResource("CircleShape2D_p2gj0")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1360311394]
 shape = SubResource("CircleShape2D_p2gj0")
+
+[node name="LineOfSight2D" type="RayCast2D" parent="." unique_id=692940080]
+collision_mask = 7
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]

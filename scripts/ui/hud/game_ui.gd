@@ -25,7 +25,7 @@ extends Node
 const DOT_ON := Color(0.48, 0.35, 0.82)
 const DOT_OFF := Color(0.25, 0.19, 0.48)
 const SKILL_KEYS := [KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6]
-const MAIN_MENU_SCENE := "res://scenes/main_menu.tscn"
+const MAIN_MENU_SCENE := "res://scenes/ui/main_menu.tscn"
 const CHOICE_BOX_SCENE := "res://scenes/choice_box.tscn"
 const OPTIONS_SCENE := "res://scenes/options_ingame.tscn"
 const SAVE_SCENE := "res://scenes/save_panel.tscn"
