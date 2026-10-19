@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ba7lcewed3gvv"]
 
-[ext_resource type="Script" uid="uid://nv0goxglw563" path="res://scripts/temp_quest.gd" id="1_08unt"]
-[ext_resource type="Script" uid="uid://b8y4s3v3tkbjc" path="res://scripts/test.gd" id="1_f876r"]
+[ext_resource type="Script" uid="uid://nv0goxglw563" path="res://scripts/global/quest/temp_quest.gd" id="1_08unt"]
+[ext_resource type="Script" uid="uid://b8y4s3v3tkbjc" path="res://scripts/ui/test.gd" id="1_f876r"]
 
 [node name="Control2" type="Control" unique_id=1709173004]
 layout_mode = 3

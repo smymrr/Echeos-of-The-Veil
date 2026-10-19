@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://beh5mvcal7p14" path="res://scripts/ui/main_menu/fade_screen.gd" id="11_gya4d"]
 [ext_resource type="Texture2D" uid="uid://bq36e2rq7cu4g" path="res://assets/ui/main_menu/load_game_panel.png" id="12_e64ma"]
 [ext_resource type="PackedScene" uid="uid://ctmihk0yl87ii" path="res://scenes/ui/main_menu/load_slot.tscn" id="13_mdbww"]
-[ext_resource type="Script" uid="uid://d07ni7dfoyxrw" path="res://scenes/back_button.gd" id="14_qlhci"]
+[ext_resource type="Script" uid="uid://d07ni7dfoyxrw" path="res://scripts/back_button.gd" id="14_qlhci"]
 [ext_resource type="PackedScene" path="res://scenes/ui/main_menu/synopsis_panel.tscn" id="15_erkol"]
 [ext_resource type="PackedScene" uid="uid://rhpypf3tnu4y" path="res://scenes/ui/main_menu/options_panel.tscn" id="16_1gxe3"]
 [ext_resource type="Theme" uid="uid://b6oa28s033rug" path="res://scenes/ui/options_theme.tres" id="17_1ce7q"]
