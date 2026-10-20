@@ -40,19 +40,19 @@ content_margin_right = 2
 content_margin_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="slot"]
-bg_color = Color(0.09, 0.07, 0.2, 0.95)
+bg_color = Color(0.09, 0.07, 0.2, 0.5)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25, 0.19, 0.48, 1.0)
+border_color = Color(0.25, 0.19, 0.48, 0.7)
 content_margin_left = 0
 content_margin_top = 0
 content_margin_right = 0
 content_margin_bottom = 0
 
 [sub_resource type="StyleBoxFlat" id="slot_sel"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
+bg_color = Color(0.13, 0.1, 0.3, 0.75)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -219,6 +219,81 @@ content_margin_top = 0
 content_margin_right = 0
 content_margin_bottom = 0
 
+[sub_resource type="StyleBoxFlat" id="panel_hud"]
+bg_color = Color(0.05, 0.04, 0.12, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 0.55)
+content_margin_left = 8
+content_margin_top = 6
+content_margin_right = 8
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="inset_hud"]
+bg_color = Color(0.025, 0.02, 0.06, 0.55)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.35, 0.82, 0.6)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="panel_mc"]
+bg_color = Color(0.06, 0.047, 0.14, 0.93)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+content_margin_left = 12
+content_margin_top = 8
+content_margin_right = 12
+content_margin_bottom = 10
+
+[sub_resource type="StyleBoxFlat" id="islot_n"]
+bg_color = Color(0.09, 0.07, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.19, 0.48, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="islot_h"]
+bg_color = Color(0.13, 0.1, 0.3, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
+[sub_resource type="StyleBoxFlat" id="islot_p"]
+bg_color = Color(0.29, 0.2, 0.55, 1.0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1.0, 1.0)
+content_margin_left = 0
+content_margin_top = 0
+content_margin_right = 0
+content_margin_bottom = 0
+
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
 [sub_resource type="StyleBoxLine" id="hline"]
@@ -245,13 +320,10 @@ Button/styles/hover = SubResource("btn_h")
 Button/styles/pressed = SubResource("btn_p")
 Button/styles/focus = SubResource("empty")
 
-[sub_resource type="GDScript" id="GDScript_min"]
-script/source = "extends CanvasLayer\n# Tombol minimize: menyembunyikan isi panel (node \"Body\") dan menyisakan judulnya.\n# Pola node: Content > HeaderRow > MinimizeButton, dan Content > Body\n\nfunc _ready() -> void:\n\tfor b in find_children(\"MinimizeButton\", \"Button\", true, false):\n\t\tvar body: Control = b.get_parent().get_parent().get_node(\"Body\")\n\t\tb.toggled.connect(func(on: bool) -> void:\n\t\t\tbody.visible = not on\n\t\t\tb.text = \"+\" if on else \"-\")\n"
-
-[node name="WavePanel" type="CanvasLayer"]
+[node name="PausePanel" type="CanvasLayer"]
+process_mode = 3
 visible = false
-layer = 6
-script = SubResource("GDScript_min")
+layer = 10
 
 [node name="Root" type="Control" parent="."]
 mouse_filter = 2
@@ -263,102 +335,125 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_hud")
 
-[node name="WavePanel" type="PanelContainer" parent="Root"]
+[node name="Dim" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62)
+
+[node name="PausePanel" type="PanelContainer" parent="Root"]
 mouse_filter = 2
 layout_mode = 1
 anchor_left = 0.5
-anchor_top = 0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0
+anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = 20.0
+offset_top = -5.0
 offset_right = 150.0
-offset_bottom = 30.0
+offset_bottom = 5.0
 grow_horizontal = 2
-grow_vertical = 1
+grow_vertical = 2
 
-[node name="Content" type="VBoxContainer" parent="Root/WavePanel"]
-theme_override_constants/separation = 4
+[node name="Content" type="VBoxContainer" parent="Root/PausePanel"]
+theme_override_constants/separation = 8
 
-[node name="HeaderRow" type="HBoxContainer" parent="Root/WavePanel/Content"]
-theme_override_constants/separation = 6
-
-[node name="Header" type="Label" parent="Root/WavePanel/Content/HeaderRow"]
+[node name="Subtitle" type="Label" parent="Root/PausePanel/Content"]
 theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
 theme_override_font_sizes/font_size = 9
 horizontal_alignment = 1
-size_flags_horizontal = 3
-text = "WAVE"
+text = "- PAUSED -"
 
-[node name="MinimizeButton" type="Button" parent="Root/WavePanel/Content/HeaderRow"]
-custom_minimum_size = Vector2(24, 18)
-size_flags_vertical = 4
-toggle_mode = true
-theme_override_styles/normal = SubResource("min_n")
-theme_override_styles/hover = SubResource("min_h")
-theme_override_styles/pressed = SubResource("min_h")
-theme_override_styles/hover_pressed = SubResource("min_h")
+[node name="Title" type="Label" parent="Root/PausePanel/Content"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text = "PAUSE"
+
+[node name="Line" type="HSeparator" parent="Root/PausePanel/Content"]
+
+[node name="ButtonList" type="VBoxContainer" parent="Root/PausePanel/Content"]
+theme_override_constants/separation = 8
+
+[node name="ResumeButton" type="Button" parent="Root/PausePanel/Content/ButtonList"]
+custom_minimum_size = Vector2(240, 38)
 theme_override_font_sizes/font_size = 12
-text = "-"
+text = "RESUME"
 
-[node name="Body" type="VBoxContainer" parent="Root/WavePanel/Content"]
-theme_override_constants/separation = 6
+[node name="SaveButton" type="Button" parent="Root/PausePanel/Content/ButtonList"]
+custom_minimum_size = Vector2(240, 38)
+theme_override_font_sizes/font_size = 12
+text = "SAVE GAME"
 
-[node name="Line" type="HSeparator" parent="Root/WavePanel/Content/Body"]
+[node name="OptionsButton" type="Button" parent="Root/PausePanel/Content/ButtonList"]
+custom_minimum_size = Vector2(240, 38)
+theme_override_font_sizes/font_size = 12
+text = "OPTIONS"
 
-[node name="WaveRow" type="HBoxContainer" parent="Root/WavePanel/Content/Body"]
-theme_override_constants/separation = 10
-alignment = 1
+[node name="QuitButton" type="Button" parent="Root/PausePanel/Content/ButtonList"]
+custom_minimum_size = Vector2(240, 38)
+theme_override_font_sizes/font_size = 12
+text = "QUIT"
 
-[node name="FloorLabel" type="Label" parent="Root/WavePanel/Content/Body/WaveRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 10
-text = "FLOOR 3"
+[node name="Line2" type="HSeparator" parent="Root/PausePanel/Content"]
 
-[node name="Dots" type="HBoxContainer" parent="Root/WavePanel/Content/Body/WaveRow"]
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="Dot1" type="ColorRect" parent="Root/WavePanel/Content/Body/WaveRow/Dots"]
-custom_minimum_size = Vector2(10, 10)
-size_flags_vertical = 4
-color = Color(0.48, 0.35, 0.82, 1.0)
-
-[node name="Dot2" type="ColorRect" parent="Root/WavePanel/Content/Body/WaveRow/Dots"]
-custom_minimum_size = Vector2(10, 10)
-size_flags_vertical = 4
-color = Color(0.48, 0.35, 0.82, 1.0)
-
-[node name="Dot3" type="ColorRect" parent="Root/WavePanel/Content/Body/WaveRow/Dots"]
-custom_minimum_size = Vector2(10, 10)
-size_flags_vertical = 4
-color = Color(0.25, 0.19, 0.48, 1.0)
-
-[node name="Dot4" type="ColorRect" parent="Root/WavePanel/Content/Body/WaveRow/Dots"]
-custom_minimum_size = Vector2(10, 10)
-size_flags_vertical = 4
-color = Color(0.25, 0.19, 0.48, 1.0)
-
-[node name="Dot5" type="ColorRect" parent="Root/WavePanel/Content/Body/WaveRow/Dots"]
-custom_minimum_size = Vector2(10, 10)
-size_flags_vertical = 4
-color = Color(0.25, 0.19, 0.48, 1.0)
-
-[node name="WaveTimer" type="Label" parent="Root/WavePanel/Content/Body/WaveRow"]
-theme_override_colors/font_color = Color(0.96, 0.72, 0.2, 1.0)
-theme_override_font_sizes/font_size = 11
-text = "00:12"
-
-[node name="EnemyRow" type="HBoxContainer" parent="Root/WavePanel/Content/Body"]
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="RemainingLabel" type="Label" parent="Root/WavePanel/Content/Body/EnemyRow"]
+[node name="Hint" type="Label" parent="Root/PausePanel/Content"]
 theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
 theme_override_font_sizes/font_size = 9
-text = "ENEMIES LEFT"
+horizontal_alignment = 1
+text = "ESC TO RESUME"
 
-[node name="RemainingValue" type="Label" parent="Root/WavePanel/Content/Body/EnemyRow"]
-theme_override_colors/font_color = Color(0.9, 0.28, 0.42, 1.0)
-theme_override_font_sizes/font_size = 13
-text = "12"
+[node name="ConfirmPanel" type="PanelContainer" parent="Root"]
+mouse_filter = 2
+visible = false
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -5.0
+offset_right = 150.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Root/ConfirmPanel"]
+theme_override_constants/separation = 8
+
+[node name="ConfirmTitle" type="Label" parent="Root/ConfirmPanel/Content"]
+theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+text = "QUIT?"
+
+[node name="Line" type="HSeparator" parent="Root/ConfirmPanel/Content"]
+
+[node name="ConfirmText1" type="Label" parent="Root/ConfirmPanel/Content"]
+theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+text = "Return to the main menu?"
+
+[node name="ConfirmText2" type="Label" parent="Root/ConfirmPanel/Content"]
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+text = "Unsaved progress will be lost."
+
+[node name="Buttons" type="HBoxContainer" parent="Root/ConfirmPanel/Content"]
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Root/ConfirmPanel/Content/Buttons"]
+custom_minimum_size = Vector2(110, 36)
+theme_override_font_sizes/font_size = 12
+text = "YES"
+
+[node name="NoButton" type="Button" parent="Root/ConfirmPanel/Content/Buttons"]
+custom_minimum_size = Vector2(110, 36)
+theme_override_font_sizes/font_size = 12
+text = "NO"

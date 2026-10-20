@@ -54,3 +54,15 @@ offset_bottom = 20.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=1643819153]
 position = Vector2(554.5, 0)
 shape = SubResource("RectangleShape2D_wtk66")
+
+[node name="SlimeSpawn2" type="Marker2D" parent="." unique_id=86580887]
+position = Vector2(397, 302)
+
+[node name="SlimeSpawn" type="Marker2D" parent="." unique_id=663597294]
+position = Vector2(271, -39)
+
+[node name="SpawnMarker2D" type="Marker2D" parent="." unique_id=151040375]
+position = Vector2(241, 125)
+
+[node name="SlimeSpawn3" type="Marker2D" parent="." unique_id=96466886]
+position = Vector2(47, 328)
