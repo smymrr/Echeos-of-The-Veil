@@ -424,7 +424,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=1987352962]
 position = Vector2(4, 2)
-collision_mask = 6
+collision_mask = 2
 script = ExtResource("1_dqkch")
 
 [node name="AttackComponent" type="Node" parent="." unique_id=707260039]
@@ -443,6 +443,9 @@ script = ExtResource("4_fjrip")
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_tdg3f")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
+zoom = Vector2(3, 3)
+
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=910346500]
 unique_name_in_owner = true
 position = Vector2(15, 0)
@@ -459,9 +462,6 @@ offset_right = 10.0
 offset_bottom = 20.0
 pivot_offset = Vector2(10, 20)
 color = Color(0.654902, 0.28235295, 0.27450982, 1)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
-zoom = Vector2(3, 3)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")

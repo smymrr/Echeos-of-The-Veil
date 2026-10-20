@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_f3omy"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_6ik5c"]
-[ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/player.tscn" id="3_6ik5c"]
-[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://treasure_boss.gdshader" id="4_ahadg"]
+[ext_resource type="PackedScene" uid="uid://g85gvq0o8s7" path="res://scenes/player.tscn" id="3_6ik5c"]
+[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="4_ahadg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
 texture = ExtResource("1_f3omy")
