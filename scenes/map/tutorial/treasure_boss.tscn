@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_2tw0d"]
 [ext_resource type="Texture2D" uid="uid://bjxl56kfk8ww2" path="res://assets/map/tileset_tambahan/tambahan/tiled_files/objects.png" id="3_0ln3k"]
 [ext_resource type="Texture2D" uid="uid://dagydwdlc1c11" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects.png" id="4_0ln3k"]
-[ext_resource type="PackedScene" uid="uid://g85gvq0o8s7" path="res://scenes/player.tscn" id="5_3vx88"]
 [ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="6_2irxv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
@@ -7932,9 +7931,6 @@ tile_set = SubResource("TileSet_50obt")
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 tile_map_data = PackedByteArray("AABCACIAAAAIAAQAAABCACMAAAAIAAUAAABDACIAAAAJAAQAAABDACMAAAAJAAUAAABAACMAAAAIAAQAAABAACQAAAAIAAUAAABBACMAAAAJAAQAAABBACQAAAAJAAUAAAA+ACQAAAAIAAQAAAA+ACUAAAAIAAUAAAA/ACQAAAAJAAQAAAA/ACUAAAAJAAUAAAAKACIAAAAIAAQAAAAKACMAAAAIAAUAAAALACIAAAAJAAQAAAALACMAAAAJAAUAAAAMACMAAAAIAAQAAAAMACQAAAAIAAUAAAANACMAAAAJAAQAAAANACQAAAAJAAUAAAAOACQAAAAIAAQAAAAOACUAAAAIAAUAAAAPACQAAAAJAAQAAAAPACUAAAAJAAUAAAALAAsAAAAIAAQAAAALAAwAAAAIAAUAAAAMAAsAAAAJAAQAAAAMAAwAAAAJAAUAAAANAAoAAAAIAAQAAAANAAsAAAAIAAUAAAAOAAoAAAAJAAQAAAAOAAsAAAAJAAUAAAAPAAkAAAAIAAQAAAAPAAoAAAAIAAUAAAAQAAkAAAAJAAQAAAAQAAoAAAAJAAUAAABCAAsAAAAIAAQAAABCAAwAAAAIAAUAAABDAAsAAAAJAAQAAABDAAwAAAAJAAUAAABAAAoAAAAIAAQAAABAAAsAAAAIAAUAAABBAAoAAAAJAAQAAABBAAsAAAAJAAUAAAA+AAkAAAAIAAQAAAA+AAoAAAAIAAUAAAA/AAkAAAAJAAQAAAA/AAoAAAAJAAUAAAA=")
 tile_set = SubResource("TileSet_aees8")
-
-[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("5_3vx88")]
-position = Vector2(187, 333)
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1862626683]
 z_index = 10
