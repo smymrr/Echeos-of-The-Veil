@@ -124,9 +124,7 @@ func _is_player_visible() -> bool:
 	if line_of_sight.is_colliding():
 		var collider = line_of_sight.get_collider()
 		if collider:
-			print("valid collider")
 			if collider.name == "Player":
-				print("player collider")
 				return true
 	return false
 

@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 
 PlayerData="*uid://c8o3o3aw3nean"
 PlayerHealth="*uid://cxf0hq4ot5f7n"
-EventBus="*uid://c6fe6i0qnujlv"
 QuestManager="*uid://cvrk4tnhmjj67"
+PlayerSettings="*uid://bpur4wom5gxiv"
 
 [display]
 
