@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://drssa6l5fyx2p" path="res://scripts/player/animation_component.gd" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://bkumqcm3xp00j" path="res://assets/images/player/idle.png" id="5_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dx8sar6xpi8v0" path="res://assets/images/player/walk.png" id="6_fjrip"]
-[ext_resource type="Texture2D" uid="uid://dlfhckhhghvv4" path="res://assets/images/player/Attack-Sheet.png" id="6_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://dlfhckhhghvv4" path="res://assets/images/player/attack_sheet.png" id="6_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://hbasqsg2bn3n" path="res://assets/audio/player/attack/sword attack.mp3" id="9_ur7pv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
@@ -443,6 +443,9 @@ script = ExtResource("4_fjrip")
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_tdg3f")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
+zoom = Vector2(3, 3)
+
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=910346500]
 unique_name_in_owner = true
 position = Vector2(15, 0)
@@ -459,9 +462,6 @@ offset_right = 10.0
 offset_bottom = 20.0
 pivot_offset = Vector2(10, 20)
 color = Color(0.654902, 0.28235295, 0.27450982, 1)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
-zoom = Vector2(3, 3)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")

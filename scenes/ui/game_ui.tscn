@@ -29,10 +29,8 @@ script = ExtResource("1_script")
 [node name="SavePanel" parent="." unique_id=367907447 instance=ExtResource("7_save")]
 
 [node name="BossBar" parent="." unique_id=1260107350 instance=ExtResource("8_opxtl")]
-visible = false
 
 [node name="WaveLabel" parent="." unique_id=1954120137 instance=ExtResource("9_crnce")]
-visible = false
 
 [node name="ChoiceBox" parent="." unique_id=1274644566 instance=ExtResource("10_x0n6o")]
 
