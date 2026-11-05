@@ -309,12 +309,6 @@ func _wire_options_ui(opts: CanvasLayer) -> void:
 		if tab:
 			tab.pressed.connect(_show_options_page.bind(pages, i))
 	_show_options_page(pages, 0)
-	for node in opts.find_children("*Slider", "HSlider", true, false):
-		var slider := node as HSlider
-		var lbl := opts.find_child(slider.name.replace("Slider", "Value"), true, false) as Label
-		if lbl:
-			lbl.text = "%d%%" % int(slider.value)
-			slider.value_changed.connect(_on_option_slider_changed.bind(lbl))
 
 
 func _show_options_page(pages: Array, index: int) -> void:

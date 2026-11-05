@@ -1,87 +1,58 @@
 extends Node
 
-var SAVE_PATH: String = "user://settings.json"
+const SAVE_PATH = "user://settings.cfg"
+var config := ConfigFile.new()
 
-var volume_settings = {
-	"master_volume" = 1.0,
-	"music_volume" = 1.0,
-	"sfx_volume" = 1.0,
-	"ambient_volume" = 1.0,
-	"voice_volume" = 1.0,
-}
+func _ready() -> void:
+	load_settings()
 
-var display_settings = {
-	"fullscreen" = true,
-	"resolution" = "",
-	"vsync" = false,
-	"screen_shake" = false,
-	"show_fps" = false,
-	"brightness" = 0.7
-}
+func save_setting(section: String, key: String, value: Variant) -> void:
+	config.set_value(section, key, value)
+	config.save(SAVE_PATH)
+	_apply_setting(section, key, value)
 
-var gameplay_settings = {
-	"language" = "indonesia",
-	"auto_save" = true,
-	"show_hints" = true,
-	"damage_numbers" = true,
-}
+func load_settings() -> void:
+	# Default
+	if config.load(SAVE_PATH) != OK:
+		return 
 
-var resolution = [
-	"1920x1080",
-	""
-]
+	# Setting application
+	for section in config.get_sections():
+		for key in config.get_section_keys(section):
+			_apply_setting(section, key, config.get_value(section, key))
 
-func save_data() -> void:
-	var data := {
-		"volume": {
-			"master_volume": volume_settings["master_volume"],
-			"music_volume": volume_settings["music_volume"],
-			"sfx_volume": volume_settings["sfx_volume"],
-			"ambient_volume": volume_settings["ambient_volume"],
-			"voice_volume": volume_settings["voice_volume"]
-		},
-		"display": {
-			"fullscreen": display_settings["fullscreen"],
-			"resolution": display_settings["resolution"],
-			"vsync": display_settings["vsync"],
-			"screen_shake": display_settings["screen_shake"],
-			"show_fps": display_settings["show_fps"],
-			"brightness": display_settings["brightness"]
-		},
-		"gameplay": {
-			"language": gameplay_settings["language"],
-			"auto_save": gameplay_settings["auto_save"],
-			"show_hints": gameplay_settings["show_hints"],
-			"damage_numbers": gameplay_settings["damage_numbers"]
-		}
-}
-	
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	file.store_string(JSON.stringify(data, "\t"))
-	file.close()
+# Handles saved data routing to Godot servers
+func _apply_setting(section: String, key: String, value: Variant) -> void:
+	if section == "Audio":
+		var bus_idx := AudioServer.get_bus_index(key)
+		var normalized_value = value / 100
+		if bus_idx != -1:
+			AudioServer.set_bus_volume_db(bus_idx, linear_to_db(normalized_value))
+			AudioServer.set_bus_mute(bus_idx, normalized_value <= 0.001)
+			
+	elif section == "Display":
+		if key == "fullscreen":
+			var mode = DisplayServer.WINDOW_MODE_FULLSCREEN if value else DisplayServer.WINDOW_MODE_WINDOWED
+			var main_window = get_tree().root.get_window()
+			
+			main_window.mode = mode
+		elif key == "vsync":
+			var mode = DisplayServer.VSyncMode.VSYNC_ENABLED if value else DisplayServer.VSyncMode.VSYNC_DISABLED
+			DisplayServer.window_set_vsync_mode(mode)
+		elif key == "fps":
+			FpsDisplay.visible = value
+		elif key == "brightness":
+			if value == 0:
+				Brightness.environment.adjustment_brightness = 0.75
+			elif value == 25:
+				Brightness.environment.adjustment_brightness = 0.85
+			elif value == 50:
+				Brightness.environment.adjustment_brightness = 1
+			elif value == 75:
+				Brightness.environment.adjustment_brightness = 1.25
+			elif value == 100:
+				Brightness.environment.adjustment_brightness = 1.5
 
-
-func load_data() -> bool:
-	if not FileAccess.file_exists(SAVE_PATH):
-		return false
-	
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
-	var parsed = JSON.parse_string(file.get_as_text())
-	file.close()
-	
-	if (parsed == null):
-		push_error("File ini corrupted atau tidak bisa dibaca.")
-		return false
-	
-	var data: Dictionary = parsed
-	
-	if data.has("volume"):
-		volume_settings.merge(data["volume"], true)
-	
-	if data.has("display"):
-		display_settings.merge(data["display"], true)
-	
-	if data.has("gameplay"):
-		gameplay_settings.merge(data["gameplay"], true)
-	
-	return true
+# UI Helper
+func get_setting(section: String, key: String, default_val: Variant) -> Variant:
+	return config.get_value(section, key, default_val)
