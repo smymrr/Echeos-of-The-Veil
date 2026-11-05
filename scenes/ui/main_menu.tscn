@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://rhpypf3tnu4y" path="res://scenes/ui/main_menu/options_panel.tscn" id="16_1gxe3"]
 [ext_resource type="Theme" uid="uid://b6oa28s033rug" path="res://scenes/ui/options_theme.tres" id="17_1ce7q"]
 [ext_resource type="Texture2D" uid="uid://halw6eb2cpns" path="res://assets/ui/main_menu/exit_panel.png" id="18_cdahu"]
-[ext_resource type="AudioStream" uid="uid://dgka6nj7mfigw" path="res://assets/audio/music/bgm_main_menu.mp3" id="19_t4e7i"]
 [ext_resource type="AudioStream" uid="uid://bi136u7rg8lou" path="res://assets/audio/sfx/click_sound.wav" id="20_8o4f6"]
 [ext_resource type="AudioStream" uid="uid://bsay8v8jd65nh" path="res://assets/audio/sfx/hover_sound.wav" id="21_w3hbs"]
 [ext_resource type="PackedScene" uid="uid://c1fge2w427fae" path="res://scenes/ui/main_menu/new_journey_screen.tscn" id="22_fg8cx"]
@@ -483,11 +482,6 @@ text = "Abandon Your
 Journey?"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="BackSound" type="AudioStreamPlayer" parent="." unique_id=529186632]
-stream = ExtResource("19_t4e7i")
-volume_db = -10.0
-autoplay = true
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="." unique_id=1551445464]
 stream = ExtResource("20_8o4f6")

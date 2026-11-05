@@ -22,7 +22,7 @@ func toggle_vsync() -> void:
 func toggle_fullscreen(value: bool) -> void:
 	var main_window = get_tree().root.get_window()
 	if value:
-		main_window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN
+		main_window.mode = Window.MODE_FULLSCREEN
 	else:
 		main_window.mode = Window.MODE_WINDOWED
 

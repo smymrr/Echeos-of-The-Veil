@@ -43,7 +43,7 @@ var _overwrite_slot := 0
 
 func _ready() -> void:
 	# Mulai musik Main Menu secara otomatis lewat AudioManager
-	AudioManager.play("music/main_menu/theme")
+	AudioManager.play_music("music/bgm_main_menu.mp3")
 
 	# New Journey ditangani terpisah (bisa langsung mulai, atau membuka panel pilih slot).
 	var pairs := [

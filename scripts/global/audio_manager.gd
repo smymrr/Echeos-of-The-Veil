@@ -1,7 +1,7 @@
 extends Node
 
 ## Base directory for audio files when passing relative paths to play()
-@export_dir var base_audio_dir: String = "res://audio"
+@export_dir var base_audio_dir: String = "res://assets/audio"
 
 # Cache loaded audio streams in memory to prevent repeated disk access
 var _sound_cache: Dictionary = {}
@@ -22,6 +22,7 @@ func play(sound_path: String, pitch_variance: float = 0.0) -> AudioStreamPlayer:
 	var full_path := sound_path
 	if not full_path.begins_with("res://"):
 		full_path = base_audio_dir.path_join(sound_path)
+		print(full_path)
 
 	# Auto-detect missing file extension (.wav or .mp3)
 	if not ResourceLoader.exists(full_path):
@@ -63,8 +64,6 @@ func _resolve_bus(file_path: String) -> String:
 
 		# If any directory in the path matches this bus name
 		if bus_lower in segments:
-			print(bus_name)
-			print(bus_lower)
 			return bus_name # Returns the exact casing required by AudioServer (e.g., "SFX")
 
 	return "Master"
@@ -75,7 +74,6 @@ func _spawn_player(stream: AudioStream, bus_name: String, pitch_variance: float)
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
 	player.bus = bus_name
-	print("DETECTED BUS: " + player.bus)
 
 	if pitch_variance > 0.0:
 		player.pitch_scale = randf_range(1.0 - pitch_variance, 1.0 + pitch_variance)
@@ -139,13 +137,15 @@ func play_music(sound_path: String) -> void:
 	_bgm_player.play()
 
 
-## Stops the currently playing background music
+# Stops the currently playing background music
 func stop_music() -> void:
+	print("called")
 	if is_instance_valid(_bgm_player) and _bgm_player.playing:
 		_bgm_player.stop()
+		print("stopped")
 
 
-## Fades out the currently playing music over X seconds
+# Fades out the currently playing music over X seconds
 func fade_out_music(duration: float = 1.0) -> void:
 	if is_instance_valid(_bgm_player) and _bgm_player.playing:
 		var tween := create_tween()
