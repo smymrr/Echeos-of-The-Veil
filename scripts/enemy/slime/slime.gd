@@ -17,7 +17,7 @@ extends CharacterBody2D
 
 var attack_tween: Tween
 
-# Status (State) pergerakan musuh
+# Status (State) pergerakan musuhitemukan!")
 enum State { ROAMING, CHASING, RETURNING, ATTACKING, KNOCKBACK }
 var current_state = State.ROAMING
 
@@ -64,7 +64,6 @@ func _physics_process(delta: float) -> void:
 				print("Musuh mulai MENGEJAR!")
 				
 		State.CHASING:
-			print("chasing")
 			if is_instance_valid(player):
 				target_position = player.global_position
 				if can_attack and hitbox.overlaps_body(player):
@@ -124,9 +123,7 @@ func _is_player_visible() -> bool:
 	if line_of_sight.is_colliding():
 		var collider = line_of_sight.get_collider()
 		if collider:
-			print("valid collider")
 			if collider.name == "Player":
-				print("player collider")
 				return true
 	return false
 
@@ -260,13 +257,11 @@ func _process_animation(prefix: String):
 func _on_sight_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") or body.name == "Player":
 		player = body
-		print("Player terdeteksi masuk area!")
 
 func _on_sight_body_exited(body: Node2D) -> void:
 	if body == player:
 		player = null
 		current_state = State.RETURNING
-		print("Player keluar area!")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	_on_sight_body_entered(body)

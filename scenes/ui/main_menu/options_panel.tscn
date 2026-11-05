@@ -1,24 +1,13 @@
 [gd_scene format=3 uid="uid://rhpypf3tnu4y"]
 
-[sub_resource type="GDScript" id="GDScript_pct"]
-script/source = "extends Control
-# Hanya memperbarui angka persen saat slider digeser (visual saja).
-# Aturan nama: XSlider -> XValue. Programmer boleh mengganti script ini.
-
-func _ready() -> void:
-	for s in find_children(\"*Slider\", \"HSlider\", true, false):
-		var lbl := find_child(s.name.replace(\"Slider\", \"Value\"), true, false) as Label
-		if lbl:
-			lbl.text = \"%d%%\" % int(s.value)
-			s.value_changed.connect(func(v: float): lbl.text = \"%d%%\" % int(v))
-"
+[ext_resource type="Script" uid="uid://br0ygdcf200f0" path="res://scripts/ui/main_menu/settings/audio_panel.gd" id="1_l2uxm"]
+[ext_resource type="Script" uid="uid://cft8d5mjb7q1t" path="res://scripts/ui/main_menu/settings/display_panel.gd" id="2_0hflq"]
 
 [node name="OptionsPanel" type="Control" unique_id=562744232]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 610.0
 offset_bottom = 300.0
-script = SubResource("GDScript_pct")
 
 [node name="Tabs" type="TabContainer" parent="." unique_id=1336095833]
 layout_mode = 1
@@ -35,6 +24,7 @@ current_tab = 1
 visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
+script = ExtResource("1_l2uxm")
 metadata/_tab_index = 0
 
 [node name="Margin" type="MarginContainer" parent="Tabs/AUDIO" unique_id=2140462071]
@@ -91,13 +81,13 @@ text = "MUSIC VOLUME"
 [node name="MusicValue" type="Label" parent="Tabs/AUDIO/Margin/List/MusicRow/MusicHeader" unique_id=2084767809]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "70%"
+text = "100%"
 horizontal_alignment = 2
 
 [node name="MusicSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/MusicRow" unique_id=2136745459]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-value = 70.0
+value = 100.0
 
 [node name="SfxRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List" unique_id=166764121]
 layout_mode = 2
@@ -116,13 +106,13 @@ text = "SFX VOLUME"
 [node name="SfxValue" type="Label" parent="Tabs/AUDIO/Margin/List/SfxRow/SfxHeader" unique_id=922021289]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "85%"
+text = "100%"
 horizontal_alignment = 2
 
 [node name="SfxSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/SfxRow" unique_id=897772114]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-value = 85.0
+value = 100.0
 
 [node name="AmbientRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List" unique_id=1489275425]
 layout_mode = 2
@@ -141,13 +131,13 @@ text = "AMBIENT VOLUME"
 [node name="AmbientValue" type="Label" parent="Tabs/AUDIO/Margin/List/AmbientRow/AmbientHeader" unique_id=157835426]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "50%"
+text = "100%"
 horizontal_alignment = 2
 
 [node name="AmbientSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/AmbientRow" unique_id=545760609]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-value = 50.0
+value = 100.0
 
 [node name="VoiceRow" type="VBoxContainer" parent="Tabs/AUDIO/Margin/List" unique_id=1101843284]
 layout_mode = 2
@@ -166,17 +156,18 @@ text = "VOICE VOLUME"
 [node name="VoiceValue" type="Label" parent="Tabs/AUDIO/Margin/List/VoiceRow/VoiceHeader" unique_id=1910739732]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "80%"
+text = "100%"
 horizontal_alignment = 2
 
 [node name="VoiceSlider" type="HSlider" parent="Tabs/AUDIO/Margin/List/VoiceRow" unique_id=1062439454]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-value = 80.0
+value = 100.0
 
 [node name="DISPLAY" type="ScrollContainer" parent="Tabs" unique_id=815634079]
 layout_mode = 2
 horizontal_scroll_mode = 0
+script = ExtResource("2_0hflq")
 metadata/_tab_index = 1
 
 [node name="Margin" type="MarginContainer" parent="Tabs/DISPLAY" unique_id=1563410838]
@@ -203,6 +194,7 @@ text = "FULLSCREEN"
 
 [node name="FullscreenToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/FullscreenRow" unique_id=999814718]
 layout_mode = 2
+button_pressed = true
 
 [node name="ResolutionRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List" unique_id=171347882]
 layout_mode = 2
@@ -284,13 +276,14 @@ text = "BRIGHTNESS"
 [node name="BrightnessValue" type="Label" parent="Tabs/DISPLAY/Margin/List/BrightnessRow/BrightnessHeader" unique_id=1740505191]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "70%"
+text = "Normal"
 horizontal_alignment = 2
 
 [node name="BrightnessSlider" type="HSlider" parent="Tabs/DISPLAY/Margin/List/BrightnessRow" unique_id=2000309012]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-value = 70.0
+step = 25.0
+value = 50.0
 
 [node name="GAMEPLAY" type="ScrollContainer" parent="Tabs" unique_id=1535210769]
 visible = false
@@ -371,3 +364,5 @@ text = "DAMAGE NUMBERS"
 [node name="DamageNumbersToggle" type="CheckButton" parent="Tabs/GAMEPLAY/Margin/List/DamageNumbersRow" unique_id=49806002]
 layout_mode = 2
 button_pressed = true
+
+[node name="SliderHelper" type="Node" parent="Tabs" unique_id=1398654913]
