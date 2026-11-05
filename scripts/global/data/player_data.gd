@@ -145,7 +145,7 @@ func load_game() -> bool:
 	base_defense = data.get("base_defense", base_defense)
 	base_speed = data.get("base_speed", base_speed)
 	
-	current_health = data.get("current_health", 100)
+	current_health = data.get("current_health", base_max_health)
 	last_position = Vector2(
 		data.get("last_position_x", 0.0),
 		data.get("last_position_y", 0.0)
