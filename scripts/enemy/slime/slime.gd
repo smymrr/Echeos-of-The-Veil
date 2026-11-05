@@ -171,7 +171,7 @@ func _perform_attack() -> void:
 
 func _try_hit() -> void:
 	if is_alive and player and hitbox.overlaps_body(player):
-		PlayerHealth.take_damage(attack_damage)
+		PlayerHealth.take_damage(attack_damage, player)
 
 func _cancel_attack_tween() -> void:
 	if attack_tween and attack_tween.is_valid():

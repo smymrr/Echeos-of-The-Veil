@@ -1,7 +1,7 @@
 extends Node2D
 
 # 1. Preload the scenes at the top of the file so they load into memory once
-const LEVEL_1 = preload("res://scenes/baseplate.tscn")
+const LEVEL_1 = preload("res://scenes/map/tutorial/stage.tscn")
 const PLAYER = preload("res://scenes/character/player.tscn")
 const UI = preload("res://scenes/ui/game_ui.tscn")
 const SLIME = preload("res://scenes/character/slime.tscn")

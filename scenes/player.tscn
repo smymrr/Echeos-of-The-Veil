@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bkumqcm3xp00j" path="res://assets/images/player/idle.png" id="5_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dx8sar6xpi8v0" path="res://assets/images/player/walk.png" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dlfhckhhghvv4" path="res://assets/images/player/attack_sheet.png" id="6_ur7pv"]
-[ext_resource type="AudioStream" uid="uid://hbasqsg2bn3n" path="res://assets/audio/sfx/player/sword_attack.mp3" id="9_ur7pv"]
+[ext_resource type="AudioStream" uid="uid://fouqq22073yj" path="res://assets/audio/sfx/player/sword_attack.wav" id="9_ur7pv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
 size = Vector2(14, 29)
@@ -423,6 +423,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1987352962]
+z_index = 2
 position = Vector2(4, 2)
 collision_mask = 6
 script = ExtResource("1_dqkch")
@@ -461,7 +462,6 @@ pivot_offset = Vector2(10, 20)
 color = Color(0.654902, 0.28235295, 0.27450982, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
-zoom = Vector2(3, 3)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")

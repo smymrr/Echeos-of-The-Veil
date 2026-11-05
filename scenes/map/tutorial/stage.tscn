@@ -5902,3 +5902,30 @@ offset_left = 3.0
 offset_top = 10.0
 offset_right = 1143.0
 offset_bottom = 644.0
+
+[node name="SlimeSpawn2" type="Marker2D" parent="." unique_id=672660734]
+position = Vector2(827, 509)
+
+[node name="SlimeSpawn" type="Marker2D" parent="." unique_id=1237221987]
+position = Vector2(926, 305)
+
+[node name="SlimeSpawn3" type="Marker2D" parent="." unique_id=2037007046]
+position = Vector2(358, 473)
+
+[node name="SlimeSpawn4" type="Marker2D" parent="." unique_id=866306238]
+position = Vector2(319, 304)
+
+[node name="SlimeSpawn5" type="Marker2D" parent="." unique_id=1661232808]
+position = Vector2(491, 227)
+
+[node name="SlimeSpawn6" type="Marker2D" parent="." unique_id=284643112]
+position = Vector2(738, 234)
+
+[node name="SlimeSpawn7" type="Marker2D" parent="." unique_id=787786135]
+position = Vector2(585, 557)
+
+[node name="SlimeSpawn8" type="Marker2D" parent="." unique_id=2074497606]
+position = Vector2(657, 461)
+
+[node name="SpawnMarker2D" type="Marker2D" parent="." unique_id=1950569344]
+position = Vector2(1109, 347)
