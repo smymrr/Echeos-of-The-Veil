@@ -20,3 +20,5 @@ static func bind_brightness_slider_to_label(value: float, label: Label) -> void:
 		label.text = "Normal"
 	elif value == 100:
 		label.text = "Bright"
+	else:
+		label.text = "%d%%" % int(value)
