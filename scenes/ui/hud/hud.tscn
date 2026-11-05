@@ -1,6 +1,4 @@
-[gd_scene format=3 uid="uid://c1ta3q8tqxoki"]
-
-[ext_resource type="PackedScene" uid="uid://tuv4qj272jf6" path="res://scenes/ui/fps_display.tscn" id="1_bngdn"]
+[gd_scene format=3 uid="uid://jtcuc6dvdcdj"]
 
 [sub_resource type="GDScript" id="GDScript_min"]
 script/source = "extends CanvasLayer
@@ -706,21 +704,6 @@ theme_override_styles/normal = SubResource("help_n")
 theme_override_styles/pressed = SubResource("help_h")
 theme_override_styles/hover = SubResource("help_h")
 text = "?"
-
-[node name="MarginContainer" type="MarginContainer" parent="Root" unique_id=333253075]
-layout_mode = 1
-offset_right = 272.0
-offset_bottom = 139.0
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Root/MarginContainer" unique_id=1698646373]
-layout_mode = 2
-
-[node name="FpsDisplay" parent="Root/MarginContainer/HBoxContainer" unique_id=1526154633 instance=ExtResource("1_bngdn")]
-custom_minimum_size = Vector2(41, 17)
-custom_maximum_size = Vector2(41, 17)
-layout_mode = 2
 
 [node name="CharacterPanel" type="PanelContainer" parent="Root" unique_id=1345643647]
 custom_minimum_size = Vector2(190, 124)
