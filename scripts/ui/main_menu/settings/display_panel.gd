@@ -2,6 +2,8 @@ extends ScrollContainer
 
 @onready var list: BoxContainer = get_node("Margin/List")
 @onready var fullscreen_toggle: BaseButton = list.get_node("FullscreenRow/FullscreenToggle")
+@onready var vsync_toggle: BaseButton = list.get_node("VsyncRow/VsyncToggle")
+@onready var fps_toggle: BaseButton = list.get_node("ShowFpsRow/ShowFpsToggle")
 
 func _ready() -> void:
 	for slider: HSlider in find_children("*Slider", "HSlider"):
@@ -11,13 +13,29 @@ func _ready() -> void:
 		slider_helper.bind_slider_to_label(slider, label)
 		
 		slider.value_changed.connect(func(new_val: float):
-			pass
+			if new_val == 0:
+				Brightness.environment.adjustment_brightness = 0.7
+				label.text = "Dim"
+			elif new_val == 25:
+				Brightness.environment.adjustment_brightness = 0.85
+			elif new_val == 50:
+				Brightness.environment.adjustment_brightness = 1
+			elif new_val == 75:
+				Brightness.environment.adjustment_brightness = 1.25
+			elif new_val == 100:
+				Brightness.environment.adjustment_brightness = 1.5
+				label.text = "Bright"
 		)
 	
 	fullscreen_toggle.toggled.connect(toggle_fullscreen)
+	vsync_toggle.toggled.connect(toggle_vsync)
+	fps_toggle.toggled.connect(toggle_fps)
 
-func toggle_vsync() -> void:
-	pass
+func toggle_vsync(value: bool) -> void:
+	if value:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 
 func toggle_fullscreen(value: bool) -> void:
 	var main_window = get_tree().root.get_window()
@@ -29,8 +47,12 @@ func toggle_fullscreen(value: bool) -> void:
 func toggle_screen_shake() -> void:
 	pass
 
-func toggle_fps() -> void:
-	pass
+func toggle_fps(value: bool) -> void:
+	if value:
+		FpsDisplay.visible = true
+		print("true")
+	else:
+		FpsDisplay.visible = false
 
 func set_resolution(bus_name: String, linear_value: float) -> void:
 	var bus_index = AudioServer.get_bus_index(bus_name)

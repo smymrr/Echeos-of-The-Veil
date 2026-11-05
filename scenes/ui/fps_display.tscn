@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://tuv4qj272jf6"]
+
+[ext_resource type="Script" uid="uid://b1dsjvn5jm8by" path="res://scripts/ui/fps_display.gd" id="1_aldcf"]
+
+[node name="FpsDisplay" type="CanvasLayer" unique_id=1649982013]
+script = ExtResource("1_aldcf")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=887968722]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="display" type="Label" parent="MarginContainer" unique_id=2121476242]
+layout_mode = 2
+text = "FPS: 60"
+metadata/_edit_lock_ = true

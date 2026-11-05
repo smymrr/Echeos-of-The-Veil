@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://rhpypf3tnu4y"]
 
 [ext_resource type="Script" uid="uid://br0ygdcf200f0" path="res://scripts/ui/main_menu/settings/audio_panel.gd" id="1_l2uxm"]
-[ext_resource type="Script" uid="uid://cft8d5mjb7q1t" path="res://scenes/ui/main_menu/display_panel.gd" id="2_0hflq"]
+[ext_resource type="Script" uid="uid://cft8d5mjb7q1t" path="res://scripts/ui/main_menu/settings/display_panel.gd" id="2_0hflq"]
 
 [node name="OptionsPanel" type="Control" unique_id=562744232]
 layout_mode = 3
@@ -18,9 +18,10 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="AUDIO" type="ScrollContainer" parent="Tabs" unique_id=1664438849]
+visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 script = ExtResource("1_l2uxm")
@@ -164,7 +165,6 @@ layout_mode = 2
 value = 100.0
 
 [node name="DISPLAY" type="ScrollContainer" parent="Tabs" unique_id=815634079]
-visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 script = ExtResource("2_0hflq")
@@ -194,6 +194,7 @@ text = "FULLSCREEN"
 
 [node name="FullscreenToggle" type="CheckButton" parent="Tabs/DISPLAY/Margin/List/FullscreenRow" unique_id=999814718]
 layout_mode = 2
+button_pressed = true
 
 [node name="ResolutionRow" type="HBoxContainer" parent="Tabs/DISPLAY/Margin/List" unique_id=171347882]
 layout_mode = 2
@@ -275,13 +276,14 @@ text = "BRIGHTNESS"
 [node name="BrightnessValue" type="Label" parent="Tabs/DISPLAY/Margin/List/BrightnessRow/BrightnessHeader" unique_id=1740505191]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "70%"
+text = "Normal"
 horizontal_alignment = 2
 
 [node name="BrightnessSlider" type="HSlider" parent="Tabs/DISPLAY/Margin/List/BrightnessRow" unique_id=2000309012]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-value = 70.0
+step = 25.0
+value = 50.0
 
 [node name="GAMEPLAY" type="ScrollContainer" parent="Tabs" unique_id=1535210769]
 visible = false

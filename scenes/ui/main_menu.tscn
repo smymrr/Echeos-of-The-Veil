@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://bi136u7rg8lou" path="res://assets/audio/sfx/click_sound.wav" id="20_8o4f6"]
 [ext_resource type="AudioStream" uid="uid://bsay8v8jd65nh" path="res://assets/audio/sfx/hover_sound.wav" id="21_w3hbs"]
 [ext_resource type="PackedScene" uid="uid://c1fge2w427fae" path="res://scenes/ui/main_menu/new_journey_screen.tscn" id="22_fg8cx"]
+[ext_resource type="PackedScene" uid="uid://dryjg8o5sw5j1" path="res://scenes/brightness.tscn" id="22_jbte4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrivr"]
 atlas = ExtResource("8_45qkm")
@@ -45,6 +46,11 @@ region = Rect2(73, 326, 127, 34)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7f2x3"]
 atlas = ExtResource("18_cdahu")
 region = Rect2(55.356018, 84.55658, 292.82, 139.30023)
+
+[sub_resource type="Environment" id="Environment_jbte4"]
+background_mode = 3
+adjustment_enabled = true
+adjustment_brightness = 1.15
 
 [node name="Main_menu" type="Control" unique_id=900637529]
 layout_mode = 3
@@ -492,3 +498,11 @@ stream = ExtResource("21_w3hbs")
 [node name="NewJourneyScreen" parent="." unique_id=1601942814 instance=ExtResource("22_fg8cx")]
 visible = false
 layout_mode = 1
+
+[node name="Wrapper" type="Control" parent="." unique_id=1878720961]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Brightness" parent="." unique_id=577370493 instance=ExtResource("22_jbte4")]
+environment = SubResource("Environment_jbte4")
