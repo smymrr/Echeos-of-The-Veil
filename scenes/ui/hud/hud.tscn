@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c1ta3q8tqxoki"]
 
 [ext_resource type="PackedScene" uid="uid://tuv4qj272jf6" path="res://scenes/ui/fps_display.tscn" id="1_bngdn"]
+[ext_resource type="Script" uid="uid://c21ui2ctltdj6" path="res://scripts/ui/player_hp_display.gd" id="2_qao66"]
 
 [sub_resource type="GDScript" id="GDScript_min"]
 script/source = "extends CanvasLayer
@@ -718,9 +719,6 @@ theme_override_constants/margin_top = 12
 layout_mode = 2
 
 [node name="FpsDisplay" parent="Root/MarginContainer/HBoxContainer" unique_id=1526154633 instance=ExtResource("1_bngdn")]
-custom_minimum_size = Vector2(41, 17)
-custom_maximum_size = Vector2(41, 17)
-layout_mode = 2
 
 [node name="CharacterPanel" type="PanelContainer" parent="Root" unique_id=1345643647]
 custom_minimum_size = Vector2(190, 124)
@@ -822,6 +820,7 @@ text = "ASHEN KEEP"
 [node name="HpRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=586404182]
 layout_mode = 2
 theme_override_constants/separation = 4
+script = ExtResource("2_qao66")
 
 [node name="HpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow" unique_id=1924229967]
 custom_minimum_size = Vector2(16, 0)
