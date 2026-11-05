@@ -17,7 +17,6 @@ extends Node
 ##   1 - 6    = pakai skill (MP berkurang; bos terkena damage kalau tampil)
 ##   F1       = tampil/sembunyi Boss Bar
 ##   F2       = tampil/sembunyi teks Wave
-##   (Semua tombol UI otomatis punya suara hover / klik / back, lihat grup "UI Sound" di Inspector)
 ##   F3       = minimize / buka semua panel HUD sekaligus (tanpa mouse)
 ##   F6       = PREVIEW: tampilkan Quest, Boss, Wave, dan Talk NPC sekaligus (tekan lagi = hilang)
 ##   F7       = tampil/sembunyi seluruh HUD (layar bersih)
@@ -50,15 +49,13 @@ signal choice_made(index: int, text: String)
 ## Koder menyambungkannya ke sistem save:  ui.save_requested.connect(func(slot): ...)
 signal save_requested(slot: int)
 
-@export_group("UI Sound")
-@export_file("*.wav", "*.ogg", "*.mp3") var hover_sound_path := "res://scripts/ui/main_menu/hover_sound.wav"
-@export_file("*.wav", "*.ogg", "*.mp3") var click_sound_path := "res://scripts/ui/main_menu/click_sound.wav"
-@export_file("*.wav", "*.ogg", "*.mp3") var back_sound_path := "res://scripts/ui/main_menu/back_click.wav"
-@export var sfx_volume_db := 0.0
+# --- PRELOADED AUDIO ---
+const SFX_HOVER = preload("res://assets/audio/sfx/hover_sound.wav")
+const SFX_CLICK = preload("res://assets/audio/sfx/click_sound.wav")
+const SFX_BACK = preload("res://assets/audio/sfx/back_click.wav")
+
 ## Tombol dengan nama ini memakai suara "back", sisanya suara klik biasa.
 @export var back_button_names: Array[String] = ["BackButton", "CloseButton", "NoButton"]
-
-var _sfx: Dictionary = {}
 
 var _quest: CanvasLayer
 var _inv: CanvasLayer
@@ -146,61 +143,10 @@ func _ready() -> void:
 	_connect_confirm("YesButton", _go_main_menu)
 	_connect_confirm("NoButton", _hide_quit_confirm)
 
-	_setup_sfx()
 	_wire_sounds(self)
 
 
 # ------------------------------------------------------------------ Suara UI
-func _setup_sfx() -> void:
-	var bus := "SFX" if AudioServer.get_bus_index("SFX") != -1 else "Master"
-	var sounds := {"hover": hover_sound_path, "click": click_sound_path, "back": back_sound_path}
-	for kind in sounds:
-		var path := _resolve_sound(sounds[kind])
-		var stream: AudioStream = null
-		if path != "":
-			stream = load(path) as AudioStream
-		if stream == null:
-			push_warning("Suara UI tidak ditemukan: " + String(sounds[kind]))
-			continue
-		var player := AudioStreamPlayer.new()
-		player.stream = stream
-		player.bus = bus
-		player.volume_db = sfx_volume_db
-		add_child(player)
-		_sfx[kind] = player
-
-
-## Kalau path di Inspector kosong atau salah (misalnya file dipindah), cari file dengan
-## nama yang sama di seluruh project supaya suara tetap berbunyi.
-func _resolve_sound(path: String) -> String:
-	if path != "" and ResourceLoader.exists(path):
-		return path
-	if path == "":
-		return ""
-	return _find_file("res://", path.get_file())
-
-
-func _find_file(dir_path: String, filename: String) -> String:
-	var dir := DirAccess.open(dir_path)
-	if dir == null:
-		return ""
-	for sub in dir.get_directories():
-		if sub.begins_with(".") or sub == "addons":
-			continue
-		var found := _find_file(dir_path.path_join(sub), filename)
-		if found != "":
-			return found
-	for f in dir.get_files():
-		if f == filename or f == filename + ".import" or f == filename + ".remap":
-			return dir_path.path_join(filename)
-	return ""
-
-
-func _play_sfx(kind: String) -> void:
-	var player: AudioStreamPlayer = _sfx.get(kind)
-	if player:
-		player.play()
-
 
 ## Pasang suara hover/klik ke semua tombol di bawah node ini (aman dipanggil berulang).
 func _wire_sounds(root: Node) -> void:
@@ -214,12 +160,17 @@ func _wire_sounds(root: Node) -> void:
 
 func _on_button_hover(b: BaseButton) -> void:
 	if not b.disabled:
-		_play_sfx("hover")
+		AudioManager.play_stream(SFX_HOVER)
 
 
 func _on_button_pressed(b: BaseButton) -> void:
-	_play_sfx("back" if back_button_names.has(String(b.name)) else "click")
+	if back_button_names.has(String(b.name)):
+		AudioManager.play_stream(SFX_BACK)
+	else:
+		AudioManager.play_stream(SFX_CLICK)
 
+
+# ------------------------------------------------------------------ Input
 
 func _connect_button(button_name: String, action: Callable) -> void:
 	var path := "PausePanel/Root/PausePanel/Content/ButtonList/" + button_name
@@ -238,32 +189,36 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and not event.echo):
 		return
 	var key: int = event.keycode
+	
 	if key == KEY_ESCAPE:
 		if _save_confirm_visible():
-			_play_sfx("back")
+			AudioManager.play_stream(SFX_BACK)
 			_set_save_confirm(false)
 		elif _save and _save.visible:
-			_play_sfx("back")
+			AudioManager.play_stream(SFX_BACK)
 			_close_save()
 		elif _options and _options.visible:
-			_play_sfx("back")
+			AudioManager.play_stream(SFX_BACK)
 			_close_options()
 		elif _confirm and _confirm.visible:
-			_play_sfx("back")
+			AudioManager.play_stream(SFX_BACK)
 			_hide_quit_confirm()
 		elif _inv and _inv.visible:
-			_play_sfx("back")
+			AudioManager.play_stream(SFX_BACK)
 			_toggle_inventory()
 		else:
 			toggle_pause()
 		return
+		
 	if get_tree().paused:
 		return
+		
 	if _choices_open:
 		var c := [KEY_1, KEY_2, KEY_3, KEY_4].find(key)
 		if c != -1 and c < _pending_choices.size():
 			_on_choice_pressed(c)
 		return
+		
 	match key:
 		KEY_J:
 			_toggle(_quest)
@@ -607,7 +562,7 @@ func _update_mp() -> void:
 ## bicara: "npc" memakai npc_talk_box, "mc" memakai mc_talk_box.
 ## Opsional per baris:
 ##   "choices": [{"text": "Yes", "goto": 3}, ...]  -> tampilkan pilihan jawaban
-##   "end": true                                    -> percakapan selesai di baris ini
+##   "end": true                                   -> percakapan selesai di baris ini
 ## Contoh:
 ##   var ui = get_node("/root/Main/GameUI")
 ##   ui.start_conversation([

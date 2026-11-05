@@ -15,15 +15,21 @@ run/main_scene="uid://dkgaos83iuabf"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bry2rh45dpx8u"
+
 [autoload]
 
 PlayerData="*uid://c8o3o3aw3nean"
 PlayerHealth="*uid://cxf0hq4ot5f7n"
 QuestManager="*uid://cvrk4tnhmjj67"
 PlayerSettings="*uid://bpur4wom5gxiv"
+AudioManager="*uid://2mld1m1ebnxo"
 
 [display]
 
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

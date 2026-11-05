@@ -29,6 +29,11 @@ signal new_journey_started(slot: int)
 ## false = New Journey langsung mulai. Koder: ganti dengan pengecekan save asli di _are_slots_full().
 @export var preview_slots_full: bool = true
 
+# --- PRELOADED AUDIO ---
+const SFX_HOVER = preload("res://assets/audio/sfx/hover_sound.wav")
+const SFX_CLICK = preload("res://assets/audio/sfx/click_sound.wav")
+const SFX_BACK = preload("res://assets/audio/sfx/back_click.wav")
+
 var _screens: Array[Control] = []
 var _buttons: Array[Control] = []
 var _fade_tween: Tween
@@ -37,6 +42,9 @@ var _overwrite_slot := 0
 
 
 func _ready() -> void:
+	# Mulai musik Main Menu secara otomatis lewat AudioManager
+	AudioManager.play("music/main_menu/theme")
+
 	# New Journey ditangani terpisah (bisa langsung mulai, atau membuka panel pilih slot).
 	var pairs := [
 		[load_data_button, load_data_screen],
@@ -85,6 +93,9 @@ func _ready() -> void:
 			yes_btn.pressed.connect(_on_exit_pressed)
 		else:
 			push_warning("YesButton tidak ditemukan di ExitScreen")
+			
+	# Pasang suara ke seluruh tombol di Main Menu ini
+	_wire_screen_sounds(self)
 
 
 func _set_menu_interactive(state: bool) -> void:
@@ -196,8 +207,7 @@ func _connect_new_journey_screen(screen: Control) -> void:
 		yes.pressed.connect(_on_overwrite_confirmed)
 	if no:
 		no.pressed.connect(_set_overwrite_confirm.bind(false))
-	_wire_screen_sounds(screen)
-
+		
 
 func _on_overwrite_slot_pressed(index: int) -> void:
 	_overwrite_slot = index
@@ -223,6 +233,10 @@ func _on_overwrite_confirmed() -> void:
 func _start_new_journey(slot: int = 0) -> void:
 	new_journey_started.emit(slot)
 	_set_menu_interactive(false)
+	
+	# Hentikan musik saat mulai game baru
+	AudioManager.stop_music()
+	
 	if _fade_tween and _fade_tween.is_valid():
 		_fade_tween.kill()
 
@@ -243,24 +257,33 @@ func _start_new_journey(slot: int = 0) -> void:
 		get_tree().change_scene_to_file(new_journey_scene)
 	)
 
+# ------------------------------------------------------------------ Audio UI
 
-## Suara hover / klik / back untuk tombol di panel baru, memakai node HoverSound,
-## ClickSound, dan BackSound yang sudah ada di scene main menu.
-func _wire_screen_sounds(screen: Control) -> void:
-	var root := get_parent()
-	if root == null:
-		return
-	var hover := root.get_node_or_null("HoverSound") as AudioStreamPlayer
-	var click := root.get_node_or_null("ClickSound") as AudioStreamPlayer
-	var back := root.get_node_or_null("BackSound") as AudioStreamPlayer
+## Otomatis memasang fungsi suara ke semua BaseButton di dalam Control
+func _wire_screen_sounds(screen: Node) -> void:
 	for node in screen.find_children("*", "BaseButton", true, false):
 		var button := node as BaseButton
-		if hover:
-			button.mouse_entered.connect(hover.play)
-		var player := back if (button.name == &"BackButton" or button.name == &"NoButton") else click
-		if player:
-			button.pressed.connect(player.play)
+		if button.has_meta("sfx_wired"):
+			continue
+			
+		button.set_meta("sfx_wired", true)
+		button.mouse_entered.connect(_on_button_hover.bind(button))
+		button.pressed.connect(_on_button_pressed.bind(button))
 
+
+func _on_button_hover(b: BaseButton) -> void:
+	if not b.disabled:
+		AudioManager.play_stream(SFX_HOVER)
+
+
+func _on_button_pressed(b: BaseButton) -> void:
+	if b.name == &"BackButton" or b.name == &"NoButton":
+		AudioManager.play_stream(SFX_BACK)
+	else:
+		AudioManager.play_stream(SFX_CLICK)
+
+
+# ------------------------------------------------------------------ Utils
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

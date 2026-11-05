@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bkumqcm3xp00j" path="res://assets/images/player/idle.png" id="5_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dx8sar6xpi8v0" path="res://assets/images/player/walk.png" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dlfhckhhghvv4" path="res://assets/images/player/attack_sheet.png" id="6_ur7pv"]
-[ext_resource type="AudioStream" uid="uid://hbasqsg2bn3n" path="res://assets/audio/player/attack/sword attack.mp3" id="9_ur7pv"]
+[ext_resource type="AudioStream" uid="uid://fouqq22073yj" path="res://assets/audio/sfx/player/sword_attack.wav" id="9_ur7pv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
 size = Vector2(14, 29)
