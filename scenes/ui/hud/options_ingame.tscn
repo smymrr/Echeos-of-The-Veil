@@ -1,28 +1,7 @@
 [gd_scene format=3 uid="uid://b55l2ib55hsg4"]
 
-[sub_resource type="GDScript" id="GDScript_opt"]
-script/source = "extends CanvasLayer
-# Tab kiri + angka persen slider (visual saja). Aturan nama:
-#   tombol: AudioTab / DisplayTab / GameplayTab  <->  halaman: AudioPage / DisplayPage / GameplayPage
-#   slider: XSlider  <->  angka: XValue
-
-func _ready() -> void:
-	var tabs := find_children(\"*Tab\", \"Button\", true, false)
-	var pages := $Root/Panel/Content/Body/Pages.get_children()
-	for i in tabs.size():
-		tabs[i].pressed.connect(func(): _show_page(pages, i))
-	_show_page(pages, 0)
-	for s in find_children(\"*Slider\", \"HSlider\", true, false):
-		var lbl := find_child(s.name.replace(\"Slider\", \"Value\"), true, false) as Label
-		if lbl:
-			lbl.text = \"%d%%\" % int(s.value)
-			s.value_changed.connect(func(v: float): lbl.text = \"%d%%\" % int(v))
-
-
-func _show_page(pages: Array, index: int) -> void:
-	for i in pages.size():
-		pages[i].visible = (i == index)
-"
+[ext_resource type="Script" uid="uid://cqo05kq1s1ih5" path="res://scripts/ui/settings/ingame_audio.gd" id="1_o7le5"]
+[ext_resource type="Script" uid="uid://cwvk7djkm2t0n" path="res://scripts/ui/settings/ingame_display.gd" id="2_l44x7"]
 
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
@@ -250,7 +229,6 @@ border_color = Color(0.48, 0.35, 0.82, 1)
 process_mode = 3
 layer = 11
 visible = false
-script = SubResource("GDScript_opt")
 
 [node name="Root" type="Control" parent="." unique_id=1115652594]
 layout_mode = 3
@@ -372,6 +350,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AudioPage" type="ScrollContainer" parent="Root/Panel/Content/Body/Pages" unique_id=1331353598]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -379,6 +358,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
+script = ExtResource("1_o7le5")
 
 [node name="Margin" type="MarginContainer" parent="Root/Panel/Content/Body/Pages/AudioPage" unique_id=886798790]
 layout_mode = 2
@@ -523,7 +503,6 @@ layout_mode = 2
 value = 80.0
 
 [node name="DisplayPage" type="ScrollContainer" parent="Root/Panel/Content/Body/Pages" unique_id=2111870049]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -531,6 +510,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
+script = ExtResource("2_l44x7")
 
 [node name="Margin" type="MarginContainer" parent="Root/Panel/Content/Body/Pages/DisplayPage" unique_id=382900977]
 layout_mode = 2
@@ -644,7 +624,8 @@ horizontal_alignment = 2
 [node name="BrightnessSlider" type="HSlider" parent="Root/Panel/Content/Body/Pages/DisplayPage/Margin/List/BrightnessRow" unique_id=56993680]
 custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
-value = 70.0
+step = 25.0
+value = 75.0
 
 [node name="PixelScaleRow" type="VBoxContainer" parent="Root/Panel/Content/Body/Pages/DisplayPage/Margin/List" unique_id=1696466050]
 visible = false

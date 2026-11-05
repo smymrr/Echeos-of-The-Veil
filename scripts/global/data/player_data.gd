@@ -42,7 +42,7 @@ var equipped_armor: Dictionary = {}
 func _ready() -> void:
 	current_health = get_max_health()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (player != null):
 		last_position = player.position
 
