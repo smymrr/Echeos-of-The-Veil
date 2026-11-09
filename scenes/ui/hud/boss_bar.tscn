@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b74wa30lciuh8"]
 
+[ext_resource type="Script" uid="uid://8oh5myutfp5t" path="res://scripts/ui/hud/boss/boss_bar.gd" id="1_d1ib5"]
+
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
 [sub_resource type="StyleBoxFlat" id="btn_h"]
@@ -103,6 +105,7 @@ bg_color = Color(0.96, 0.42, 0.14, 1)
 
 [node name="BossBar" type="CanvasLayer" unique_id=1260107350 groups=["ui_boss"]]
 layer = 6
+script = ExtResource("1_d1ib5")
 
 [node name="Root" type="Control" parent="." unique_id=1381585868]
 layout_mode = 3
