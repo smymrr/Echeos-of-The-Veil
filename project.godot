@@ -31,6 +31,7 @@ Brightness="*uid://dryjg8o5sw5j1"
 
 [display]
 
+window/size/mode=3
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

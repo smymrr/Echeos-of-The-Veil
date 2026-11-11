@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_f3omy"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_6ik5c"]
-[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="4_ahadg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
 texture = ExtResource("1_f3omy")
@@ -6865,11 +6864,6 @@ texture = ExtResource("1_f3omy")
 [sub_resource type="TileSet" id="TileSet_6ik5c"]
 sources/0 = SubResource("TileSetAtlasSource_f3omy")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahadg"]
-shader = ExtResource("4_ahadg")
-shader_parameter/speed = Vector2(0.03, 0.01)
-shader_parameter/fog_color = Color(0.89411765, 0.6627451, 0.9019608, 0.3647059)
-
 [node name="Node2D" type="Node2D" unique_id=899085570]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=650418081]
@@ -6921,11 +6915,3 @@ tile_set = SubResource("TileSet_aees8")
 modulate = Color(0.9104722, 0.78821933, 0.9607373, 1)
 tile_map_data = PackedByteArray("AAAjABQAAAApABAAAAAjABUAAAApABEAAAAjABYAAAApABIAAAAjABcAAAApABMAAAAjABgAAAApABQAAAAjABkAAAApABUAAAAkABQAAAAqABAAAAAkABUAAAAqABEAAAAkABYAAAAqABIAAAAkABcAAAAqABMAAAAkABgAAAAqABQAAAAkABkAAAAqABUAAAAlABQAAAAoABAAAAAlABUAAAAoABEAAAAlABYAAAAoABIAAAAlABcAAAAoABMAAAAlABgAAAAoABQAAAAlABkAAAAoABUAAAAmABQAAAApABAAAAAmABUAAAApABEAAAAmABYAAAApABIAAAAmABcAAAApABMAAAAmABgAAAApABQAAAAmABkAAAApABUAAAAnABQAAAAqABAAAAAnABUAAAAqABEAAAAnABYAAAAqABIAAAAnABcAAAAqABMAAAAnABgAAAAqABQAAAAnABkAAAAqABUAAAAoABQAAAArABAAAAAoABUAAAArABEAAAAoABYAAAArABIAAAAoABcAAAArABMAAAAoABgAAAArABQAAAAoABkAAAArABUAAAAhABQAAAAnABAAAAAhABUAAAAnABEAAAAhABYAAAAnABIAAAAhABcAAAAnABMAAAAhABgAAAAnABQAAAAhABkAAAAnABUAAAAiABQAAAAoABAAAAAiABUAAAAoABEAAAAiABYAAAAoABIAAAAiABcAAAAoABMAAAAiABgAAAAoABQAAAAiABkAAAAoABUAAAAgABQAAAAmABAAAAAgABUAAAAmABEAAAAgABYAAAAmABIAAAAgABcAAAAmABMAAAAgABgAAAAmABQAAAAgABkAAAAmABUAAAA=")
 tile_set = SubResource("TileSet_6ik5c")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1359459713]
-z_index = 10
-material = SubResource("ShaderMaterial_ahadg")
-offset_left = 3.0
-offset_top = 10.0
-offset_right = 1143.0
-offset_bottom = 644.0

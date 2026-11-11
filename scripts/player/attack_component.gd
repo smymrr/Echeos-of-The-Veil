@@ -66,6 +66,9 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body in _already_hit or can_attack:
 		return
 	
+	if not body.is_in_group("enemy"):
+		return
+	
 	_already_hit.append(body)
 	body.take_damage(PlayerData.get_attack(), player.position)
 	print("Dealt ", PlayerData.get_attack(), " Damage")

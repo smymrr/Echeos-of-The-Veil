@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_aees8"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_rnkuw"]
-[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="4_gx6sy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
 texture = ExtResource("1_aees8")
@@ -5843,11 +5842,6 @@ texture = ExtResource("2_rnkuw")
 [sub_resource type="TileSet" id="TileSet_50obt"]
 sources/0 = SubResource("TileSetAtlasSource_jx6rg")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_16g40"]
-shader = ExtResource("4_gx6sy")
-shader_parameter/speed = Vector2(0.03, 0.01)
-shader_parameter/fog_color = Color(0.89411765, 0.6627451, 0.9019608, 0.3647059)
-
 [node name="Node2D" type="Node2D" unique_id=899085570]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=650418081]
@@ -5894,38 +5888,3 @@ tile_set = SubResource("TileSet_aees8")
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 tile_map_data = PackedByteArray("AAAmAAUAAAAJAAcAAAAmAAYAAAAJAAgAAAAnAAYAAAAKAAgAAAALAAkAAAAJAAcAAAALAAoAAAAJAAgAAAAMAAoAAAAKAAgAAABCACQAAAAJAAcAAABCACUAAAAJAAgAAABDACUAAAAKAAgAAAAgABUAAAANAAgAAAA=")
 tile_set = SubResource("TileSet_50obt")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2080868411]
-z_index = 10
-material = SubResource("ShaderMaterial_16g40")
-offset_left = 3.0
-offset_top = 10.0
-offset_right = 1143.0
-offset_bottom = 644.0
-
-[node name="SlimeSpawn2" type="Marker2D" parent="." unique_id=672660734]
-position = Vector2(827, 509)
-
-[node name="SlimeSpawn" type="Marker2D" parent="." unique_id=1237221987]
-position = Vector2(926, 305)
-
-[node name="SlimeSpawn3" type="Marker2D" parent="." unique_id=2037007046]
-position = Vector2(358, 473)
-
-[node name="SlimeSpawn4" type="Marker2D" parent="." unique_id=866306238]
-position = Vector2(319, 304)
-
-[node name="SlimeSpawn5" type="Marker2D" parent="." unique_id=1661232808]
-position = Vector2(491, 227)
-
-[node name="SlimeSpawn6" type="Marker2D" parent="." unique_id=284643112]
-position = Vector2(738, 234)
-
-[node name="SlimeSpawn7" type="Marker2D" parent="." unique_id=787786135]
-position = Vector2(585, 557)
-
-[node name="SlimeSpawn8" type="Marker2D" parent="." unique_id=2074497606]
-position = Vector2(657, 461)
-
-[node name="SpawnMarker2D" type="Marker2D" parent="." unique_id=1950569344]
-position = Vector2(1109, 347)
