@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://jtcuc6dvdcdj"]
 
 [ext_resource type="Script" uid="uid://73am07gkhk67" path="res://scripts/ui/hud/hud/hud.gd" id="1_bngdn"]
+[ext_resource type="Script" uid="uid://b7sxfb0hwhy3p" path="res://scripts/ui/hud/health_display.gd" id="2_qao66"]
 
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
@@ -315,6 +316,7 @@ text = "ASHEN KEEP F3"
 horizontal_alignment = 2
 
 [node name="HotbarPanel" type="PanelContainer" parent="Root" unique_id=438662250]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -783,7 +785,7 @@ text = "LVL"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.72, 0.2, 1)
 theme_override_font_sizes/font_size = 11
-text = "23"
+text = "1"
 
 [node name="LocationLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow" unique_id=1222964488]
 layout_mode = 2
@@ -794,6 +796,7 @@ text = "ASHEN KEEP"
 [node name="HpRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=586404182]
 layout_mode = 2
 theme_override_constants/separation = 4
+script = ExtResource("2_qao66")
 
 [node name="HpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow" unique_id=1924229967]
 custom_minimum_size = Vector2(16, 0)
@@ -846,7 +849,7 @@ custom_minimum_size = Vector2(54, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
 theme_override_font_sizes/font_size = 8
-text = "264/300"
+text = "150/150"
 horizontal_alignment = 2
 
 [node name="XpRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=2135245708]
@@ -875,5 +878,5 @@ custom_minimum_size = Vector2(54, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
 theme_override_font_sizes/font_size = 8
-text = "6420/8000"
+text = "0/100"
 horizontal_alignment = 2

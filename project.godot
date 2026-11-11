@@ -28,6 +28,7 @@ PlayerSettings="*uid://bpur4wom5gxiv"
 AudioManager="*uid://2mld1m1ebnxo"
 FpsDisplay="*uid://tuv4qj272jf6"
 Brightness="*uid://dryjg8o5sw5j1"
+MapRegistry="*uid://bwru8ei15ntd2"
 
 [display]
 
