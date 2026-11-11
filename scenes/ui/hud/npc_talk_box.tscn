@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://7va8lwvlo7op"]
 
+[ext_resource type="Script" uid="uid://rbyfmpuu58bo" path="res://scripts/ui/hud/dialogue/talk_box.gd" id="1_ao6ro"]
+
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
 [sub_resource type="StyleBoxFlat" id="btn_h"]
@@ -109,6 +111,7 @@ border_color = Color(0.48, 0.35, 0.82, 1)
 [node name="NpcTalkBox" type="CanvasLayer" unique_id=1024896080 groups=["ui_npc_talk"]]
 layer = 7
 visible = false
+script = ExtResource("1_ao6ro")
 
 [node name="Root" type="Control" parent="." unique_id=1173644265]
 layout_mode = 3

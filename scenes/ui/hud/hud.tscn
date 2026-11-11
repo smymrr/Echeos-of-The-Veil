@@ -1,17 +1,6 @@
 [gd_scene format=3 uid="uid://jtcuc6dvdcdj"]
 
-[sub_resource type="GDScript" id="GDScript_min"]
-script/source = "extends CanvasLayer
-# Tombol minimize: menyembunyikan isi panel (node \"Body\") dan menyisakan judulnya.
-# Pola node: Content > HeaderRow > MinimizeButton, dan Content > Body
-
-func _ready() -> void:
-	for b in find_children(\"MinimizeButton\", \"Button\", true, false):
-		var body: Control = b.get_parent().get_parent().get_node(\"Body\")
-		b.toggled.connect(func(on: bool) -> void:
-			body.visible = not on
-			b.text = \"+\" if on else \"-\")
-"
+[ext_resource type="Script" uid="uid://73am07gkhk67" path="res://scripts/ui/hud/hud/hud.gd" id="1_bngdn"]
 
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
@@ -251,7 +240,7 @@ bg_color = Color(0.16, 0.45, 0.86, 1)
 
 [node name="HUD" type="CanvasLayer" unique_id=579077007]
 layer = 5
-script = SubResource("GDScript_min")
+script = ExtResource("1_bngdn")
 
 [node name="Root" type="Control" parent="." unique_id=545440360]
 layout_mode = 3
