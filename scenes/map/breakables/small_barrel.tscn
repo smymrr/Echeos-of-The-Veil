@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cxhayopg28r2"]
 
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="1_5scql"]
+[ext_resource type="Script" uid="uid://ckrwonawmckyp" path="res://scenes/map/breakables/small_barrel.gd" id="1_kkn2c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkn2c"]
 texture = ExtResource("1_5scql")
@@ -135,10 +136,15 @@ sources/0 = SubResource("TileSetAtlasSource_kkn2c")
 radius = 6.0
 height = 18.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_le7w0"]
+radius = 6.0
+height = 17.0
+
 [node name="SmallBarrel" type="StaticBody2D" unique_id=1504985019 groups=["breakable"]]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 collision_layer = 8
 collision_mask = 3
+script = ExtResource("1_kkn2c")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1938203567]
 tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 10, 0, 8, 0, 0, 0)
@@ -147,3 +153,10 @@ tile_set = SubResource("TileSet_8wdka")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1531809328]
 position = Vector2(-8, -8)
 shape = SubResource("CapsuleShape2D_81paw")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=854543939]
+collision_layer = 9
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=577229819]
+position = Vector2(-8, -8)
+shape = SubResource("CapsuleShape2D_le7w0")

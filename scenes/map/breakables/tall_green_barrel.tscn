@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cnmkkv6mn313v"]
 
+[ext_resource type="Script" uid="uid://6ausi2lb0xin" path="res://scenes/map/breakables/tall_green_barrel.gd" id="1_ond7r"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="1_u5lfd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q784a"]
@@ -135,10 +136,15 @@ sources/0 = SubResource("TileSetAtlasSource_q784a")
 radius = 8.0
 height = 22.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ond7r"]
+radius = 8.0
+height = 22.0
+
 [node name="TallGreenBarrel" type="StaticBody2D" unique_id=623896714 groups=["breakable"]]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 collision_layer = 8
 collision_mask = 3
+script = ExtResource("1_ond7r")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=452498086]
 tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 9, 0, 11, 0, 0, 0, 255, 255, 254, 255, 0, 0, 9, 0, 10, 0, 0, 0)
@@ -147,3 +153,10 @@ tile_set = SubResource("TileSet_p5clc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=740387960]
 position = Vector2(-8, -10)
 shape = SubResource("CapsuleShape2D_w1ju8")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1816602195]
+collision_layer = 9
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=934856137]
+position = Vector2(-8, -10)
+shape = SubResource("CapsuleShape2D_ond7r")

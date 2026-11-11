@@ -840,8 +840,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/fill = SubResource("fill_mp")
-max_value = 300.0
-value = 264.0
+max_value = 150.0
+value = 150.0
 show_percentage = false
 
 [node name="MpValue" type="Label" parent="Root/CharacterPanel/Content/Body/MpRow" unique_id=2037576603]
@@ -869,8 +869,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/fill = SubResource("fill_xp")
-max_value = 8000.0
-value = 6420.0
 show_percentage = false
 
 [node name="XpValue" type="Label" parent="Root/CharacterPanel/Content/Body/XpRow" unique_id=377365296]

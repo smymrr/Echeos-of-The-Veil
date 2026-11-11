@@ -13,6 +13,7 @@ func save_setting(section: String, key: String, value: Variant) -> void:
 
 func load_settings() -> void:
 	# Default
+	get_window().unresizable = true
 	if config.load(SAVE_PATH) != OK:
 		return 
 
@@ -41,6 +42,18 @@ func _apply_setting(section: String, key: String, value: Variant) -> void:
 			DisplayServer.window_set_vsync_mode(mode)
 		elif key == "fps":
 			FpsDisplay.visible = value
+		elif key == "resolution":
+			if get_tree().root.get_window().mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
+				return
+			
+			if value == 0: # 1152x648
+				DisplayServer.window_set_size(Vector2i(1152, 648))
+			elif value == 1: # 1280x720
+				DisplayServer.window_set_size(Vector2i(1280, 720))
+			elif value == 2: # 1920x1080
+				DisplayServer.window_set_size(Vector2i(1920, 1080))
+			
+			center_window()
 		elif key == "brightness":
 			if value == 0:
 				Brightness.environment.adjustment_brightness = 0.75
@@ -56,3 +69,16 @@ func _apply_setting(section: String, key: String, value: Variant) -> void:
 # UI Helper
 func get_setting(section: String, key: String, default_val: Variant) -> Variant:
 	return config.get_value(section, key, default_val)
+
+func center_window() -> void:
+	# Get the monitor the game window is currently on (supports multi-monitor setups)
+	var current_screen: int = DisplayServer.window_get_current_screen()
+	var screen_pos: Vector2i = DisplayServer.screen_get_position(current_screen)
+	var screen_size: Vector2i = DisplayServer.screen_get_size(current_screen)
+	
+	# Use window_get_size_with_decorations() so the title bar doesn't push the window slightly low
+	var window_size: Vector2i = DisplayServer.window_get_size_with_decorations()
+	
+	# Calculate and apply the centered position
+	var centered_pos: Vector2i = screen_pos + (screen_size - window_size) / 2
+	DisplayServer.window_set_position(centered_pos)
