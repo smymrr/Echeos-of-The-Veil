@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="1_75yvm"]
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="2_hw52r"]
-[ext_resource type="Texture2D" uid="uid://dagydwdlc1c11" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/Objects.png" id="3_cxiwj"]
-[ext_resource type="Texture2D" uid="uid://b7hil65byfh4l" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/Objects_animated2.png" id="4_7ih38"]
-[ext_resource type="Texture2D" uid="uid://csbcg5bdurdda" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/Objects_animated3.png" id="5_p5xdb"]
-[ext_resource type="Texture2D" uid="uid://d3y81jsknlpg3" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/Objects_animated.png" id="6_0tocw"]
-[ext_resource type="Texture2D" uid="uid://dlrp0ynkw2301" path="res://assets/map/tileset_tambahan/tambahan/tiled_files/doors_lever_chest_animation.png" id="7_b8f14"]
-[ext_resource type="Texture2D" uid="uid://bjxl56kfk8ww2" path="res://assets/map/tileset_tambahan/tambahan/tiled_files/Objects.png" id="8_4c8w8"]
+[ext_resource type="Texture2D" uid="uid://dagydwdlc1c11" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects.png" id="3_cxiwj"]
+[ext_resource type="Texture2D" uid="uid://b7hil65byfh4l" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects_animated2.png" id="4_7ih38"]
+[ext_resource type="Texture2D" uid="uid://csbcg5bdurdda" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects_animated3.png" id="5_p5xdb"]
+[ext_resource type="Texture2D" uid="uid://d3y81jsknlpg3" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects_animated.png" id="6_0tocw"]
+[ext_resource type="Texture2D" uid="uid://dlrp0ynkw2301" path="res://assets/map/tileset_tambahan/tambahan/Tiled_files/doors_lever_chest_animation.png" id="7_b8f14"]
+[ext_resource type="Texture2D" uid="uid://bjxl56kfk8ww2" path="res://assets/map/tileset_tambahan/tambahan/Tiled_files/objects.png" id="8_4c8w8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4egua"]
 texture = ExtResource("1_75yvm")

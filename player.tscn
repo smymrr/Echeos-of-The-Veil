@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bwj8fslg15w0l"]
+
+[ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/player.tscn" id="1_4flbx"]
+
+[node name="Player" unique_id=1987352962 instance=ExtResource("1_4flbx")]
+collision_mask = 6
+
+[node name="SwingSword" parent="." index="8" unique_id=273571398]
+position = Vector2(6, -6)

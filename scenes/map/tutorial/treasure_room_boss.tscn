@@ -2,7 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://ca5af5ebkxd6t" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/details.png" id="1_oo3tn"]
 [ext_resource type="Texture2D" uid="uid://dagydwdlc1c11" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects.png" id="2_usfp3"]
+<<<<<<< Updated upstream:scenes/map/tutorial/treasure_room_boss.tscn
 [ext_resource type="Texture2D" uid="uid://bjxl56kfk8ww2" path="res://assets/map/tileset_tambahan/tambahan/tiled_files/objects.png" id="3_nir3a"]
+=======
+[ext_resource type="Texture2D" uid="uid://bjxl56kfk8ww2" path="res://assets/map/tileset_tambahan/tambahan/Tiled_files/objects.png" id="3_nir3a"]
+>>>>>>> Stashed changes:scenes/treasure_room_boss.tscn
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="4_xq847"]
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="5_fmjn4"]
 
