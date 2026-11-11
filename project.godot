@@ -29,6 +29,7 @@ AudioManager="*uid://2mld1m1ebnxo"
 FpsDisplay="*uid://tuv4qj272jf6"
 Brightness="*uid://dryjg8o5sw5j1"
 MapRegistry="*uid://bwru8ei15ntd2"
+EventBus="*uid://c6fe6i0qnujlv"
 
 [display]
 
@@ -44,6 +45,10 @@ project/assembly_name="Echeos of the Veil"
 [global_group]
 
 player=""
+enemy=""
+gold_box=""
+item_box=""
+breakable=""
 
 [input]
 
