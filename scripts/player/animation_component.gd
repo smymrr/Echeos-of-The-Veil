@@ -7,10 +7,8 @@ func _ready() -> void:
 	sprite.animation_finished.connect(_on_animation_finish)
 
 func _on_animation_finish() -> void:
-	print('finish anim: ' + sprite.animation)
 	if "attack" in sprite.animation:
 		sprite.flip_h = false
-		print("finish attack")
 
 func play_animation(prefix: String, direction: Vector2) -> void:
 	var target_anim: String

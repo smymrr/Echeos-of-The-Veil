@@ -9,7 +9,7 @@ var player: CharacterBody2D
 var base_max_health: int = 100
 var base_attack: int = 10
 var base_defense: int = 5
-var base_speed: float = 300.0
+var base_speed: float = 200.0
 
 var current_health: int
 

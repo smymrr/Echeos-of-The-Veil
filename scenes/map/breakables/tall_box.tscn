@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cegubd2o0t5mq"]
 
+[ext_resource type="Script" uid="uid://jtaniig6q74q" path="res://scripts/environment/tall_box.gd" id="1_4lqh0"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="1_s0kcq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4lqh0"]
@@ -132,17 +133,28 @@ texture = ExtResource("1_s0kcq")
 sources/0 = SubResource("TileSetAtlasSource_4lqh0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0kcq"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a36"]
 size = Vector2(16, 25)
 
-[node name="TallBox" type="StaticBody2D" unique_id=1044191107]
+[node name="TallBox" type="StaticBody2D" unique_id=1044191107 groups=["breakable"]]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 collision_layer = 8
 collision_mask = 3
+script = ExtResource("1_4lqh0")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=174225964]
 tile_map_data = PackedByteArray(0, 0, 255, 255, 254, 255, 0, 0, 9, 0, 4, 0, 0, 0, 255, 255, 255, 255, 0, 0, 9, 0, 5, 0, 0, 0)
 tile_set = SubResource("TileSet_yeq4x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1683857623]
-position = Vector2(-8, -12.5)
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1683857623]
+position = Vector2(-8, -19)
 shape = SubResource("RectangleShape2D_s0kcq")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=850602653]
+collision_layer = 9
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=1983289114]
+position = Vector2(-8, -12.5)
+shape = SubResource("RectangleShape2D_f6a36")

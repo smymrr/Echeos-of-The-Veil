@@ -1,92 +1,75 @@
 extends CharacterBody2D
 
 @export var speed: float = 50.0
-@export var health: int = 100
-@export var roam_radius: float = 150.0 # Jarak maksimal musuh berkeliaran dari posisi asal
+@export var roam_radius: float = 150.0
 
 @export var attack_damage: int = 10
-@export var attack_windup: float = 0.4    # delay before the hit lands
+@export var attack_windup: float = 0.35
 @export var attack_cooldown: float = 1.5
-
 @export var lunge_distance: float = 24.0
+@export var knockback_decay: float = 15.0
 
-@onready var knockback_decay: float = 15.0
-@onready var sprite: AnimatedSprite2D = $"Sprite"
-@onready var hitbox: Area2D = $"Hitbox"
-@onready var line_of_sight: RayCast2D = get_node_or_null("LineOfSight2D")
+@export var separation_distance: float = 20.0
 
-var attack_tween: Tween
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var hitbox: Area2D = $Hitbox
 
-# Status (State) pergerakan musuhitemukan!")
-enum State { ROAMING, CHASING, RETURNING, ATTACKING, KNOCKBACK }
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent as HurtboxComponent
+@onready var vision_component: VisionComponent = $VisionComponent
+
+enum State { ROAMING, CHASING, RETURNING, ATTACKING, KNOCKBACK, DEAD }
 var current_state = State.ROAMING
 
 var knockback_velocity = Vector2.ZERO
-var player: Node2D = null
+var player_target: Node2D = null
 var home_position: Vector2
 var target_roam_pos: Vector2
 
 var can_attack: bool = true
 var attack_cancelled: bool = false
+var attack_tween: Tween
 
-var is_alive: bool = true
+var _excepted_body: PhysicsBody2D = null
+var _restore_pending := false
 
 func _ready() -> void:
-	# Simpan posisi awal musuh saat game pertama kali dijalankan
 	home_position = global_position
-	target_roam_pos = home_position
-	# Langsung mulai roaming begitu game dimuat
 	_set_new_roam_target()
-	if not line_of_sight:
-		print("ERROR: Node LineOfSight2D tidak ditemukan!")
+	
+	# Connect component signals
+	health_component.died.connect(_on_death)
+	hurtbox_component.took_hit.connect(_on_took_hit)
+	vision_component.target_spotted.connect(_on_target_spotted)
+	vision_component.target_lost.connect(_on_target_lost)
+	hitbox.body_entered.connect(_on_hitbox_body_entered)
 
 func _physics_process(delta: float) -> void:
-	if not is_alive:
+	_try_finish_restore()   # first line, before the early return
+	if current_state == State.DEAD or not can_attack:
+		return
+	
+	if current_state == State.DEAD or not can_attack:
 		return
 		
-	var target_position = Vector2.ZERO
+	var target_position = global_position
 	
-	# Update arah RayCast ke posisi player saat player terdeteksi dalam area
-	if is_instance_valid(player) and line_of_sight:
-		line_of_sight.target_position = line_of_sight.to_local(player.global_position)
-	
-	# Menentukan target berdasarkan status saat ini
 	match current_state:
 		State.ROAMING:
 			target_position = target_roam_pos
-			# Jika sudah sampai di titik acak, cari titik baru
 			if global_position.distance_to(target_roam_pos) < 5.0:
 				_set_new_roam_target()
 				
-			# Jika player masuk area DAN terlihat oleh RayCast, ubah state jadi CHASING
-			if is_instance_valid(player) and _is_player_visible():
-				current_state = State.CHASING
-				print("Musuh mulai MENGEJAR!")
-				
 		State.CHASING:
-			if is_instance_valid(player):
-				target_position = player.global_position
-				if can_attack and hitbox.overlaps_body(player):
-					current_state = State.ATTACKING
-				# Jika pandangan terhalang tembok / player tidak terlihat lagi
-				elif not _is_player_visible():
-					current_state = State.RETURNING
-					print("Player terhalang/hilang, musuh KEMBALI.")
+			if is_instance_valid(player_target):
+				target_position = player_target.global_position
 			else:
-				# Cadangan jika player hilang
-				player = null
 				current_state = State.RETURNING
 				
 		State.RETURNING:
 			target_position = home_position
-			# Jika melihat player kembali saat perjalanan pulang
-			if is_instance_valid(player) and _is_player_visible():
-				current_state = State.CHASING
-			# Jika sudah kembali dekat posisi asal, kembali roaming
-			elif global_position.distance_to(home_position) < 5.0:
-				global_position = home_position
+			if global_position.distance_to(home_position) < 5.0:
 				current_state = State.ROAMING
-				_set_new_roam_target()
 				
 		State.ATTACKING:
 			if can_attack:
@@ -96,87 +79,151 @@ func _physics_process(delta: float) -> void:
 		State.KNOCKBACK:
 			target_position = global_position
 	
-	# Melakukan pergerakan menuju target yang aktif
 	if not can_attack:
 		return
 	
+	# Movement application
 	var direction = (target_position - global_position).normalized()
 	var normal_velocity = direction * speed
 	
 	if current_state == State.KNOCKBACK:
 		normal_velocity = Vector2.ZERO
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta * 100)
-		# Kalau vector knockback sudah habis, lanjutkan roam/mengejar
 		if knockback_velocity.length_squared() < 100:
 			knockback_velocity = Vector2.ZERO
-			current_state = State.CHASING if (is_instance_valid(player) and _is_player_visible()) else State.ROAMING
-	
+			_evaluate_state_after_interruption()
+
 	velocity = normal_velocity + knockback_velocity
 	_process_animation("move")
-	
 	move_and_slide()
 
-func _is_player_visible() -> bool:
-	if not line_of_sight:
-		return false
-		
-	if line_of_sight.is_colliding():
-		var collider = line_of_sight.get_collider()
-		if collider:
-			if collider.name == "Player":
-				return true
-	return false
+
+func _ignore_collision_with(body: PhysicsBody2D) -> void:
+	_excepted_body = body
+	_restore_pending = false
+	add_collision_exception_with(body)
+	body.add_collision_exception_with(self)
+
+func _restore_collision() -> void:
+	_restore_pending = true   # real removal happens once they've separated
+
+func _try_finish_restore() -> void:
+	if not _restore_pending:
+		return
+	if not is_instance_valid(_excepted_body):
+		_excepted_body = null
+		_restore_pending = false
+		return
+	if global_position.distance_to(_excepted_body.global_position) > separation_distance:
+		remove_collision_exception_with(_excepted_body)
+		_excepted_body.remove_collision_exception_with(self)
+		_excepted_body = null
+		_restore_pending = false
+
+# --- COMPONENT SIGNAL HANDLERS ---
+
+func _on_took_hit(_damage: int, attacker_position: Vector2) -> void:
+	if current_state == State.DEAD: return
+	
+	_cancel_attack_tween()
+	attack_cancelled = true
+	can_attack = true
+	
+	var knockback_direction = (global_position - attacker_position).normalized()
+	knockback_velocity = knockback_direction * 300.0
+	current_state = State.KNOCKBACK
+
+func _on_death() -> void:
+	current_state = State.DEAD
+	set_collision_layer_value(2, false)
+	_cancel_attack_tween()
+	sprite.play("death")
+	QuestManager.report("kill", "slime")
+	set_collision_layer_value(3, false)
+	hitbox.set_deferred("monitoring", false)
+	hurtbox_component.set_deferred("monitorable", false)
+	
+	await sprite.animation_finished
+	await get_tree().create_timer(5.0).timeout
+	var fade = create_tween()
+	fade.tween_property(self, "modulate:a", 0.0, 1.0)
+	await fade.finished
+	queue_free()
+
+func _on_target_spotted(target: Node2D) -> void:
+	player_target = target
+	if current_state in [State.ROAMING, State.RETURNING]:
+		current_state = State.CHASING
+
+func _on_target_lost() -> void:
+	player_target = null
+	if current_state == State.CHASING:
+		current_state = State.RETURNING
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if current_state in [State.DEAD, State.KNOCKBACK]: return
+	if body == player_target:
+		current_state = State.ATTACKING
+
+# --- ATTACK LOGIC ---
 
 func _perform_attack() -> void:
 	can_attack = false
 	attack_cancelled = false
 	_process_animation("attack")
 	
-	if not await _wait_or_cancel(attack_windup):
-		return
-	
-	if not is_alive or current_state != State.ATTACKING or player == null:
+	if not await _wait_or_cancel(attack_windup): return
+	if current_state != State.ATTACKING or player_target == null:
 		can_attack = true
 		return
-	
-	# Lunge toward the player but stop short instead of going into their center
-	var start_position = position
-	var dir = (player.position - position).normalized()
-	var dist = min(lunge_distance, position.distance_to(player.position))
-	var lunge_target = position + dir * dist
+		
+	var start_position = global_position
+	var dir = (player_target.global_position - global_position).normalized()
+	var dist = min(lunge_distance, global_position.distance_to(player_target.global_position))
+	var lunge_target = global_position + dir * dist
 	
 	attack_tween = create_tween()
-	attack_tween.tween_property(self, "position", lunge_target, 0.2)\
-		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-		
-	attack_tween.tween_callback(_try_hit)  # damage lands at the end of the lunge
+	attack_tween.tween_callback(_ignore_collision_with.bind(player_target))
+	attack_tween.tween_property(self, "global_position", lunge_target, 0.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	attack_tween.tween_callback(_try_hit)
+	attack_tween.tween_property(self, "global_position", start_position, 0.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	attack_tween.tween_callback(_restore_collision)
 	
-	attack_tween.tween_property(self, "position", start_position, 0.2)\
-		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	
-	if not await _wait_or_cancel(attack_cooldown):
-		return
-	
+	if not await _wait_or_cancel(attack_cooldown): return
 	can_attack = true
-	
-	if not is_alive or current_state == State.KNOCKBACK:
-		return
-	
-	if player and hitbox.overlaps_body(player):
-		current_state = State.ATTACKING
-	elif player:
-		current_state = State.CHASING
-	else:
-		current_state = State.RETURNING
+	_evaluate_state_after_interruption()
 
 func _try_hit() -> void:
-	if is_alive and player and hitbox.overlaps_body(player):
-		PlayerHealth.take_damage(attack_damage, player)
+	if current_state == State.DEAD: return
+	if player_target and hitbox.overlaps_body(player_target):
+		# Ideally, check if player has a HurtboxComponent here instead of calling PlayerHealth directly
+		PlayerHealth.take_damage(attack_damage, player_target)
 
 func _cancel_attack_tween() -> void:
 	if attack_tween and attack_tween.is_valid():
 		attack_tween.kill()
 	attack_tween = null
+	_restore_collision()
+
+# --- UTILITIES ---
+
+func _set_new_roam_target() -> void:
+	var random_x = randf_range(-roam_radius, roam_radius)
+	var random_y = randf_range(-roam_radius, roam_radius)
+	target_roam_pos = home_position + Vector2(random_x, random_y)
+
+func _process_animation(anim_name: String) -> void:
+	if sprite.animation != anim_name:
+		sprite.play(anim_name)
+
+func _evaluate_state_after_interruption() -> void:
+	if current_state == State.DEAD: return
+	if player_target and hitbox.overlaps_body(player_target):
+		current_state = State.ATTACKING
+	elif is_instance_valid(player_target) and vision_component.has_sight():
+		current_state = State.CHASING
+	else:
+		current_state = State.RETURNING
 
 func _wait_or_cancel(duration: float) -> bool:
 	var elapsed: float = 0.0
@@ -185,93 +232,6 @@ func _wait_or_cancel(duration: float) -> bool:
 			can_attack = true
 			attack_cancelled = false
 			return false
-		
 		await get_tree().process_frame
 		elapsed += get_process_delta_time()
 	return not attack_cancelled
-
-func _flash_red() -> void:
-	var tween = create_tween()
-	var damage_color = Color("ff3f2bff")
-	modulate = damage_color
-	tween.tween_property(self, "modulate", Color.WHITE, 0.2)
-
-func take_damage(damage: int, attacker_position: Vector2) -> void:
-	if not is_alive:
-		return
-	
-	var force: float = 300.0
-	
-	health = max(0, health - damage)
-	_flash_red()
-	_cancel_attack_tween()
-	
-	if health <= 0:
-		_death()
-		return
-	
-	attack_cancelled = true
-	can_attack = true
-	
-	var knockback_direction = (position - attacker_position).normalized()
-	knockback_velocity = knockback_direction * force
-	current_state = State.KNOCKBACK
-
-func _animation_finished() -> void:
-	if sprite.animation == "death":
-		await get_tree().create_timer(5.0).timeout
-		
-		var tween = create_tween()
-		tween.tween_property(self, "modulate", Color("ffffff00"), 1)
-		
-		await tween.finished
-		
-		queue_free()
-
-func _death() -> void:
-	_cancel_attack_tween()
-	
-	sprite.play("death")
-	is_alive = false
-	QuestManager.report("kill", "slime")
-	
-	z_index = 0
-	set_collision_layer_value(3, false)
-	
-	sprite.animation_finished.connect(_animation_finished)
-
-func _set_new_roam_target() -> void:
-	# Menentukan titik acak di sekitar home_position berdasarkan roam_radius
-	var random_x = randf_range(-roam_radius, roam_radius)
-	var random_y = randf_range(-roam_radius, roam_radius)
-	target_roam_pos = home_position + Vector2(random_x, random_y)
-
-func _process_animation(prefix: String):
-	if prefix == "attack":
-		sprite.play(prefix)
-	elif prefix == "move":
-		sprite.play(prefix)
-
-# --- SINYAL DETEKSI AREA ---
-
-func _on_sight_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") or body.name == "Player":
-		player = body
-
-func _on_sight_body_exited(body: Node2D) -> void:
-	if body == player:
-		player = null
-		current_state = State.RETURNING
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	_on_sight_body_entered(body)
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	_on_sight_body_exited(body)
-
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if not is_alive or current_state == State.KNOCKBACK:
-		return
-	
-	if body == player:
-		current_state = State.ATTACKING

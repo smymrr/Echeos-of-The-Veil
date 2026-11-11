@@ -33,7 +33,7 @@ func process_movement() -> void:
 	if not movement_component.is_dashing:
 		velocity = movement_component.get_velocity(input_direction)
 	
-	if attack_component.can_attack:
+	if not attack_component.is_attacking:
 		movement_component.process_animation(last_facing_direction)
 	
 	movement_component.process_dash(last_facing_direction) # Dash

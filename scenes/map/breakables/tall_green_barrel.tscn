@@ -135,7 +135,7 @@ sources/0 = SubResource("TileSetAtlasSource_q784a")
 radius = 8.0
 height = 22.0
 
-[node name="TallGreenBarrel" type="StaticBody2D" unique_id=623896714]
+[node name="TallGreenBarrel" type="StaticBody2D" unique_id=623896714 groups=["breakable"]]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 collision_layer = 8
 collision_mask = 3

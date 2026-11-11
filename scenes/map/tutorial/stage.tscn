@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dqxa05r1y2kx" path="res://scenes/map/breakables/tall_barrel.tscn" id="6_jsapi"]
 [ext_resource type="PackedScene" uid="uid://77v6uyvvch4f" path="res://scenes/map/breakables/small_green_barrel.tscn" id="7_p86ai"]
 [ext_resource type="PackedScene" uid="uid://cnmkkv6mn313v" path="res://scenes/map/breakables/tall_green_barrel.tscn" id="8_fe1lw"]
+[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="9_jsapi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
 texture = ExtResource("1_aees8")
@@ -5461,6 +5462,11 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_1edn8")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p86ai"]
+shader = ExtResource("9_jsapi")
+shader_parameter/speed = Vector2(0.03, 0.01)
+shader_parameter/fog_color = Color(0.89411765, 0.6627451, 0.9019608, 0.3647059)
+
 [node name="Stage2" type="Node2D" unique_id=899085570]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=650418081]
@@ -5752,3 +5758,11 @@ position = Vector2(176, 608)
 
 [node name="TallGreenBarrel3" parent="Breakables/TallGreenBarrels" unique_id=1898571373 instance=ExtResource("8_fe1lw")]
 position = Vector2(560, 32)
+
+[node name="Fog" type="ColorRect" parent="." unique_id=1969784150]
+z_index = 10
+material = SubResource("ShaderMaterial_p86ai")
+offset_left = -242.0
+offset_top = -162.0
+offset_right = 237.0
+offset_bottom = 144.0

@@ -2,6 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://cg4w4dcd4b4fn" path="res://assets/images/enemy/Slime_Green.png" id="1_371uh"]
 [ext_resource type="Script" uid="uid://c8ot8id2tvvn1" path="res://scripts/enemy/slime/slime.gd" id="1_p2gj0"]
+[ext_resource type="Script" uid="uid://ckb6nefl58xp" path="res://scripts/enemy/slime/health_component.gd" id="2_6fgkh"]
+[ext_resource type="Script" uid="uid://dya6foil1lqy1" path="res://scripts/enemy/slime/vision_component.gd" id="4_f8kap"]
+[ext_resource type="Script" uid="uid://bkk5e036y0bsx" path="res://scripts/enemy/slime/hurtbox_component.gd" id="5_6fgkh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r6hca"]
+radius = 150.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p2gj0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fur4c"]
 atlas = ExtResource("1_371uh")
@@ -192,33 +200,43 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r6hca"]
-radius = 150.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_p2gj0"]
-
-[node name="Slime" type="CharacterBody2D" unique_id=1521115122]
+[node name="Slime" type="CharacterBody2D" unique_id=1521115122 groups=["enemy"]]
 z_index = 1
 position = Vector2(23, 27)
-collision_layer = 4
-collision_mask = 6
+collision_layer = 2
+collision_mask = 14
 script = ExtResource("1_p2gj0")
 
-[node name="States" type="Node" parent="." unique_id=1442334748]
-
-[node name="Roam" type="Node" parent="States" unique_id=1815474446]
-
-[node name="Chase" type="Node" parent="States" unique_id=1661516401]
-
-[node name="Return" type="Node" parent="States" unique_id=635768161]
-
-[node name="Knockback" type="Node" parent="States" unique_id=1494471491]
-
 [node name="HealthComponent" type="Node" parent="." unique_id=752776740]
+script = ExtResource("2_6fgkh")
 
-[node name="HitboxComponent" type="Node" parent="." unique_id=263399139]
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=307801144 node_paths=PackedStringArray("health_component", "sprite")]
+collision_layer = 2
+script = ExtResource("5_6fgkh")
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Sprite")
 
-[node name="MovementComponent" type="Node" parent="." unique_id=207186758]
+[node name="VisionComponent" type="Node2D" parent="." unique_id=255644801 node_paths=PackedStringArray("sight_area", "line_of_sight")]
+script = ExtResource("4_f8kap")
+sight_area = NodePath("Sight")
+line_of_sight = NodePath("LineOfSight2D")
+
+[node name="Sight" type="Area2D" parent="VisionComponent" unique_id=1287825283]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionComponent/Sight" unique_id=1143692731]
+shape = SubResource("CircleShape2D_r6hca")
+
+[node name="LineOfSight2D" type="RayCast2D" parent="VisionComponent" unique_id=692940080]
+collision_mask = 7
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1360311394]
+shape = SubResource("CircleShape2D_p2gj0")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1739690539]
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=736057151]
+shape = SubResource("CircleShape2D_p2gj0")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1337660077]
 sprite_frames = SubResource("SpriteFrames_r6hca")
@@ -227,23 +245,7 @@ autoplay = "move"
 frame = 8
 frame_progress = 1.0
 
-[node name="Sight" type="Area2D" parent="." unique_id=1287825283]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight" unique_id=1143692731]
-shape = SubResource("CircleShape2D_r6hca")
-
-[node name="Hitbox" type="Area2D" parent="." unique_id=307801144]
-
-[node name="Hit" type="CollisionShape2D" parent="Hitbox" unique_id=2006591549]
-shape = SubResource("CircleShape2D_p2gj0")
-
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=1360311394]
-shape = SubResource("CircleShape2D_p2gj0")
-
-[node name="LineOfSight2D" type="RayCast2D" parent="." unique_id=692940080]
-collision_mask = 7
-
-[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
-[connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="HurtboxComponent" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="HurtboxComponent" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="VisionComponent/Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="VisionComponent/Sight" to="." method="_on_sight_body_exited"]
