@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bclwkgbyss7tt"
+
+[deps]
+
+files=["res://assets/audio/player/asset_manifest.Asset Name.translation", "res://assets/audio/player/asset_manifest.Resolution.translation", "res://assets/audio/player/asset_manifest.Format.translation"]
+
+source_file="res://assets/audio/player/asset_manifest.csv"
+dest_files=["res://assets/audio/player/asset_manifest.Asset Name.translation", "res://assets/audio/player/asset_manifest.Resolution.translation", "res://assets/audio/player/asset_manifest.Format.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
