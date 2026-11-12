@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ctj601n3xw37k"]
+
+[ext_resource type="TileSet" path="res://assets/map/overworld/overworld_tileset.tres" id="9_tileset"]
+
+[node name="Node2D" type="Node2D" unique_id=1520495649]
+
+[node name="Dasar" type="TileMapLayer" parent="." unique_id=2047831039]
+tile_set = ExtResource("9_tileset")
+
+[node name="Rumput" type="TileMapLayer" parent="Dasar" unique_id=1618305972]
+tile_set = ExtResource("9_tileset")
+
+[node name="Hiasan" type="TileMapLayer" parent="Dasar" unique_id=1922092480]
+tile_set = ExtResource("9_tileset")
+
+[node name="Dinding" type="TileMapLayer" parent="." unique_id=1063544041]
+tile_set = ExtResource("9_tileset")
+
+[node name="Dinding2" type="TileMapLayer" parent="Dinding" unique_id=541279738]
+tile_map_data = PackedByteArray(0, 0, 65, 0, 255, 255, 0, 0, 62, 0, 20, 0, 0, 0, 66, 0, 255, 255, 0, 0, 63, 0, 20, 0, 0, 0, 68, 0, 255, 255, 0, 0, 65, 0, 20, 0, 0, 0, 69, 0, 255, 255, 0, 0, 66, 0, 20, 0, 0, 0, 70, 0, 255, 255, 0, 0, 67, 0, 20, 0, 0, 0)
+tile_set = ExtResource("9_tileset")
+
+[node name="Water" type="TileMapLayer" parent="." unique_id=1994633138]
+tile_set = ExtResource("9_tileset")
+
+[node name="Ground Wter" type="TileMapLayer" parent="Water" unique_id=680914864]
+tile_set = ExtResource("9_tileset")
+
+[node name="Pohon" type="TileMapLayer" parent="." unique_id=466749504]
+tile_set = ExtResource("9_tileset")
+
+[node name="Pohon2" type="TileMapLayer" parent="Pohon" unique_id=1931130605]
+tile_set = ExtResource("9_tileset")

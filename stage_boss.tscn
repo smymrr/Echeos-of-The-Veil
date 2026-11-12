@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_6ik5c"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_ahadg"]
 [ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="3_rcdrf"]
+[ext_resource type="PackedScene" uid="uid://g85gvq0o8s7" path="res://scenes/player.tscn" id="4_ahadg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
 texture = ExtResource("1_6ik5c")
@@ -4686,3 +4687,6 @@ offset_left = 3.0
 offset_top = -9.0
 offset_right = 1161.0
 offset_bottom = 644.0
+
+[node name="Player" parent="ColorRect" unique_id=1987352962 instance=ExtResource("4_ahadg")]
+position = Vector2(303, 220)

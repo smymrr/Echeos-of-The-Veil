@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bjxl56kfk8ww2" path="res://assets/map/tileset_tambahan/tambahan/tiled_files/objects.png" id="3_6xs5x"]
 [ext_resource type="Texture2D" uid="uid://dagydwdlc1c11" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects.png" id="4_yj1n8"]
 [ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="5_f5k5w"]
+[ext_resource type="PackedScene" uid="uid://g85gvq0o8s7" path="res://scenes/player.tscn" id="6_2irxv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
 texture = ExtResource("1_3vx88")
@@ -7939,3 +7940,6 @@ offset_left = 3.0
 offset_top = 10.0
 offset_right = 1143.0
 offset_bottom = 644.0
+
+[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("6_2irxv")]
+position = Vector2(132, 325)
