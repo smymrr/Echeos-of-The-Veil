@@ -3,6 +3,12 @@ extends Node
 const SAVE_PATH = "user://settings.cfg"
 var config := ConfigFile.new()
 
+var resolution_list = {
+	0: Vector2i(1152, 648),
+	1: Vector2i(1280, 720),
+	2: Vector2i(1920, 1080)
+}
+
 func _ready() -> void:
 	load_settings()
 
@@ -37,21 +43,25 @@ func _apply_setting(section: String, key: String, value: Variant) -> void:
 			var main_window = get_tree().root.get_window()
 			
 			main_window.mode = mode
+			
+			# Return size to the current selected resolution
+			if mode == DisplayServer.WINDOW_MODE_WINDOWED:
+				var resolution_size = get_setting("Display", "resolution", 2)
+				
+				set_resolution(resolution_size)
 		elif key == "vsync":
 			var mode = DisplayServer.VSyncMode.VSYNC_ENABLED if value else DisplayServer.VSyncMode.VSYNC_DISABLED
 			DisplayServer.window_set_vsync_mode(mode)
 		elif key == "fps":
 			FpsDisplay.visible = value
 		elif key == "resolution":
-			if get_tree().root.get_window().mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			var window = get_window()
+			if window.mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
 				return
+			elif window.mode == DisplayServer.WINDOW_MODE_MAXIMIZED:
+				window.mode = DisplayServer.WINDOW_MODE_WINDOWED
 			
-			if value == 0: # 1152x648
-				DisplayServer.window_set_size(Vector2i(1152, 648))
-			elif value == 1: # 1280x720
-				DisplayServer.window_set_size(Vector2i(1280, 720))
-			elif value == 2: # 1920x1080
-				DisplayServer.window_set_size(Vector2i(1920, 1080))
+			set_resolution(value)
 			
 			center_window()
 		elif key == "brightness":
@@ -82,3 +92,9 @@ func center_window() -> void:
 	# Calculate and apply the centered position
 	var centered_pos: Vector2i = screen_pos + (screen_size - window_size) / 2
 	DisplayServer.window_set_position(centered_pos)
+
+func set_resolution(index: int) -> void:
+	var window = get_window( )
+	var indexed_res = resolution_list[index]
+	
+	window.size = indexed_res

@@ -34,7 +34,6 @@ EventBus="*uid://c6fe6i0qnujlv"
 [display]
 
 window/size/mode=3
-window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
