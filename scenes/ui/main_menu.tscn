@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://halw6eb2cpns" path="res://assets/ui/main_menu/exit_panel.png" id="18_cdahu"]
 [ext_resource type="AudioStream" uid="uid://bi136u7rg8lou" path="res://assets/audio/sfx/click_sound.wav" id="20_8o4f6"]
 [ext_resource type="AudioStream" uid="uid://bsay8v8jd65nh" path="res://assets/audio/sfx/hover_sound.wav" id="21_w3hbs"]
-[ext_resource type="PackedScene" uid="uid://c1fge2w427fae" path="res://scenes/ui/main_menu/new_journey_screen.tscn" id="22_fg8cx"]
 [ext_resource type="PackedScene" uid="uid://dryjg8o5sw5j1" path="res://scenes/brightness.tscn" id="22_jbte4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrivr"]
@@ -97,7 +96,6 @@ load_data_button = NodePath("../Load_Data")
 synopsis_button = NodePath("../Synopsis")
 options_button = NodePath("../Options")
 exit_button = NodePath("../Exit")
-new_journey_screen = NodePath("../NewJourneyScreen")
 load_data_screen = NodePath("../LoadDataScreen")
 synopsis_screen = NodePath("../SypnosisScreen")
 options_screen = NodePath("../OptionScreen")
@@ -494,10 +492,6 @@ stream = ExtResource("20_8o4f6")
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=759121367]
 stream = ExtResource("21_w3hbs")
-
-[node name="NewJourneyScreen" parent="." unique_id=1601942814 instance=ExtResource("22_fg8cx")]
-visible = false
-layout_mode = 1
 
 [node name="Wrapper" type="Control" parent="." unique_id=1878720961]
 anchors_preset = 0

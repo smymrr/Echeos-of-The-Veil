@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_e6wig"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_2tw0d"]
-[ext_resource type="Texture2D" uid="uid://bjxl56kfk8ww2" path="res://assets/map/tileset_tambahan/tambahan/tiled_files/objects.png" id="3_0ln3k"]
-[ext_resource type="Texture2D" uid="uid://dagydwdlc1c11" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects.png" id="4_0ln3k"]
-[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="6_2irxv"]
+[ext_resource type="Texture2D" uid="uid://2c7xcmcp6cu6" path="res://assets/map/tileset_tambahan/tambahan/tiled_files/objects.png" id="3_0ln3k"]
+[ext_resource type="Texture2D" uid="uid://bho7uye6eiljv" path="res://assets/map/tileset_tambahan/tambahan/tiled_files1/objects.png" id="4_0ln3k"]
+[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/components/tutorial/treasure_boss.gdshader" id="6_2irxv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx6sy"]
 texture = ExtResource("1_e6wig")

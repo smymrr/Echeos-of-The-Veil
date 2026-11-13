@@ -1,13 +1,6 @@
 [gd_scene format=4 uid="uid://bac77e5j5qc18"]
 
-[ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/character/player.tscn" id="5_4w1fy"]
-[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="6_ny6f1"]
 [ext_resource type="TileSet" uid="uid://c1qh7eprx0c2n" path="res://assets/map/overworld/overworld_tileset.tres" id="9_tileset"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_16n1x"]
-shader = ExtResource("6_ny6f1")
-shader_parameter/speed = Vector2(0.03, 0.01)
-shader_parameter/fog_color = Color(0.8, 0.8, 0.8509804, 0.68235296)
 
 [node name="Node2D" type="Node2D" unique_id=1520495649]
 
@@ -42,14 +35,3 @@ tile_set = ExtResource("9_tileset")
 
 [node name="Pohon2" type="TileMapLayer" parent="Pohon" unique_id=1931130605]
 tile_set = ExtResource("9_tileset")
-
-[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("5_4w1fy")]
-position = Vector2(197, 355)
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1740186685]
-z_index = 10
-material = SubResource("ShaderMaterial_16n1x")
-offset_left = -17.0
-offset_top = -11.0
-offset_right = 1179.0
-offset_bottom = 671.0

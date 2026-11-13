@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dx8sar6xpi8v0" path="res://assets/images/player/walk.png" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dlfhckhhghvv4" path="res://assets/images/player/attack_sheet.png" id="6_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://fouqq22073yj" path="res://assets/audio/sfx/player/sword_attack.wav" id="9_ur7pv"]
-[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="10_g2qfr"]
+[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/components/tutorial/treasure_boss.gdshader" id="10_g2qfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
 size = Vector2(14, 29)
