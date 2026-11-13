@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://d1dqddr4vmlj4"]
 
+[ext_resource type="Script" uid="uid://dvqvgtxdwnd2j" path="res://scenes/map/components/tutorial/stage_boss.gd" id="1_2s8xc"]
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_f3omy"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_6ik5c"]
 
@@ -6864,7 +6865,20 @@ texture = ExtResource("1_f3omy")
 [sub_resource type="TileSet" id="TileSet_6ik5c"]
 sources/0 = SubResource("TileSetAtlasSource_f3omy")
 
-[node name="Node2D" type="Node2D" unique_id=899085570]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6hca"]
+size = Vector2(112, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnfbc"]
+size = Vector2(49, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81paw"]
+size = Vector2(35, 98)
+
+[node name="Node2D" type="Node2D" unique_id=899085570 node_paths=PackedStringArray("player_trigger", "barrier")]
+script = ExtResource("1_2s8xc")
+player_trigger = NodePath("BossTrigger")
+barrier = NodePath("Barrier")
+metadata/_edit_lock_ = true
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=650418081]
 modulate = Color(0.9104722, 0.78821933, 0.9607373, 1)
@@ -6915,3 +6929,29 @@ tile_set = SubResource("TileSet_aees8")
 modulate = Color(0.9104722, 0.78821933, 0.9607373, 1)
 tile_map_data = PackedByteArray("AAAjABQAAAApABAAAAAjABUAAAApABEAAAAjABYAAAApABIAAAAjABcAAAApABMAAAAjABgAAAApABQAAAAjABkAAAApABUAAAAkABQAAAAqABAAAAAkABUAAAAqABEAAAAkABYAAAAqABIAAAAkABcAAAAqABMAAAAkABgAAAAqABQAAAAkABkAAAAqABUAAAAlABQAAAAoABAAAAAlABUAAAAoABEAAAAlABYAAAAoABIAAAAlABcAAAAoABMAAAAlABgAAAAoABQAAAAlABkAAAAoABUAAAAmABQAAAApABAAAAAmABUAAAApABEAAAAmABYAAAApABIAAAAmABcAAAApABMAAAAmABgAAAApABQAAAAmABkAAAApABUAAAAnABQAAAAqABAAAAAnABUAAAAqABEAAAAnABYAAAAqABIAAAAnABcAAAAqABMAAAAnABgAAAAqABQAAAAnABkAAAAqABUAAAAoABQAAAArABAAAAAoABUAAAArABEAAAAoABYAAAArABIAAAAoABcAAAArABMAAAAoABgAAAArABQAAAAoABkAAAArABUAAAAhABQAAAAnABAAAAAhABUAAAAnABEAAAAhABYAAAAnABIAAAAhABcAAAAnABMAAAAhABgAAAAnABQAAAAhABkAAAAnABUAAAAiABQAAAAoABAAAAAiABUAAAAoABEAAAAiABYAAAAoABIAAAAiABcAAAAoABMAAAAiABgAAAAoABQAAAAiABkAAAAoABUAAAAgABQAAAAmABAAAAAgABUAAAAmABEAAAAgABYAAAAmABIAAAAgABcAAAAmABMAAAAgABgAAAAmABQAAAAgABkAAAAmABUAAAA=")
 tile_set = SubResource("TileSet_6ik5c")
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=1609819525]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=890471171]
+position = Vector2(585, 364)
+shape = SubResource("RectangleShape2D_r6hca")
+
+[node name="Barrier" type="StaticBody2D" parent="." unique_id=1390629411]
+collision_layer = 0
+collision_mask = 2
+
+[node name="BarrierCollision" type="CollisionShape2D" parent="Barrier" unique_id=55729416]
+position = Vector2(135, 332)
+shape = SubResource("RectangleShape2D_lnfbc")
+
+[node name="BossTrigger" type="Area2D" parent="." unique_id=1002988266]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTrigger" unique_id=261732945]
+position = Vector2(182, 339)
+shape = SubResource("RectangleShape2D_81paw")
+
+[connection signal="body_entered" from="BossTrigger" to="." method="_on_boss_trigger_body_entered"]

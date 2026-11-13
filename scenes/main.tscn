@@ -12,7 +12,7 @@ script = ExtResource("1_tipki")
 [node name="Player" parent="." unique_id=1987352962 instance=ExtResource("3_jyhfs")]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 z_index = 100
-position = Vector2(-1145, 1161)
+position = Vector2(-547, 1315)
 
 [node name="Slime" parent="." unique_id=1521115122 instance=ExtResource("4_jyhfs")]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
@@ -23,6 +23,11 @@ position = Vector2(-1132, 1490)
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 z_index = 99
 position = Vector2(-1442, 1401)
+
+[node name="Slime5" parent="." unique_id=332975171 instance=ExtResource("4_jyhfs")]
+modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
+z_index = 99
+position = Vector2(-1350, 1243)
 
 [node name="Slime3" parent="." unique_id=1954545340 instance=ExtResource("4_jyhfs")]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)

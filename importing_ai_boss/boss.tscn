@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://0hsqlhiyrs7j" path="res://importing_ai_boss/boss.gd" id="1"]
+[ext_resource type="PackedScene" path="res://importing_ai_boss/projectile.tscn" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d"]
+size = Vector2(552, 608)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h"]
+radius = 40.0
+
+[node name="Boss" type="Node2D"]
+script = ExtResource("1")
+projectile_scene = ExtResource("2")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_d")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["boss_hurtbox"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_h")
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 1.0

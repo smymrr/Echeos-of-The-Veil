@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bf8rgk6p6kjr2" path="res://scenes/character/slime.tscn" id="2_6comh"]
 [ext_resource type="PackedScene" uid="uid://d1dqddr4vmlj4" path="res://scenes/map/components/tutorial/stage_boss.tscn" id="2_k5fvx"]
 [ext_resource type="PackedScene" uid="uid://ci6xe1jr3sqs7" path="res://scenes/stage_1.tscn" id="3_8lnye"]
-[ext_resource type="PackedScene" uid="uid://8xlmea5wbjku" path="res://scenes/map/tree/red_tree.tscn" id="6_6comh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81paw"]
 size = Vector2(26, 138)
@@ -51,15 +50,3 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=754967950]
 position = Vector2(-1159, 234)
 shape = SubResource("RectangleShape2D_81paw")
-
-[node name="RedTree" parent="." unique_id=1857757420 instance=ExtResource("6_6comh")]
-position = Vector2(-326, 307)
-
-[node name="RedTree2" parent="." unique_id=1162756684 instance=ExtResource("6_6comh")]
-position = Vector2(-502, 351)
-
-[node name="RedTree3" parent="." unique_id=1907432435 instance=ExtResource("6_6comh")]
-position = Vector2(-307, 137)
-
-[node name="RedTree4" parent="." unique_id=1923313951 instance=ExtResource("6_6comh")]
-position = Vector2(-707, 311)
