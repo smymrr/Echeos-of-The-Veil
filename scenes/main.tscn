@@ -12,15 +12,31 @@ script = ExtResource("1_tipki")
 [node name="Player" parent="." unique_id=1987352962 instance=ExtResource("3_jyhfs")]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 z_index = 100
-position = Vector2(-1623, 684)
+position = Vector2(-1145, 1161)
 
 [node name="Slime" parent="." unique_id=1521115122 instance=ExtResource("4_jyhfs")]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 z_index = 99
-position = Vector2(-906, 1265)
+position = Vector2(-1132, 1490)
+
+[node name="Slime2" parent="." unique_id=616031561 instance=ExtResource("4_jyhfs")]
+modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
+z_index = 99
+position = Vector2(-1442, 1401)
+
+[node name="Slime3" parent="." unique_id=1954545340 instance=ExtResource("4_jyhfs")]
+modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
+z_index = 99
+position = Vector2(-824, 1442)
+
+[node name="Slime4" parent="." unique_id=1835867458 instance=ExtResource("4_jyhfs")]
+modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
+z_index = 99
+position = Vector2(-851, 1197)
 
 [node name="Dungeon" parent="." unique_id=2101128748 instance=ExtResource("2_sugp2")]
 position = Vector2(-597, 439)
+metadata/_edit_lock_ = true
 
 [node name="MainWorld" parent="." unique_id=1966433246 instance=ExtResource("5_tbgi4")]
 position = Vector2(-4125, -782)

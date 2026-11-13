@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bf8rgk6p6kjr2" path="res://scenes/character/slime.tscn" id="2_6comh"]
 [ext_resource type="PackedScene" uid="uid://d1dqddr4vmlj4" path="res://scenes/map/components/tutorial/stage_boss.tscn" id="2_k5fvx"]
 [ext_resource type="PackedScene" uid="uid://ci6xe1jr3sqs7" path="res://scenes/stage_1.tscn" id="3_8lnye"]
+[ext_resource type="PackedScene" uid="uid://8xlmea5wbjku" path="res://scenes/map/tree/red_tree.tscn" id="6_6comh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81paw"]
 size = Vector2(26, 138)
@@ -21,42 +22,6 @@ position = Vector2(17, 529)
 
 [node name="stage_1" parent="." unique_id=926024326 instance=ExtResource("3_8lnye")]
 position = Vector2(-1154, -127)
-
-[node name="SlimeSpawner" type="Marker2D" parent="." unique_id=2016996963]
-position = Vector2(-851, 785)
-
-[node name="SlimeSpawner2" type="Marker2D" parent="." unique_id=897782010]
-position = Vector2(-877, 995)
-
-[node name="SlimeSpawner3" type="Marker2D" parent="." unique_id=864251041]
-position = Vector2(-348, 1011)
-
-[node name="SlimeSpawner4" type="Marker2D" parent="." unique_id=531637327]
-position = Vector2(-263, 755)
-
-[node name="SlimeSpawner5" type="Marker2D" parent="." unique_id=593928518]
-position = Vector2(-237, 891)
-
-[node name="SlimeSpawner6" type="Marker2D" parent="." unique_id=337653171]
-position = Vector2(-852, 872)
-
-[node name="SlimeSpawner7" type="Marker2D" parent="." unique_id=1902479069]
-position = Vector2(-609, 1048)
-
-[node name="SlimeSpawner8" type="Marker2D" parent="." unique_id=1523230267]
-position = Vector2(-510, 745)
-
-[node name="SlimeSpawner9" type="Marker2D" parent="." unique_id=608218607]
-position = Vector2(-582, 383)
-
-[node name="SlimeSpawner10" type="Marker2D" parent="." unique_id=1037636548]
-position = Vector2(-871, 312)
-
-[node name="SlimeSpawner11" type="Marker2D" parent="." unique_id=1384990018]
-position = Vector2(-639, 115)
-
-[node name="SlimeSpawner12" type="Marker2D" parent="." unique_id=1699608234]
-position = Vector2(-292, 199)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=547847709]
 collision_layer = 4
@@ -86,3 +51,15 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=754967950]
 position = Vector2(-1159, 234)
 shape = SubResource("RectangleShape2D_81paw")
+
+[node name="RedTree" parent="." unique_id=1857757420 instance=ExtResource("6_6comh")]
+position = Vector2(-326, 307)
+
+[node name="RedTree2" parent="." unique_id=1162756684 instance=ExtResource("6_6comh")]
+position = Vector2(-502, 351)
+
+[node name="RedTree3" parent="." unique_id=1907432435 instance=ExtResource("6_6comh")]
+position = Vector2(-307, 137)
+
+[node name="RedTree4" parent="." unique_id=1923313951 instance=ExtResource("6_6comh")]
+position = Vector2(-707, 311)

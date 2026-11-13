@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ckb6nefl58xp" path="res://scripts/enemy/slime/health_component.gd" id="2_6fgkh"]
 [ext_resource type="Script" uid="uid://dya6foil1lqy1" path="res://scripts/enemy/slime/vision_component.gd" id="4_f8kap"]
 [ext_resource type="Script" uid="uid://bkk5e036y0bsx" path="res://scripts/enemy/slime/hurtbox_component.gd" id="5_6fgkh"]
+[ext_resource type="PackedScene" uid="uid://bqb0puvcaixop" path="res://scenes/ui/hud/enemy_overhead.tscn" id="6_oqys8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6hca"]
 radius = 150.0
@@ -228,7 +229,7 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_r6hca")
 
 [node name="LineOfSight2D" type="RayCast2D" parent="VisionComponent" unique_id=692940080]
-collision_mask = 7
+collision_mask = 5
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1360311394]
 shape = SubResource("CircleShape2D_p2gj0")
@@ -244,6 +245,9 @@ animation = &"attack"
 autoplay = "move"
 frame = 8
 frame_progress = 1.0
+
+[node name="EnemyOverhead" parent="." unique_id=436800781 instance=ExtResource("6_oqys8")]
+mob_name = "Slime"
 
 [connection signal="body_entered" from="HurtboxComponent" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="HurtboxComponent" to="." method="_on_hitbox_body_exited"]

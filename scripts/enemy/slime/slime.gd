@@ -11,8 +11,12 @@ extends CharacterBody2D
 
 @export var separation_distance: float = 20.0
 
+@export var enemy_name: String = "Slime"
+@export var level: int = 1
+
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var hitbox: Area2D = $Hitbox
+@onready var overhead: Node2D = $EnemyOverhead
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent as HurtboxComponent
@@ -36,6 +40,9 @@ var _restore_pending := false
 func _ready() -> void:
 	home_position = global_position
 	_set_new_roam_target()
+	
+	overhead.set_info(enemy_name, level)
+	overhead.set_health(health_component.current_health, health_component.max_health)
 	
 	# Connect component signals
 	health_component.died.connect(_on_death)
@@ -132,6 +139,9 @@ func _on_took_hit(_damage: int, attacker_position: Vector2) -> void:
 	var knockback_direction = (global_position - attacker_position).normalized()
 	knockback_velocity = knockback_direction * 300.0
 	current_state = State.KNOCKBACK
+	
+	overhead.set_health(health_component.current_health, health_component.max_health)
+	overhead.focus()
 
 func _on_death() -> void:
 	current_state = State.DEAD
@@ -142,6 +152,8 @@ func _on_death() -> void:
 	set_collision_layer_value(3, false)
 	hitbox.set_deferred("monitoring", false)
 	hurtbox_component.set_deferred("monitorable", false)
+	
+	overhead.on_death()
 	
 	await sprite.animation_finished
 	await get_tree().create_timer(5.0).timeout
