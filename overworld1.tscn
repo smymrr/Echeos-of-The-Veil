@@ -1,13 +1,6 @@
-[gd_scene format=4 uid="uid://rl3ktkifngb"]
+[gd_scene format=4 uid="uid://btca4g0vr6onl"]
 
-[ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/character/player.tscn" id="5_hxxaj"]
-[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/tutorial/treasure_boss.gdshader" id="6_v2k7b"]
 [ext_resource type="TileSet" uid="uid://c1qh7eprx0c2n" path="res://assets/map/overworld/overworld_tileset.tres" id="9_tileset"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0flj2"]
-shader = ExtResource("6_v2k7b")
-shader_parameter/speed = Vector2(0.03, 0.01)
-shader_parameter/fog_color = Color(0.8, 0.8, 0.8509804, 0.68235296)
 
 [node name="Node2D" type="Node2D" unique_id=1520495649]
 
@@ -35,14 +28,3 @@ tile_set = ExtResource("9_tileset")
 
 [node name="Ground Wter" type="TileMapLayer" parent="Water" unique_id=680914864]
 tile_set = ExtResource("9_tileset")
-
-[node name="Player" parent="." unique_id=1987352962 instance=ExtResource("5_hxxaj")]
-position = Vector2(328, 215)
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1854600281]
-z_index = 10
-material = SubResource("ShaderMaterial_0flj2")
-offset_left = -149.0
-offset_top = -36.0
-offset_right = 991.0
-offset_bottom = 613.0

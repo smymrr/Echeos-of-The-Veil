@@ -5493,262 +5493,344 @@ modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 tile_map_data = PackedByteArray("AAAoAAcAAAAGAAEAAAAoAAgAAAAGAAIAAAAgAAcAAAAGAAEAAAAgAAgAAAAGAAIAAAAkAAUAAAACAAEAAAAUAAcAAAAGAAEAAAAUAAgAAAAGAAIAAAAKAAcAAAACAAEAAAAzAAcAAAAGAAEAAAAzAAgAAAAGAAIAAAA9AAcAAAAGAAEAAAA9AAgAAAAGAAIAAAAhABMAAAABAAEAAAAhABQAAAABAAIAAAAhABUAAAABAAMAAAAiABMAAAABAAEAAAAiABQAAAABAAIAAAAiABUAAAABAAMAAAA=")
 tile_set = SubResource("TileSet_c0hju")
 
-[node name="Breakables" type="Node" parent="." unique_id=837163264]
+[node name="Breakables" type="Node2D" parent="." unique_id=767086495]
 
-[node name="SmallBoxes" type="Node" parent="Breakables" unique_id=507035315]
+[node name="SmallBoxes" type="Node2D" parent="Breakables" unique_id=91800309]
 
 [node name="SmallBox" parent="Breakables/SmallBoxes" unique_id=217714340 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(192, 208)
 
 [node name="SmallBox25" parent="Breakables/SmallBoxes" unique_id=1714337940 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(560, 144)
 
 [node name="SmallBox26" parent="Breakables/SmallBoxes" unique_id=312358945 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(616, 144)
 
 [node name="SmallBox27" parent="Breakables/SmallBoxes" unique_id=268513148 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(560, 80)
 
 [node name="SmallBox28" parent="Breakables/SmallBoxes" unique_id=664241394 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(592, 48)
 
 [node name="SmallBox29" parent="Breakables/SmallBoxes" unique_id=1013776737 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(1008, 176)
 
 [node name="SmallBox30" parent="Breakables/SmallBoxes" unique_id=1459045218 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(1040, 192)
 
 [node name="SmallBox31" parent="Breakables/SmallBoxes" unique_id=1713873459 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(1064, 216)
 
 [node name="SmallBox32" parent="Breakables/SmallBoxes" unique_id=2079016196 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(1072, 576)
 
 [node name="SmallBox33" parent="Breakables/SmallBoxes" unique_id=307653740 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(1040, 592)
 
 [node name="SmallBox34" parent="Breakables/SmallBoxes" unique_id=1164732957 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(1008, 608)
 
 [node name="SmallBox2" parent="Breakables/SmallBoxes" unique_id=979622999 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(224, 191)
 
 [node name="SmallBox3" parent="Breakables/SmallBoxes" unique_id=1400334545 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(256, 176)
 
 [node name="SmallBox4" parent="Breakables/SmallBoxes" unique_id=128801262 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(112, 240)
 
 [node name="SmallBox5" parent="Breakables/SmallBoxes" unique_id=910654790 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(80, 256)
 
 [node name="SmallBox6" parent="Breakables/SmallBoxes" unique_id=1642663534 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(32, 256)
 
 [node name="SmallBox7" parent="Breakables/SmallBoxes" unique_id=1116244207 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(128, 272)
 
 [node name="SmallBox8" parent="Breakables/SmallBoxes" unique_id=182181753 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(176, 576)
 
 [node name="SmallBox9" parent="Breakables/SmallBoxes" unique_id=1950900565 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(208, 592)
 
 [node name="SmallBox10" parent="Breakables/SmallBoxes" unique_id=533874205 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(240, 608)
 
 [node name="SmallBox11" parent="Breakables/SmallBoxes" unique_id=1743632147 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(512, 400)
 
 [node name="SmallBox12" parent="Breakables/SmallBoxes" unique_id=739759297 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(544, 416)
 
 [node name="SmallBox13" parent="Breakables/SmallBoxes" unique_id=677029182 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(576, 400)
 
 [node name="SmallBox14" parent="Breakables/SmallBoxes" unique_id=406542037 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(608, 384)
 
 [node name="SmallBox15" parent="Breakables/SmallBoxes" unique_id=2065781041 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(640, 368)
 
 [node name="SmallBox16" parent="Breakables/SmallBoxes" unique_id=1829696641 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(640, 336)
 
 [node name="SmallBox17" parent="Breakables/SmallBoxes" unique_id=1003720386 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(608, 320)
 
 [node name="SmallBox18" parent="Breakables/SmallBoxes" unique_id=952508177 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(576, 304)
 
 [node name="SmallBox19" parent="Breakables/SmallBoxes" unique_id=1232129414 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(544, 288)
 
 [node name="SmallBox20" parent="Breakables/SmallBoxes" unique_id=718552830 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(512, 304)
 
 [node name="SmallBox21" parent="Breakables/SmallBoxes" unique_id=1850399152 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(480, 320)
 
 [node name="SmallBox22" parent="Breakables/SmallBoxes" unique_id=1880869356 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(448, 336)
 
 [node name="SmallBox23" parent="Breakables/SmallBoxes" unique_id=1822064139 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(448, 368)
 
 [node name="SmallBox24" parent="Breakables/SmallBoxes" unique_id=1466737058 instance=ExtResource("3_6y31x")]
+z_index = 5
 position = Vector2(480, 384)
 
-[node name="TallBoxes" type="Node" parent="Breakables" unique_id=969590445]
+[node name="TallBoxes" type="Node2D" parent="Breakables" unique_id=755113480]
 
 [node name="TallBox" parent="Breakables/TallBoxes" unique_id=1044191107 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(208, 208)
 
 [node name="TallBox25" parent="Breakables/TallBoxes" unique_id=350632143 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(576, 144)
 
 [node name="TallBox26" parent="Breakables/TallBoxes" unique_id=776014261 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(632, 144)
 
 [node name="TallBox27" parent="Breakables/TallBoxes" unique_id=917130230 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(576, 80)
 
 [node name="TallBox28" parent="Breakables/TallBoxes" unique_id=1122193509 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(608, 48)
 
 [node name="TallBox29" parent="Breakables/TallBoxes" unique_id=305101085 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(1024, 176)
 
 [node name="TallBox30" parent="Breakables/TallBoxes" unique_id=917700595 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(1056, 192)
 
 [node name="TallBox31" parent="Breakables/TallBoxes" unique_id=1040467813 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(1080, 216)
 
 [node name="TallBox32" parent="Breakables/TallBoxes" unique_id=1221157386 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(1088, 576)
 
 [node name="TallBox33" parent="Breakables/TallBoxes" unique_id=219273626 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(1056, 592)
 
 [node name="TallBox34" parent="Breakables/TallBoxes" unique_id=2094128904 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(1024, 608)
 
 [node name="TallBox2" parent="Breakables/TallBoxes" unique_id=1429949462 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(240, 192)
 
 [node name="TallBox3" parent="Breakables/TallBoxes" unique_id=91803515 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(272, 176)
 
 [node name="TallBox4" parent="Breakables/TallBoxes" unique_id=731654745 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(128, 240)
 
 [node name="TallBox5" parent="Breakables/TallBoxes" unique_id=1929913275 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(144, 272)
 
 [node name="TallBox6" parent="Breakables/TallBoxes" unique_id=1401313913 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(96, 256)
 
 [node name="TallBox7" parent="Breakables/TallBoxes" unique_id=943139707 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(48, 256)
 
 [node name="TallBox8" parent="Breakables/TallBoxes" unique_id=77481954 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(192, 576)
 
 [node name="TallBox9" parent="Breakables/TallBoxes" unique_id=1929596746 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(224, 592)
 
 [node name="TallBox10" parent="Breakables/TallBoxes" unique_id=1852019871 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(256, 608)
 
 [node name="TallBox11" parent="Breakables/TallBoxes" unique_id=308100962 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(464, 336)
 
 [node name="TallBox12" parent="Breakables/TallBoxes" unique_id=1068685071 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(464, 368)
 
 [node name="TallBox13" parent="Breakables/TallBoxes" unique_id=1660127081 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(496, 384)
 
 [node name="TallBox14" parent="Breakables/TallBoxes" unique_id=2021770538 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(496, 320)
 
 [node name="TallBox15" parent="Breakables/TallBoxes" unique_id=1752490842 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(528, 304)
 
 [node name="TallBox16" parent="Breakables/TallBoxes" unique_id=1558495629 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(528, 400)
 
 [node name="TallBox17" parent="Breakables/TallBoxes" unique_id=176381285 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(592, 400)
 
 [node name="TallBox18" parent="Breakables/TallBoxes" unique_id=206046672 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(624, 384)
 
 [node name="TallBox19" parent="Breakables/TallBoxes" unique_id=768849622 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(656, 368)
 
 [node name="TallBox20" parent="Breakables/TallBoxes" unique_id=421942220 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(656, 336)
 
 [node name="TallBox21" parent="Breakables/TallBoxes" unique_id=1685791505 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(624, 320)
 
 [node name="TallBox22" parent="Breakables/TallBoxes" unique_id=1076988814 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(592, 304)
 
 [node name="TallBox23" parent="Breakables/TallBoxes" unique_id=635561945 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(560, 288)
 
 [node name="TallBox24" parent="Breakables/TallBoxes" unique_id=1417256493 instance=ExtResource("4_bokbd")]
+z_index = 5
 position = Vector2(560, 416)
 
-[node name="SmallBarrels" type="Node" parent="Breakables" unique_id=643654787]
+[node name="SmallBarrels" type="Node2D" parent="Breakables" unique_id=559833736]
 
 [node name="SmallBarrel" parent="Breakables/SmallBarrels" unique_id=1504985019 instance=ExtResource("5_88xbv")]
+z_index = 5
 position = Vector2(208, 176)
 
 [node name="SmallBarrel2" parent="Breakables/SmallBarrels" unique_id=1940923040 instance=ExtResource("5_88xbv")]
+z_index = 5
 position = Vector2(632, 80)
 
 [node name="SmallBarrel4" parent="Breakables/SmallBarrels" unique_id=1459077857 instance=ExtResource("5_88xbv")]
+z_index = 5
 position = Vector2(528, 352)
 
 [node name="SmallBarrel3" parent="Breakables/SmallBarrels" unique_id=867952462 instance=ExtResource("5_88xbv")]
+z_index = 5
 position = Vector2(1088, 608)
 
-[node name="TallBarrels" type="Node" parent="Breakables" unique_id=1769660273]
+[node name="TallBarrels" type="Node2D" parent="Breakables" unique_id=797215165]
 
 [node name="TallBarrel" parent="Breakables/TallBarrels" unique_id=623896714 instance=ExtResource("6_jsapi")]
+z_index = 5
 position = Vector2(192, 176)
 
 [node name="TallBarrel2" parent="Breakables/TallBarrels" unique_id=1485363509 instance=ExtResource("6_jsapi")]
+z_index = 5
 position = Vector2(616, 80)
 
 [node name="TallBarrel3" parent="Breakables/TallBarrels" unique_id=39276588 instance=ExtResource("6_jsapi")]
+z_index = 5
 position = Vector2(1072, 608)
 
-[node name="SmallGreenBarrels" type="Node" parent="Breakables" unique_id=337502067]
+[node name="SmallGreenBarrels" type="Node2D" parent="Breakables" unique_id=1885040856]
 
 [node name="SmallGreenBarrel" parent="Breakables/SmallGreenBarrels" unique_id=734440535 instance=ExtResource("7_p86ai")]
+z_index = 5
 position = Vector2(80, 232)
 
 [node name="SmallGreenBarrel2" parent="Breakables/SmallGreenBarrels" unique_id=143722602 instance=ExtResource("7_p86ai")]
+z_index = 5
 position = Vector2(192, 608)
 
 [node name="SmallGreenBarrel3" parent="Breakables/SmallGreenBarrels" unique_id=1378546904 instance=ExtResource("7_p86ai")]
+z_index = 5
 position = Vector2(576, 32)
 
 [node name="SmallGreenBarrel4" parent="Breakables/SmallGreenBarrels" unique_id=2110918241 instance=ExtResource("7_p86ai")]
+z_index = 5
 position = Vector2(576, 352)
 
-[node name="TallGreenBarrels" type="Node" parent="Breakables" unique_id=1412789602]
+[node name="TallGreenBarrels" type="Node2D" parent="Breakables" unique_id=665098586]
 
 [node name="TallGreenBarrel" parent="Breakables/TallGreenBarrels" unique_id=2135542013 instance=ExtResource("8_fe1lw")]
+z_index = 5
 position = Vector2(64, 232)
 
 [node name="TallGreenBarrel2" parent="Breakables/TallGreenBarrels" unique_id=1532701452 instance=ExtResource("8_fe1lw")]
+z_index = 5
 position = Vector2(176, 608)
 
 [node name="TallGreenBarrel3" parent="Breakables/TallGreenBarrels" unique_id=1898571373 instance=ExtResource("8_fe1lw")]
+z_index = 5
 position = Vector2(560, 32)

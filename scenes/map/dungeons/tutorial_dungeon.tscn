@@ -2,10 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://dvrnuxrrn2r2b" path="res://scenes/map/tutorial/stage.tscn" id="1_nhw7o"]
 [ext_resource type="PackedScene" uid="uid://d1dqddr4vmlj4" path="res://scenes/map/tutorial/stage_boss.tscn" id="2_k5fvx"]
+[ext_resource type="PackedScene" uid="uid://ci6xe1jr3sqs7" path="res://scenes/stage_1.tscn" id="3_8lnye"]
 
 [node name="Dungeon" type="Node2D" unique_id=2101128748]
 
 [node name="Stage2" parent="." unique_id=899085570 instance=ExtResource("1_nhw7o")]
+position = Vector2(-1135, 529)
 
 [node name="Node2D2" parent="." unique_id=1512080790 instance=ExtResource("2_k5fvx")]
-position = Vector2(1152, 0)
+position = Vector2(17, 529)
+
+[node name="stage_1" parent="." unique_id=926024326 instance=ExtResource("3_8lnye")]
+position = Vector2(-1154, -127)

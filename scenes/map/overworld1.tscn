@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://btca4g0vr6onl"]
+[gd_scene format=4 uid="uid://drsvyuc14ykch"]
 
 [ext_resource type="Texture2D" path="res://assets/map/overworld/tileset_overworld/TileSet.png" id="1_h2xnc"]
 [ext_resource type="Texture2D" path="res://assets/map/overworld/tileset_overworld/WaterTiles-6frames.png" id="2_hxxaj"]
