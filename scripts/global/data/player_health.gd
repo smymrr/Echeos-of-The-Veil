@@ -3,6 +3,8 @@ extends Node
 signal health_changed(current: int, max: int)
 signal died
 
+var is_dead: bool = false
+
 func get_health() -> int:
 	return PlayerData.current_health
 
@@ -12,15 +14,19 @@ func _flash_red(body: CharacterBody2D) -> void:
 	body.modulate = damage_color
 	tween.tween_property(body, "modulate", Color.WHITE, 0.2)
 
-func take_damage(raw_amount: int, player_body: CharacterBody2D) -> void:
+func take_damage(raw_amount: int, body: CharacterBody2D) -> void:
+	if is_dead:
+		return
+	
 	var defense: int = PlayerData.get_defense()
 	var final_damage: int = int(max(raw_amount - defense, 0))
 	
-	_flash_red(player_body)
+	_flash_red(body)
 	PlayerData.current_health = max(PlayerData.current_health - final_damage, 0)
 	health_changed.emit(PlayerData.current_health, PlayerData.get_max_health())
 	
 	if PlayerData.current_health <= 0:
+		is_dead = true
 		died.emit()
 
 func heal(amount: int) -> void:

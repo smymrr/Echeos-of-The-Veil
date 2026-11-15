@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://tvumllch6yqg"]
 
-[ext_resource type="Script" uid="uid://bodborog3psym" path="res://scenes/character/vampire_boss.gd" id="1_dsr67"]
+[ext_resource type="Script" uid="uid://bodborog3psym" path="res://scripts/vampire_boss.gd" id="1_10xgg"]
 [ext_resource type="Texture2D" uid="uid://c4801504pwkpj" path="res://assets/images/enemy/vampire_boss/vampire_boss_attack_1.png" id="2_10xgg"]
 [ext_resource type="Texture2D" uid="uid://d0hmllfdho0ps" path="res://assets/images/enemy/vampire_boss/vampire_boss_attack_2.png" id="3_8e3ak"]
 [ext_resource type="Texture2D" uid="uid://batx40u45f8vw" path="res://assets/images/enemy/vampire_boss/vampire_boss_death.png" id="4_yifjn"]
+[ext_resource type="Texture2D" uid="uid://q1easvvspxnm" path="res://assets/images/enemy/vampire_boss/vampire_boss_movement.png" id="5_8e3ak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxstu"]
 atlas = ExtResource("2_10xgg")
@@ -221,6 +222,50 @@ region = Rect2(96, 192, 48, 48)
 atlas = ExtResource("4_yifjn")
 region = Rect2(144, 192, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yifjn"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu050"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uecl"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx1g1"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leyfe"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffaas"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6tlh"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty5bx"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82v07"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q35su"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(432, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3w4m"]
+atlas = ExtResource("5_8e3ak")
+region = Rect2(480, 0, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6hca"]
 animations = [{
 "frames": [{
@@ -259,7 +304,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"attack_1",
-"speed": 10.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -297,7 +342,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"attack_2",
-"speed": 10.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -400,20 +445,52 @@ animations = [{
 "name": &"death",
 "speed": 12.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yifjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uecl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qx1g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leyfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffaas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6tlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty5bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82v07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q35su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3w4m")
+}],
 "loop": 1,
-"name": &"fly",
-"speed": 5.0
+"name": &"movement",
+"speed": 11.0
 }]
 
 [node name="VampireBoss" type="Node2D" unique_id=799147301]
-script = ExtResource("1_dsr67")
+script = ExtResource("1_10xgg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1109353948]
 sprite_frames = SubResource("SpriteFrames_r6hca")
-animation = &"death"
-frame = 31
-frame_progress = 1.0
+animation = &"movement"
+frame_progress = 0.30144116
 
 [node name="HealthComponent" type="Node" parent="." unique_id=2061213829]
 

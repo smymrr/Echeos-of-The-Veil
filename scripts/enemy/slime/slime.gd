@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	if current_state == State.DEAD or not can_attack:
 		return
 	
-	if current_state == State.DEAD or not can_attack:
+	if PlayerHealth.is_dead:
 		return
 		
 	var target_position = global_position
