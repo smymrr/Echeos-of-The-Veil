@@ -2,11 +2,10 @@ class_name VampireMovement
 extends Node
 
 @onready var sprite: AnimatedSprite2D = $"../Sprite"
+@onready var animation_component: VampireAnimation = $"../VampireAnimation"
 
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
+
+func _physics_process(_delta: float) -> void:
+	animation_component.play_animation("movement")

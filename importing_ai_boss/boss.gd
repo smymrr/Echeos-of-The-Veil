@@ -17,7 +17,7 @@ enum State { IDLE, CHASE, DEAD }
 @export var move_speed: float = 90.0
 @export var keep_distance: float = 100.0
 @export var fire_interval: float = 1.0
-@export var projectile_speed: float = 300.0
+	@export var projectile_speed: float = 300.0
 @export var burst_count: int = 14
 @export var hover_height: float = 32.0   # tinggi terbang dari bayangan
 
@@ -63,7 +63,7 @@ func body_position() -> Vector2:
 
 func _process(delta: float) -> void:
 	time += delta
-	hit_flash = max(hit_flash - delta, 0.0)
+	hit_flash = max(	hit_flash - delta, 0.0)
 
 	if state == State.CHASE and is_instance_valid(target):
 		var to_player := target.global_position - body_position()

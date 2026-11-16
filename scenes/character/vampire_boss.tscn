@@ -490,6 +490,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6hca"]
 size = Vector2(24, 37)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8bgh"]
+size = Vector2(24, 42)
+
 [node name="VampireBoss" type="CharacterBody2D" unique_id=1685718172]
 collision_layer = 2
 collision_mask = 7
@@ -498,26 +501,32 @@ script = ExtResource("1_10xgg")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1109353948]
 sprite_frames = SubResource("SpriteFrames_r6hca")
 animation = &"movement"
-frame_progress = 0.30144116
+frame = 1
+frame_progress = 0.81406224
 
 [node name="HealthComponent" type="Node" parent="." unique_id=2061213829]
 
 [node name="MovementComponent" type="Node" parent="." unique_id=1748677816]
 script = ExtResource("6_cxstu")
 
-[node name="Animation" type="Node" parent="." unique_id=1258409353]
+[node name="VampireAnimation" type="Node" parent="." unique_id=1258409353]
 script = ExtResource("7_xah10")
 
 [node name="AttackComponent" type="Node" parent="." unique_id=961599049]
 script = ExtResource("6_8e3ak")
-fire_interval = null
-projectile_speed = null
-burst_count = null
+
+[node name="FireTimer" type="Timer" parent="AttackComponent" unique_id=310169868]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=409943631]
+visible = false
 position = Vector2(1, -3.5)
 shape = SubResource("RectangleShape2D_r6hca")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=342143679]
+[node name="Hitbox" type="Area2D" parent="." unique_id=342143679]
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2014672509]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2014672509]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_n8bgh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=222841184]
