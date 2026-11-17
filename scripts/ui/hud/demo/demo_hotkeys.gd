@@ -27,6 +27,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			_toggle_preview()
 		KEY_F7:
 			_toggle_group("ui_hud")
+		KEY_F9:
+			get_tree().call_group("ui_death", "show_death", "Wraith Sentinel", 91.0, 1240, 2000)
+			
 
 
 func _toggle_group(group: String) -> void:

@@ -1,0 +1,299 @@
+[gd_scene format=3 uid="uid://fpnhtxsixmra"]
+
+[ext_resource type="Script" uid="uid://dyym2uksdlpq8" path="res://scripts/ui/hud/death_panel.gd" id="1_xpjbm"]
+
+[sub_resource type="StyleBoxLine" id="hline"]
+color = Color(0.2, 0.16, 0.36, 1)
+
+[sub_resource type="StyleBoxFlat" id="card"]
+content_margin_left = 28.0
+content_margin_top = 22.0
+content_margin_right = 28.0
+content_margin_bottom = 26.0
+bg_color = Color(0.055, 0.04, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.75, 0.16, 0.36, 1)
+shadow_color = Color(0, 0, 0, 0.85)
+shadow_offset = Vector2(6, 6)
+
+[sub_resource type="Theme" id="Theme_death"]
+HSeparator/constants/separation = 8
+HSeparator/styles/separator = SubResource("hline")
+Label/colors/font_color = Color(0.94, 0.92, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.75)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/font_sizes/font_size = 12
+PanelContainer/styles/panel = SubResource("card")
+
+[sub_resource type="StyleBoxFlat" id="diamond_outer"]
+bg_color = Color(0.14, 0.03, 0.11, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.18, 0.38, 1)
+
+[sub_resource type="StyleBoxFlat" id="diamond_inner"]
+bg_color = Color(0.1, 0.03, 0.12, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.13, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="retry_n"]
+bg_color = Color(0.29, 0.08, 0.17, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.2, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="retry_h"]
+bg_color = Color(0.4, 0.1, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.95, 0.3, 0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="exit_n"]
+bg_color = Color(0.07, 0.06, 0.16, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.16, 0.42, 1)
+
+[sub_resource type="StyleBoxFlat" id="exit_h"]
+bg_color = Color(0.1, 0.09, 0.24, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.36, 0.8, 1)
+
+[node name="DeathPanel" type="CanvasLayer" unique_id=1886398726]
+process_mode = 3
+layer = 90
+visible = false
+script = ExtResource("1_xpjbm")
+main_menu_scene = "uid://brhoe3fx1k85q"
+
+[node name="Root" type="Control" parent="." unique_id=837346910]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_death")
+
+[node name="Backdrop" type="ColorRect" parent="Root" unique_id=1835947289]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0, 0.07, 0.8)
+
+[node name="Center" type="CenterContainer" parent="Root" unique_id=336957874]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="PanelContainer" parent="Root/Center" unique_id=66751876]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Root/Center/Card" unique_id=1370208119]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="IconBox" type="Control" parent="Root/Center/Card/Content" unique_id=588557500]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+
+[node name="OuterDiamond" type="Panel" parent="Root/Center/Card/Content/IconBox" unique_id=836646548]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+pivot_offset = Vector2(27, 27)
+theme_override_styles/panel = SubResource("diamond_outer")
+
+[node name="InnerDiamond" type="Panel" parent="Root/Center/Card/Content/IconBox/OuterDiamond" unique_id=1269146158]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("diamond_inner")
+
+[node name="IconLabel" type="Label" parent="Root/Center/Card/Content/IconBox" unique_id=83069689]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.86, 0.8, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = "V"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TagLabel" type="Label" parent="Root/Center/Card/Content" unique_id=1347663262]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.2, 0.4, 1)
+theme_override_font_sizes/font_size = 8
+text = "THE VEIL HAS CLAIMED YOU"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Root/Center/Card/Content" unique_id=602020665]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "YOU HAVE FALLEN"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="Root/Center/Card/Content" unique_id=572163671]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "The Wraith Sentinel tears your echo from the mortal realm."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Line" type="HSeparator" parent="Root/Center/Card/Content" unique_id=27071266]
+layout_mode = 2
+
+[node name="StatsRow" type="HBoxContainer" parent="Root/Center/Card/Content" unique_id=1203527724]
+layout_mode = 2
+
+[node name="LeftStat" type="VBoxContainer" parent="Root/Center/Card/Content/StatsRow" unique_id=264673422]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="LeftName" type="Label" parent="Root/Center/Card/Content/StatsRow/LeftStat" unique_id=1968263369]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
+text = "BATTLE TIME"
+
+[node name="LeftValue" type="Label" parent="Root/Center/Card/Content/StatsRow/LeftStat" unique_id=518070381]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "01:31"
+
+[node name="RightStat" type="VBoxContainer" parent="Root/Center/Card/Content/StatsRow" unique_id=1570053250]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="RightName" type="Label" parent="Root/Center/Card/Content/StatsRow/RightStat" unique_id=1266444150]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
+text = "ENEMY HP"
+horizontal_alignment = 2
+
+[node name="RightValue" type="Label" parent="Root/Center/Card/Content/StatsRow/RightStat" unique_id=1477744318]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "1240 / 2000"
+horizontal_alignment = 2
+
+[node name="Line2" type="HSeparator" parent="Root/Center/Card/Content" unique_id=511614366]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="Root/Center/Card/Content" unique_id=2023476089]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("retry_n")
+theme_override_styles/pressed = SubResource("retry_h")
+theme_override_styles/hover = SubResource("retry_h")
+theme_override_styles/focus = SubResource("retry_h")
+
+[node name="Row" type="HBoxContainer" parent="Root/Center/Card/Content/RetryButton" unique_id=1835297918]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RetryLabel" type="Label" parent="Root/Center/Card/Content/RetryButton/Row" unique_id=732464434]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.97, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "RISE AGAIN"
+vertical_alignment = 1
+
+[node name="RetryTag" type="Label" parent="Root/Center/Card/Content/RetryButton/Row" unique_id=365161400]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.35, 0.55, 1)
+theme_override_font_sizes/font_size = 10
+text = "RETRY"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="Root/Center/Card/Content" unique_id=1294636554]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("exit_n")
+theme_override_styles/pressed = SubResource("exit_h")
+theme_override_styles/hover = SubResource("exit_h")
+theme_override_styles/focus = SubResource("exit_h")
+
+[node name="Row" type="HBoxContainer" parent="Root/Center/Card/Content/ExitButton" unique_id=1872493640]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ExitLabel" type="Label" parent="Root/Center/Card/Content/ExitButton/Row" unique_id=1175885043]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.6, 0.55, 0.85, 1)
+theme_override_font_sizes/font_size = 11
+text = "RETURN TO MAIN MENU"
+vertical_alignment = 1
+
+[node name="ExitTag" type="Label" parent="Root/Center/Card/Content/ExitButton/Row" unique_id=148347834]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.65, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "EXIT"
+horizontal_alignment = 2
+vertical_alignment = 1
