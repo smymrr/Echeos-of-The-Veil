@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cmu1hcco6td8y"]
+
+[ext_resource type="PackedScene" uid="uid://btca4g0vr6onl" path="res://scenes/map/components/overworld/overworld1.tscn" id="1_cp4k5"]
+[ext_resource type="PackedScene" uid="uid://bac77e5j5qc18" path="res://scenes/map/components/overworld/overword3.tscn" id="2_gpus4"]
+[ext_resource type="PackedScene" uid="uid://dk4i5j5vkxs0v" path="res://scenes/map/components/overworld/overworld2.tscn" id="3_is1s6"]
+
+[node name="MainWorld" type="Node2D" unique_id=1966433246]
+
+[node name="Node2D" parent="." unique_id=1520495649 instance=ExtResource("1_cp4k5")]
+
+[node name="Node2D2" parent="." unique_id=1266503889 instance=ExtResource("2_gpus4")]
+position = Vector2(1145, 670)
+
+[node name="Node2D3" parent="." unique_id=1810209055 instance=ExtResource("3_is1s6")]
+position = Vector2(-7, 655)

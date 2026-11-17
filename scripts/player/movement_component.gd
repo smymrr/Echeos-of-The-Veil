@@ -13,6 +13,8 @@ var body: CharacterBody2D
 
 # States
 var is_dashing: bool = false
+var is_locked: bool = false
+var is_slowed: bool = false
 var can_dash: bool = true
 
 signal dash_started
@@ -23,7 +25,12 @@ func setup(player_body: CharacterBody2D):
 
 # Perhitungan velocity pergerakan normal
 func get_velocity(input_direction: Vector2) -> Vector2:
-	return input_direction * speed
+	if is_slowed:
+		return input_direction * speed / 2
+	elif is_locked:
+		return input_direction * 0
+	else:
+		return input_direction * speed
 
 # Dash Mechanism
 func process_dash(input_direction: Vector2) -> void:
@@ -50,6 +57,11 @@ func _start_dash(direction: Vector2) -> Vector2:
 
 	return direction.normalized() * dash_speed
 
+func set_movement_lock(locked: bool) -> void:
+	is_locked = locked
+
+func set_movement_slowed(slowed: bool) -> void:
+	is_slowed = slowed
 
 # Animation Process
 func process_animation(direction: Vector2) -> void:

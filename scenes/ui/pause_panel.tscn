@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bck4w6o81mr72"]
 
+[ext_resource type="Script" uid="uid://08etmndrvbql" path="res://scripts/ui/hud/pause/pause_menu.gd" id="1_q83xv"]
+
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
 [sub_resource type="StyleBoxFlat" id="btn_h"]
@@ -98,6 +100,10 @@ ProgressBar/styles/fill = SubResource("fill_xp")
 process_mode = 3
 layer = 10
 visible = false
+script = ExtResource("1_q83xv")
+main_menu_scene = "uid://brhoe3fx1k85q"
+options_scene = "uid://b55l2ib55hsg4"
+save_scene = "res://scenes/ui/save_panel.tscn"
 
 [node name="Root" type="Control" parent="." unique_id=1975057479]
 layout_mode = 3

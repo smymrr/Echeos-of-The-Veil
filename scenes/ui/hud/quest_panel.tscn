@@ -1,385 +1,227 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://lnu8kroykiyp"]
+
+[ext_resource type="Script" uid="uid://bqwmq4ntqecjg" path="res://scripts/ui/hud/quest/quest_log.gd" id="1_cef03"]
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="StyleBoxFlat" id="btn_h"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.13, 0.1, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_n"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_p"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.29, 0.2, 0.55, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.69, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="hline"]
+color = Color(0.25, 0.19, 0.48, 1)
 
 [sub_resource type="StyleBoxFlat" id="panel"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
 bg_color = Color(0.06, 0.047, 0.14, 0.93)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-shadow_color = Color(0, 0, 0, 0.6)
+border_color = Color(0.25, 0.19, 0.48, 1)
 shadow_size = 1
 shadow_offset = Vector2(3, 3)
-content_margin_left = 12
-content_margin_top = 8
-content_margin_right = 12
-content_margin_bottom = 10
-
-[sub_resource type="StyleBoxFlat" id="inset"]
-bg_color = Color(0.025, 0.02, 0.06, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="portrait"]
-bg_color = Color(0.09, 0.07, 0.2, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 2
-content_margin_top = 2
-content_margin_right = 2
-content_margin_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="slot"]
-bg_color = Color(0.09, 0.07, 0.2, 0.5)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25, 0.19, 0.48, 0.7)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="slot_sel"]
-bg_color = Color(0.13, 0.1, 0.3, 0.75)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.78, 0.69, 1.0, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="box"]
-bg_color = Color(0.025, 0.02, 0.06, 0.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="keybox"]
-bg_color = Color(0.09, 0.07, 0.2, 1.0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-content_margin_left = 6
-content_margin_top = 2
-content_margin_right = 6
-content_margin_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="bar_bg"]
-bg_color = Color(0.025, 0.02, 0.06, 1.0)
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.025, 0.02, 0.06, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="fill_hp"]
-bg_color = Color(0.86, 0.2, 0.36, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="fill_mp"]
-bg_color = Color(0.16, 0.45, 0.86, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
+border_color = Color(0.25, 0.19, 0.48, 1)
 
 [sub_resource type="StyleBoxFlat" id="fill_xp"]
-bg_color = Color(0.92, 0.66, 0.14, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.92, 0.66, 0.14, 1)
 
-[sub_resource type="StyleBoxFlat" id="fill_en"]
-bg_color = Color(0.96, 0.42, 0.14, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="btn_n"]
-bg_color = Color(0.09, 0.07, 0.2, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 14
-content_margin_top = 6
-content_margin_right = 14
-content_margin_bottom = 6
-
-[sub_resource type="StyleBoxFlat" id="btn_h"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.78, 0.69, 1.0, 1.0)
-content_margin_left = 14
-content_margin_top = 6
-content_margin_right = 14
-content_margin_bottom = 6
-
-[sub_resource type="StyleBoxFlat" id="btn_p"]
-bg_color = Color(0.29, 0.2, 0.55, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.78, 0.69, 1.0, 1.0)
-content_margin_left = 14
-content_margin_top = 6
-content_margin_right = 14
-content_margin_bottom = 6
-
-[sub_resource type="StyleBoxFlat" id="help_n"]
-bg_color = Color(0.09, 0.07, 0.2, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="help_h"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="min_n"]
-bg_color = Color(0.09, 0.07, 0.2, 1.0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="min_h"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
+[sub_resource type="Theme" id="Theme_hud"]
+Button/colors/font_color = Color(0.78, 0.69, 1, 1)
+Button/colors/font_hover_color = Color(0.94, 0.92, 1, 1)
+Button/colors/font_pressed_color = Color(0.94, 0.92, 1, 1)
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("empty")
+Button/styles/hover = SubResource("btn_h")
+Button/styles/normal = SubResource("btn_n")
+Button/styles/pressed = SubResource("btn_p")
+HSeparator/constants/separation = 6
+HSeparator/styles/separator = SubResource("hline")
+Label/colors/font_color = Color(0.94, 0.92, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.75)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/font_sizes/font_size = 12
+PanelContainer/styles/panel = SubResource("panel")
+ProgressBar/styles/background = SubResource("bar_bg")
+ProgressBar/styles/fill = SubResource("fill_xp")
 
 [sub_resource type="StyleBoxFlat" id="panel_hud"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
 bg_color = Color(0.05, 0.04, 0.12, 0.5)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.25, 0.19, 0.48, 0.55)
-content_margin_left = 8
-content_margin_top = 6
-content_margin_right = 8
-content_margin_bottom = 6
 
-[sub_resource type="StyleBoxFlat" id="inset_hud"]
-bg_color = Color(0.025, 0.02, 0.06, 0.55)
+[sub_resource type="StyleBoxFlat" id="min_n"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.09, 0.07, 0.2, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.48, 0.35, 0.82, 0.6)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
+border_color = Color(0.25, 0.19, 0.48, 1)
 
-[sub_resource type="StyleBoxFlat" id="islot_n"]
-bg_color = Color(0.09, 0.07, 0.2, 0.95)
+[sub_resource type="StyleBoxFlat" id="min_h"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.13, 0.1, 0.3, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.35, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="box"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.025, 0.02, 0.06, 0)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25, 0.19, 0.48, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
+border_color = Color(0.48, 0.35, 0.82, 1)
 
-[sub_resource type="StyleBoxFlat" id="islot_h"]
-bg_color = Color(0.13, 0.1, 0.3, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.48, 0.35, 0.82, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="islot_p"]
-bg_color = Color(0.29, 0.2, 0.55, 1.0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.78, 0.69, 1.0, 1.0)
-content_margin_left = 0
-content_margin_top = 0
-content_margin_right = 0
-content_margin_bottom = 0
-
-[sub_resource type="StyleBoxEmpty" id="empty"]
-
-[sub_resource type="StyleBoxLine" id="hline"]
-color = Color(0.25, 0.19, 0.48, 1.0)
-thickness = 1
-
-[sub_resource type="Theme" id="Theme_hud"]
-Label/colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
-Label/colors/font_shadow_color = Color(0, 0, 0, 0.75)
-Label/constants/shadow_offset_x = 1
-Label/constants/shadow_offset_y = 1
-Label/font_sizes/font_size = 12
-PanelContainer/styles/panel = SubResource("panel")
-HSeparator/styles/separator = SubResource("hline")
-HSeparator/constants/separation = 6
-ProgressBar/styles/background = SubResource("bar_bg")
-ProgressBar/styles/fill = SubResource("fill_xp")
-Button/font_sizes/font_size = 11
-Button/colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
-Button/colors/font_hover_color = Color(0.94, 0.92, 1.0, 1.0)
-Button/colors/font_pressed_color = Color(0.94, 0.92, 1.0, 1.0)
-Button/styles/normal = SubResource("btn_n")
-Button/styles/hover = SubResource("btn_h")
-Button/styles/pressed = SubResource("btn_p")
-Button/styles/focus = SubResource("empty")
-
-[sub_resource type="GDScript" id="GDScript_min"]
-script/source = "extends CanvasLayer\n# Tombol minimize: menyembunyikan isi panel (node \"Body\") dan menyisakan judulnya.\n# Pola node: Content > HeaderRow > MinimizeButton, dan Content > Body\n\nfunc _ready() -> void:\n\tfor b in find_children(\"MinimizeButton\", \"Button\", true, false):\n\t\tvar body: Control = b.get_parent().get_parent().get_node(\"Body\")\n\t\tb.toggled.connect(func(on: bool) -> void:\n\t\t\tbody.visible = not on\n\t\t\tb.text = \"+\" if on else \"-\")\n"
-
-[node name="QuestLog" type="CanvasLayer"]
-visible = false
+[node name="QuestLog" type="CanvasLayer" unique_id=586845225]
 layer = 5
-script = SubResource("GDScript_min")
+visible = false
+script = ExtResource("1_cef03")
 
-[node name="Root" type="Control" parent="."]
-mouse_filter = 2
+[node name="Root" type="Control" parent="." unique_id=1045701304]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = SubResource("Theme_hud")
 
-[node name="QuestPanel" type="PanelContainer" parent="Root"]
-mouse_filter = 2
-theme_override_styles/panel = SubResource("panel_hud")
+[node name="QuestPanel" type="PanelContainer" parent="Root" unique_id=2036428348]
 layout_mode = 1
-anchor_left = 1
-anchor_top = 0
-anchor_right = 1
-anchor_bottom = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
 offset_left = -182.0
 offset_top = 150.0
 offset_right = -12.0
 offset_bottom = 160.0
 grow_horizontal = 0
-grow_vertical = 1
+mouse_filter = 2
+theme_override_styles/panel = SubResource("panel_hud")
 
-[node name="Content" type="VBoxContainer" parent="Root/QuestPanel"]
+[node name="Content" type="VBoxContainer" parent="Root/QuestPanel" unique_id=1003235508]
+layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="HeaderRow" type="HBoxContainer" parent="Root/QuestPanel/Content"]
+[node name="HeaderRow" type="HBoxContainer" parent="Root/QuestPanel/Content" unique_id=160766315]
+layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Header" type="Label" parent="Root/QuestPanel/Content/HeaderRow"]
-theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1.0)
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 0
+[node name="Header" type="Label" parent="Root/QuestPanel/Content/HeaderRow" unique_id=496263138]
+layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
+theme_override_font_sizes/font_size = 8
 text = "ACTIVE QUEST"
 
-[node name="MinimizeButton" type="Button" parent="Root/QuestPanel/Content/HeaderRow"]
+[node name="MinimizeButton" type="Button" parent="Root/QuestPanel/Content/HeaderRow" unique_id=50681116]
 custom_minimum_size = Vector2(22, 16)
+layout_mode = 2
 size_flags_vertical = 4
-toggle_mode = true
-theme_override_styles/normal = SubResource("min_n")
-theme_override_styles/hover = SubResource("min_h")
-theme_override_styles/pressed = SubResource("min_h")
-theme_override_styles/hover_pressed = SubResource("min_h")
 theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("min_n")
+theme_override_styles/pressed = SubResource("min_h")
+theme_override_styles/hover = SubResource("min_h")
+theme_override_styles/hover_pressed = SubResource("min_h")
+toggle_mode = true
 text = "-"
 
-[node name="Body" type="VBoxContainer" parent="Root/QuestPanel/Content"]
+[node name="Body" type="VBoxContainer" parent="Root/QuestPanel/Content" unique_id=1330128596]
+layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="QuestTitle" type="Label" parent="Root/QuestPanel/Content/Body"]
-theme_override_colors/font_color = Color(0.78, 0.69, 1.0, 1.0)
+[node name="QuestTitle" type="Label" parent="Root/QuestPanel/Content/Body" unique_id=1518162208]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.69, 1, 1)
 theme_override_font_sizes/font_size = 8
 text = "THE VEIL FRAGMENT"
 
-[node name="ObjectiveRow" type="HBoxContainer" parent="Root/QuestPanel/Content/Body"]
+[node name="ObjectiveRow" type="HBoxContainer" parent="Root/QuestPanel/Content/Body" unique_id=1328227621]
+layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="ObjectiveBox" type="PanelContainer" parent="Root/QuestPanel/Content/Body/ObjectiveRow"]
+[node name="ObjectiveBox" type="PanelContainer" parent="Root/QuestPanel/Content/Body/ObjectiveRow" unique_id=445494701]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("box")
-custom_minimum_size = Vector2(10, 10)
-size_flags_vertical = 4
 
-[node name="ObjectiveText" type="Label" parent="Root/QuestPanel/Content/Body/ObjectiveRow"]
-theme_override_colors/font_color = Color(0.94, 0.92, 1.0, 1.0)
+[node name="ObjectiveText" type="Label" parent="Root/QuestPanel/Content/Body/ObjectiveRow" unique_id=53911084]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
 theme_override_font_sizes/font_size = 11
 text = "Defeat the Wraith Sentinel"

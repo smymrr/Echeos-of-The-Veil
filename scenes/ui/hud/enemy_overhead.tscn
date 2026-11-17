@@ -4,15 +4,76 @@
 script/source = "extends Node2D
 # Simpan sebagai anak dari mob. Atur posisi di atas kepala mob lewat Position node ini.
 
+const MAX_FOCUSED := 3  # how many health bars can show at once
+
+@export var mob_name: String
+@export var hide_delay: float = 4.0  # seconds without damage before the bar hides
+@export var name_show_distance: float = 250.0  # pixels
+
+# Shared by ALL instances: overheads currently showing their bar, oldest first
+static var _focused: Array[Node2D] = []
+
+var _hide_timer: Timer
+var _player: Node2D
+var _dead := false
+
+@onready var _top_row: Control = $Box/TopRow
+@onready var _bar: ProgressBar = $Box/EnemyBar
+
+func _ready() -> void:
+	_top_row.visible = false
+	_bar.visible = false
+	_hide_timer = Timer.new()
+	_hide_timer.one_shot = true
+	_hide_timer.wait_time = hide_delay
+	_hide_timer.timeout.connect(unfocus)
+	add_child(_hide_timer)
+
+func _exit_tree() -> void:
+	_focused.erase(self)
+
+func _process(_delta: float) -> void:
+	if _dead:
+		return
+	if not is_instance_valid(_player):
+		_player = get_tree().get_first_node_in_group(\"player\")
+		if _player == null:
+			return
+	var in_range := global_position.distance_squared_to(_player.global_position) \\
+			<= name_show_distance * name_show_distance
+	_top_row.visible = in_range or _focused.has(self)
+
 func set_info(enemy_name: String, level: int = 0) -> void:
 	$Box/TopRow/EnemyName.text = enemy_name
 	$Box/TopRow/EnemyLevel.text = (\"LV %d\" % level) if level > 0 else \"\"
 
-func set_health(current: float, maximum: float) -> void:
-	var bar: ProgressBar = $Box/EnemyBar
-	bar.max_value = maximum
-	bar.value = current
-	visible = current > 0.0
+func set_health(current: int, maximum: int) -> void:
+	_bar.max_value = maximum
+	_bar.value = current
+
+# Call this when the player hits this mob
+func focus() -> void:
+	if _dead:
+		return
+	_focused.erase(self)  # if already focused, it moves to the newest slot
+	while _focused.size() >= MAX_FOCUSED:
+		var oldest: Node2D = _focused.pop_front()
+		oldest.unfocus()  # bumps the oldest one out
+	_focused.append(self)
+	_bar.visible = true
+	_hide_timer.start()  # restarts the countdown on every hit
+
+# Hides only the health bar
+func unfocus() -> void:
+	_bar.visible = false
+	_hide_timer.stop()
+	_focused.erase(self)
+
+# Call from the mob's death path
+func on_death() -> void:
+	_dead = true
+	unfocus()
+	_top_row.visible = false
 "
 
 [sub_resource type="StyleBoxEmpty" id="empty"]

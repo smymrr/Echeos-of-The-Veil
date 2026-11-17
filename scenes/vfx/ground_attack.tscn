@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bonpgohah85lq"]
+
+[ext_resource type="Texture2D" uid="uid://dnymavhipek8q" path="res://assets/images/enemy/vampire_boss/attack_frames/ground_attack.png" id="1_bgb4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00c1q"]
+atlas = ExtResource("1_bgb4n")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so2n3"]
+atlas = ExtResource("1_bgb4n")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqf2p"]
+atlas = ExtResource("1_bgb4n")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylb3p"]
+atlas = ExtResource("1_bgb4n")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6a36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00c1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so2n3")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqf2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylb3p")
+}],
+"loop": 1,
+"name": &"windup",
+"speed": 4.0
+}]
+
+[node name="GroundAttack" type="Node2D" unique_id=514888065]
+
+[node name="Effect" type="AnimatedSprite2D" parent="." unique_id=1411760844]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_f6a36")
+animation = &"attack"
+frame_progress = 0.34983376

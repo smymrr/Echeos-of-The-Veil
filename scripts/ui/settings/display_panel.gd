@@ -4,12 +4,17 @@ extends ScrollContainer
 @onready var fullscreen_toggle: BaseButton = list.get_node("FullscreenRow/FullscreenToggle")
 @onready var vsync_toggle: BaseButton = list.get_node("VsyncRow/VsyncToggle")
 @onready var fps_toggle: BaseButton = list.get_node("ShowFpsRow/ShowFpsToggle")
+@onready var resolution: OptionButton = list.get_node("ResolutionRow/ResolutionOption")
 
 func _ready() -> void:
 	# Load
 	fullscreen_toggle.button_pressed = PlayerSettings.get_setting("Display", "fullscreen", true)
 	vsync_toggle.button_pressed = PlayerSettings.get_setting("Display", "vsync", true)
 	fps_toggle.button_pressed = PlayerSettings.get_setting("Display", "fps", false)
+	resolution.select(PlayerSettings.get_setting("Display", "resolution", 2))
+	
+	if fullscreen_toggle.button_pressed:
+		resolution.disabled = true
 	
 	# Slider
 	for slider: HSlider in find_children("*Slider", "HSlider"):
@@ -31,12 +36,19 @@ func _ready() -> void:
 	fullscreen_toggle.toggled.connect(toggle_fullscreen)
 	vsync_toggle.toggled.connect(toggle_vsync)
 	fps_toggle.toggled.connect(toggle_fps)
+	
+	resolution.item_selected.connect(set_resolution)
 
 func toggle_vsync(value: bool) -> void:
 	PlayerSettings.save_setting("Display", "vsync", value)
 
 func toggle_fullscreen(value: bool) -> void:
+	resolution.disabled = value
 	PlayerSettings.save_setting("Display", "fullscreen", value)
+
+func set_resolution(index) -> void:
+	var selected_id: int = resolution.get_item_id(index)
+	PlayerSettings.save_setting("Display", "resolution", selected_id)
 
 func toggle_screen_shake() -> void:
 	pass

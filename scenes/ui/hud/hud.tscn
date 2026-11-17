@@ -1,17 +1,7 @@
 [gd_scene format=3 uid="uid://jtcuc6dvdcdj"]
 
-[sub_resource type="GDScript" id="GDScript_min"]
-script/source = "extends CanvasLayer
-# Tombol minimize: menyembunyikan isi panel (node \"Body\") dan menyisakan judulnya.
-# Pola node: Content > HeaderRow > MinimizeButton, dan Content > Body
-
-func _ready() -> void:
-	for b in find_children(\"MinimizeButton\", \"Button\", true, false):
-		var body: Control = b.get_parent().get_parent().get_node(\"Body\")
-		b.toggled.connect(func(on: bool) -> void:
-			body.visible = not on
-			b.text = \"+\" if on else \"-\")
-"
+[ext_resource type="Script" uid="uid://73am07gkhk67" path="res://scripts/ui/hud/hud/hud.gd" id="1_bngdn"]
+[ext_resource type="Script" uid="uid://b7sxfb0hwhy3p" path="res://scripts/ui/hud/health_display.gd" id="2_qao66"]
 
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
@@ -251,7 +241,7 @@ bg_color = Color(0.16, 0.45, 0.86, 1)
 
 [node name="HUD" type="CanvasLayer" unique_id=579077007]
 layer = 5
-script = SubResource("GDScript_min")
+script = ExtResource("1_bngdn")
 
 [node name="Root" type="Control" parent="." unique_id=545440360]
 layout_mode = 3
@@ -326,6 +316,7 @@ text = "ASHEN KEEP F3"
 horizontal_alignment = 2
 
 [node name="HotbarPanel" type="PanelContainer" parent="Root" unique_id=438662250]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -794,7 +785,7 @@ text = "LVL"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.72, 0.2, 1)
 theme_override_font_sizes/font_size = 11
-text = "23"
+text = "1"
 
 [node name="LocationLabel" type="Label" parent="Root/CharacterPanel/Content/Body/Top/Info/LevelRow" unique_id=1222964488]
 layout_mode = 2
@@ -805,6 +796,7 @@ text = "ASHEN KEEP"
 [node name="HpRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=586404182]
 layout_mode = 2
 theme_override_constants/separation = 4
+script = ExtResource("2_qao66")
 
 [node name="HpLabel" type="Label" parent="Root/CharacterPanel/Content/Body/HpRow" unique_id=1924229967]
 custom_minimum_size = Vector2(16, 0)
@@ -848,8 +840,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/fill = SubResource("fill_mp")
-max_value = 300.0
-value = 264.0
+max_value = 150.0
+value = 150.0
 show_percentage = false
 
 [node name="MpValue" type="Label" parent="Root/CharacterPanel/Content/Body/MpRow" unique_id=2037576603]
@@ -857,7 +849,7 @@ custom_minimum_size = Vector2(54, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
 theme_override_font_sizes/font_size = 8
-text = "264/300"
+text = "150/150"
 horizontal_alignment = 2
 
 [node name="XpRow" type="HBoxContainer" parent="Root/CharacterPanel/Content/Body" unique_id=2135245708]
@@ -877,8 +869,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/fill = SubResource("fill_xp")
-max_value = 8000.0
-value = 6420.0
 show_percentage = false
 
 [node name="XpValue" type="Label" parent="Root/CharacterPanel/Content/Body/XpRow" unique_id=377365296]
@@ -886,5 +876,5 @@ custom_minimum_size = Vector2(54, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
 theme_override_font_sizes/font_size = 8
-text = "6420/8000"
+text = "0/100"
 horizontal_alignment = 2

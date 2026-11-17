@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://d0xygqlafl85f"]
 
+[ext_resource type="Script" uid="uid://d1brl1wo4is64" path="res://scripts/ui/hud/dialogue/choice_box.gd" id="1_2l5te"]
+
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
 [sub_resource type="StyleBoxFlat" id="btn_h"]
@@ -97,6 +99,7 @@ ProgressBar/styles/fill = SubResource("fill_xp")
 [node name="ChoiceBox" type="CanvasLayer" unique_id=1274644566 groups=["ui_choice"]]
 layer = 8
 visible = false
+script = ExtResource("1_2l5te")
 
 [node name="Root" type="Control" parent="." unique_id=653108454]
 layout_mode = 3
