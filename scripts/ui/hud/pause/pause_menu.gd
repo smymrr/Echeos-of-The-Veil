@@ -14,7 +14,7 @@ signal load_requested
 
 const GROUP := "ui_pause"
 ## Panel yang ditutup lebih dulu saat ESC (masing-masing punya handle_escape()).
-const ESC_BEFORE_CONFIRM := ["ui_save", "ui_options"]
+const ESC_BEFORE_CONFIRM := ["ui_death","ui_save", "ui_options"]
 const ESC_AFTER_CONFIRM := ["ui_inventory"]
 
 ## Pause selalu digambar di atas panel lain (layer terendah yang dipakai).
