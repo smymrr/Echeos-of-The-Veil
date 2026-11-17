@@ -65,22 +65,26 @@ func _trigger_attack_sfx() -> void:
 	swing_sword_sfx.play()
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
+	print("body hit: ", body.name, " | groups: ", body.get_groups())
 	if body in _already_hit or can_attack:
 		return
 	
 	if body.is_in_group("enemy"):
+		print("is an enemy")
+		_already_hit.append(body)
 		var hurt_component = body.find_child("HurtboxComponent")
 		if not hurt_component and body.has_method("take_damage"):
-			_already_hit.append(body)
-			body.take_damage(PlayerData.get_attack(), player.position)
+			print("damaging boss")
+			body.take_damage(PlayerData.get_attack())
 		else:
 			hurt_component.damage(PlayerData.get_attack(), player.position)
 
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:
+	print("area hit: ", area.name, " | groups: ", area.get_groups())
 	var parent := area.get_parent()
-	if not parent:
-		return
 	
 	if parent.is_in_group("breakable") and parent.has_method("break_object"):
 		parent.break_object()
-		print("breakable")
+	elif area.is_in_group("projectile"):
+		print("is a projectile")
+		area.queue_free()

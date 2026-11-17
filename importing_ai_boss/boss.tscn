@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" uid="uid://0hsqlhiyrs7j" path="res://importing_ai_boss/boss.gd" id="1"]
-[ext_resource type="PackedScene" path="res://importing_ai_boss/projectile.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://gkrl084abuhu" path="res://scenes/vfx/projectile.tscn" id="2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d"]
 size = Vector2(552, 608)

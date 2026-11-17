@@ -7,7 +7,6 @@ signal took_hit(damage_amount: int, attacker_position: Vector2)
 @export var sprite: CanvasItem # For hit flashing
 
 func damage(amount: int, attacker_position: Vector2) -> void:
-	print("damaged")
 	if health_component:
 		health_component.take_damage(amount)
 		

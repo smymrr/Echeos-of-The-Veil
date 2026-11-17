@@ -106,7 +106,8 @@ func use_skill(index: int) -> void:
 		_cooldowns[index].visible = true
 	skill_used.emit(index, cost)
 	if demo_boss_damage > 0.0:
-		get_tree().call_group("ui_boss", "take_damage", demo_boss_damage)
+		pass
+		#get_tree().call_group("ui_boss", "take_damage", demo_boss_damage)
 	await get_tree().create_timer(cast_time).timeout
 	if _cooldowns[index]:
 		_cooldowns[index].visible = false

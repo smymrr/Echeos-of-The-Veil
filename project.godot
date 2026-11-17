@@ -34,6 +34,7 @@ EventBus="*uid://c6fe6i0qnujlv"
 [display]
 
 window/size/mode=3
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -45,9 +46,9 @@ project/assembly_name="Echeos of the Veil"
 
 player=""
 enemy=""
-gold_box=""
-item_box=""
 breakable=""
+projectile=""
+enemy_projectile=""
 
 [input]
 

@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://halw6eb2cpns" path="res://assets/ui/main_menu/exit_panel.png" id="18_cdahu"]
 [ext_resource type="AudioStream" uid="uid://bi136u7rg8lou" path="res://assets/audio/sfx/click_sound.wav" id="20_8o4f6"]
 [ext_resource type="AudioStream" uid="uid://bsay8v8jd65nh" path="res://assets/audio/sfx/hover_sound.wav" id="21_w3hbs"]
-[ext_resource type="PackedScene" uid="uid://dryjg8o5sw5j1" path="res://scenes/brightness.tscn" id="22_jbte4"]
+[ext_resource type="PackedScene" uid="uid://dryjg8o5sw5j1" path="res://scenes/ui/brightness.tscn" id="22_jbte4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrivr"]
 atlas = ExtResource("8_45qkm")

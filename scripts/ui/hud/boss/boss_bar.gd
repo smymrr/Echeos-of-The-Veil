@@ -10,17 +10,17 @@ extends CanvasLayer
 signal boss_defeated
 
 const GROUP := "ui_boss"
-const DEFAULT_HP := 2000.0
+const DEFAULT_HP := 2000
 
-var hp := DEFAULT_HP
+var _hp: int = DEFAULT_HP
+var _boss_name: String = "Wraith Sentinel"
 
-@onready var _bar := get_node_or_null("Root/BossGroup/BossBar") as ProgressBar
-@onready var _value := get_node_or_null("Root/BossGroup/BossHpValue") as Label
-
+@export var _name: Label
+@export var _value: Label
+@export var _bar: ProgressBar
 
 func _ready() -> void:
 	add_to_group(GROUP)
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and not event.echo):
@@ -31,36 +31,40 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	toggle()
 
-
 ## Tampil/sembunyi. Saat tampil, HP direset penuh.
 func toggle() -> void:
 	visible = not visible
 	if visible:
 		reset_hp()
 
-
 func reset_hp() -> void:
-	hp = _bar.max_value if _bar else DEFAULT_HP
+	_hp = _bar.max_value if _bar else DEFAULT_HP
 	refresh()
 
-
-func take_damage(amount: float) -> void:
+func take_damage(amount: int) -> void:
 	if not visible:
 		return
-	hp = maxf(0.0, hp - amount)
+	_hp = max(0., _hp - amount)
 	refresh()
-	if hp <= 0.0:
+	if _hp <= 0.0:
 		visible = false
 		boss_defeated.emit()
 
-
 ## Perbarui bar dan teks HP sesuai nilai `hp`.
 func refresh() -> void:
+	if _name:
+		_name.text = _boss_name
 	if _bar:
-		_bar.value = hp
+		_bar.value = _hp
 	if _value and _bar:
-		_value.text = "%d / %d" % [int(hp), int(_bar.max_value)]
+		_value.text = "%d / %d" % [int(_hp), int(_bar.max_value)]
 
+func set_boss_bar(boss_name: String, boss_hp: int) -> void:
+	_boss_name = boss_name
+	_hp = boss_hp
+	_bar.max_value = _hp
+	
+	refresh()
 
 func _choices_open() -> bool:
 	var c := get_tree().get_first_node_in_group("ui_choice") as CanvasLayer

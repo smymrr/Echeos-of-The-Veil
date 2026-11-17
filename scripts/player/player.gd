@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-@onready var movement_component: MovementComponent = $MovementComponent
-@onready var attack_component: AttackComponent = $AttackComponent
-@onready var animation_component: AnimationComponent = $AnimationComponent
+@export var movement_component: MovementComponent
+@export var attack_component: AttackComponent
+@export var animation_component: AnimationComponent
 
-@onready var sprite: AnimatedSprite2D = $Sprite
-@onready var camera: Camera2D = $Camera2D
+@export var sprite: AnimatedSprite2D
+@export var camera: Camera2D
 
 var last_facing_direction: Vector2 = Vector2.RIGHT
 

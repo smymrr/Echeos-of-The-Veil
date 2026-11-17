@@ -795,10 +795,15 @@ shader = ExtResource("10_g2qfr")
 shader_parameter/speed = Vector2(0.03, 0.01)
 shader_parameter/fog_color = Color(0.89411765, 0.6627451, 0.9019608, 0.3647059)
 
-[node name="Player" type="CharacterBody2D" unique_id=1987352962 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1987352962 node_paths=PackedStringArray("movement_component", "attack_component", "animation_component", "sprite", "camera") groups=["player"]]
 collision_mask = 14
 motion_mode = 1
 script = ExtResource("1_dqkch")
+movement_component = NodePath("MovementComponent")
+attack_component = NodePath("AttackComponent")
+animation_component = NodePath("AnimationComponent")
+sprite = NodePath("Sprite")
+camera = NodePath("Camera2D")
 
 [node name="AttackComponent" type="Node" parent="." unique_id=707260039]
 script = ExtResource("2_qlg0r")
@@ -823,7 +828,7 @@ zoom = Vector2(3, 3)
 unique_name_in_owner = true
 position = Vector2(15, 0)
 collision_layer = 0
-collision_mask = 10
+collision_mask = 26
 
 [node name="HitboxDetection" type="CollisionShape2D" parent="AttackHitbox" unique_id=1810789784]
 shape = SubResource("RectangleShape2D_dtqjt")
@@ -831,9 +836,7 @@ metadata/_edit_group_ = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")
-animation = &"death_right"
-frame = 12
-frame_progress = 1.0
+animation = &"idle_down"
 
 [node name="SwingSword" type="AudioStreamPlayer2D" parent="." unique_id=273571398]
 stream = ExtResource("9_ur7pv")
