@@ -80,7 +80,6 @@ border_color = Color(0.45, 0.36, 0.8, 1)
 [node name="DeathPanel" type="CanvasLayer" unique_id=1886398726]
 process_mode = 3
 layer = 90
-visible = false
 script = ExtResource("1_xpjbm")
 main_menu_scene = "uid://brhoe3fx1k85q"
 
@@ -198,13 +197,13 @@ theme_override_constants/separation = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.52, 0.47, 0.75, 1)
 theme_override_font_sizes/font_size = 8
-text = "BATTLE TIME"
+text = "DAMAGE DEALT"
 
 [node name="LeftValue" type="Label" parent="Root/Center/Card/Content/StatsRow/LeftStat" unique_id=518070381]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.92, 1, 1)
 theme_override_font_sizes/font_size = 10
-text = "01:31"
+text = "200"
 
 [node name="RightStat" type="VBoxContainer" parent="Root/Center/Card/Content/StatsRow" unique_id=1570053250]
 layout_mode = 2

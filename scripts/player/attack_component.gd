@@ -73,9 +73,12 @@ func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 		print("is an enemy")
 		_already_hit.append(body)
 		var hurt_component = body.find_child("HurtboxComponent")
-		if not hurt_component and body.has_method("take_damage"):
-			print("damaging boss")
-			body.take_damage(PlayerData.get_attack())
+		if not hurt_component: # If there is no dedicated hurt component
+			if body.has_method("take_damage"): # If the take damage function is in the body
+				print("damaging boss")
+				body.take_damage(PlayerData.get_attack())
+			else: # If the take damage function is in the HealthComponentr
+				body.get_node("HealthComponent").take_damage(PlayerData.get_attack())
 		else:
 			hurt_component.damage(PlayerData.get_attack(), player.position)
 

@@ -1,6 +1,8 @@
 extends Area2D
 ## Proyektil: melaju lurus, mengenai player = beri damage lalu hilang.
 
+@export var projectile_owner: CharacterBody2D
+
 var direction: Vector2 = Vector2.RIGHT
 var speed: float = 320.0
 var damage: int = 15
@@ -20,5 +22,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		PlayerHealth.take_damage(damage, body)
+		PlayerHealth.take_damage(damage, body, projectile_owner)
 	queue_free()  # kena player ATAU tembok -> hilang

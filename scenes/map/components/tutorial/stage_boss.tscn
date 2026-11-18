@@ -4,6 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_f3omy"]
 [ext_resource type="Texture2D" uid="uid://b66ylgolhq621" path="res://assets/map/dungeon/tileset_dungeon/decorative.png" id="2_6ik5c"]
 [ext_resource type="PackedScene" uid="uid://tvumllch6yqg" path="res://scenes/character/enemy/vampire_boss.tscn" id="4_0iqf1"]
+[ext_resource type="PackedScene" uid="uid://c17o82fvcju82" path="res://scenes/map/breakables/small_box.tscn" id="5_x663v"]
+[ext_resource type="PackedScene" uid="uid://cegubd2o0t5mq" path="res://scenes/map/breakables/tall_box.tscn" id="6_j1dwy"]
+[ext_resource type="PackedScene" uid="uid://cxhayopg28r2" path="res://scenes/map/breakables/small_barrel.tscn" id="7_ndy6l"]
+[ext_resource type="PackedScene" uid="uid://dqxa05r1y2kx" path="res://scenes/map/breakables/tall_barrel.tscn" id="8_ldk8m"]
+[ext_resource type="PackedScene" uid="uid://77v6uyvvch4f" path="res://scenes/map/breakables/small_green_barrel.tscn" id="9_mojog"]
+[ext_resource type="PackedScene" uid="uid://cnmkkv6mn313v" path="res://scenes/map/breakables/tall_green_barrel.tscn" id="10_eh0kn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a36"]
 size = Vector2(927, 461.625)
@@ -5452,393 +5458,6 @@ texture = ExtResource("2_6ik5c")
 [sub_resource type="TileSet" id="TileSet_c0hju"]
 sources/0 = SubResource("TileSetAtlasSource_1edn8")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vsjsl"]
-texture = ExtResource("2_6ik5c")
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
-12:4/0 = 0
-13:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-11:5/0 = 0
-12:5/0 = 0
-13:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-8:6/0 = 0
-9:6/0 = 0
-10:6/0 = 0
-11:6/0 = 0
-12:6/0 = 0
-13:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-9:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-9:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-12:8/0 = 0
-13:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-9:9/0 = 0
-10:9/0 = 0
-11:9/0 = 0
-12:9/0 = 0
-13:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-9:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-9:11/0 = 0
-10:11/0 = 0
-11:11/0 = 0
-12:11/0 = 0
-13:11/0 = 0
-0:12/0 = 0
-1:12/0 = 0
-2:12/0 = 0
-9:12/0 = 0
-10:12/0 = 0
-11:12/0 = 0
-12:12/0 = 0
-13:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-0:14/0 = 0
-1:14/0 = 0
-2:14/0 = 0
-0:15/0 = 0
-1:15/0 = 0
-2:15/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_ni2j6"]
-sources/0 = SubResource("TileSetAtlasSource_vsjsl")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jx6rg"]
-texture = ExtResource("2_6ik5c")
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
-12:4/0 = 0
-13:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-11:5/0 = 0
-12:5/0 = 0
-13:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-8:6/0 = 0
-9:6/0 = 0
-10:6/0 = 0
-11:6/0 = 0
-12:6/0 = 0
-13:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-9:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-9:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-12:8/0 = 0
-13:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-9:9/0 = 0
-10:9/0 = 0
-11:9/0 = 0
-12:9/0 = 0
-13:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-9:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-9:11/0 = 0
-10:11/0 = 0
-11:11/0 = 0
-12:11/0 = 0
-13:11/0 = 0
-0:12/0 = 0
-1:12/0 = 0
-2:12/0 = 0
-9:12/0 = 0
-10:12/0 = 0
-11:12/0 = 0
-12:12/0 = 0
-13:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-0:14/0 = 0
-1:14/0 = 0
-2:14/0 = 0
-0:15/0 = 0
-1:15/0 = 0
-2:15/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_50obt"]
-sources/0 = SubResource("TileSetAtlasSource_jx6rg")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aees8"]
-texture = ExtResource("2_6ik5c")
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
-12:4/0 = 0
-13:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-11:5/0 = 0
-12:5/0 = 0
-13:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-8:6/0 = 0
-9:6/0 = 0
-10:6/0 = 0
-11:6/0 = 0
-12:6/0 = 0
-13:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-9:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-9:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-12:8/0 = 0
-13:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-9:9/0 = 0
-10:9/0 = 0
-11:9/0 = 0
-12:9/0 = 0
-13:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-9:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-9:11/0 = 0
-10:11/0 = 0
-11:11/0 = 0
-12:11/0 = 0
-13:11/0 = 0
-0:12/0 = 0
-1:12/0 = 0
-2:12/0 = 0
-9:12/0 = 0
-10:12/0 = 0
-11:12/0 = 0
-12:12/0 = 0
-13:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-0:14/0 = 0
-1:14/0 = 0
-2:14/0 = 0
-0:15/0 = 0
-1:15/0 = 0
-2:15/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_aees8"]
-sources/0 = SubResource("TileSetAtlasSource_aees8")
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3omy"]
 texture = ExtResource("1_f3omy")
 40:0/0 = 0
@@ -6930,24 +6549,6 @@ tile_map_data = PackedByteArray("AAAoAAcAAAAGAAEAAAAoAAgAAAAGAAIAAAAgAAcAAAAGAAE
 tile_set = SubResource("TileSet_c0hju")
 metadata/_edit_lock_ = true
 
-[node name="Box heal" type="TileMapLayer" parent="." unique_id=1094755270]
-modulate = Color(0.9104722, 0.78821933, 0.9607373, 1)
-tile_map_data = PackedByteArray("AABCAAkAAAAJAAoAAABCAAoAAAAJAAsAAABDAAoAAAAKAAsAAAAhAAEAAAAJAAoAAAAhAAIAAAAJAAsAAAAiAAIAAAAKAAsAAAAKACQAAAAJAAoAAAAKACUAAAAJAAsAAAALACUAAAAKAAsAAAA=")
-tile_set = SubResource("TileSet_ni2j6")
-metadata/_edit_lock_ = true
-
-[node name="Box Exp" type="TileMapLayer" parent="Box heal" unique_id=367988973]
-modulate = Color(0.9104722, 0.78821933, 0.9607373, 1)
-tile_map_data = PackedByteArray("AAAmAAUAAAAJAAcAAAAmAAYAAAAJAAgAAAAnAAYAAAAKAAgAAAALAAkAAAAJAAcAAAALAAoAAAAJAAgAAAAMAAoAAAAKAAgAAABCACQAAAAJAAcAAABCACUAAAAJAAgAAABDACUAAAAKAAgAAAA=")
-tile_set = SubResource("TileSet_50obt")
-metadata/_edit_lock_ = true
-
-[node name="Box Coin" type="TileMapLayer" parent="Box heal" unique_id=1467578171]
-modulate = Color(0.9104722, 0.78821933, 0.9607373, 1)
-tile_map_data = PackedByteArray("AABCACIAAAAIAAQAAABCACMAAAAIAAUAAABDACIAAAAJAAQAAABDACMAAAAJAAUAAABAACMAAAAIAAQAAABAACQAAAAIAAUAAABBACMAAAAJAAQAAABBACQAAAAJAAUAAAA+ACQAAAAIAAQAAAA+ACUAAAAIAAUAAAA/ACQAAAAJAAQAAAA/ACUAAAAJAAUAAAAKACIAAAAIAAQAAAAKACMAAAAIAAUAAAALACIAAAAJAAQAAAALACMAAAAJAAUAAAAMACMAAAAIAAQAAAAMACQAAAAIAAUAAAANACMAAAAJAAQAAAANACQAAAAJAAUAAAAOACQAAAAIAAQAAAAOACUAAAAIAAUAAAAPACQAAAAJAAQAAAAPACUAAAAJAAUAAAALAAsAAAAIAAQAAAALAAwAAAAIAAUAAAAMAAsAAAAJAAQAAAAMAAwAAAAJAAUAAAANAAoAAAAIAAQAAAANAAsAAAAIAAUAAAAOAAoAAAAJAAQAAAAOAAsAAAAJAAUAAAAPAAkAAAAIAAQAAAAPAAoAAAAIAAUAAAAQAAkAAAAJAAQAAAAQAAoAAAAJAAUAAAAkAAEAAAAIAAQAAAAkAAIAAAAIAAUAAAAlAAEAAAAJAAQAAAAlAAIAAAAJAAUAAAAiAAMAAAAIAAQAAAAiAAQAAAAIAAUAAAAjAAMAAAAJAAQAAAAjAAQAAAAJAAUAAAAmAAQAAAAIAAQAAAAmAAUAAAAIAAUAAAAnAAQAAAAJAAQAAAAnAAUAAAAJAAUAAAAmAAcAAAAIAAQAAAAmAAgAAAAIAAUAAAAnAAcAAAAJAAQAAAAnAAgAAAAJAAUAAAAiAAcAAAAIAAQAAAAiAAgAAAAIAAUAAAAjAAcAAAAJAAQAAAAjAAgAAAAJAAUAAABCAAsAAAAIAAQAAABCAAwAAAAIAAUAAABDAAsAAAAJAAQAAABDAAwAAAAJAAUAAABAAAoAAAAIAAQAAABAAAsAAAAIAAUAAABBAAoAAAAJAAQAAABBAAsAAAAJAAUAAAA+AAkAAAAIAAQAAAA+AAoAAAAIAAUAAAA/AAkAAAAJAAQAAAA/AAoAAAAJAAUAAAA=")
-tile_set = SubResource("TileSet_aees8")
-metadata/_edit_lock_ = true
-
 [node name="pintu" type="TileMapLayer" parent="." unique_id=1967995571]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)
 tile_map_data = PackedByteArray("AAAjABQAAAApABAAAAAjABUAAAApABEAAAAjABYAAAApABIAAAAjABcAAAApABMAAAAjABgAAAApABQAAAAjABkAAAApABUAAAAkABQAAAAqABAAAAAkABUAAAAqABEAAAAkABYAAAAqABIAAAAkABcAAAAqABMAAAAkABgAAAAqABQAAAAkABkAAAAqABUAAAAlABQAAAAoABAAAAAlABUAAAAoABEAAAAlABYAAAAoABIAAAAlABcAAAAoABMAAAAlABgAAAAoABQAAAAlABkAAAAoABUAAAAmABQAAAApABAAAAAmABUAAAApABEAAAAmABYAAAApABIAAAAmABcAAAApABMAAAAmABgAAAApABQAAAAmABkAAAApABUAAAAnABQAAAAqABAAAAAnABUAAAAqABEAAAAnABYAAAAqABIAAAAnABcAAAAqABMAAAAnABgAAAAqABQAAAAnABkAAAAqABUAAAAoABQAAAArABAAAAAoABUAAAArABEAAAAoABYAAAArABIAAAAoABcAAAArABMAAAAoABgAAAArABQAAAAoABkAAAArABUAAAAhABQAAAAnABAAAAAhABUAAAAnABEAAAAhABYAAAAnABIAAAAhABcAAAAnABMAAAAhABgAAAAnABQAAAAhABkAAAAnABUAAAAiABQAAAAoABAAAAAiABUAAAAoABEAAAAiABYAAAAoABIAAAAiABcAAAAoABMAAAAiABgAAAAoABQAAAAiABkAAAAoABUAAAAgABQAAAAmABAAAAAgABUAAAAmABEAAAAgABYAAAAmABIAAAAgABcAAAAmABMAAAAgABgAAAAmABQAAAAgABkAAAAmABUAAAA=")
@@ -6986,5 +6587,187 @@ shape = SubResource("RectangleShape2D_81paw")
 
 [node name="BossSpawner" type="Marker2D" parent="." unique_id=655996092]
 position = Vector2(585, 363)
+
+[node name="Breakables" type="Node2D" parent="." unique_id=1297720257]
+
+[node name="SmallBoxes" type="Node2D" parent="Breakables" unique_id=1460940071]
+
+[node name="SmallBox" parent="Breakables/SmallBoxes" unique_id=217714340 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(192, 208)
+
+[node name="SmallBox25" parent="Breakables/SmallBoxes" unique_id=2118347826 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(560, 144)
+
+[node name="SmallBox26" parent="Breakables/SmallBoxes" unique_id=2016431803 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(616, 144)
+
+[node name="SmallBox27" parent="Breakables/SmallBoxes" unique_id=1491306870 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(560, 80)
+
+[node name="SmallBox28" parent="Breakables/SmallBoxes" unique_id=811722770 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(592, 48)
+
+[node name="SmallBox29" parent="Breakables/SmallBoxes" unique_id=2034496422 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(1008, 176)
+
+[node name="SmallBox30" parent="Breakables/SmallBoxes" unique_id=1792598498 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(1040, 192)
+
+[node name="SmallBox31" parent="Breakables/SmallBoxes" unique_id=729307877 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(1064, 216)
+
+[node name="SmallBox32" parent="Breakables/SmallBoxes" unique_id=996499086 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(1072, 576)
+
+[node name="SmallBox33" parent="Breakables/SmallBoxes" unique_id=633475590 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(1040, 592)
+
+[node name="SmallBox34" parent="Breakables/SmallBoxes" unique_id=1283901338 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(1008, 608)
+
+[node name="SmallBox2" parent="Breakables/SmallBoxes" unique_id=189423867 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(224, 191)
+
+[node name="SmallBox3" parent="Breakables/SmallBoxes" unique_id=337910359 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(256, 176)
+
+[node name="SmallBox8" parent="Breakables/SmallBoxes" unique_id=1970740241 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(192, 584)
+
+[node name="SmallBox9" parent="Breakables/SmallBoxes" unique_id=87565634 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(232, 584)
+
+[node name="SmallBox10" parent="Breakables/SmallBoxes" unique_id=1898060643 instance=ExtResource("5_x663v")]
+z_index = 5
+position = Vector2(264, 592)
+
+[node name="TallBoxes" type="Node2D" parent="Breakables" unique_id=1042795714]
+
+[node name="TallBox" parent="Breakables/TallBoxes" unique_id=1044191107 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(208, 208)
+
+[node name="TallBox25" parent="Breakables/TallBoxes" unique_id=1257861698 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(576, 144)
+
+[node name="TallBox26" parent="Breakables/TallBoxes" unique_id=2004002446 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(632, 144)
+
+[node name="TallBox27" parent="Breakables/TallBoxes" unique_id=892465559 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(576, 80)
+
+[node name="TallBox28" parent="Breakables/TallBoxes" unique_id=138204891 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(608, 48)
+
+[node name="TallBox29" parent="Breakables/TallBoxes" unique_id=21062291 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(1024, 176)
+
+[node name="TallBox30" parent="Breakables/TallBoxes" unique_id=216447210 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(1056, 192)
+
+[node name="TallBox31" parent="Breakables/TallBoxes" unique_id=2024350013 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(1080, 216)
+
+[node name="TallBox32" parent="Breakables/TallBoxes" unique_id=1462273412 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(1088, 576)
+
+[node name="TallBox33" parent="Breakables/TallBoxes" unique_id=1323319552 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(1056, 592)
+
+[node name="TallBox34" parent="Breakables/TallBoxes" unique_id=666481953 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(1024, 608)
+
+[node name="TallBox2" parent="Breakables/TallBoxes" unique_id=858233841 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(240, 192)
+
+[node name="TallBox3" parent="Breakables/TallBoxes" unique_id=1101013993 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(272, 176)
+
+[node name="TallBox8" parent="Breakables/TallBoxes" unique_id=545127096 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(192, 560)
+
+[node name="TallBox9" parent="Breakables/TallBoxes" unique_id=143610958 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(216, 584)
+
+[node name="TallBox10" parent="Breakables/TallBoxes" unique_id=1660485588 instance=ExtResource("6_j1dwy")]
+z_index = 5
+position = Vector2(248, 608)
+
+[node name="SmallBarrels" type="Node2D" parent="Breakables" unique_id=1530485897]
+
+[node name="SmallBarrel" parent="Breakables/SmallBarrels" unique_id=1504985019 instance=ExtResource("7_ndy6l")]
+z_index = 5
+position = Vector2(208, 176)
+
+[node name="SmallBarrel2" parent="Breakables/SmallBarrels" unique_id=586081381 instance=ExtResource("7_ndy6l")]
+z_index = 5
+position = Vector2(632, 80)
+
+[node name="SmallBarrel3" parent="Breakables/SmallBarrels" unique_id=1750295465 instance=ExtResource("7_ndy6l")]
+z_index = 5
+position = Vector2(1088, 608)
+
+[node name="TallBarrels" type="Node2D" parent="Breakables" unique_id=168797476]
+
+[node name="TallBarrel" parent="Breakables/TallBarrels" unique_id=623896714 instance=ExtResource("8_ldk8m")]
+z_index = 5
+position = Vector2(192, 176)
+
+[node name="TallBarrel2" parent="Breakables/TallBarrels" unique_id=647839110 instance=ExtResource("8_ldk8m")]
+z_index = 5
+position = Vector2(616, 80)
+
+[node name="TallBarrel3" parent="Breakables/TallBarrels" unique_id=693058876 instance=ExtResource("8_ldk8m")]
+z_index = 5
+position = Vector2(1072, 608)
+
+[node name="SmallGreenBarrels" type="Node2D" parent="Breakables" unique_id=1114802359]
+
+[node name="SmallGreenBarrel2" parent="Breakables/SmallGreenBarrels" unique_id=1483020100 instance=ExtResource("9_mojog")]
+z_index = 5
+position = Vector2(216, 608)
+
+[node name="SmallGreenBarrel3" parent="Breakables/SmallGreenBarrels" unique_id=443075318 instance=ExtResource("9_mojog")]
+z_index = 5
+position = Vector2(576, 32)
+
+[node name="TallGreenBarrels" type="Node2D" parent="Breakables" unique_id=865711466]
+
+[node name="TallGreenBarrel2" parent="Breakables/TallGreenBarrels" unique_id=1680948097 instance=ExtResource("10_eh0kn")]
+z_index = 5
+position = Vector2(184, 600)
+
+[node name="TallGreenBarrel3" parent="Breakables/TallGreenBarrels" unique_id=1977490298 instance=ExtResource("10_eh0kn")]
+z_index = 5
+position = Vector2(560, 32)
 
 [connection signal="body_entered" from="BossTrigger" to="." method="_on_boss_trigger_body_entered"]

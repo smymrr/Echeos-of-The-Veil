@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dft30tyisnm54"]
 
 [ext_resource type="Script" uid="uid://bsjf626n7k0wb" path="res://scripts/player/player.gd" id="1_dqkch"]
+[ext_resource type="PackedScene" uid="uid://fpnhtxsixmra" path="res://scenes/ui/hud/death/death_panel.tscn" id="2_e5n5u"]
 [ext_resource type="Script" uid="uid://dmiio0uymrvp0" path="res://scripts/player/attack_component.gd" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://m6mun0klym4i" path="res://scripts/player/movement_component.gd" id="3_tuyoq"]
 [ext_resource type="Script" uid="uid://dakur280b02qg" path="res://scripts/player/direction_utils.gd" id="4_fjrip"]
@@ -802,6 +803,7 @@ script = ExtResource("1_dqkch")
 movement_component = NodePath("MovementComponent")
 attack_component = NodePath("AttackComponent")
 animation_component = NodePath("AnimationComponent")
+death_screen = ExtResource("2_e5n5u")
 sprite = NodePath("Sprite")
 camera = NodePath("Camera2D")
 

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d0hmllfdho0ps" path="res://assets/images/enemy/vampire_boss/vampire_boss_attack_2.png" id="3_6spc2"]
 [ext_resource type="Texture2D" uid="uid://batx40u45f8vw" path="res://assets/images/enemy/vampire_boss/vampire_boss_death.png" id="4_bxud5"]
 [ext_resource type="Texture2D" uid="uid://q1easvvspxnm" path="res://assets/images/enemy/vampire_boss/vampire_boss_movement.png" id="5_hvo4u"]
+[ext_resource type="Script" uid="uid://cg0uuavbej06p" path="res://scenes/character/vampire_health.gd" id="6_ordpd"]
 [ext_resource type="Script" uid="uid://xapf8xqohw82" path="res://scenes/character/movement_component.gd" id="7_rc6yf"]
 [ext_resource type="Script" uid="uid://bwgd0d6tktdus" path="res://scenes/character/animation.gd" id="8_d182t"]
 [ext_resource type="Script" uid="uid://dmg5am3u7rjvh" path="res://scripts/enemy/boss/vampire/vampire_attack.gd" id="9_m51et"]
@@ -542,6 +543,9 @@ animation_component = NodePath("AnimationComponent")
 sprite_frames = SubResource("SpriteFrames_r6hca")
 animation = &"attack_1"
 
+[node name="HealthComponent" type="Node" parent="." unique_id=11650935]
+script = ExtResource("6_ordpd")
+
 [node name="MovementComponent" type="Node" parent="." unique_id=1748677816]
 script = ExtResource("7_rc6yf")
 
@@ -552,7 +556,14 @@ script = ExtResource("8_d182t")
 script = ExtResource("9_m51et")
 projectile_scene = ExtResource("10_3wjas")
 animation_component = NodePath("../AnimationComponent")
+fire_interval = null
 projectile_speed = 150.0
+burst_count = null
+ground_radius = null
+ground_delay = null
+ground_lock_time = null
+ground_follow_speed = null
+ground_damage = null
 
 [node name="FireTimer" type="Timer" parent="AttackComponent" unique_id=310169868]
 wait_time = 2.0

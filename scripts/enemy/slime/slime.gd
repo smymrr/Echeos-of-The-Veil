@@ -209,7 +209,7 @@ func _try_hit() -> void:
 	if current_state == State.DEAD: return
 	if player_target and hitbox.overlaps_body(player_target):
 		# Ideally, check if player has a HurtboxComponent here instead of calling PlayerHealth directly
-		PlayerHealth.take_damage(attack_damage, player_target)
+		PlayerHealth.take_damage(attack_damage, player_target, self)
 
 func _cancel_attack_tween() -> void:
 	if attack_tween and attack_tween.is_valid():

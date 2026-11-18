@@ -81,6 +81,3 @@ func activate(player_instance: CharacterBody2D, area: Area2D) -> void:
 		return
 		
 	set_physics_process(true) # Enable movement now that setup is complete
-
-func take_damage(amount: int) -> void:
-	get_tree().call_group("ui_boss", "take_damage", amount)

@@ -18,8 +18,6 @@ func _on_boss_trigger(body: Node2D) -> void:
 	
 	# Set activated immediately so the trigger can't fire twice
 	activated = true
-	get_tree().call_group("ui_boss", "toggle")
-	get_tree().call_group("ui_boss", "set_boss_bar", "Vampire", 1000)
 	
 	# Use call_deferred when modifying physics/collisions inside a body_entered signal
 	barrier.set_collision_layer_value(3, true)

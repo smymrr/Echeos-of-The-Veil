@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var movement_component: MovementComponent
 @export var attack_component: AttackComponent
 @export var animation_component: AnimationComponent
+@export var death_screen: PackedScene
 
 @export var sprite: AnimatedSprite2D
 @export var camera: Camera2D
@@ -59,7 +60,9 @@ func attack() -> void:
 	# Match based on 4 cardinal sectors
 	attack_component.try_attack(dir)
 
-func _death() -> void:
+func _death(attacker: Node2D) -> void:
+	var attacker_health_component := attacker.get_node("HealthComponent")
+	
 	var zoom_tween = create_tween()
 	zoom_tween.tween_property(camera, "zoom", Vector2(5, 5), 1.0)
 	movement_component.set_movement_lock(true)
@@ -79,3 +82,12 @@ func _death() -> void:
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
 	await t.finished
+	await get_tree().create_timer(1).timeout
+	
+	var death_screen_instance = death_screen.instantiate()
+	add_child(death_screen_instance)
+	death_screen_instance.show_death(
+		attacker.name,
+		attacker_health_component.current_health,
+		attacker_health_component.max_health
+	)

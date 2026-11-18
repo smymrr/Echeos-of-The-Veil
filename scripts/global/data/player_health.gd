@@ -14,7 +14,7 @@ func _flash_red(body: CharacterBody2D) -> void:
 	body.modulate = damage_color
 	tween.tween_property(body, "modulate", Color.WHITE, 0.2)
 
-func take_damage(raw_amount: int, body: CharacterBody2D) -> void:
+func take_damage(raw_amount: int, body: CharacterBody2D, attacker: CharacterBody2D) -> void:
 	if is_dead:
 		return
 	
@@ -27,7 +27,7 @@ func take_damage(raw_amount: int, body: CharacterBody2D) -> void:
 	
 	if PlayerData.current_health <= 0:
 		is_dead = true
-		died.emit()
+		died.emit(attacker)
 
 func heal(amount: int) -> void:
 	PlayerData.current_health = min(PlayerData.current_health + amount, PlayerData.get_max_health())
