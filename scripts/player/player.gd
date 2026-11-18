@@ -32,20 +32,16 @@ func _physics_process(_delta: float) -> void:
 
 func process_movement() -> void:
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var has_input: bool = input_direction != Vector2.ZERO
 	
-	# Update arah terakhir player
-	if has_input:
+	if input_direction != Vector2.ZERO and not movement_component.is_dashing:
 		last_facing_direction = input_direction.normalized()
 	
-	# Pergerakan biasa
-	if not movement_component.is_dashing:
-		velocity = movement_component.get_velocity(input_direction)
+	movement_component.process_dash(last_facing_direction)
+	
+	velocity = movement_component.get_velocity(input_direction)
 	
 	if not attack_component.is_attacking:
 		movement_component.process_animation(last_facing_direction)
-	
-	movement_component.process_dash(last_facing_direction) # Dash
 
 # ================================
 # ATTACK

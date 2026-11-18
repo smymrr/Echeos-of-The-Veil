@@ -41,3 +41,4 @@ func play_animation(prefix: String, direction: Vector2) -> void:
 			locked = true
 		else:
 			sprite.play(target_anim)
+	print("playing: ", target_anim)
