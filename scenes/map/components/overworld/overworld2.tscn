@@ -5,9 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://xiakqdrhfpjy" path="res://scenes/map/tree/big_tree.tscn" id="3_thfok"]
 [ext_resource type="PackedScene" uid="uid://cancg76s3mygd" path="res://scenes/map/tree/yellow_tree.tscn" id="4_agr5n"]
 [ext_resource type="PackedScene" uid="uid://b3l8u8g2jovnv" path="res://scenes/map/tree/green_tree.tscn" id="5_k8su5"]
-[ext_resource type="Script" uid="uid://he4wu04muli1" path="res://scenes/map/components/overworld/waypoint_finish.gd" id="6_thfok"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a36"]
 
 [node name="Node2D" type="Node2D" unique_id=1520495649]
 
@@ -37,9 +34,6 @@ tile_set = ExtResource("1_886jr")
 
 [node name="Ground Wter" type="TileMapLayer" parent="Water" unique_id=680914864]
 tile_set = ExtResource("1_886jr")
-
-[node name="Quest" type="Marker2D" parent="." unique_id=1393361580 groups=["waypoints"]]
-position = Vector2(368, 104)
 
 [node name="Pohon" type="Node2D" parent="." unique_id=329441103]
 
@@ -116,10 +110,3 @@ position = Vector2(480, 576)
 
 [node name="GreenTree5" parent="Pohon/GreenTree" unique_id=1800850354 instance=ExtResource("5_k8su5")]
 position = Vector2(208, 576)
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1238787067]
-script = ExtResource("6_thfok")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1636900562]
-position = Vector2(368, 104)
-shape = SubResource("RectangleShape2D_f6a36")

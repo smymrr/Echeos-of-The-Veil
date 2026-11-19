@@ -1150,7 +1150,7 @@ attack_component = NodePath("AttackComponent")
 animation_component = NodePath("AnimationComponent")
 death_screen = ExtResource("2_e5n5u")
 sprite = NodePath("Sprite")
-camera = NodePath("Camera2D")
+camera = NodePath("PlayerCamera")
 
 [node name="AttackComponent" type="Node" parent="." unique_id=707260039]
 script = ExtResource("2_qlg0r")
@@ -1186,7 +1186,7 @@ collision_mask = 26
 shape = SubResource("RectangleShape2D_dtqjt")
 metadata/_edit_group_ = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1955371024]
 zoom = Vector2(3, 3)
 
 [node name="DashEffects" type="AnimatedSprite2D" parent="." unique_id=1717649059]

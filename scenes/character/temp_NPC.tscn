@@ -1,9 +1,23 @@
 [gd_scene format=3 uid="uid://bd5ehsty6l511"]
 
 [ext_resource type="Texture2D" uid="uid://bkumqcm3xp00j" path="res://assets/images/player/idle.png" id="1_8tu2l"]
-[ext_resource type="Script" uid="uid://b8ipd8ovwmgpg" path="res://scenes/character/temp_npc.gd" id="1_k4olh"]
-[ext_resource type="Resource" uid="uid://d2vp2xxab3s3h" path="res://data/quests/kill_slime.tres" id="2_64457"]
-[ext_resource type="PackedScene" uid="uid://dkpg872b0aywv" path="res://scenes/ui/interact.tscn" id="3_r5i4q"]
+[ext_resource type="Script" uid="uid://dcrh3gb8g8v7h" path="res://scenes/character/temp_npc.gd" id="1_k4olh"]
+[ext_resource type="Script" uid="uid://c1eqm1k7yes0x" path="res://scripts/global/quest/quest_objective.gd" id="2_1br7e"]
+[ext_resource type="Script" uid="uid://c730w3ccrrbbd" path="res://scripts/global/quest/quest.gd" id="3_alf6t"]
+[ext_resource type="PackedScene" uid="uid://dwqrnisij83w6" path="res://scenes/ui/interact.tscn" id="3_r5i4q"]
+
+[sub_resource type="Resource" id="Resource_vyhns"]
+script = ExtResource("2_1br7e")
+target_id = "slime"
+required = 3
+metadata/_custom_type_script = "uid://c1eqm1k7yes0x"
+
+[sub_resource type="Resource" id="Resource_ao6ro"]
+script = ExtResource("3_alf6t")
+id = "Tutorial Pt. 1"
+title = "test"
+objectives = Array[ExtResource("2_1br7e")]([SubResource("Resource_vyhns")])
+metadata/_custom_type_script = "uid://c730w3ccrrbbd"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8tu2l"]
 atlas = ExtResource("1_8tu2l")
@@ -46,7 +60,7 @@ radius = 60.0
 
 [node name="NPC" type="CharacterBody2D" unique_id=1796917906]
 script = ExtResource("1_k4olh")
-quest = ExtResource("2_64457")
+quest = SubResource("Resource_ao6ro")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1913745993]
 sprite_frames = SubResource("SpriteFrames_r6hca")

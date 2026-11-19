@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cancg76s3mygd" path="res://scenes/map/tree/yellow_tree.tscn" id="3_vdmia"]
 [ext_resource type="PackedScene" uid="uid://b3l8u8g2jovnv" path="res://scenes/map/tree/green_tree.tscn" id="4_mcbmo"]
 [ext_resource type="PackedScene" uid="uid://cpdn70e20vsvb" path="res://scenes/map/tree/tree_bark.tscn" id="5_ejr1s"]
+[ext_resource type="PackedScene" uid="uid://bf8rgk6p6kjr2" path="res://scenes/character/enemy/slime.tscn" id="6_ejr1s"]
 [ext_resource type="TileSet" uid="uid://c1qh7eprx0c2n" path="res://assets/map/overworld/overworld_tileset.tres" id="9_tileset"]
 
 [node name="TrainingOverworld" type="Node2D" unique_id=1520495649]
@@ -67,3 +68,12 @@ position = Vector2(576, 496)
 
 [node name="TreeBark" parent="Pohon" unique_id=1243173932 instance=ExtResource("5_ejr1s")]
 position = Vector2(728, 536)
+
+[node name="Slime" parent="." unique_id=1521115122 instance=ExtResource("6_ejr1s")]
+position = Vector2(104, 248)
+
+[node name="Slime2" parent="." unique_id=1987239673 instance=ExtResource("6_ejr1s")]
+position = Vector2(272, 368)
+
+[node name="Slime3" parent="." unique_id=1412376515 instance=ExtResource("6_ejr1s")]
+position = Vector2(464, 256)

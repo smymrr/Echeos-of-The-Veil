@@ -17,8 +17,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if UiUtil.input_blocked(get_tree()):
 		return
 	match event.keycode:
-		KEY_E:
-			_demo_talk()
 		KEY_F2:
 			_toggle_group("ui_wave")
 		KEY_F3:
@@ -36,17 +34,6 @@ func _toggle_group(group: String) -> void:
 	var n := get_tree().get_first_node_in_group(group) as CanvasLayer
 	if n:
 		n.visible = not n.visible
-
-
-func _demo_talk() -> void:
-	var cm := get_tree().get_first_node_in_group("ui_dialogue") as ConversationManager
-	if cm == null:
-		push_warning("ConversationManager (group ui_dialogue) tidak ada di scene")
-		return
-	if cm.is_talking():
-		cm.advance()
-	else:
-		cm.start(DemoConversation.LINES)
 
 
 func _toggle_all_minimize() -> void:

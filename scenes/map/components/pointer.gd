@@ -18,10 +18,8 @@ var _draw_pos: Vector2
 var _angle: float = 0.0
 var _distance: float = 0.0
 
-
 func _ready() -> void:
 	add_to_group("waypoint_marker")
-
 
 # Point at the waypoint with this node name. "" hides the marker.
 func point_to(id: String) -> void:
@@ -107,5 +105,6 @@ func _draw() -> void:
 func _find_waypoint(id: String) -> Node2D:
 	for node in get_tree().get_nodes_in_group(waypoint_group):
 		if node.name == id and node is Node2D:
+			print("found")
 			return node as Node2D
 	return null

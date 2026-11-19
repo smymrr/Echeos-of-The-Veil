@@ -40,11 +40,10 @@ var steps: Array = [
 	{"text": "Welcome! Let's learn the basics.", "type": "wait", "seconds": 3.0},
 	{"text": "Move around with W A S D", "type": "actions",
 		"actions": ["move_up", "move_down", "move_left", "move_right"], "need": "all"},
-	{"text": "Head to the waypoint", "type": "event", "event": "enter_2nd", "marker": "Quest"},
-	{"text": "Press SPACE to dash", "type": "actions", "actions": ["dash"]},
+	{"text": "Press Q to dash", "type": "actions", "actions": ["dash"]},
 	{"text": "Click to attack", "type": "actions", "actions": ["left_click"]},
 	{"text": "Your sword follows your mouse!.", "type": "wait", "seconds": 3.0},
-	{"text": "You're ready. Good luck!", "type": "wait", "seconds": 3.0},
+	{"text": "Head to the waypoint", "type": "event", "event": "enter_2nd", "marker": "quest"},
 ]
 # ----------------------------------------------------------------
 
@@ -64,6 +63,7 @@ func _ready() -> void:
 	add_to_group("tutorial")
 	panel.modulate.a = 0.0
 	_validate_steps()
+	await get_tree().process_frame
 	if autostart:
 		start()
 
@@ -134,7 +134,12 @@ func _next_step() -> void:
 	_pending = step.get("actions", []).duplicate()
 	_total = _pending.size()
 	_base_text = step.get("text", "")
+	var targets = get_tree().get_nodes_in_group("waypoint_marker")
+	print("Nodes in group: ", targets)
+	for t in targets:
+		print(t.name, " has method: ", t.has_method("point_to"))
 	get_tree().call_group("waypoint_marker", "point_to", step.get("marker", ""))
+	print("waypoints after")
 	_update_label()
 	step_started.emit(_index)
 

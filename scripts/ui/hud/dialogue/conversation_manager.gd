@@ -1,4 +1,3 @@
-class_name ConversationManager
 extends Node
 ## Alur percakapan NPC <-> MC. Letakkan satu node di scene dan beri group "ui_dialogue".
 ## Tampilan dikerjakan TalkBox dan ChoiceBox, script ini hanya mengatur urutan.
