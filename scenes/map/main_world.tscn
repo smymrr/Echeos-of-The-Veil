@@ -4,12 +4,39 @@
 [ext_resource type="PackedScene" uid="uid://bac77e5j5qc18" path="res://scenes/map/components/overworld/overword3.tscn" id="2_gpus4"]
 [ext_resource type="PackedScene" uid="uid://dk4i5j5vkxs0v" path="res://scenes/map/components/overworld/overworld2.tscn" id="3_is1s6"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5jfb"]
+size = Vector2(82, 25)
+
 [node name="MainWorld" type="Node2D" unique_id=1966433246]
 
-[node name="Node2D" parent="." unique_id=1520495649 instance=ExtResource("1_cp4k5")]
+[node name="SpawnOverworld" parent="." unique_id=1520495649 instance=ExtResource("1_cp4k5")]
+position = Vector2(-3, 0)
 
-[node name="Node2D2" parent="." unique_id=1266503889 instance=ExtResource("2_gpus4")]
+[node name="TrainingOverworld" parent="." unique_id=1266503889 instance=ExtResource("2_gpus4")]
 position = Vector2(1145, 670)
 
 [node name="Node2D3" parent="." unique_id=1810209055 instance=ExtResource("3_is1s6")]
 position = Vector2(-7, 655)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=391767305]
+position = Vector2(310, 740)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1076164553]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=822013827]
+position = Vector2(236, 640)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1728400543]
+position = Vector2(17, 3)
+shape = SubResource("RectangleShape2D_t5jfb")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=474841582]
+position = Vector2(236, 640)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1772001637]
+position = Vector2(240, 3)
+shape = SubResource("RectangleShape2D_t5jfb")

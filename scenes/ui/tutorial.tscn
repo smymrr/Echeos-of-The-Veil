@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://itkae1v5mpat"]
+
+[ext_resource type="Script" uid="uid://cey5d81ixs4iw" path="res://scenes/ui/tutorial.gd" id="1_k8r76"]
+
+[node name="Tutorial" type="CanvasLayer" unique_id=2126602579]
+script = ExtResource("1_k8r76")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=393773338]
+offset_left = 459.0
+offset_top = 126.0
+offset_right = 622.0
+offset_bottom = 162.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=514675772]
+layout_mode = 2

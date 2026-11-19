@@ -15,15 +15,12 @@ func _ready() -> void:
 
 func _get_tree_from_area(area: Area2D) -> Node2D:
 	var tree := area.get_parent() as Node2D
-	print(tree.name)
 	if tree and tree.is_in_group("trees"):
-		print('is a tree')
 		return tree
 	return null
 
 
 func _on_tree_area_entered(area: Area2D) -> void:
-	print("entered")
 	var tree := _get_tree_from_area(area)
 	if tree == null:
 		return

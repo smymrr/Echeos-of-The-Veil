@@ -21,6 +21,8 @@ const UI = preload("res://scenes/ui/game_ui.tscn")
 func start_game():
 	var ui_instance = UI.instantiate()
 	var game_root = get_tree().current_scene
+	add_child(preload("res://scenes/ui/tutorial.tscn").instantiate())
+	add_child(preload("res://scenes/map/components/waypoint_marker.tscn").instantiate())
 
 	game_root.add_child(ui_instance)
 

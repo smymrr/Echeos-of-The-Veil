@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://jtcuc6dvdcdj"]
+[gd_scene format=3 uid="uid://c1ta3q8tqxoki"]
 
 [ext_resource type="Script" uid="uid://73am07gkhk67" path="res://scripts/ui/hud/hud/hud.gd" id="1_bngdn"]
 [ext_resource type="Script" uid="uid://b7sxfb0hwhy3p" path="res://scripts/ui/hud/health_display.gd" id="2_qao66"]
