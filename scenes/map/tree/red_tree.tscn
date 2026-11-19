@@ -1,8 +1,8 @@
-[gd_scene format=4 uid="uid://8xlmea5wbjku"]
+[gd_scene format=4 uid="uid://buw5it013ctc8"]
 
 [ext_resource type="Texture2D" uid="uid://be8ys1ktpnk1s" path="res://assets/map/overworld/tileset_overworld/Trees.png" id="1_jyyc4"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uotg0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y5qx5"]
 texture = ExtResource("1_jyyc4")
 24:0/0 = 0
 25:0/0 = 0
@@ -827,13 +827,23 @@ texture = ExtResource("1_jyyc4")
 35:42/0 = 0
 36:42/0 = 0
 3:43/0 = 0
-0:42/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_r6hca"]
-sources/0 = SubResource("TileSetAtlasSource_uotg0")
+[sub_resource type="TileSet" id="TileSet_1hi0r"]
+sources/0 = SubResource("TileSetAtlasSource_y5qx5")
 
-[node name="RedTree" type="Node2D" unique_id=1857757420]
+[node name="RedTree" type="StaticBody2D" unique_id=450154731 groups=["trees"]]
+collision_layer = 4
+collision_mask = 3
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1292181000]
-tile_map_data = PackedByteArray("AAD+//r/AAABACMAAAD+//v/AAABACQAAAD+//z/AAABACUAAAD+//3/AAABACYAAAD+//7/AAABACcAAAD+////AAABACgAAAD+/wAAAAABACkAAAD+/wEAAAABACoAAAD///n/AAACACIAAAD///r/AAACACMAAAD///v/AAACACQAAAD///z/AAACACUAAAD///3/AAACACYAAAD///7/AAACACcAAAD/////AAACACgAAAD//wAAAAACACkAAAD//wEAAAACACoAAAAAAPn/AAADACIAAAAAAPr/AAADACMAAAAAAPv/AAADACQAAAAAAPz/AAADACUAAAAAAP3/AAADACYAAAAAAP7/AAADACcAAAAAAP//AAADACgAAAAAAAAAAAADACkAAAAAAAEAAAADACoAAAABAPr/AAAEACMAAAABAPv/AAAEACQAAAABAPz/AAAEACUAAAABAP3/AAAEACYAAAABAP7/AAAEACcAAAABAP//AAAEACgAAAABAAAAAAAEACkAAAABAAEAAAAEACoAAAACAP3/AAAFACYAAAACAP7/AAAFACcAAAACAP//AAAFACgAAAA=")
-tile_set = SubResource("TileSet_r6hca")
+[node name="Tree" type="TileMapLayer" parent="." unique_id=40917636]
+tile_map_data = PackedByteArray("AAD9/wAAAAAAACcAAAD+//z/AAABACMAAAD+//3/AAABACQAAAD+//7/AAABACUAAAD+////AAABACYAAAD+/wAAAAABACcAAAD+/wEAAAABACgAAAD///v/AAACACIAAAD///z/AAACACMAAAD///3/AAACACQAAAD///7/AAACACUAAAD/////AAACACYAAAD//wAAAAACACcAAAD//wEAAAACACgAAAAAAPv/AAADACIAAAAAAPz/AAADACMAAAAAAP3/AAADACQAAAAAAP7/AAADACUAAAAAAP//AAADACYAAAAAAAAAAAADACcAAAAAAAEAAAADACgAAAABAPz/AAAEACMAAAABAP3/AAAEACQAAAABAP7/AAAEACUAAAABAP//AAAEACYAAAABAAAAAAAEACcAAAABAAEAAAAEACgAAAACAP//AAAFACYAAAACAAAAAAAFACcAAAACAAEAAAAFACgAAAD+/wIAAAABACkAAAD+/wMAAAABACoAAAD//wIAAAACACkAAAD//wMAAAACACoAAAAAAAIAAAADACkAAAAAAAMAAAADACoAAAAAAAQAAAADACsAAAABAAIAAAAEACkAAAABAAMAAAAEACoAAAA=")
+tile_set = SubResource("TileSet_1hi0r")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=813397830]
+
+[node name="Leaf" type="CollisionPolygon2D" parent="Area2D" unique_id=1494067991]
+polygon = PackedVector2Array(-11, 24, -27, 15, -34, 2, -10, -70, 5, -71, 38, -8, 41, 15, 1, 18)
+
+[node name="Log" type="CollisionPolygon2D" parent="." unique_id=1183600736]
+build_mode = 1
+polygon = PackedVector2Array(6, 33, -3, 31, -3, 25, 4, 19, 13, 18, 15, 31)

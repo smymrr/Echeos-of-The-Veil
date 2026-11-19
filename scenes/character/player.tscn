@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bkumqcm3xp00j" path="res://assets/images/player/idle.png" id="5_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dx8sar6xpi8v0" path="res://assets/images/player/walk.png" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://rweo1sd3vkd7" path="res://assets/images/player/attack_sheet.png" id="6_ur7pv"]
+[ext_resource type="Script" uid="uid://w2ddg7l2jwk3" path="res://scenes/character/tree_detector.gd" id="7_2smwq"]
 [ext_resource type="Texture2D" uid="uid://dl1txr6xucmqo" path="res://assets/images/player/death_animation_down.png" id="7_7r6u0"]
 [ext_resource type="Texture2D" uid="uid://dlnxy5refil40" path="res://assets/images/player/dash/dash_bawah.png" id="7_jb4us"]
 [ext_resource type="Texture2D" uid="uid://dcvyo50e417q1" path="res://assets/images/player/death_animation_left.png" id="8_e5n5u"]
@@ -21,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://dd0jyfx3ygqrx" path="res://assets/images/player/death_animation_up.png" id="10_jb4us"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdg3f"]
+size = Vector2(14, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a36"]
 size = Vector2(14, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtqjt"]
@@ -1165,8 +1169,12 @@ script = ExtResource("4_fjrip")
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_tdg3f")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
-zoom = Vector2(3, 3)
+[node name="TreeDetector" type="Area2D" parent="." unique_id=407689521]
+script = ExtResource("7_2smwq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreeDetector" unique_id=1112035152]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_f6a36")
 
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=910346500]
 unique_name_in_owner = true
@@ -1177,6 +1185,9 @@ collision_mask = 26
 [node name="HitboxDetection" type="CollisionShape2D" parent="AttackHitbox" unique_id=1810789784]
 shape = SubResource("RectangleShape2D_dtqjt")
 metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1955371024]
+zoom = Vector2(3, 3)
 
 [node name="DashEffects" type="AnimatedSprite2D" parent="." unique_id=1717649059]
 visible = false
