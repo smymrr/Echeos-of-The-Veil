@@ -1,17 +1,20 @@
 [gd_scene format=3 uid="uid://c0tfwnd8cr80p"]
 
 [ext_resource type="Script" uid="uid://bj7n72i0n243d" path="res://scripts/ui/hud/game_ui.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://c1ta3q8tqxoki" path="res://scenes/ui/hud/hud.tscn" id="2_hud"]
-[ext_resource type="PackedScene" path="res://scenes/ui/pause_panel.tscn" id="3_quest"]
+[ext_resource type="PackedScene" uid="uid://jtcuc6dvdcdj" path="res://scenes/ui/hud/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" uid="uid://bck4w6o81mr72" path="res://scenes/ui/pause_panel.tscn" id="3_quest"]
 [ext_resource type="PackedScene" uid="uid://bkaxubbvlayug" path="res://scenes/ui/hud/inventory_panel.tscn" id="4_inv"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud/quest_panel.tscn" id="5_pause"]
+[ext_resource type="PackedScene" uid="uid://lnu8kroykiyp" path="res://scenes/ui/hud/quest_panel.tscn" id="5_pause"]
 [ext_resource type="PackedScene" uid="uid://b55l2ib55hsg4" path="res://scenes/ui/hud/options_ingame.tscn" id="6_options"]
-[ext_resource type="PackedScene" path="res://scenes/ui/save_panel.tscn" id="7_save"]
+[ext_resource type="PackedScene" uid="uid://daoor4e0d3iod" path="res://scenes/ui/save_panel.tscn" id="7_save"]
 [ext_resource type="PackedScene" uid="uid://b74wa30lciuh8" path="res://scenes/ui/hud/boss_bar.tscn" id="8_opxtl"]
 [ext_resource type="PackedScene" uid="uid://bcte400365juj" path="res://scenes/ui/hud/wave_label.tscn" id="9_crnce"]
 [ext_resource type="PackedScene" uid="uid://d0xygqlafl85f" path="res://scenes/ui/hud/choice_box.tscn" id="10_x0n6o"]
 [ext_resource type="PackedScene" uid="uid://mhn6u3mq3xlt" path="res://scenes/ui/hud/mc_talk_box.tscn" id="11_aq72h"]
 [ext_resource type="PackedScene" uid="uid://7va8lwvlo7op" path="res://scenes/ui/hud/npc_talk_box.tscn" id="12_oqj4c"]
+[ext_resource type="PackedScene" uid="uid://fpnhtxsixmra" path="res://scenes/ui/hud/death/death_panel.tscn" id="15_aq72h"]
+[ext_resource type="Script" uid="uid://cltdwnuhrik0l" path="res://scripts/ui/hud/dialogue/conversation_manager.gd" id="19_4oucs"]
+[ext_resource type="Script" uid="uid://biiba0h6t0g3b" path="res://scripts/ui/hud/demo/demo_hotkeys.gd" id="20_03x2p"]
 
 [node name="GameUI" type="Node" unique_id=2072108287]
 script = ExtResource("1_script")
@@ -37,3 +40,11 @@ script = ExtResource("1_script")
 [node name="McTalkBox" parent="." unique_id=249027861 instance=ExtResource("11_aq72h")]
 
 [node name="NpcTalkBox" parent="." unique_id=1024896080 instance=ExtResource("12_oqj4c")]
+
+[node name="ConversationManager" type="Node" parent="." unique_id=542468304]
+script = ExtResource("19_4oucs")
+
+[node name="DemoHotkeys" type="Node" parent="." unique_id=1441562395]
+script = ExtResource("20_03x2p")
+
+[node name="DeathPanel" parent="." unique_id=1886398726 instance=ExtResource("15_aq72h")]

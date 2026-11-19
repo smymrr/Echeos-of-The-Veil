@@ -11,19 +11,30 @@ config_version=5
 [application]
 
 config/name="Echeos of the Veil"
-run/main_scene="uid://dkgaos83iuabf"
+run/main_scene="uid://brhoe3fx1k85q"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://bry2rh45dpx8u"
 
 [autoload]
 
 PlayerData="*uid://c8o3o3aw3nean"
 PlayerHealth="*uid://cxf0hq4ot5f7n"
-EventBus="*uid://c6fe6i0qnujlv"
 QuestManager="*uid://cvrk4tnhmjj67"
+PlayerSettings="*uid://bpur4wom5gxiv"
+AudioManager="*uid://2mld1m1ebnxo"
+FpsDisplay="*uid://tuv4qj272jf6"
+Brightness="*uid://dryjg8o5sw5j1"
+MapRegistry="*uid://bwru8ei15ntd2"
+EventBus="*uid://c6fe6i0qnujlv"
 
 [display]
 
+window/size/mode=3
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -34,6 +45,10 @@ project/assembly_name="Echeos of the Veil"
 [global_group]
 
 player=""
+enemy=""
+breakable=""
+projectile=""
+enemy_projectile=""
 
 [input]
 
@@ -82,6 +97,10 @@ interact={
 2d_render/layer_1="Player"
 2d_render/layer_2="Wall"
 2d_render/layer_3="Enemy"
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="wall"
+2d_physics/layer_4="breakable"
 
 [physics]
 

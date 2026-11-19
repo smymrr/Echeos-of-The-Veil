@@ -1,0 +1,14 @@
+Category,Asset Name,Resolution,Format
+Tileset,Grass & Dirt Autotile,16x16,PNG
+Tileset,Cobblestone Path & Water Edge,16x16,PNG
+Structures,Medieval Houses & Village Buildings,32x32 / Multi-tile,PNG
+Structures,Stone Castle Wall & Watchtower,32x32 / Multi-tile,PNG
+Props,"Village Props (Well, Crate, Barrel, Wagon)",16x16 / 32x32,PNG
+Props,"Campfire, Tent & Market Stalls",32x32,PNG
+Characters,Knight & Warrior Sprite Sheets,32x32,PNG
+Characters,Mage & Archer Sprite Sheets,32x32,PNG
+NPCs,Villagers & Blacksmith Sprites,32x32,PNG
+Monsters,"Forest Enemies (Slime, Wolf, Boar)",32x32,PNG
+Items,"Weapons, Armors, & Shield Icons",16x16,PNG
+Items,"Potions, Food & Keys",16x16,PNG
+UI,RPG Inventory Frames & Status Bars,Sliceable,PNG

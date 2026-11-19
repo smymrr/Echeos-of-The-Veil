@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://mhn6u3mq3xlt"]
 
+[ext_resource type="Script" uid="uid://rbyfmpuu58bo" path="res://scripts/ui/hud/dialogue/talk_box.gd" id="1_8sey2"]
+
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
 [sub_resource type="StyleBoxFlat" id="btn_h"]
@@ -123,6 +125,7 @@ border_color = Color(0.48, 0.35, 0.82, 1)
 [node name="McTalkBox" type="CanvasLayer" unique_id=249027861 groups=["ui_mc_talk"]]
 layer = 7
 visible = false
+script = ExtResource("1_8sey2")
 
 [node name="Root" type="Control" parent="." unique_id=1477865424]
 layout_mode = 3
