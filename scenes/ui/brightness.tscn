@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dryjg8o5sw5j1"]
+
+[sub_resource type="Environment" id="Environment_f6a36"]
+background_mode = 3
+adjustment_enabled = true
+
+[node name="Brightness" type="WorldEnvironment" unique_id=577370493]
+environment = SubResource("Environment_f6a36")

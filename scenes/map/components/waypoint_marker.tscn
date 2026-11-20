@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dy5pugehl3olp"]
+
+[ext_resource type="Script" uid="uid://iy4reikyehbn" path="res://scenes/map/components/pointer.gd" id="1_1fkr4"]
+
+[node name="WaypointMarker" type="CanvasLayer" unique_id=685365067]
+layer = 9
+
+[node name="Pointer" type="Control" parent="." unique_id=918725269]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_1fkr4")
