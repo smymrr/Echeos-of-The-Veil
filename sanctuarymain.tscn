@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b32qdre448723"]
+
+[ext_resource type="PackedScene" uid="uid://cvxydvj5137re" path="res://sanctuary.tscn" id="1_rt5hj"]
+
+[node name="Sanctuary" unique_id=46389495 instance=ExtResource("1_rt5hj")]
