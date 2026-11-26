@@ -34,6 +34,9 @@ func _ready() -> void:
 	movement_component.pick_new_target()
 
 func _physics_process(delta: float) -> void:
+	if PlayerHealth.is_dead:
+		return
+	
 	if not attack_component.is_attacking:
 		animation_component.play_animation("movement")
 	

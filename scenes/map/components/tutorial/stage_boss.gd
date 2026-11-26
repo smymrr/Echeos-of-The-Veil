@@ -13,7 +13,10 @@ var activated: bool = false
 
 func _ready() -> void:
 	player_trigger.body_entered.connect(_on_boss_trigger)
-
+	
+func start_scripted_boss_fight() -> void:
+	PlayerData.story_flags["boss_scripted_defeat"] = true
+	
 func _on_boss_trigger(body: Node2D) -> void:
 	if not body.is_in_group("player") or activated:
 		return
@@ -22,6 +25,8 @@ func _on_boss_trigger(body: Node2D) -> void:
 	
 	# Set activated immediately so the trigger can't fire twice
 	activated = true
+	
+	start_scripted_boss_fight()
 	
 	# Use call_deferred when modifying physics/collisions inside a body_entered signal
 	barrier.set_collision_layer_value(3, true)

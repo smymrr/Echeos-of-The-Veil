@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@export var tutorial_demo_ending: bool = true
+@export_file("*.tscn") var main_menu_scene: String = "res://scenes/ui/main_menu.tscn"
+
 @export var movement_component: MovementComponent
 @export var attack_component: AttackComponent
 @export var animation_component: AnimationComponent
@@ -126,10 +129,35 @@ func _scripted_boss_death() -> void:
 	var player_screen_pos := get_global_transform_with_canvas().origin
 	await shatter.play(player_screen_pos)
 
-	# Screen is now completely black — reset player state and load the sanctuary
+	# Screen is now completely black
 	PlayerData.story_flags["boss_scripted_defeat"] = false
 	PlayerData.story_flags["lost_to_prologue_boss"] = true
 
+	if tutorial_demo_ending:
+		await _play_tutorial_ending(shatter)
+	else:
+		await _transition_to_sanctuary(shatter)
+
+
+func _play_tutorial_ending(shatter: ScreenShatter) -> void:
+	if AudioManager:
+		AudioManager.fade_out_music(1.5)
+
+	var has_menu := main_menu_scene != "" and ResourceLoader.exists(main_menu_scene)
+	await shatter.show_to_be_continued("To Be Continued...", "Press any key to return to title", has_menu)
+
+	# Restore player flags so the save/session isn't stuck in a dead state
+	PlayerHealth.is_dead = false
+	PlayerHealth.heal(PlayerData.get_max_health())
+	camera.zoom = _default_camera_zoom
+	set_movement_lock(false, true)
+
+	if has_menu:
+		get_tree().change_scene_to_file(main_menu_scene)
+		shatter.queue_free()
+
+
+func _transition_to_sanctuary(shatter: ScreenShatter) -> void:
 	PlayerHealth.is_dead = false
 	PlayerHealth.heal(PlayerData.get_max_health())
 	camera.zoom = _default_camera_zoom
