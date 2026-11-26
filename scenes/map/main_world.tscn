@@ -99,4 +99,13 @@ offset_bottom = -37.0
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=430246267]
 
 [node name="default" type="Marker2D" parent="SpawnPoints" unique_id=1036667074]
-position = Vector2(346, 233)
+position = Vector2(353, 247)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=613062201]
+visible = false
+z_index = -1
+offset_left = -848.0
+offset_top = -514.0
+offset_right = 3105.0
+offset_bottom = 2170.0
+color = Color(0.5019608, 0.5176471, 0.28627452, 1)

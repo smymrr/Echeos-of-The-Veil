@@ -19,7 +19,7 @@ func take_damage(raw_amount: int, body: CharacterBody2D, attacker: CharacterBody
 		return
 	
 	var defense: int = PlayerData.get_defense()
-	var final_damage: int = int(max(raw_amount - defense, 0))
+	var final_damage: int = int(max(1, raw_amount - defense, 0))
 	
 	_flash_red(body)
 	PlayerData.current_health = max(PlayerData.current_health - final_damage, 0)

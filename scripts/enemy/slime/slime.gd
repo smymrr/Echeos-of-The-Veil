@@ -3,12 +3,11 @@ extends CharacterBody2D
 @export var speed: float = 50.0
 @export var roam_radius: float = 150.0
 
-@export var attack_damage: int = 10
+@export var attack_damage: int = 15
 @export var attack_windup: float = 0.35
 @export var attack_cooldown: float = 1.5
 @export var lunge_distance: float = 24.0
 @export var knockback_decay: float = 15.0
-
 @export var separation_distance: float = 20.0
 
 @export var enemy_name: String = "Slime"
@@ -39,6 +38,9 @@ var _excepted_body: PhysicsBody2D = null
 var _restore_pending := false
 
 func _ready() -> void:
+	health_component.max_health = round(health_component.max_health * pow(1.20, level - 1))
+	attack_damage = round(attack_damage + pow(1.15, level-1))
+	
 	home_position = global_position
 	_set_new_roam_target()
 	

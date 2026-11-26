@@ -73,19 +73,17 @@ func show_death(
 func handle_escape() -> bool:
 	return visible
 
-
 func hide_death() -> void:
 	visible = false
 	if pause_game:
 		get_tree().paused = false
-
 
 func _on_retry() -> void:
 	retry_requested.emit()
 	if not auto_handle:
 		return
 	hide_death()
-	get_tree().reload_current_scene()
+	CheckpointManager.respawn()
 
 
 func _on_exit() -> void:

@@ -31,6 +31,7 @@ FpsDisplay="*uid://tuv4qj272jf6"
 Brightness="*uid://dryjg8o5sw5j1"
 MapRegistry="*uid://bwru8ei15ntd2"
 ConversationManager="*uid://cltdwnuhrik0l"
+CheckpointManager="*uid://ddj2b0i67nmb2"
 
 [display]
 
@@ -53,6 +54,8 @@ enemy_projectile=""
 trees=""
 waypoints=""
 waypoint_marker=""
+gold_box=""
+item_box=""
 
 [input]
 

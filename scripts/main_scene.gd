@@ -6,7 +6,7 @@ const TUTORIAL_UI = preload("res://scenes/ui/tutorial.tscn")
 const WAYPOINT_MARKER = preload("res://scenes/map/components/waypoint_marker.tscn")
 
 var current_map: Node2D
-var _is_changing_map := false
+var _is_changing_map: bool = false
 
 func _ready() -> void:
 	start_game()
@@ -14,11 +14,19 @@ func _ready() -> void:
 func start_game() -> void:
 	var ui_instance = UI.instantiate()
 	var game_root = get_tree().current_scene
-	add_child(TUTORIAL_UI.instantiate())
+	if not PlayerData.tutorial_shown:
+		add_child(TUTORIAL_UI.instantiate())
+		PlayerData.tutorial_shown = true
 	add_child(WAYPOINT_MARKER.instantiate())
 
 	game_root.add_child(ui_instance)
-	load_map("tutorial_overworld")
+
+	var starting_map := "tutorial_dungeon"
+	if CheckpointManager.is_respawning() and CheckpointManager.get_checkpoint_map() != "":
+		starting_map = CheckpointManager.get_checkpoint_map()
+
+	load_map(starting_map)
+
 
 func load_map(target: Variant, spawn_name := "default", map_id := "") -> void:
 	if is_instance_valid(current_map):
@@ -35,8 +43,11 @@ func load_map(target: Variant, spawn_name := "default", map_id := "") -> void:
 	current_map = scene.instantiate()
 	$MapContainer.add_child(current_map)
 
-	var spawn: Marker2D = current_map.get_node("SpawnPoints/" + spawn_name)
-	$Player.global_position = spawn.global_position
+	if CheckpointManager.has_checkpoint():
+		pass
+	else:
+		var spawn: Marker2D = current_map.get_node("SpawnPoints/" + spawn_name)
+		$Player.global_position = spawn.global_position
 
 	if map_id != "":
 		PlayerData.current_map = map_id

@@ -14,8 +14,8 @@ metadata/_custom_type_script = "uid://c1eqm1k7yes0x"
 
 [sub_resource type="Resource" id="Resource_ao6ro"]
 script = ExtResource("3_alf6t")
-id = "Tutorial Pt. 1"
-title = "test"
+id = "kill_slime"
+title = "Trial"
 objectives = Array[ExtResource("2_1br7e")]([SubResource("Resource_vyhns")])
 metadata/_custom_type_script = "uid://c730w3ccrrbbd"
 

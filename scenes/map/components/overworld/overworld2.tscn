@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cancg76s3mygd" path="res://scenes/map/tree/yellow_tree.tscn" id="4_agr5n"]
 [ext_resource type="PackedScene" uid="uid://b3l8u8g2jovnv" path="res://scenes/map/tree/green_tree.tscn" id="5_k8su5"]
 [ext_resource type="Script" uid="uid://djmoga8vjhojl" path="res://scenes/map/components/overworld/tutorial_dungeon_barrier.gd" id="7_agr5n"]
+[ext_resource type="Script" uid="uid://tnkygmbh0ixe" path="res://scenes/map/components/overworld/tutorial_overworld_barrier.gd" id="8_k8su5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_agr5n"]
 texture = ExtResource("2_thfok")
@@ -1044,8 +1045,21 @@ position = Vector2(208, 576)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=883764666]
 position = Vector2(344, 440)
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("7_agr5n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=251158262]
 position = Vector2(28, 24)
+shape = SubResource("RectangleShape2D_t5jfb")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1090804245]
+position = Vector2(344, 440)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("8_k8su5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=345289414]
+position = Vector2(200, -104)
+rotation = 1.5707964
 shape = SubResource("RectangleShape2D_t5jfb")

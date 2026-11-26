@@ -11,6 +11,8 @@ extends CharacterBody2D
 var last_facing_direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
+	CheckpointManager.apply_respawn(self)
+	
 	PlayerData.player = self
 	movement_component.setup(self)
 	PlayerHealth.died.connect(_death)
@@ -50,6 +52,7 @@ func set_movement_lock(locked: bool, play_idle: bool = false) -> void:
 		movement_component.process_animation(last_facing_direction)
 	
 	movement_component.is_locked = locked
+	print("success", locked)
 
 func set_movement_slowed(slowed: bool) -> void:
 	movement_component.is_slowed = slowed

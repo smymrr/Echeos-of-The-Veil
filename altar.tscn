@@ -11740,7 +11740,7 @@ texture = ExtResource("1_l4p38")
 [sub_resource type="TileSet" id="TileSet_ckkqf"]
 sources/0 = SubResource("TileSetAtlasSource_rnkuw")
 
-[node name="Node2D" type="Node2D" unique_id=468576067]
+[node name="Altar" type="Node2D" unique_id=468576067]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=467898341]
 modulate = Color(0.9098039, 0.7882353, 0.9607843, 1)

@@ -2,65 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6r5r33p7wktp" path="res://scripts/main_scene.gd" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/character/player.tscn" id="3_jyhfs"]
-[ext_resource type="Animation" uid="uid://btrcd6nndkcnp" path="res://data/tutorial_cutscene.res" id="5_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b63g2w7l3bsw4" path="res://scenes/map/components/fog.tscn" id="6_tefeu"]
-
-[sub_resource type="Animation" id="Animation_cp4k5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CutsceneCamera:enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player/PlayerCamera:enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CutsceneCamera:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CutsceneCamera:zoom")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(5, 5)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6xl0"]
-_data = {
-&"RESET": SubResource("Animation_cp4k5"),
-&"tutorial_cutscene": ExtResource("5_tefeu")
-}
 
 [node name="main" type="Node2D" unique_id=672410187]
 script = ExtResource("1_tipki")
@@ -70,11 +12,5 @@ script = ExtResource("1_tipki")
 [node name="Player" parent="." unique_id=1987352962 instance=ExtResource("3_jyhfs")]
 z_index = 6
 position = Vector2(-6820, -619)
-
-[node name="TutorialCutscene" type="AnimationPlayer" parent="." unique_id=1051764589]
-libraries/ = SubResource("AnimationLibrary_o6xl0")
-
-[node name="CutsceneCamera" type="Camera2D" parent="." unique_id=1302436157]
-zoom = Vector2(5, 5)
 
 [node name="Fog" parent="." unique_id=1907199597 instance=ExtResource("6_tefeu")]

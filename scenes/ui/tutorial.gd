@@ -177,7 +177,6 @@ func _finish() -> void:
 	_accepting = false
 	
 	get_tree().call_group("waypoint_marker", "point_to", "")
-	get_tree().call_group("tutorial_barrier", "unlock_all")
 	
 	_gate_event = ""
 	_gate_opened.emit()   # releases a step that's still waiting, e.g. after a skip

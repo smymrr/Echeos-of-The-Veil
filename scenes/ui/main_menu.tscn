@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c6bqnxttag3il" path="res://assets/ui/main_menu/Text Panel.png" id="8_45qkm"]
 [ext_resource type="Script" uid="uid://cx6ywkwnrl82" path="res://scripts/ui/main_menu/hover_button.gd" id="9_shj5x"]
 [ext_resource type="FontFile" uid="uid://u84i6l5lbqf8" path="res://assets/font/VT323-Regular.ttf" id="10_ef12m"]
+[ext_resource type="Script" uid="uid://camt2887cft70" path="res://scenes/ui/load_data_screen.gd" id="11_e0hcc"]
 [ext_resource type="Script" uid="uid://beh5mvcal7p14" path="res://scripts/ui/main_menu/fade_screen.gd" id="11_gya4d"]
 [ext_resource type="Texture2D" uid="uid://bq36e2rq7cu4g" path="res://assets/ui/main_menu/load_game_panel.png" id="12_e64ma"]
 [ext_resource type="PackedScene" uid="uid://ctmihk0yl87ii" path="res://scenes/ui/main_menu/load_slot.tscn" id="13_mdbww"]
@@ -227,7 +228,7 @@ offset_left = 320.0
 offset_top = 277.0
 offset_right = 814.0
 offset_bottom = 417.064
-script = ExtResource("11_gya4d")
+script = ExtResource("11_e0hcc")
 metadata/_edit_lock_ = true
 
 [node name="LoadDataPanel" type="TextureRect" parent="LoadDataScreen" unique_id=226565383]
