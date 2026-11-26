@@ -38,11 +38,11 @@ signal _gate_opened
 
 var steps: Array = [
 	{"text": "Welcome! Let's learn the basics.", "type": "wait", "seconds": 3.0},
-	{"text": "Move around with W A S D", "type": "actions",
-		"actions": ["move_up", "move_down", "move_left", "move_right"], "need": "all"},
-	{"text": "Press Q to dash", "type": "actions", "actions": ["dash"]},
-	{"text": "Click to attack", "type": "actions", "actions": ["left_click"]},
-	{"text": "Your sword follows your mouse!.", "type": "wait", "seconds": 3.0},
+	#{"text": "Move around with W A S D", "type": "actions",
+	#	"actions": ["move_up", "move_down", "move_left", "move_right"], "need": "all"},
+	#{"text": "Press Q to dash", "type": "actions", "actions": ["dash"]},
+	#{"text": "Click to attack", "type": "actions", "actions": ["left_click"]},
+	#{"text": "Your sword follows your mouse!.", "type": "wait", "seconds": 3.0},
 	{"text": "Head to the waypoint", "type": "event", "event": "enter_2nd", "marker": "quest"},
 ]
 # ----------------------------------------------------------------

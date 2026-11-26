@@ -60,14 +60,10 @@ func _start_dash(direction: Vector2) -> void:
 	get_tree().create_timer(minf(dash_move_time, dash_duration)).timeout.connect(_on_dash_move_timeout)
 	get_tree().create_timer(dash_duration).timeout.connect(_on_dash_duration_timeout)
 
-func set_movement_lock(locked: bool) -> void:
-	is_locked = locked
-
-func set_movement_slowed(slowed: bool) -> void:
-	is_slowed = slowed
-
 # Animation Process
 func process_animation(direction: Vector2) -> void:
+	
+	
 	if is_dashing:
 		animation_component.play_animation("dash", dash_direction)
 	elif body.velocity != Vector2.ZERO:

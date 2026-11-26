@@ -33,14 +33,14 @@ func _perform_attack(input_direction: Vector2) -> void:
 	
 	_process_animation_and_hitbox(input_direction)
 	_trigger_attack_sfx()
-	movement_component.set_movement_lock(true)
+	get_parent().set_movement_lock(true)
 	
 	await get_tree().physics_frame
 
 	hitbox.monitoring = true
 	await get_tree().create_timer(attack_duration).timeout
 	hitbox.monitoring = false
-	movement_component.set_movement_lock(false)
+	get_parent().set_movement_lock(false)
 	is_attacking = false
 
 	var remaining := attack_cooldown
@@ -54,6 +54,7 @@ func _process_animation_and_hitbox(input_direction: Vector2) -> void:
 	
 	# Animation
 	animation_component.play_animation("attack", cardinal)
+	print("animated")
 	
 	# Hitbox orientation
 	if cardinal.x != 0:
@@ -65,12 +66,10 @@ func _trigger_attack_sfx() -> void:
 	swing_sword_sfx.play()
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
-	print("body hit: ", body.name, " | groups: ", body.get_groups())
 	if body in _already_hit or can_attack:
 		return
 	
 	if body.is_in_group("enemy"):
-		print("is an enemy")
 		_already_hit.append(body)
 		var hurt_component = body.find_child("HurtboxComponent")
 		if not hurt_component: # If there is no dedicated hurt component

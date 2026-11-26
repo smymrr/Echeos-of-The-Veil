@@ -7,6 +7,10 @@ var locked: bool = false
 
 func _ready() -> void:
 	sprite.animation_finished.connect(_on_animation_finish)
+	sprite.animation_changed.connect(func():
+		print("anim -> ", sprite.animation)
+		print_stack()
+	)
 
 func _on_animation_finish() -> void:
 	if "attack" in sprite.animation:

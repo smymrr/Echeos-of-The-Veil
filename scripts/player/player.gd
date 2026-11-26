@@ -43,10 +43,22 @@ func process_movement() -> void:
 	if not attack_component.is_attacking:
 		movement_component.process_animation(last_facing_direction)
 
+func set_movement_lock(locked: bool) -> void:
+	movement_component.is_dashing = false
+	velocity = Vector2.ZERO
+	movement_component.process_animation(last_facing_direction)
+	movement_component.is_locked = locked
+
+func set_movement_slowed(slowed: bool) -> void:
+	movement_component.is_slowed = slowed
+
 # ================================
 # ATTACK
 # ================================
 
+func set_attack_enable(enabled: bool) -> void:
+	attack_component.can_attack = enabled
+	
 func attack() -> void:
 	var global_mouse_pos = get_global_mouse_position()
 	var mouse_angle = global_position.direction_to(global_mouse_pos).angle() # Returns radians between -PI and PI

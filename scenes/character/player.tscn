@@ -1197,8 +1197,8 @@ animation = &"dash_up"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414947906]
 sprite_frames = SubResource("SpriteFrames_r6hca")
-animation = &"dash_left"
-frame = 8
+animation = &"attack_down"
+frame = 3
 frame_progress = 1.0
 
 [node name="SwingSword" type="AudioStreamPlayer2D" parent="." unique_id=273571398]

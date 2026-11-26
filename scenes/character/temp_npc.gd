@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var interact_area: Area2D = $InteractArea
 @onready var prompt: Control = $PromptLabel
 
-const LINES := [
+const START_QUEST := [
 	{"who": "npc", "text": "Oh, hello."},
 	{"who": "npc", "text": "I didn't expect anyone to wander this far into the woods."},
 	{"who": "npc", "text": "My name is Eldric. I've been charting the old ruins just south of here."},
@@ -21,37 +21,75 @@ const LINES := [
 	{"who": "npc", "text": "No rush. Come back and speak to me once you're ready to head east.", "end": true},
 ]
 
+const ONGOING_QUEST := [
+	{"who": "npc", "text": "Watch out for when they puf up before lunging. Wipe them out, and I'll guide you down to the ruins.", "end": true}
+]
+
+const FINISHED_QUEST := [
+	{"who": "npc", "text": "Great work! You have potential to be a great warrior."},
+	{"who": "npc", "text": "Follow me, I'll lead you to the dungeon.", "end": true}
+]
+
 var player_in_range: bool = false
+
+var can_interact: bool = true
+enum state {START, ONGOING, FINISHED}
+var current_state = state.START
+var current_line = START_QUEST
+
+var player: CharacterBody2D
 
 func _ready() -> void:
 	prompt.hide()
 	interact_area.body_entered.connect(_on_body_entered)
 	interact_area.body_exited.connect(_on_body_exited)
+	
+	ConversationManager.conversation_ended.connect(on_conversation_ended)
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
+		player = body
 		player_in_range = true
 		prompt.show()
 
 func _on_body_exited(body: Node) -> void:
-	if body.name == "Player":
+	if body.is_in_group("player"):
 		player_in_range = false
 		prompt.hide()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if player_in_range and event.is_action_pressed("interact"):
+	if not (player_in_range and event.is_action_pressed("interact")):
+		return
+	get_viewport().set_input_as_handled()
+
+	if ConversationManager.is_talking():
+		ConversationManager.advance()
+	else:
 		interact()
-		get_viewport().set_input_as_handled()
-	
-	if player_in_range and event.is_action_pressed("left_click"):
-		if ConversationManager.is_talking():
-			ConversationManager.advance()
 
 func interact() -> void:
-	ConversationManager.start(LINES, "ELDRIC")
+	if not can_interact:
+		return
 	
-	QuestManager.start_quest(quest)
+	player.set_movement_lock(true)
+	player.set_attack_enable(false)
+	ConversationManager.start(current_line, "ELDRIC")
 	
 	if quest:
 		QuestManager.start_quest(quest)
 		QuestManager.report("talk", "old_man")   # for "talk to X" objectives
+	
+	can_interact = false
+
+func on_conversation_ended() -> void:
+	match current_state:
+		state.START:
+			current_state = state.ONGOING
+			current_line = ONGOING_QUEST
+		state.ONGOING:
+			current_state = state.FINISHED
+			current_line = FINISHED_QUEST
+	
+	player.set_movement_lock(false)
+	player.set_attack_enable(true)
+	can_interact = true

@@ -19,13 +19,20 @@ extends Node
 
 signal conversation_started
 signal conversation_ended
+
 ## Dikirim saat pemain memilih jawaban (index mulai dari 0).
 signal choice_made(index: int, text: String)
 
 const GROUP := "ui_dialogue"
+const CHOICE_GAP := 8.0
+const CHOICE_ROOT := "Root"
+const CHOICE_LIST := "Root/Choices"
+const TALK_PANEL_PATH := ""
 
 @export_file("*.tscn") var choice_box_scene := "res://scenes/choice_box.tscn"
 
+var _choice_anchor: Control   # the TalkBox the choices sit above
+var _choice_list: Control     # the "Choices" container
 var _lines: Array = []
 var _page := 0
 var _npc: TalkBox
@@ -57,10 +64,8 @@ func start(lines: Array, npc_name: String = "MALACHAR", mc_name: String = "AELIN
 	_show_page()
 	conversation_started.emit()
 
-
 func is_talking() -> bool:
 	return _current != null and _current.visible
-
 
 ## Lewati efek ketik, atau lanjut ke baris berikutnya.
 func advance() -> void:
@@ -79,7 +84,6 @@ func advance() -> void:
 	else:
 		_show_page()
 
-
 func end() -> void:
 	_close_choices()
 	for box in [_npc, _mc]:
@@ -90,6 +94,25 @@ func end() -> void:
 	if was_talking:
 		conversation_ended.emit()
 
+func _get_talk_panel(box: Node) -> Control:
+	if box == null:
+		return null
+	if TALK_PANEL_PATH != "":
+		var path := box.get_node_or_null(TALK_PANEL_PATH) as Control
+		if path:
+			return path
+	if box is Control:
+		return box as Control
+	return _find_panel(box)
+
+func _find_panel(node: Node) -> Control:
+	for child in node.get_children():
+		if child is Panel or child is PanelContainer:
+			return child as Control
+		var found := _find_panel(child)
+		if found:
+			return found
+	return null
 
 func _show_page() -> void:
 	var line: Dictionary = _lines[_page]
@@ -104,7 +127,6 @@ func _show_page() -> void:
 	_current = box
 	box.show_line(line.get("text", ""), _page, _lines.size())
 
-
 ## Kalau baris ini punya pilihan jawaban, tampilkan setelah teks selesai diketik.
 func _on_line_finished() -> void:
 	if _current == null or _page >= _lines.size():
@@ -113,7 +135,6 @@ func _on_line_finished() -> void:
 	if line.has("choices") and not _choices_open:
 		_show_choices(line["choices"])
 
-
 func _show_choices(choices: Array) -> void:
 	_choice_box = _get_choice_box()
 	if _choice_box == null:
@@ -121,7 +142,28 @@ func _show_choices(choices: Array) -> void:
 		return
 	_pending = choices
 	_choices_open = true
+	_choice_anchor = _get_talk_panel(_current)
+	if _choice_anchor == null:
+		push_warning("Panel di dalam TalkBox tidak ditemukan. Isi TALK_PANEL_PATH.")
+	
+	_choice_list = _choice_box.get_node_or_null(CHOICE_LIST) as Control
 	_choice_box.show_choices(choices)
+	_place_choice_box()
+
+	# Hidden buttons only collapse the list on the next frame, so place it again
+	await get_tree().process_frame
+	if not _choices_open:
+		return
+	_place_choice_box()
+
+	# Follow the talk box and the list if either changes size or position
+	for c in [_choice_anchor, _choice_list]:
+		if c and not c.item_rect_changed.is_connected(_place_choice_box):
+			c.item_rect_changed.connect(_place_choice_box)
+
+	# If the talk box changes size or position while choices are open, follow it
+	if _choice_anchor and not _choice_anchor.item_rect_changed.is_connected(_place_choice_box):
+		_choice_anchor.item_rect_changed.connect(_place_choice_box)
 
 
 func _get_choice_box() -> ChoiceBox:
@@ -136,12 +178,27 @@ func _get_choice_box() -> ChoiceBox:
 		box.choice_selected.connect(_on_choice_selected)
 	return box
 
-
 func _close_choices() -> void:
 	_choices_open = false
+	for c in [_choice_anchor, _choice_list]:
+		if c and c.item_rect_changed.is_connected(_place_choice_box):
+			c.item_rect_changed.disconnect(_place_choice_box)
+	_choice_anchor = null
+	_choice_list = null
 	if _choice_box:
 		_choice_box.close()
 
+## Keeps the choice list just above the talk box, whatever height the text made it.
+func _place_choice_box() -> void:
+	if not _choices_open or _choice_box == null or _choice_anchor == null or _choice_list == null:
+		return
+	var root := _choice_box.get_node_or_null(CHOICE_ROOT) as Control
+	if root == null:
+		return
+	var wanted_bottom := _choice_anchor.get_global_rect().position.y - CHOICE_GAP
+	var delta := wanted_bottom - _choice_list.get_global_rect().end.y
+	if absf(delta) > 0.5:
+		root.position.y += delta
 
 func _on_choice_selected(index: int) -> void:
 	if not _choices_open or index >= _pending.size():
