@@ -831,7 +831,7 @@ texture = ExtResource("1_ni5wt")
 [sub_resource type="TileSet" id="TileSet_1hi0r"]
 sources/0 = SubResource("TileSetAtlasSource_y5qx5")
 
-[node name="BigTree" type="StaticBody2D" unique_id=73671610]
+[node name="BigTree" type="StaticBody2D" unique_id=73671610 groups=["trees"]]
 collision_layer = 4
 collision_mask = 3
 
@@ -841,7 +841,7 @@ tile_set = SubResource("TileSet_1hi0r")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=887471520]
 
-[node name="Leaf" type="CollisionPolygon2D" parent="Area2D" unique_id=207855560 groups=["trees"]]
+[node name="Leaf" type="CollisionPolygon2D" parent="Area2D" unique_id=207855560]
 polygon = PackedVector2Array(-36, 17, -74, 4, -95, 19, -99, -2, -96, -61, -27, -112, 33, -107, 42, -53, 74, -35, 78, 14, 57, 32, 1, 18)
 
 [node name="Log" type="CollisionPolygon2D" parent="." unique_id=2110906823]
