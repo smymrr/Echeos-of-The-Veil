@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dx612r22n8xgo"]
+
+[ext_resource type="PackedScene" uid="uid://ci6xe1jr3sqs7" path="res://scenes/stage_1.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://33d1eiayslmh" path="res://treasure_puzzle.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bwj8fslg15w0l" path="res://player.tscn" id="3_h2yge"]
+
+[node name="main" type="Node2D" unique_id=1176379649]
+
+[node name="stage_1" parent="." unique_id=926024326 instance=ExtResource("1_0xm2m")]
+
+[node name="treasure_puzzle" parent="." unique_id=1188350093 instance=ExtResource("2_h2yge")]
+position = Vector2(1154, 241)
+
+[node name="Player" parent="treasure_puzzle" unique_id=1987352962 instance=ExtResource("3_h2yge")]
+position = Vector2(-1122, 132)
