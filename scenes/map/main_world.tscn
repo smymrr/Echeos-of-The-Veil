@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c3jesxivtnkci"]
+[gd_scene format=3 uid="uid://cmu1hcco6td8y"]
 
 [ext_resource type="PackedScene" uid="uid://btca4g0vr6onl" path="res://scenes/map/components/overworld/overworld1.tscn" id="1_cp4k5"]
 [ext_resource type="PackedScene" uid="uid://bac77e5j5qc18" path="res://scenes/map/components/overworld/overword3.tscn" id="2_gpus4"]
@@ -60,9 +60,6 @@ quest = SubResource("Resource_mm3pq")
 [node name="quest" type="Marker2D" parent="." unique_id=1959636297 groups=["waypoints"]]
 position = Vector2(363, 764)
 
-[node name="SlimeArea" type="Marker2D" parent="." unique_id=930709089 groups=["waypoints"]]
-position = Vector2(1416, 969)
-
 [node name="Dungeon" type="Marker2D" parent="." unique_id=458335966 groups=["waypoints"]]
 position = Vector2(116, 1173)
 
@@ -98,3 +95,8 @@ offset_left = -6.0
 offset_top = -37.0
 offset_right = -6.0
 offset_bottom = -37.0
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=430246267]
+
+[node name="default" type="Marker2D" parent="SpawnPoints" unique_id=1036667074]
+position = Vector2(346, 233)

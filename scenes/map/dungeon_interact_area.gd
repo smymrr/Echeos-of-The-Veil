@@ -1,7 +1,5 @@
 extends Area2D
 
-@export var quest: Quest
-
 @onready var prompt: Control = $PromptLabel
 
 var player_in_range: bool = false
@@ -10,9 +8,13 @@ var player: CharacterBody2D
 
 func _ready() -> void:
 	prompt.hide()
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body: Node) -> void:
+	print("body entered")
 	if body.is_in_group("player"):
+		print("player entered")
 		player = body
 		player_in_range = true
 		prompt.show()
@@ -32,4 +34,5 @@ func interact() -> void:
 	if not can_interact:
 		return
 	
+	get_tree().current_scene.change_map("tutorial_dungeon")
 	can_interact = false

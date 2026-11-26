@@ -70,10 +70,16 @@ position = Vector2(576, 496)
 position = Vector2(728, 536)
 
 [node name="Slime" parent="." unique_id=1521115122 instance=ExtResource("6_ejr1s")]
-position = Vector2(104, 248)
+position = Vector2(216, 248)
+
+[node name="Slime1" type="Marker2D" parent="Slime" unique_id=1827195680 groups=["waypoints"]]
 
 [node name="Slime2" parent="." unique_id=1987239673 instance=ExtResource("6_ejr1s")]
-position = Vector2(272, 368)
+position = Vector2(384, 440)
+
+[node name="Slime2" type="Marker2D" parent="Slime2" unique_id=961857563 groups=["waypoints"]]
 
 [node name="Slime3" parent="." unique_id=1412376515 instance=ExtResource("6_ejr1s")]
-position = Vector2(464, 256)
+position = Vector2(560, 296)
+
+[node name="Slime3" type="Marker2D" parent="Slime3" unique_id=1232773362 groups=["waypoints"]]

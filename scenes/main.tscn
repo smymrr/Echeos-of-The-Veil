@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://dkgaos83iuabf"]
 
 [ext_resource type="Script" uid="uid://b6r5r33p7wktp" path="res://scripts/main_scene.gd" id="1_tipki"]
-[ext_resource type="PackedScene" uid="uid://cahebji5nm887" path="res://scenes/map/dungeons/tutorial_dungeon.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/character/player.tscn" id="3_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://c3jesxivtnkci" path="res://scenes/map/main_world.tscn" id="5_tbgi4"]
 [ext_resource type="Animation" uid="uid://btrcd6nndkcnp" path="res://data/tutorial_cutscene.res" id="5_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b63g2w7l3bsw4" path="res://scenes/map/components/fog.tscn" id="6_tefeu"]
 
@@ -67,13 +65,7 @@ _data = {
 [node name="main" type="Node2D" unique_id=672410187]
 script = ExtResource("1_tipki")
 
-[node name="Dungeon" parent="." unique_id=2101128748 instance=ExtResource("2_sugp2")]
-position = Vector2(-597, 439)
-metadata/_edit_lock_ = true
-
-[node name="MainWorld" parent="." unique_id=1966433246 instance=ExtResource("5_tbgi4")]
-position = Vector2(-7183, -886)
-metadata/_edit_lock_ = true
+[node name="MapContainer" type="Node2D" parent="." unique_id=1693756357]
 
 [node name="Player" parent="." unique_id=1987352962 instance=ExtResource("3_jyhfs")]
 z_index = 6

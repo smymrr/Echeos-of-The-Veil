@@ -101,7 +101,7 @@ func on_conversation_ended() -> void:
 		
 		if quest:
 			QuestManager.start_quest(quest)
-		get_tree().call_group("waypoint_marker", "point_to", "SlimeArea")
+		get_tree().call_group("waypoint_marker", "point_to", ["Slime1", "Slime2", "Slime3"])
 		
 	elif current_state == state.FINISHED:
 		get_tree().call_group("tutorial_barrier", "unlock", "gate_2")

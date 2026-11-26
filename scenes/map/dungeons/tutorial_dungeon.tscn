@@ -45,3 +45,8 @@ offset_right = 1584.0
 offset_bottom = 1634.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=548897547]
+
+[node name="default" type="Marker2D" parent="SpawnPoints" unique_id=2135783285]
+position = Vector2(-1759, 268)

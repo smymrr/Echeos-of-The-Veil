@@ -9,7 +9,7 @@ var player: CharacterBody2D
 var base_max_health: int = 100
 var base_attack: int = 100
 var base_defense: int = 5
-var base_speed: float = 150.0
+var base_speed: float = 500.0
 
 var current_health: int
 
@@ -20,6 +20,7 @@ var speed_modifiers: Dictionary = {}
 var max_health_modifiers: Dictionary = {}
 
 var last_position: Vector2 = Vector2(50, 10)
+var current_map: String = ""
 
 # Story
 # Story / Quests
