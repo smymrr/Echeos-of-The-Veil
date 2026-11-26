@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dk4i5j5vkxs0v" path="res://scenes/map/components/overworld/overworld2.tscn" id="3_is1s6"]
 [ext_resource type="PackedScene" uid="uid://bd5ehsty6l511" path="res://scenes/character/temp_NPC.tscn" id="4_gpus4"]
 [ext_resource type="Script" uid="uid://he4wu04muli1" path="res://scenes/map/components/overworld/waypoint_finish.gd" id="5_is1s6"]
+[ext_resource type="Script" uid="uid://cq3s38lggchl6" path="res://scenes/map/tutorial_barrier.gd" id="6_mm3pq"]
+[ext_resource type="PackedScene" uid="uid://dwqrnisij83w6" path="res://scenes/ui/interact.tscn" id="7_dceiy"]
+[ext_resource type="Script" uid="uid://beoiesw46tnjl" path="res://scenes/map/dungeon_interact_area.gd" id="8_stxq3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5jfb"]
 size = Vector2(82, 25)
@@ -14,6 +17,12 @@ metadata/__load_path__ = "res://data/quests/kill_slime.tres"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is1s6"]
 size = Vector2(70, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a36"]
+size = Vector2(123, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8su5"]
+size = Vector2(98, 56)
 
 [node name="MainWorld" type="Node2D" unique_id=1966433246]
 
@@ -51,9 +60,41 @@ quest = SubResource("Resource_mm3pq")
 [node name="quest" type="Marker2D" parent="." unique_id=1959636297 groups=["waypoints"]]
 position = Vector2(363, 764)
 
+[node name="SlimeArea" type="Marker2D" parent="." unique_id=930709089 groups=["waypoints"]]
+position = Vector2(1416, 969)
+
+[node name="Dungeon" type="Marker2D" parent="." unique_id=458335966 groups=["waypoints"]]
+position = Vector2(116, 1173)
+
 [node name="Area2D" type="Area2D" parent="." unique_id=1359777731]
 script = ExtResource("5_is1s6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=538429418]
 position = Vector2(362, 767)
 shape = SubResource("RectangleShape2D_is1s6")
+
+[node name="TutorialBarrier" type="StaticBody2D" parent="." unique_id=960219949]
+position = Vector2(356, 474)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("6_mm3pq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialBarrier" unique_id=339335457]
+position = Vector2(9.5, 0)
+shape = SubResource("RectangleShape2D_f6a36")
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=1415873574]
+position = Vector2(119, 1159)
+script = ExtResource("8_stxq3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1582326313]
+position = Vector2(1, 13)
+shape = SubResource("RectangleShape2D_k8su5")
+
+[node name="PromptLabel" parent="InteractArea" unique_id=817362948 instance=ExtResource("7_dceiy")]
+z_index = 7
+offset_left = -6.0
+offset_top = -37.0
+offset_right = -6.0
+offset_bottom = -37.0

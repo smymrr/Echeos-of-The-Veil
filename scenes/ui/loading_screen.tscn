@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://y5qfaslj36bj"]
+
+[ext_resource type="Script" uid="uid://8yvp1j1skqdp" path="res://scenes/ui/loading_screen.gd" id="1_5fj0j"]
+[ext_resource type="Script" uid="uid://c1jsut5vdmjp5" path="res://scenes/ui/visual_effect.gd" id="2_2hmxs"]
+[ext_resource type="Texture2D" uid="uid://cw6pyn1gewy67" path="res://assets/ui/main_menu/background.jpg" id="2_s2kth"]
+[ext_resource type="Texture2D" uid="uid://bbviorjjhonmr" path="res://scanline.png" id="3_s41fs"]
+[ext_resource type="Texture2D" uid="uid://bx8pv0i46j4uy" path="res://assets/ui/main_menu/acc_menu_panel.png" id="4_y06jl"]
+[ext_resource type="FontFile" uid="uid://dv5a7nnnjp0tk" path="res://assets/font/PressStart2P.ttf" id="5_g5iak"]
+[ext_resource type="Texture2D" uid="uid://dx8sar6xpi8v0" path="res://assets/images/player/walk.png" id="6_2hmxs"]
+[ext_resource type="Script" uid="uid://c4ky6tnu2bq51" path="res://scenes/ui/loading_bar.gd" id="7_jwu8f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lof25"]
+bg_color = Color(0.6135824, 0.5243622, 0.9255445, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f6a36"]
+font_size = 22
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwu8f"]
+atlas = ExtResource("6_2hmxs")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqjuo"]
+atlas = ExtResource("6_2hmxs")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ani7"]
+atlas = ExtResource("6_2hmxs")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec5e7"]
+atlas = ExtResource("6_2hmxs")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6a36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwu8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqjuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ani7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec5e7")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="LoadingScreen" type="Control" unique_id=148871945]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5fj0j")
+
+[node name="Visual" type="Node" parent="." unique_id=290165276 node_paths=PackedStringArray("background", "scanline")]
+script = ExtResource("2_2hmxs")
+background = NodePath("../Background")
+scanline = NodePath("../ScanLine")
+title_labels = Array[NodePath]([NodePath("../Echoes"), NodePath("../Of The"), NodePath("../Veil")])
+
+[node name="Background" type="Sprite2D" parent="." unique_id=372378484]
+position = Vector2(558, 321)
+scale = Vector2(1.15, 1.24)
+texture = ExtResource("2_s2kth")
+
+[node name="ScanLine" type="Sprite2D" parent="." unique_id=1387621249]
+self_modulate = Color(1, 1, 1, 0.29411766)
+position = Vector2(563, 342)
+texture = ExtResource("3_s41fs")
+metadata/_edit_lock_ = true
+
+[node name="Hiasan judul" type="Sprite2D" parent="." unique_id=303246254]
+position = Vector2(557, 56)
+scale = Vector2(0.5556941, 0.4695122)
+texture = ExtResource("4_y06jl")
+metadata/_edit_lock_ = true
+
+[node name="Echoes" type="Label" parent="." unique_id=161289710]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 57.0
+offset_right = 717.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("5_g5iak")
+theme_override_font_sizes/font_size = 50
+text = "ECHEOS"
+metadata/_edit_lock_ = true
+
+[node name="Of The" type="Label" parent="." unique_id=2137900140]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 134.0
+offset_right = 628.0
+offset_bottom = 157.0
+theme_override_colors/font_color = Color(0.72156864, 0.6627451, 0.8509804, 1)
+theme_override_fonts/font = ExtResource("5_g5iak")
+theme_override_font_sizes/font_size = 20
+text = "OF THE"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Veil" type="Label" parent="." unique_id=1501740861]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 178.0
+offset_right = 673.0
+offset_bottom = 228.0
+theme_override_fonts/font = ExtResource("5_g5iak")
+theme_override_font_sizes/font_size = 50
+text = "VEIL"
+metadata/_edit_lock_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=475746602 node_paths=PackedStringArray("runner", "percent_label")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.25
+offset_top = 118.75
+offset_right = 269.25
+offset_bottom = 147.25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_lof25")
+step = 1.0
+value = 50.0
+show_percentage = false
+script = ExtResource("7_jwu8f")
+runner = NodePath("../PlayerSprite")
+percent_label = NodePath("PercentLabel")
+run_animation = &"default"
+sprite_y_offset = -20.0
+
+[node name="PercentLabel" type="Label" parent="ProgressBar" unique_id=1231326210]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 20.0
+offset_right = 38.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50%"
+label_settings = SubResource("LabelSettings_f6a36")
+horizontal_alignment = 1
+
+[node name="PlayerSprite" type="CharacterBody2D" parent="." unique_id=1114766837]
+position = Vector2(329, 422)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerSprite" unique_id=1030506638]
+position = Vector2(-5.9999695, -25.000006)
+scale = Vector2(2.7343755, 2.7343755)
+sprite_frames = SubResource("SpriteFrames_f6a36")
+autoplay = "default"
+frame_progress = 0.42956677

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b63g2w7l3bsw4"]
+
+[ext_resource type="Shader" uid="uid://b6f0q2xikw86f" path="res://scenes/map/components/tutorial/treasure_boss.gdshader" id="1_jlplu"]
+[ext_resource type="Script" uid="uid://cukq0pju3eigq" path="res://scenes/character/fog.gd" id="2_4g0y7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8gx3o"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m28tg"]
+noise = SubResource("FastNoiseLite_8gx3o")
+seamless = true
+seamless_blend_skirt = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpbxp"]
+shader = ExtResource("1_jlplu")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_m28tg")
+shader_parameter/fog_color = Color(0.89411765, 0.6627451, 0.9019608, 0.3647059)
+shader_parameter/density = 0.30400001444
+shader_parameter/noise_scale = 0.001
+shader_parameter/scroll_a = Vector2(0.005, 0.004)
+shader_parameter/scroll_b = Vector2(-0.006, 0.003)
+shader_parameter/pixel_size = 1.0
+shader_parameter/view_size = Vector2(640, 360)
+shader_parameter/world_offset = Vector2(0, 0)
+
+[node name="Fog" type="CanvasLayer" unique_id=1699317577]
+
+[node name="Fogs" type="ColorRect" parent="." unique_id=1454827540]
+z_index = 10
+material = SubResource("ShaderMaterial_lpbxp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_4g0y7")
+metadata/_edit_lock_ = true

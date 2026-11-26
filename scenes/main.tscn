@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/character/player.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c3jesxivtnkci" path="res://scenes/map/main_world.tscn" id="5_tbgi4"]
 [ext_resource type="Animation" uid="uid://btrcd6nndkcnp" path="res://data/tutorial_cutscene.res" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://b63g2w7l3bsw4" path="res://scenes/map/components/fog.tscn" id="6_tefeu"]
 
 [sub_resource type="Animation" id="Animation_cp4k5"]
 length = 0.001
@@ -71,14 +72,17 @@ position = Vector2(-597, 439)
 metadata/_edit_lock_ = true
 
 [node name="MainWorld" parent="." unique_id=1966433246 instance=ExtResource("5_tbgi4")]
-position = Vector2(-4125, -782)
+position = Vector2(-7183, -886)
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=1987352962 instance=ExtResource("3_jyhfs")]
-position = Vector2(-3738, -550)
+z_index = 6
+position = Vector2(-6820, -619)
 
 [node name="TutorialCutscene" type="AnimationPlayer" parent="." unique_id=1051764589]
 libraries/ = SubResource("AnimationLibrary_o6xl0")
 
 [node name="CutsceneCamera" type="Camera2D" parent="." unique_id=1302436157]
 zoom = Vector2(5, 5)
+
+[node name="Fog" parent="." unique_id=1907199597 instance=ExtResource("6_tefeu")]

@@ -98,8 +98,15 @@ func on_conversation_ended() -> void:
 	if current_state == state.START and _accepted:
 		current_state = state.ONGOING
 		current_line = ONGOING_QUEST
+		
 		if quest:
 			QuestManager.start_quest(quest)
+		get_tree().call_group("waypoint_marker", "point_to", "SlimeArea")
+		
+	elif current_state == state.FINISHED:
+		get_tree().call_group("tutorial_barrier", "unlock", "gate_2")
+		get_tree().call_group("waypoint_marker", "point_to", "Dungeon")
+	
 	# declined: stays in START, so Eldric offers the quest again
 
 	player.set_movement_lock(false)
@@ -107,8 +114,7 @@ func on_conversation_ended() -> void:
 	can_interact = true
 
 func on_quest_finished(completed_quest: Quest) -> void:
-	print("finished quest")
 	if completed_quest == quest:
-		print("quest completed!")
 		current_state = state.FINISHED
 		current_line = FINISHED_QUEST
+		get_tree().call_group("waypoint_marker", "point_to", "quest")

@@ -75,7 +75,7 @@ func _death(attacker: Node2D) -> void:
 	
 	var zoom_tween = create_tween()
 	zoom_tween.tween_property(camera, "zoom", Vector2(5, 5), 1.0)
-	movement_component.set_movement_lock(true)
+	set_movement_lock(true)
 	
 	await get_tree().create_timer(0.5).timeout
 	animation_component.play_animation("death", last_facing_direction)

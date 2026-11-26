@@ -58,7 +58,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6hca"]
 radius = 35.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1br7e"]
+size = Vector2(14, 29)
+
 [node name="NPC" type="CharacterBody2D" unique_id=1796917906]
+collision_layer = 4
 script = ExtResource("1_k4olh")
 quest = SubResource("Resource_ao6ro")
 
@@ -76,3 +80,7 @@ offset_bottom = -30.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1743356215]
 shape = SubResource("CircleShape2D_r6hca")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1921974815]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_1br7e")

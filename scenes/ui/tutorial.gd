@@ -3,6 +3,7 @@ extends CanvasLayer
 signal step_started(index: int)
 signal finished
 signal _gate_opened
+signal step_completed(index: int)
 
 @export var autostart: bool = true
 @export var step_delay: float = 0.6   # pause after a step is completed
@@ -37,13 +38,13 @@ signal _gate_opened
 # ----------------------------------------------------------------
 
 var steps: Array = [
-	{"text": "Welcome! Let's learn the basics.", "type": "wait", "seconds": 3.0},
+	#{"text": "Welcome! Let's learn the basics.", "type": "wait", "seconds": 3.0},
 	#{"text": "Move around with W A S D", "type": "actions",
 	#	"actions": ["move_up", "move_down", "move_left", "move_right"], "need": "all"},
 	#{"text": "Press Q to dash", "type": "actions", "actions": ["dash"]},
 	#{"text": "Click to attack", "type": "actions", "actions": ["left_click"]},
-	#{"text": "Your sword follows your mouse!.", "type": "wait", "seconds": 3.0},
-	{"text": "Head to the waypoint", "type": "event", "event": "enter_2nd", "marker": "quest"},
+	{"text": "Your sword follows your mouse!.", "type": "wait", "seconds": 3.0, "unlock": "gate_1"},
+	#{"text": "Head to the waypoint", "type": "event", "event": "enter_2nd", "marker": "quest"},
 ]
 # ----------------------------------------------------------------
 
@@ -135,11 +136,7 @@ func _next_step() -> void:
 	_total = _pending.size()
 	_base_text = step.get("text", "")
 	var targets = get_tree().get_nodes_in_group("waypoint_marker")
-	print("Nodes in group: ", targets)
-	for t in targets:
-		print(t.name, " has method: ", t.has_method("point_to"))
 	get_tree().call_group("waypoint_marker", "point_to", step.get("marker", ""))
-	print("waypoints after")
 	_update_label()
 	step_started.emit(_index)
 
@@ -156,22 +153,37 @@ func _next_step() -> void:
 func _complete_step() -> void:
 	if not _accepting:
 		return
+	
 	_accepting = false
 	get_tree().call_group("waypoint_marker", "point_to", "")
+	
+	var unlock_id: String = steps[_index].get("unlock", "")
+	if unlock_id != "":
+		get_tree().call_group("tutorial_barrier", "unlock", unlock_id)
+	
+	step_completed.emit(_index)
+	
 	if steps[_index].get("type", "actions") != "wait":
 		label.text = "✓ " + _base_text
+	
 	await get_tree().create_timer(step_delay).timeout
 	await _fade(0.0)
+	
 	if _running:
 		_next_step()
 
 func _finish() -> void:
 	_running = false
 	_accepting = false
+	
 	get_tree().call_group("waypoint_marker", "point_to", "")
+	get_tree().call_group("tutorial_barrier", "unlock_all")
+	
 	_gate_event = ""
 	_gate_opened.emit()   # releases a step that's still waiting, e.g. after a skip
+	
 	await _fade(0.0)
+	
 	finished.emit()
 
 
