@@ -21,15 +21,22 @@ func report(type: String, target_id: String, amount: int = 1) -> void:
 	for id in active.keys():
 		var entry = active[id]
 		var quest: Quest = entry.quest
-		var changed := false
-		for i in quest.objectives.size():
-			var obj := quest.objectives[i]
-			if obj.type == type and obj.target_id == target_id:
-				entry.progress[i] = min(entry.progress[i] + amount, obj.required)
-				changed = true
-		if changed:
+		var i := _current_index(quest, entry.progress)
+		if i == -1:
+			continue
+		var obj := quest.objectives[i]
+		if obj.type == type and obj.target_id == target_id:
+			entry.progress[i] = min(entry.progress[i] + amount, obj.required)
 			quest_updated.emit(quest)
 			_check_complete(quest)
+
+
+## Index of the first unfinished objective, or -1 if all are done.
+func _current_index(quest: Quest, progress: Array) -> int:
+	for i in quest.objectives.size():
+		if progress[i] < quest.objectives[i].required:
+			return i
+	return -1
 
 func _check_complete(quest: Quest) -> void:
 	var progress = active[quest.id].progress

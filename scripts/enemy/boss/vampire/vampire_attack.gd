@@ -2,6 +2,11 @@ class_name VampireAttack
 extends Node
 ## Attack logic only: 3 aimed projectiles per shot, and every 4th shot is a circular burst.
 
+const NORMAL_ATK_SFX := preload("res://assets/audio/sfx/vampire_boss/normal.wav")
+const BURST_ATK_SFX := preload("res://assets/audio/sfx/vampire_boss/burst.wav")
+const CHARGE_UP_SFX := preload("res://assets/audio/sfx/vampire_boss/charge_up.wav")
+const EXPLOSION_SFX := preload("res://assets/audio/sfx/vampire_boss/explosion.wav")
+
 @export var projectile_scene: PackedScene
 @export var animation_component: VampireAnimation
 @export var fire_interval: float = 3.0
@@ -44,6 +49,7 @@ func _on_fire_timer_timeout() -> void:
 	if shot_counter % 4 == 0:
 		animation_component.play_animation("attack_1")
 		await get_tree().create_timer(1).timeout
+		AudioManager.play_stream(BURST_ATK_SFX)
 		_fire_burst()
 		print("burst")
 	elif shot_counter % 4 == 2:
@@ -54,6 +60,7 @@ func _on_fire_timer_timeout() -> void:
 		animation_component.play_animation("attack_2")
 		await get_tree().create_timer(1).timeout
 		_fire_aimed()
+		AudioManager.play_stream(NORMAL_ATK_SFX)
 		print("regular projectile")
 
 func _fire_aimed() -> void:
@@ -69,6 +76,7 @@ func _spawn_projectile(dir: Vector2) -> void:
 	if projectile_scene == null:
 		return
 	var p := projectile_scene.instantiate()
+	p.projectile_owner = self.get_parent()
 	p.direction = dir
 	p.speed = projectile_speed
 	get_tree().current_scene.add_child(p)
@@ -78,7 +86,7 @@ func _spawn_projectile(dir: Vector2) -> void:
 func _ground_attack() -> void:
 	if not is_instance_valid(target):
 		return
-	var marker := GroundMarker.new()
+	var marker := GroundMarker.new(self)
 	marker.target = target
 	marker.radius = ground_radius
 	marker.delay = ground_delay
@@ -90,6 +98,8 @@ func _ground_attack() -> void:
 
 ## The circle on the ground: follows the target, fills up, then bursts.
 class GroundMarker extends Node2D:
+	var owner_node: VampireAttack
+	
 	var target: Node2D
 	var radius: float = 48.0
 	var delay: float = 1.0
@@ -99,13 +109,17 @@ class GroundMarker extends Node2D:
 
 	var elapsed: float = 0.0
 	var bursting: bool = false
-
+	
+	func _init(owner: VampireAttack) -> void:
+		owner_node = owner
+	
 	func _process(delta: float) -> void:
 		if bursting:
 			return
 		elapsed += delta
 
 		# Phase 1: follow the target while the circle fills up
+		AudioManager.play_stream(CHARGE_UP_SFX)
 		if elapsed < delay and is_instance_valid(target):
 			global_position = global_position.move_toward(
 				target.global_position, follow_speed * delta)
@@ -119,11 +133,12 @@ class GroundMarker extends Node2D:
 		queue_redraw()
 
 	func _burst() -> void:
+		AudioManager.play_stream(EXPLOSION_SFX)
 		bursting = true
 		if is_instance_valid(target) \
 				and global_position.distance_to(target.global_position) <= radius \
 				and target.is_in_group("player"):
-			PlayerHealth.take_damage(damage, target)
+			PlayerHealth.take_damage(damage, target, owner_node.get_parent())
 		queue_redraw()
 		var tw := create_tween()
 		tw.tween_property(self, "modulate:a", 0.0, 0.2)

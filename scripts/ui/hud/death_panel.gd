@@ -47,15 +47,15 @@ func _ready() -> void:
 
 func show_death(
 		killer_name: String = "",
-		battle_time: float = -1.0,
-		enemy_hp: float = -1.0,
-		enemy_max_hp: float = -1.0) -> void:
+		enemy_hp: int = -1.0,
+		enemy_max_hp: int = -1.0) -> void:
+	
 	if killer_name != "":
 		_message.text = "The %s tears your echo from the mortal realm." % killer_name
-	_left_name.text = "BATTLE TIME"
-	_left_value.text = _format_time(battle_time) if battle_time >= 0.0 else "--:--"
+	_left_name.text = "DAMAGE DEALT"
+	_left_value.text = str(enemy_max_hp - enemy_hp)
 	_right_stat.visible = enemy_hp >= 0.0
-	if enemy_hp >= 0.0:
+	if enemy_hp >= 0:
 		_right_name.text = "ENEMY HP"
 		_right_value.text = "%d / %d" % [int(enemy_hp), int(enemy_max_hp)]
 
@@ -73,19 +73,17 @@ func show_death(
 func handle_escape() -> bool:
 	return visible
 
-
 func hide_death() -> void:
 	visible = false
 	if pause_game:
 		get_tree().paused = false
-
 
 func _on_retry() -> void:
 	retry_requested.emit()
 	if not auto_handle:
 		return
 	hide_death()
-	get_tree().reload_current_scene()
+	CheckpointManager.respawn()
 
 
 func _on_exit() -> void:

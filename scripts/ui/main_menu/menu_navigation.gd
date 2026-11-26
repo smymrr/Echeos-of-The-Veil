@@ -27,7 +27,7 @@ signal new_journey_started(slot: int)
 @export_file("*.tscn") var new_journey_scene: String = "res://scenes/main.tscn"
 ## PREVIEW: true = anggap semua slot save penuh, jadi panel "pilih slot yang ditimpa" muncul.
 ## false = New Journey langsung mulai. Koder: ganti dengan pengecekan save asli di _are_slots_full().
-@export var preview_slots_full: bool = true
+@export var preview_slots_full: bool = false
 
 # --- PRELOADED AUDIO ---
 const SFX_HOVER = preload("res://assets/audio/sfx/hover_sound.wav")
@@ -182,10 +182,11 @@ func show_menu() -> void:
 
 
 # ------------------------------------------------------------------ New Journey
-## Koder: ganti isinya dengan pengecekan save yang asli
-## (misalnya hitung file save, lalu return jumlah >= batas slot).
+@export var max_save_slots: int = 4
+
+
 func _are_slots_full() -> bool:
-	return preview_slots_full
+	return PlayerData.are_slots_full(max_save_slots)
 
 
 func _on_new_journey_pressed() -> void:
@@ -197,7 +198,7 @@ func _on_new_journey_pressed() -> void:
 
 
 func _connect_new_journey_screen(screen: Control) -> void:
-	for i in range(1, 6):
+	for i in range(1, max_save_slots + 1):
 		var slot := _find_node_by_name(screen, "Slot%d" % i) as BaseButton
 		if slot:
 			slot.pressed.connect(_on_overwrite_slot_pressed.bind(i))
@@ -207,7 +208,7 @@ func _connect_new_journey_screen(screen: Control) -> void:
 		yes.pressed.connect(_on_overwrite_confirmed)
 	if no:
 		no.pressed.connect(_set_overwrite_confirm.bind(false))
-		
+
 
 func _on_overwrite_slot_pressed(index: int) -> void:
 	_overwrite_slot = index
@@ -231,12 +232,13 @@ func _on_overwrite_confirmed() -> void:
 
 
 func _start_new_journey(slot: int = 0) -> void:
-	new_journey_started.emit(slot)
+	var chosen_slot := PlayerData.start_new_game(slot, max_save_slots)
+	new_journey_started.emit(chosen_slot)
 	_set_menu_interactive(false)
-	
+
 	# Hentikan musik saat mulai game baru
 	AudioManager.stop_music()
-	
+
 	if _fade_tween and _fade_tween.is_valid():
 		_fade_tween.kill()
 
@@ -254,7 +256,7 @@ func _start_new_journey(slot: int = 0) -> void:
 	_fade_tween.set_parallel(false)
 
 	_fade_tween.tween_callback(func():
-		get_tree().change_scene_to_file(new_journey_scene)
+		LoadingScreen.go_to(get_tree(), new_journey_scene)
 	)
 
 # ------------------------------------------------------------------ Audio UI

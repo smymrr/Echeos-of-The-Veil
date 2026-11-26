@@ -34,6 +34,9 @@ func _ready() -> void:
 	movement_component.pick_new_target()
 
 func _physics_process(delta: float) -> void:
+	if PlayerHealth.is_dead:
+		return
+	
 	if not attack_component.is_attacking:
 		animation_component.play_animation("movement")
 	
@@ -81,6 +84,3 @@ func activate(player_instance: CharacterBody2D, area: Area2D) -> void:
 		return
 		
 	set_physics_process(true) # Enable movement now that setup is complete
-
-func take_damage(amount: int) -> void:
-	get_tree().call_group("ui_boss", "take_damage", amount)

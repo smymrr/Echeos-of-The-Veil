@@ -9,6 +9,8 @@ extends Node
 @onready var hitbox: Area2D = %AttackHitbox
 @onready var swing_sword_sfx: AudioStreamPlayer2D = $"../SwingSword"
 
+const SFX = preload("res://assets/audio/sfx/player/sword_attack.wav")
+
 var hitbox_offset: Vector2
 var can_attack: bool = true
 var is_attacking: bool = false
@@ -33,14 +35,16 @@ func _perform_attack(input_direction: Vector2) -> void:
 	
 	_process_animation_and_hitbox(input_direction)
 	_trigger_attack_sfx()
-	movement_component.set_movement_lock(true)
+	get_parent().set_movement_lock(true)
 	
 	await get_tree().physics_frame
 
 	hitbox.monitoring = true
+	
 	await get_tree().create_timer(attack_duration).timeout
+	
 	hitbox.monitoring = false
-	movement_component.set_movement_lock(false)
+	get_parent().set_movement_lock(false)
 	is_attacking = false
 
 	var remaining := attack_cooldown
@@ -62,20 +66,21 @@ func _process_animation_and_hitbox(input_direction: Vector2) -> void:
 		hitbox.rotation_degrees = 90.0
 		
 func _trigger_attack_sfx() -> void:
-	swing_sword_sfx.play()
+	AudioManager.play_stream(SFX)
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
-	print("body hit: ", body.name, " | groups: ", body.get_groups())
 	if body in _already_hit or can_attack:
 		return
 	
 	if body.is_in_group("enemy"):
-		print("is an enemy")
 		_already_hit.append(body)
 		var hurt_component = body.find_child("HurtboxComponent")
-		if not hurt_component and body.has_method("take_damage"):
-			print("damaging boss")
-			body.take_damage(PlayerData.get_attack())
+		if not hurt_component: # If there is no dedicated hurt component
+			if body.has_method("take_damage"): # If the take damage function is in the body
+				print("damaging boss")
+				body.take_damage(PlayerData.get_attack())
+			else: # If the take damage function is in the HealthComponentr
+				body.get_node("HealthComponent").take_damage(PlayerData.get_attack())
 		else:
 			hurt_component.damage(PlayerData.get_attack(), player.position)
 

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://c83d610fgmj87"]
 
 [ext_resource type="Texture2D" uid="uid://dwk4fe87nclau" path="res://assets/map/dungeon/tileset_dungeon/mainlevbuild.png" id="1_nkxfs"]
-[ext_resource type="PackedScene" uid="uid://bwj8fslg15w0l" path="res://player.tscn" id="2_h56vd"]
+[ext_resource type="PackedScene" uid="uid://dft30tyisnm54" path="res://scenes/character/player.tscn" id="2_h56vd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dhoxy"]
 texture = ExtResource("1_nkxfs")

@@ -23,13 +23,15 @@ buses/default_bus_layout="uid://bry2rh45dpx8u"
 
 PlayerData="*uid://c8o3o3aw3nean"
 PlayerHealth="*uid://cxf0hq4ot5f7n"
+EventBus="*uid://c6fe6i0qnujlv"
 QuestManager="*uid://cvrk4tnhmjj67"
 PlayerSettings="*uid://bpur4wom5gxiv"
 AudioManager="*uid://2mld1m1ebnxo"
 FpsDisplay="*uid://tuv4qj272jf6"
 Brightness="*uid://dryjg8o5sw5j1"
 MapRegistry="*uid://bwru8ei15ntd2"
-EventBus="*uid://c6fe6i0qnujlv"
+ConversationManager="*uid://cltdwnuhrik0l"
+CheckpointManager="*uid://ddj2b0i67nmb2"
 
 [display]
 
@@ -49,6 +51,11 @@ enemy=""
 breakable=""
 projectile=""
 enemy_projectile=""
+trees=""
+waypoints=""
+waypoint_marker=""
+gold_box=""
+item_box=""
 
 [input]
 
@@ -78,7 +85,7 @@ move_down={
 }
 dash={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"location":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":81,"location":0,"echo":false,"script":null)
 ]
 }
 left_click={

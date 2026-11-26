@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://ctmihk0yl87ii"]
 
+[ext_resource type="Script" uid="uid://cqi71gpofr4ow" path="res://scenes/ui/main_menu/load_slot.gd" id="1_3nsgc"]
+
 [sub_resource type="StyleBoxFlat" id="slot_n"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -58,6 +60,7 @@ theme_override_styles/pressed = SubResource("slot_p")
 theme_override_styles/hover = SubResource("slot_h")
 theme_override_styles/hover_pressed = SubResource("slot_p")
 theme_override_styles/focus = SubResource("slot_empty")
+script = ExtResource("1_3nsgc")
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=2103394529]
 layout_mode = 1

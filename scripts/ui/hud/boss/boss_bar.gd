@@ -51,20 +51,29 @@ func take_damage(amount: int) -> void:
 		boss_defeated.emit()
 
 ## Perbarui bar dan teks HP sesuai nilai `hp`.
-func refresh() -> void:
+func refresh(_method: String = "") -> void:
 	if _name:
 		_name.text = _boss_name
-	if _bar:
-		_bar.value = _hp
 	if _value and _bar:
-		_value.text = "%d / %d" % [int(_hp), int(_bar.max_value)]
+		if _method.to_lower() == "tween":
+			var tween = create_tween().set_parallel(true)
+			tween.tween_property(_bar, "value", _hp, 5)
+			tween.tween_method(
+				func(val: float): _value.text = "%d / %d" % [int(round(val)), int(_bar.max_value)],
+					_bar.value, # Start value
+					_hp,        # End value
+					5.0         # Duration
+				)
+		else:
+			_bar.value = _hp
+			_value.text = "%d / %d" % [int(_hp), int(_bar.max_value)]
 
-func set_boss_bar(boss_name: String, boss_hp: int) -> void:
+func set_boss_bar(boss_name: String, boss_hp: int, method: String = "") -> void:
 	_boss_name = boss_name
 	_hp = boss_hp
 	_bar.max_value = _hp
 	
-	refresh()
+	refresh(method)
 
 func _choices_open() -> bool:
 	var c := get_tree().get_first_node_in_group("ui_choice") as CanvasLayer

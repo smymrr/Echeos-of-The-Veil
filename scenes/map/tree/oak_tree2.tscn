@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dn8aan0ustflr"]
+
+[ext_resource type="Texture2D" uid="uid://cp4dx2g1frrd6" path="res://assets/map/assets/resurrected_rpg/Resurrected RPG 1.1/Plants.png" id="1_8e5d8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e5d8"]
+atlas = ExtResource("1_8e5d8")
+region = Rect2(7, 436, 109, 189)
+
+[node name="OakTree" type="StaticBody2D" unique_id=73671610 groups=["trees"]]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Area2D" type="Area2D" parent="." unique_id=887471520]
+
+[node name="Leaf" type="CollisionPolygon2D" parent="Area2D" unique_id=207855560 groups=["trees"]]
+polygon = PackedVector2Array(-3, -48, -42, -78, -40, -125, -22, -169, 5, -184, 35, -123, 47, -71, 23, -56)
+
+[node name="Log" type="CollisionPolygon2D" parent="." unique_id=2110906823]
+build_mode = 1
+polygon = PackedVector2Array(-6, -53, 1, -41, 1, -16, 11, -16, 11, -42, 19, -52, 6, -59)
+
+[node name="Gambar" type="Sprite2D" parent="." unique_id=1810449233]
+texture = SubResource("AtlasTexture_8e5d8")
+centered = false
+offset = Vector2(-54.5, -187)
