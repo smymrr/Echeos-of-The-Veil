@@ -15,14 +15,12 @@ func play_stream(stream: AudioStream, pitch_variance: float = 0.0) -> AudioStrea
 	var bus_name := _resolve_bus(stream.resource_path)
 	return _spawn_player(stream, bus_name, pitch_variance)
 
-
 ## Play via relative path or sound ID (Best for non-critical/infrequent sounds like music, ambiance)
 ## Example: AudioManager.play("sfx/player/jump") or AudioManager.play("music/title_theme")
 func play(sound_path: String, pitch_variance: float = 0.0) -> AudioStreamPlayer:
 	var full_path := sound_path
 	if not full_path.begins_with("res://"):
 		full_path = base_audio_dir.path_join(sound_path)
-		print(full_path)
 
 	# Auto-detect missing file extension (.wav or .mp3)
 	if not ResourceLoader.exists(full_path):

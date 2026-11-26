@@ -21,7 +21,7 @@ func start_game() -> void:
 
 	game_root.add_child(ui_instance)
 
-	var starting_map := "tutorial_dungeon"
+	var starting_map := "tutorial_overworld"
 	if CheckpointManager.is_respawning() and CheckpointManager.get_checkpoint_map() != "":
 		starting_map = CheckpointManager.get_checkpoint_map()
 

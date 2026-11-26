@@ -12,9 +12,12 @@
 [ext_resource type="Script" uid="uid://w2ddg7l2jwk3" path="res://scenes/character/tree_detector.gd" id="7_2smwq"]
 [ext_resource type="Texture2D" uid="uid://dl1txr6xucmqo" path="res://assets/images/player/death_animation_down.png" id="7_7r6u0"]
 [ext_resource type="Texture2D" uid="uid://dlnxy5refil40" path="res://assets/images/player/dash/dash_bawah.png" id="7_jb4us"]
+[ext_resource type="Script" uid="uid://13cdu3uic7kc" path="res://scenes/character/footstep_component.gd" id="7_pygui"]
 [ext_resource type="Texture2D" uid="uid://dcvyo50e417q1" path="res://assets/images/player/death_animation_left.png" id="8_e5n5u"]
+[ext_resource type="AudioStream" uid="uid://dyq7lsvc18dh" path="res://assets/audio/sfx/player/grass_walk.wav" id="8_okkwj"]
 [ext_resource type="Texture2D" uid="uid://cvt5g44vj1px4" path="res://assets/images/player/dash/dash_atas.png" id="8_vhx6d"]
 [ext_resource type="Texture2D" uid="uid://dvn2nmwucg16l" path="res://assets/images/player/death_animation_right.png" id="9_ba010"]
+[ext_resource type="AudioStream" uid="uid://reli7serq30w" path="res://assets/audio/sfx/player/stone walk.wav" id="9_p86hl"]
 [ext_resource type="AudioStream" uid="uid://fouqq22073yj" path="res://assets/audio/sfx/player/sword_attack.wav" id="9_ur7pv"]
 [ext_resource type="Texture2D" uid="uid://37fiy373h0kw" path="res://assets/images/player/dash/dash_kanan.png" id="9_ux0ro"]
 [ext_resource type="Texture2D" uid="uid://bikwirba8ffk" path="res://assets/images/player/dash/dash_kiri.png" id="10_2smwq"]
@@ -1159,6 +1162,11 @@ script = ExtResource("4_smehm")
 
 [node name="DirectionUtils" type="Node" parent="." unique_id=1129209153]
 script = ExtResource("4_fjrip")
+
+[node name="FootstepComponent" type="Node" parent="." unique_id=1834627931]
+script = ExtResource("7_pygui")
+grass_streams = Array[AudioStream]([ExtResource("8_okkwj")])
+stone_streams = Array[AudioStream]([ExtResource("9_p86hl")])
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1187332823]
 position = Vector2(0, 1.5)

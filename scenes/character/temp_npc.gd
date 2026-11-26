@@ -80,7 +80,7 @@ func interact() -> void:
 	player.set_attack_enable(false)
 	_accepted = false
 	_in_conversation = true
-	ConversationManager.start(current_line, "ELDRIC")
+	ConversationManager.start(current_line, "res://assets/audio/sfx/voices/eldric_voice.wav", "ELDRIC")
 
 	can_interact = false
 

@@ -9,6 +9,8 @@ extends Node
 @onready var hitbox: Area2D = %AttackHitbox
 @onready var swing_sword_sfx: AudioStreamPlayer2D = $"../SwingSword"
 
+const SFX = preload("res://assets/audio/sfx/player/sword_attack.wav")
+
 var hitbox_offset: Vector2
 var can_attack: bool = true
 var is_attacking: bool = false
@@ -64,7 +66,7 @@ func _process_animation_and_hitbox(input_direction: Vector2) -> void:
 		hitbox.rotation_degrees = 90.0
 		
 func _trigger_attack_sfx() -> void:
-	swing_sword_sfx.play()
+	AudioManager.play_stream(SFX)
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body in _already_hit or can_attack:

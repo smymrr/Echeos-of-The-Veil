@@ -1,5 +1,7 @@
 extends Node2D
 
+const BGM := "res://assets/audio/music/boss.mp3"
+
 @export var roam_area: Area2D
 @export var player_trigger: Area2D
 @export var barrier: StaticBody2D
@@ -15,6 +17,8 @@ func _ready() -> void:
 func _on_boss_trigger(body: Node2D) -> void:
 	if not body.is_in_group("player") or activated:
 		return
+	
+	AudioManager.play_music(BGM)
 	
 	# Set activated immediately so the trigger can't fire twice
 	activated = true

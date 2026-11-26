@@ -8,12 +8,15 @@ extends CharacterBody2D
 @export var sprite: AnimatedSprite2D
 @export var camera: Camera2D
 
+var _default_camera_zoom: Vector2 = Vector2.ONE
 var last_facing_direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
 	CheckpointManager.apply_respawn(self)
-	
+
 	PlayerData.player = self
+	if camera:
+		_default_camera_zoom = camera.zoom
 	movement_component.setup(self)
 	PlayerHealth.died.connect(_death)
 
@@ -74,6 +77,9 @@ func attack() -> void:
 	attack_component.try_attack(dir)
 
 func _death(attacker: Node2D) -> void:
+	if PlayerData.story_flags.get("boss_scripted_defeat", false):
+		_scripted_boss_death()
+		return
 	var attacker_health_component := attacker.get_node("HealthComponent")
 	
 	var zoom_tween = create_tween()
@@ -104,3 +110,30 @@ func _death(attacker: Node2D) -> void:
 		attacker_health_component.current_health,
 		attacker_health_component.max_health
 	)
+
+func _scripted_boss_death() -> void:
+	var zoom_tween := create_tween()
+	zoom_tween.tween_property(camera, "zoom", Vector2(4.0, 4.0), 0.8)
+	set_movement_lock(true)
+
+	await get_tree().create_timer(0.4).timeout
+	animation_component.play_animation("death", last_facing_direction)
+	await get_tree().create_timer(0.9).timeout
+
+	# Capture and shatter the screen from the player's screen position
+	var shatter := ScreenShatter.new()
+	get_tree().root.add_child(shatter)
+	var player_screen_pos := get_global_transform_with_canvas().origin
+	await shatter.play(player_screen_pos)
+
+	# Screen is now completely black — reset player state and load the sanctuary
+	PlayerData.story_flags["boss_scripted_defeat"] = false
+	PlayerData.story_flags["lost_to_prologue_boss"] = true
+
+	PlayerHealth.is_dead = false
+	PlayerHealth.heal(PlayerData.get_max_health())
+	camera.zoom = _default_camera_zoom
+	set_movement_lock(false, true)
+
+	await get_tree().current_scene.change_map("sanctuary", "default")
+	shatter.queue_free()

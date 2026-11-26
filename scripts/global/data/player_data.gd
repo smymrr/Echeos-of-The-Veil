@@ -7,9 +7,9 @@ var player: CharacterBody2D
 
 # Stats
 var base_max_health: int = 100
-var base_attack: int = 100
+var base_attack: int = 10
 var base_defense: int = 5
-var base_speed: float = 500.0
+var base_speed: float = 150.0
 
 var current_health: int
 
@@ -236,9 +236,9 @@ func start_new_game(slot: int = 0, max_slots: int = 4) -> int:
 	play_time = 0.0
 
 	base_max_health = 100
-	base_attack = 100
+	base_attack = 10
 	base_defense = 5
-	base_speed = 500.0
+	base_speed = 150.0
 	max_health_modifiers.clear()
 	attack_modifiers.clear()
 	defense_modifiers.clear()

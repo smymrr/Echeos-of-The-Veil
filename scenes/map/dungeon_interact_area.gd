@@ -34,5 +34,6 @@ func interact() -> void:
 	if not can_interact:
 		return
 	
+	AudioManager.stop_music()
 	get_tree().current_scene.change_map("tutorial_dungeon")
 	can_interact = false

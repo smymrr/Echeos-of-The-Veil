@@ -13,6 +13,8 @@ extends Node
 @export var animation_component: AnimationComponent
 @export var attack_component: AttackComponent
 
+const DASH_SFX := preload("res://assets/audio/sfx/player/dash.wav")
+
 var body: CharacterBody2D
 var dash_direction: Vector2 = Vector2.ZERO
 
@@ -52,9 +54,13 @@ func _start_dash(direction: Vector2) -> void:
 		return
 
 	dash_direction = direction.normalized()
+	
+	AudioManager.play_stream(DASH_SFX)
+	
 	is_dashing = true
 	is_dash_moving = true
 	can_dash = false
+	
 	dash_started.emit()
 
 	# Movement stops early, the animation keeps playing until dash_duration
