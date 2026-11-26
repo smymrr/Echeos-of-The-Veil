@@ -11,6 +11,7 @@ extends Node
 @export var dash_cooldown: float = 2.0     # wait AFTER the dash ends
 
 @export var animation_component: AnimationComponent
+@export var attack_component: AttackComponent
 
 var body: CharacterBody2D
 var dash_direction: Vector2 = Vector2.ZERO
@@ -62,7 +63,8 @@ func _start_dash(direction: Vector2) -> void:
 
 # Animation Process
 func process_animation(direction: Vector2) -> void:
-	
+	if is_locked:
+		return
 	
 	if is_dashing:
 		animation_component.play_animation("dash", dash_direction)

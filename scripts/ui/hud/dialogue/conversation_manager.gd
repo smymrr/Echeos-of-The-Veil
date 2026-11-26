@@ -18,7 +18,8 @@ extends Node
 ## Lanjut ke baris berikutnya (tombol interaksi milik game): cm.advance()
 
 signal conversation_started
-signal conversation_ended
+signal conversation_ended()
+signal choice_result(result: String)
 
 ## Dikirim saat pemain memilih jawaban (index mulai dari 0).
 signal choice_made(index: int, text: String)
@@ -41,10 +42,11 @@ var _current: TalkBox
 var _choice_box: ChoiceBox
 var _pending: Array = []
 var _choices_open := false
-
+var _result := ""
 
 func _ready() -> void:
 	add_to_group(GROUP)
+	_result = ""
 
 
 func start(lines: Array, npc_name: String = "MALACHAR", mc_name: String = "AELINDRA") -> void:
@@ -203,13 +205,20 @@ func _place_choice_box() -> void:
 func _on_choice_selected(index: int) -> void:
 	if not _choices_open or index >= _pending.size():
 		return
+		
 	var choice: Dictionary = _pending[index]
+	
+	if choice.has("result"):
+		choice_result.emit(str(choice["result"]))
+		
 	_close_choices()
 	choice_made.emit(index, choice.get("text", ""))
+	
 	if choice.has("goto"):
 		_page = int(choice["goto"])
 	else:
 		_page += 1
+	
 	if _page >= _lines.size():
 		end()
 	else:

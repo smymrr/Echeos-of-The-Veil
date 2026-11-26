@@ -38,7 +38,9 @@ func _perform_attack(input_direction: Vector2) -> void:
 	await get_tree().physics_frame
 
 	hitbox.monitoring = true
+	
 	await get_tree().create_timer(attack_duration).timeout
+	
 	hitbox.monitoring = false
 	get_parent().set_movement_lock(false)
 	is_attacking = false
@@ -54,7 +56,6 @@ func _process_animation_and_hitbox(input_direction: Vector2) -> void:
 	
 	# Animation
 	animation_component.play_animation("attack", cardinal)
-	print("animated")
 	
 	# Hitbox orientation
 	if cardinal.x != 0:

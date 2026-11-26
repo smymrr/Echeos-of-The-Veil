@@ -13,6 +13,7 @@ extends CharacterBody2D
 
 @export var enemy_name: String = "Slime"
 @export var level: int = 1
+@export var enemy_id: String = "slime"
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var hitbox: Area2D = $Hitbox

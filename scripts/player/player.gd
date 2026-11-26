@@ -43,10 +43,12 @@ func process_movement() -> void:
 	if not attack_component.is_attacking:
 		movement_component.process_animation(last_facing_direction)
 
-func set_movement_lock(locked: bool) -> void:
+func set_movement_lock(locked: bool, play_idle: bool = false) -> void:
 	movement_component.is_dashing = false
 	velocity = Vector2.ZERO
-	movement_component.process_animation(last_facing_direction)
+	if locked and play_idle:
+		movement_component.process_animation(last_facing_direction)
+	
 	movement_component.is_locked = locked
 
 func set_movement_slowed(slowed: bool) -> void:

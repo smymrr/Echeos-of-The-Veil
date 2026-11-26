@@ -1155,9 +1155,10 @@ camera = NodePath("PlayerCamera")
 [node name="AttackComponent" type="Node" parent="." unique_id=707260039]
 script = ExtResource("2_qlg0r")
 
-[node name="MovementComponent" type="Node" parent="." unique_id=706504208 node_paths=PackedStringArray("animation_component")]
+[node name="MovementComponent" type="Node" parent="." unique_id=706504208 node_paths=PackedStringArray("animation_component", "attack_component")]
 script = ExtResource("3_tuyoq")
 animation_component = NodePath("../AnimationComponent")
+attack_component = NodePath("../AttackComponent")
 
 [node name="AnimationComponent" type="Node" parent="." unique_id=1531548757]
 script = ExtResource("4_smehm")
