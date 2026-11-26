@@ -27,7 +27,7 @@ signal new_journey_started(slot: int)
 @export_file("*.tscn") var new_journey_scene: String = "res://scenes/main.tscn"
 ## PREVIEW: true = anggap semua slot save penuh, jadi panel "pilih slot yang ditimpa" muncul.
 ## false = New Journey langsung mulai. Koder: ganti dengan pengecekan save asli di _are_slots_full().
-@export var preview_slots_full: bool = true
+@export var preview_slots_full: bool = false
 
 # --- PRELOADED AUDIO ---
 const SFX_HOVER = preload("res://assets/audio/sfx/hover_sound.wav")
@@ -254,7 +254,7 @@ func _start_new_journey(slot: int = 0) -> void:
 	_fade_tween.set_parallel(false)
 
 	_fade_tween.tween_callback(func():
-		get_tree().change_scene_to_file(new_journey_scene)
+		LoadingScreen.go_to(get_tree(), new_journey_scene)
 	)
 
 # ------------------------------------------------------------------ Audio UI
